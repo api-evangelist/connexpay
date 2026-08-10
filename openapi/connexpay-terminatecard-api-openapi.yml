@@ -1,0 +1,140 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Terminate Card API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: TerminateCard
+paths:
+  /api/v1/TerminateCard/<guid>:
+    post:
+      summary: Terminate Card
+      description: The TerminateDate (YYYY-MM-DD format) is the date the Virtual Credit Card will be terminated by ConnexPay. TerminateDate is different than ExpirationDate in that TerminateDate indicates the actual date the card will no longer be active.  ExpirationDate is the month and year that will be applied to the actual VCC. Note, Returns can still be processed on terminated VCCs.
+      operationId: terminatecard
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      - name: guid
+        in: path
+        description: Global Unique Identifier of the Physical or Virtual Card to be terminated.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"cardGuid\": \"d66d7435-fe07-46be-97d4-7699c2bcf841\",\n    \"amountLimit\": 25.00,\n    \"usageLimit\": 2,\n    \"limitWindow\": \"LIFETIME\",\n    \"expirationDate\": \"2023-05-31T00:00:00-04:00\",\n    \"expiration\": \"0623\",\n    \"terminateDate\": \"2023-06-18T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"111111\",\n    \"lastFour\": \"9999\",\n    \"nameLine1\": \"CardName1\",\n    \"nameLine2\": \"CardName2\",\n    \"status\": \"Card - Deactivated\",\n    \"customerServicePhoneNumber\": \"1-612-789-9999\",\n    \"sequenceNumber\": \"Termination Sample\",\n    \"cardType\": \"Visa\",\n    \"gatewayMerchantGuid\": \"9994975d-4eb8-45a1-a9b5-ce1b596dbc99\",\n    \"availableBalance\": 0.0,\n    \"isPhysical\": false,\n    \"isLodged\": false,\n    \"fingerprint\": \"994A1895A50182BC080EE761B571E5EE\"\n}"
+              schema:
+                type: object
+                properties:
+                  cardGuid:
+                    type: string
+                    example: d66d7435-fe07-46be-97d4-7699c2bcf841
+                  amountLimit:
+                    type: integer
+                    example: 25
+                    default: 0
+                  usageLimit:
+                    type: integer
+                    example: 2
+                    default: 0
+                  limitWindow:
+                    type: string
+                    example: LIFETIME
+                  expirationDate:
+                    type: string
+                    example: '2023-05-31T00:00:00-04:00'
+                  expiration:
+                    type: string
+                    example: '0623'
+                  terminateDate:
+                    type: string
+                    example: '2023-06-18T23:59:59'
+                  currencyCode:
+                    type: string
+                    example: USD
+                  firstSix:
+                    type: string
+                    example: '111111'
+                  lastFour:
+                    type: string
+                    example: '9999'
+                  nameLine1:
+                    type: string
+                    example: CardName1
+                  nameLine2:
+                    type: string
+                    example: CardName2
+                  status:
+                    type: string
+                    example: Card - Deactivated
+                  customerServicePhoneNumber:
+                    type: string
+                    example: 1-612-789-9999
+                  sequenceNumber:
+                    type: string
+                    example: Termination Sample
+                  cardType:
+                    type: string
+                    example: Visa
+                  gatewayMerchantGuid:
+                    type: string
+                    example: 9994975d-4eb8-45a1-a9b5-ce1b596dbc99
+                  availableBalance:
+                    type: integer
+                    example: 0
+                    default: 0
+                  isPhysical:
+                    type: boolean
+                    example: false
+                    default: true
+                  isLodged:
+                    type: boolean
+                    example: false
+                    default: true
+                  fingerprint:
+                    type: string
+                    example: 994A1895A50182BC080EE761B571E5EE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{
+
+                    "message": "The request is invalid."
+
+                    }'
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The request is invalid.
+      deprecated: false
+      tags:
+      - TerminateCard
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

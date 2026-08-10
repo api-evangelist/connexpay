@@ -1,0 +1,124 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/docs/sandbox
+docs:
+- https://docs.connexpay.com/docs/environments-1
+- https://docs.connexpay.com/docs/sandbox
+- https://docs.connexpay.com/docs/status-and-error-codes
+x-evidence:
+- url: https://docs.connexpay.com/docs/sandbox
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/docs/environments-1
+  http_status: 200
+  fetched: '2026-08-09'
+separation:
+  model: separate hosts per environment
+  credential_scope: Sandbox credentials do not work in Production; a distinct username, password, merchant ID (MID) and device ID are issued per environment.
+  self_service: false
+  gate: Production credentials are only issued after the implementation team confirms successful Solution Validation in Sandbox — see the Sandbox Validation scenario list.
+  currency: The Sandbox is configured for USD only; other currencies are not supported there and all test transactions display as USD.
+  not_supported_in_sandbox:
+  - load testing
+  - automated batch settlement
+  - ATI refresh
+  - ATA refresh
+  - reconciliation
+environments:
+- name: Sandbox
+  sales_host: https://sandboxsalesapi.connexpay.com
+  purchases_host: https://sandboxpurchasesapi.connexpay.com
+  payment_valet_host: https://sandbox.api.connexpay.com/valet/payment/v1
+- name: Production
+  sales_host: https://salesapi.connexpay.com
+  purchases_host: https://purchasesapi.connexpay.com
+  reporting_host: https://reportingapi.connexpay.com
+  chargebacks_host: https://cmsapi.connexpay.com
+  bridge_host: https://api.cxpbridge.com
+  note: The Reporting API and the UATP / enhanced-travel-data reporting endpoints are documented as Production-only — they are not callable in Sandbox.
+test_cards:
+- brand: Visa
+  number: '4012000098765439'
+  security_code: '999'
+  zip: '85284'
+- brand: MasterCard
+  number: '5499740000000057'
+  security_code: '998'
+  zip: '85284'
+- brand: MasterCard
+  number: '2223000048400011'
+  security_code: '998'
+  zip: '85284'
+  note: Documented as returning an error when used with SDK test sale attempts.
+- brand: Amex
+  number: '371449635392376'
+  security_code: '9997'
+  zip: '85284'
+- brand: Discover
+  number: '6011000993026909'
+  security_code: '996'
+  zip: '85284'
+magic_values:
+- kind: risk decline trigger
+  field: Email
+  value: decline@connexpay.com
+  effect: 'Sale fails with an authorization decline: "status":"Transaction – Declined". Requires the implementation team to configure the Equifax rules engine for the test environment.'
+- kind: CVV mismatch
+  field: security code
+  effect: Any CVV other than the value published for the test card returns an authorization decline.
+- kind: AVS simulation
+  field: Zip Code
+  effect: Specific zip codes map to specific AddressVerificationCode results in Sandbox.
+  docs: https://docs.connexpay.com/docs/status-and-error-codes
+  values:
+  - zip: '8320'
+    code: N
+    result: No match.
+  - zip: '85284'
+    code: Z
+    result: Postal/ZIP match, street address does not match or was not included.
+  - zip: M4P1Z2
+    code: Y
+    result: Street address and postal/ZIP match.
+  - zip: M4P1Z3
+    code: '0'
+    result: Unavailable.
+  - zip: M11AA
+    code: Y
+    result: Street address and postal/ZIP match.
+  - zip: EC1A1BB
+    code: Y
+    result: Street address and postal/ZIP match.
+  - zip: '99999'
+    code: U
+    result: Address not verified for domestic transaction.
+  - zip: '99998'
+    code: G
+    result: Address not verified for international transaction.
+  - zip: '999970001'
+    code: B
+    result: Street addresses match, postal/ZIP not verified (incompatible formats).
+  - zip: '999970002'
+    code: C
+    result: Street address and postal/ZIP not verified (incompatible formats).
+  - zip: '999970003'
+    code: D
+    result: Street addresses and postal/ZIP codes match.
+validation_scenarios:
+- scenario: Sale & Purchase - Basic
+  expected: A virtual card corresponding to the ITC returned by the sale is created.
+- scenario: Sale - Risk Decline
+  expected: Sale fails with an auth decline response.
+- scenario: Sale - Declined Authorization
+  expected: Non-matching CVV returns an auth decline.
+- scenario: Sale - Void
+  expected: Sale is voided prior to batch settlement; response includes 201.
+- scenario: Purchases - Exceed Virtual Card Issuing Limit
+  expected: Issuing more cards than ExpectedPayments fails.
+- scenario: Purchases - Exceed Virtual Card Amount Limit
+  expected: Issuing a card for more than the authorized sale amount fails.
+tooling:
+  postman: Developers integrating for the first time receive a set of Postman scripts containing a username, password, merchant ID, device ID and URLs. These are issued privately by the implementation team — ConnexPay does not publish a public Postman workspace.
+  console: Bridge UI (Production only) — web tool to submit, view and manage transaction activity and to issue a virtual card outside of an API integration.
+  webhook_testing: Sandbox webhook endpoints are self-configured through Bridge; ConnexPay sends a set of simulated API calls so business logic can be validated against real events.
+test_clocks: null

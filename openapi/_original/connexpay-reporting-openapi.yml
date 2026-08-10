@@ -1,0 +1,1287 @@
+openapi: 3.0.1
+info:
+  title: ConnexPay Reporting API
+  description: REST API for retrieving reporting data. Currently Daily Accounting data only.
+  contact:
+    name: ConnexPay
+    url: https://docs.connexpay.com
+  version: v1
+paths:
+  /api/v1/Accounting/DailyDetail:
+    get:
+      tags:
+      - Accounting
+      summary: Get Daily Accounting Detail
+      description: 'This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production. '
+      operationId: GetDetail
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: The client identifier for the requested transactions.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: ab0123f5-7648-4e27-8709-ad0f4e162c20
+      - name: releasedDate
+        in: query
+        description: Date on which the requested transactions were released to the client.
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-12-31'
+      - name: pageNumber
+        in: query
+        description: ''
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: Successfully retrieved daily accounting detail data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyAccountingDetailPaginatedItems'
+        '204':
+          description: No Content
+        '400':
+          description: The request was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: The request was not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: No data was found for the provided parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/Accounting/DailySummary:
+    get:
+      tags:
+      - Accounting
+      summary: Get Daily Accounting Summary
+      description: This endpoint returns the daily accounting summary of a merchant for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+      operationId: GetSummary
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: The client identifier for the requested transactions.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: ab0123f5-7648-4e27-8709-ad0f4e162c20
+      - name: releasedDate
+        in: query
+        description: Date on which the requested transactions were released to the client.
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-12-31'
+      responses:
+        '200':
+          description: Successfully retrieved daily accounting summary data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyAccountingSummary'
+        '204':
+          description: No Content
+        '400':
+          description: The request was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: The request was not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: No data was found for the provided parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/Credit/AvailableCreditReport/{pageNumber}/{pageSize}:
+    post:
+      tags:
+      - Credit
+      summary: Get Available Credit Report
+      operationId: AvailableCreditReport
+      parameters:
+      - name: pageNumber
+        in: path
+        description: ''
+        required: true
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: path
+        description: ''
+        required: true
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableCreditReportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/ExtendedData/{pageNumber}/{pageSize}:
+    post:
+      tags:
+      - ExtendedData
+      summary: Get Enhanced (Level 2 and Level 3) Travel Data
+      description: Retrieves enhanced data for travel-related transactions. This includes airline and hotel details, such as passenger names, flight numbers, hotel charges, etc. The data is paginated and can be filtered by various parameters. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+      operationId: GetExtendedData
+      parameters:
+      - name: pageNumber
+        in: path
+        description: Page number (1-based)
+        required: true
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: path
+        description: Number of items per page
+        required: true
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      requestBody:
+        description: Filter parameters for enhanced data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedDataPaginatedItems'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/UATP/Transactions:
+    get:
+      tags:
+      - UATP
+      summary: Get UATP Transactions
+      description: 'Either postDateFrom and postDateTo OR settledDateFrom and settledDateTo must be provided. (Note: Records will only be returned by the postDateFrom/To range if the transaction has settled.) For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.'
+      operationId: UATPtransactions
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: Unique identifier assigned to the client by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: postDateFrom
+        in: query
+        description: Starting ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: postDateTo
+        in: query
+        description: Ending ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: settledDateFrom
+        in: query
+        description: Starting settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: settledDateTo
+        in: query
+        description: 'Ending settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required. '
+        schema:
+          type: string
+          format: date
+      - name: pageNumber
+        in: query
+        description: The page number for the transactions to retrieve in this call.
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of transactions to retrieve in this call.
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UATPTransactionsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    AvailableCreditReport:
+      type: object
+      properties:
+        client:
+          description: Unique name assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        mid:
+          description: Unique merchant identifier assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        date:
+          description: Date Time.
+          type: string
+          format: date-time
+        type:
+          description: Type of the credit transaction.
+          type: string
+          nullable: true
+        user:
+          description: User that performed the credit transaction.
+          type: string
+          nullable: true
+        amount:
+          description: Amount of the credit transaction.
+          type: number
+          format: double
+        availableCredit:
+          description: Available credit amount as a result of the credit transaction.
+          type: number
+          format: double
+        merchantGatewayGuid:
+          description: Unique merchant Guid assigned to the client by ConnexPay.
+          type: string
+          format: uuid
+      additionalProperties: false
+    AvailableCreditReportRequest:
+      type: object
+      properties:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        client:
+          description: Unique name assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        timeStampFrom:
+          description: Start date for the Report Request.
+          type: string
+          format: date-time
+          nullable: true
+        timeStampTo:
+          description: End date for the Report Request.
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AvailableCreditReportResponse:
+      type: object
+      properties:
+        pageCurrent:
+          description: Current Page number.
+          type: integer
+          format: int32
+        pageCurrentResults:
+          description: Current Page results.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        pageTotal:
+          description: Total number of pages available.
+          type: integer
+          format: int32
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableCreditReport'
+          nullable: true
+      additionalProperties: false
+    DailyAccountingDetail:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: "Merchant Guid\r\n\r\nUnique identifier assigned to the merchant by ConnexPay."
+          format: uuid
+        clientName:
+          type: string
+          description: "Client Name\r\n\r\nUnique name assigned to the client by ConnexPay."
+          nullable: true
+        releasedDate:
+          type: string
+          description: "Released Date\r\n\r\nDate on which the Accounting File for this detail record was released to the client."
+          format: date
+        description:
+          type: string
+          description: "Description\r\n\r\nThe type of transaction being released in this detail record.\r\n\r\nPossible Values:\r\n  ACH Debit Reject\r\n  Bank A ACH Credit Reject\r\n  Credit to Client (Withdrawal from Cash Account)\r\n  Daily Flex Funding\r\n  Debit from Client (Deposit to Cash Account)\r\n  Empty\r\n  Prior Day Cash Balance\r\n  Purchase - ACH Purchase\r\n  Purchase - ACH Return\r\n  Purchase - Push To Card Payout\r\n  Purchase - Virtual Card Chargeback\r\n  Purchase - Virtual Card Purchase\r\n  Purchase - Virtual Card Return\r\n  Reserve Balance\r\n  Sale - ACH Return\r\n  Sale - ACH Sale\r\n  Sale - ACH Void\r\n  Sale - Credit Card Adjustment\r\n  Sale - Credit Card Chargeback\r\n  Sale - Credit Card Return\r\n  Sale - Credit Card Sale\r\n  Sale - Credit Card Void\r\n  Unspecified"
+          nullable: true
+        orderNumber:
+          type: string
+          description: "Order Number\r\n\r\nIdentifier that may be provided by the client during the Create Sale or IssueLite process to identify the order.\r\nCan be comprised of multiple sales and purchases."
+          nullable: true
+        name:
+          type: string
+          description: "Name\r\n\r\nThe name line 1 and 2 of the virtual credit card."
+          nullable: true
+        cardLastFour:
+          type: string
+          description: "Card Last Four\r\n\r\nThe last four digits of the card number associated with the detail record."
+          nullable: true
+        incomingTransactionCode:
+          type: string
+          description: "Incoming Transaction Code (ITC)\r\n\r\nA unique ConnexPay generated token that connects an incoming sale transaction to an outbound\r\npurchase (virtual card or ACH) transaction. An ITC is generated and returned for each successful\r\nauthorization associated with a Sale request and is required for each purchase request."
+          nullable: true
+        customerId:
+          type: string
+          description: "Customer ID\r\n\r\nIdentifier that may be provided by the client during the Create Sale or IssueLite process. Can be comprised \r\nof multiple sales and purchases. Acts as a secondary identifier in conjunction with OrderNumber."
+          nullable: true
+        amount:
+          type: number
+          description: "Amount\r\n\r\nAmount of the sale or purchase transaction."
+          format: double
+        merchantName:
+          type: string
+          description: "Merchant Name\r\n\r\nName of the supplier processing the virtual credit card transaction."
+          nullable: true
+        ticketNumber:
+          type: string
+          description: "Ticket Number\r\n\r\nAddendum data associated with the transaction that is returned if provided during the virtual credit card or ACH creation"
+          nullable: true
+        entityGuid:
+          type: string
+          description: "Entity Guid\r\n\r\nEntity Guid of the detail record to link them back to the original entity."
+          format: uuid
+          nullable: true
+        purchaseType:
+          type: string
+          description: "Purchase Type\r\n\r\nDescription of the client's category group. Essentially, the industry where the virtual card will be utilized.\r\n\r\nSee the Issue Card method in the Purchases API documentation for more details."
+          nullable: true
+        entityId:
+          type: string
+          description: "Entity Id\r\n\r\nEntity Guid of the detail record to link them back to the original entity."
+          nullable: true
+        issuedAmount:
+          type: number
+          description: "Issued Amount\r\n\r\nAmount of the virtual credit card issued to the client."
+          format: double
+        labelName:
+          type: string
+          description: "Label Name\r\n\r\nComma-separated list of labels associated with the sale."
+          nullable: true
+        associationId:
+          type: string
+          description: "Association ID\r\n\r\nUsed to associate a virtual card to one or more sales."
+          nullable: true
+        saleGuid:
+          type: string
+          description: "Sale Guid\r\n\r\nGuid value returned from the Create Sale method in the Sales API. Associated with \r\nsale transaction detail records."
+          format: uuid
+          nullable: true
+        cardGuid:
+          type: string
+          description: "Card Guid\r\n\r\nGuid value return from the Issue Card method in the Purchases API. Associated with \r\npurchase and return detail records."
+          format: uuid
+          nullable: true
+        dateTime:
+          type: string
+          description: "Date Time\r\n\r\nFor Sale detail records, the date of the sale transaction.\r\n\r\nFor Purchase and Return detail records, the date of the purchase or return settlement.\r\n\r\nNote: This date may not be the same as ReleasedDate because release does not occur on weekends and bank holidays."
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    DailyAccountingDetailPaginatedItems:
+      type: object
+      properties:
+        totalItemCount:
+          type: integer
+          description: Count of all items available in the day's accounting detail.
+          format: int32
+        pageCount:
+          type: integer
+          description: Count of pages available in the day's accounting detail.
+          format: int32
+        pageItemCount:
+          type: integer
+          description: Count of items in the current page.
+          format: int32
+        pageNumber:
+          type: integer
+          description: Sequence number of the current page.
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyAccountingDetail'
+          description: Collection of accounting detail items for the current page.
+          nullable: true
+      additionalProperties: false
+    DailyAccountingSummary:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: "Merchant Guid\r\n\r\nUnique identifier assigned to the merchant by ConnexPay."
+          format: uuid
+        clientName:
+          type: string
+          description: "Client Name\r\n\r\nUnique name assigned to the client by ConnexPay."
+          nullable: true
+        releasedDate:
+          type: string
+          description: "Released Date\r\n\r\nDate on which the requested transactions were released to the client."
+          format: date
+        priorDayCashBalance:
+          type: number
+          description: "Prior Day Cash Balance\r\n\r\nThe starting cash balance from the previous day."
+          format: double
+        wireAchToFundCashAmount:
+          type: number
+          description: "Wire/ACH to Fund Cash Account Amount (Credit) or Withdraw from Cash Account Amount (Debit)\r\n\r\nFunds transferred between the client's bank account and ConnexPay to fund transactions or to return funds to the client."
+          format: double
+        beginningCashBalance:
+          type: number
+          description: "Beginning Cash Balance\r\n\r\nThe funds the client begins the day with."
+          format: double
+        creditSaleAmount:
+          type: number
+          description: "Credit Card Sale Amount (Credit)\r\n\r\nTotal amount of incoming credit card sales added to the client's cash balance."
+          format: double
+        achSaleAmount:
+          type: number
+          description: "ACH Sale Amount (Credit)\r\n\r\nTotal amount of incoming ACH sales added to the client's cash balance."
+          format: double
+        purchaseAchAmount:
+          type: number
+          description: "ACH Purchase Amount (Debit)\r\n\r\nTotal amount of ACH purchases decreasing the client's cash balance."
+          format: double
+        purchaseCardAmount:
+          type: number
+          description: "Virtual Card Purchase Amount (Debit)\r\n\r\nTotal amount of issued virtual credit card purchases subtracting from the client's cash balance."
+          format: double
+        purchasePushToCardAmount:
+          type: number
+          description: "Purchase Push to Card Amount\r\n\r\nTotal amount of funds paid out through PushToCard subtracting from the client's cash balance."
+          format: double
+        creditVoidAmount:
+          type: number
+          description: "Credit Card Void Amount (Debit)\r\n\r\nTotal amount of credit card sales voided subtracting from the client's cash balance."
+          format: double
+        creditReturnAmount:
+          type: number
+          description: "Credit Card Return Amount (Debit)\r\n\r\nTotal amount of credit card sales returned subtracting from the client's cash balance."
+          format: double
+        creditChargebackAmount:
+          type: number
+          description: "Credit Chargeback Amount\r\n\r\nTotal amount of Chargebacks received on the credit card sales subtracting from the client's cash balance."
+          format: double
+        creditAdjustmentAmount:
+          type: number
+          description: "Credit Adjustment Amount\r\n\r\nTotal amount of manual credit adjustments created for the client."
+          format: double
+        achVoidAmount:
+          type: number
+          description: "ACH Void Amount (Debit)\r\n\r\nTotal amount of ACH sales voided subtracting from the client's cash balance."
+          format: double
+        achReturnAmount:
+          type: number
+          description: "ACH Return (Debit)\r\n\r\nTotal amount of ACH sales returned subtracting from the client's cash balance."
+          format: double
+        purchaseCardReturnAmount:
+          type: number
+          description: "Virtual Card Return Amount (Credit)\r\n\r\nTotal amount returned to issued virtual credit cards adding to the client's cash balance."
+          format: double
+        purchaseCardChargebackAmount:
+          type: number
+          description: "Purchase Card Chargeback Amount\r\n\r\nTotal amount of Chargebacks received on issued virtual credit cards as part of the dispute process."
+          format: double
+        purchaseAchReturnAmount:
+          type: number
+          description: "Purchase - ACH Return Amount (Credit)\r\n\r\nTotal amount returned to issued ACHs adding to the client's cash balance."
+          format: double
+        totalActivity:
+          type: number
+          description: "Total Activity\r\n\r\nThe sum of all debits and credits processed on the client's behalf for the previous day."
+          format: double
+        newCashBalance:
+          type: number
+          description: "New Cash Balance\r\n\r\nReflects the day's beginning cash balance plus or minus the client's total activity."
+          format: double
+        netDebitCreditToClient:
+          type: number
+          description: "Credit/Debit\r\n\r\nThe amount to be credited to or debited from the client's bank account. ConnexPay will collaborate with\r\nthe client to determine the percentage that will be returned to the client's bank account each day."
+          format: double
+        endingCashBalance:
+          type: number
+          description: "Ending Cash Balance\r\n\r\nThe client's New Cash Balance plus or minus the Credit/Debit amount."
+          format: double
+        minimumCashBalance:
+          type: number
+          description: "Minimum Cash Balance (MCB)\r\n\r\nMinimum funding balance that should be maintained by the client with ConnexPay."
+          format: double
+        achDebitRejectAmount:
+          type: number
+          description: "ACH Debit Reject Amount (Credit)\r\n\r\nTotal amount of payments that did not clear the supplier's account. Payments can be rejected for a variety of reasons, including closed accounts, incorrect account numbers, etc."
+          format: double
+        directSaleAmount:
+          type: number
+          description: "Sale - Direct Sale (Credit)\r\n\r\nTotal amount of payments processed between ConnexPay clients through ConnexPay systems using Direct rails, which increases the client's Sales Allowance for future purchases."
+          format: double
+        directReturnAmount:
+          type: number
+          description: "Sale - Direct Return (Debit)\r\n\r\nTotal amount of funds refunded after a Direct Sale has been processed and needs to be reversed."
+          format: double
+        directVoidAmount:
+          type: number
+          description: "Sale - Direct Void (Debit)\r\n\r\nTotal amount of a Direct Sale transaction that is effectively canceled, with no funds being transferred between the involved parties."
+          format: double
+        purchaseDirectAmount:
+          type: number
+          description: "Purchase - Direct Purchase (Debit)\r\n\r\nTotal amount of payments made between ConnexPay clients through ConnexPay systems using the Direct rails."
+          format: double
+        purchaseDirectReturnAmount:
+          type: number
+          description: "Purchase - Direct Return (Credit)\r\n\r\nTotal amount of funds returned by a payee on a previously completed Direct Sale."
+          format: double
+      additionalProperties: false
+    ExtendedData:
+      type: object
+      properties:
+        fileName:
+          type: string
+          nullable: true
+        lineNumber:
+          type: integer
+          format: int64
+          nullable: true
+        idSettlement:
+          type: integer
+          format: int32
+          nullable: true
+          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for settlements.
+        passengerName:
+          type: string
+          nullable: true
+          description: Airline related. Name of passenger.
+        ticketNumber:
+          type: string
+          nullable: true
+          description: Airline related. Ticket number
+        departureDate:
+          type: string
+          format: date
+          nullable: true
+          description: Airline related. Date of passenger's departure
+        originationCityAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating the city and/or airport where the trip originates.
+        flightNumberLeg1:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 1 of the trip.
+        tripLeg1CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg1ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg1StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg1DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg1:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 1 of the trip.
+        flightNumberLeg2:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 2 of the trip.
+        tripLeg2CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg2ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg2StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg2DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg2:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 2 of the trip.
+        flightNumberLeg3:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 3 of the trip.
+        tripLeg3CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg3ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg3StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg3DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg3:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 3 of the trip.
+        flightNumberLeg4:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 4 of the trip.
+        tripLeg4CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg4ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg4StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg4DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg4:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 4 of the trip.
+        ticketIssueDate:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the date in which the Ticket was Issued.
+        travelAgencyCode:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the Travel Agency Code
+        travelAgencyName:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the Travel Agency Name.
+        totalClearingAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Airline related. This field contains total clearing amount.
+        restrictedTicketIndicator:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether this ticket is non-refundable (Space = No restriction; 0 = No restriction; 1 = Restricted (non-refundable) ticket
+        creditReasonIndicator:
+          type: string
+          nullable: true
+          description: 'Airline related. Indicates the reason for a credit to the cardholder. This field should contain space or one of these codes:
+
+            A – Passenger Transport Ancillary Purchase Cancellation
+
+            B – Airline Ticket and Passenger Transport Ancillary Purchase Cancellation
+
+            O – Other
+
+            VIC Edit: The VIC'
+        ticketChangeIndicator:
+          type: string
+          nullable: true
+          description: 'Airline related. This field contains the Ticket Change Indicator. Values are:
+
+            C = Change to existing ticket
+
+            N = New ticket'
+        travelAuthorizationCode:
+          type: string
+          nullable: true
+          description: 'Airline related. Mastercard only. Indicates the code provided by the company to a travel  agent authorizing ticket issuance.
+
+            This code is identified as Customer File Reference Number in Airline Reporting Corporation
+
+            (ARC) specifications.'
+        iataClientCode:
+          type: string
+          nullable: true
+          description: 'Airline related. Mastercard only. Provides the International Air Transport Association (IATA) code
+
+            identifying the company that purchased the ticket.'
+        guestName:
+          type: string
+          nullable: true
+          description: Hotel related. This field will contain the name of the guest who is registered for the room.
+        arrivalDate:
+          type: string
+          nullable: true
+          description: Hotel related. The date the customer checked into the hotel, or in the case of a no-show or an advance lodging, the scheduled arrival date.
+        roomServiceCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the room service charges.
+        loungeBarCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the lounge and bar charges.
+        transportationCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the transportation charges.
+        gratuityCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the gratuity charges.
+        conferenceRoomCharges:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Contains the amount of the charges associated with
+
+            conference room use.'
+        audioVisualCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the audiovisual equipment charges.
+        banquetCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the banquet charges.
+        internetAccessCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the internet access charges.
+        earlyDepartureCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount charged because of early departure.
+        lodgingDepartureDate:
+          type: string
+          nullable: true
+          description: Hotel related. Departure Date.
+        folioNumber:
+          type: string
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the acceptor’s internal invoice or billing ID reference number.
+        roomRate:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Daily rate being charged for the room exclusive of taxes and fees.
+        totalRoomTax:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Total room tax being billed.
+        phoneCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the charges for telephone use.
+        restaurantCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the restaurant charges.
+        miniBarCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the mini-bar charges.
+        giftShopCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the gift shop charges.
+        laundryAndDryCleaningCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the laundry and dry cleaning charges.
+        otherServices:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Contains the total amount of other service charges, not elsewhere
+
+            classified.'
+        lodgingTotalTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the total taxes paid during a lodging stay.
+        taxExemptIndicator:
+          type: string
+          nullable: true
+          description: Hotel related. This field contains a value that indicates whether the transaction is tax-exempt.
+        noShowIndicator:
+          type: string
+          nullable: true
+          description: 'Hotel related. An indicator that the cardholder is being billed for a reserved room that was not actually rented (AKA a “no-show” charge). 0 = Not applicable
+
+            1 = No-show'
+        totalAuthorizedAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Total authorized amount of the transaction including taxes and miscellaneous fees less reversals.
+        totalTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the Total Tax Amount.
+        totalRoomNights:
+          type: integer
+          format: int32
+          nullable: true
+          description: Hotel related. This field contains the total number of rooms for the lodging stay.
+        prepaidExpenses:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the prepaid expenses.
+        totalNonRoomTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the total tax amount for non-room charges.
+        cashAdvances:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Any Folio cash advances being billed.
+        valetCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the charges associated with the use of valet services.
+        movieCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the amount charged for in-room movies.
+        businessCenterCharges:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Provides the amount charged for business center use and
+
+            supplies.'
+        healthClubCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the amount charged for health club use and supplies.
+        idCard:
+          type: integer
+          format: int32
+          nullable: true
+          description: The idCard value associated with the transaction detail.
+        postDate:
+          type: string
+          format: date
+          nullable: true
+          description: The settlement posting date of the transaction.
+        cardGuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: Guid value return from the Issue Card method in the Purchases API associated with the transaction detail.
+        firstSix:
+          type: string
+          nullable: true
+          description: The first six digits of the card number associated with the transaction detail.
+        lastFour:
+          type: string
+          nullable: true
+          description: The last four digits of the card number associated with the transaction detail.
+        idCardHolder:
+          type: integer
+          format: int32
+          nullable: true
+          description: The CardHolder ID value associated with the transaction detail.
+        cardHolder:
+          type: string
+          nullable: true
+          description: The CardHolder value associated with the transaction detail.
+        customerName:
+          type: string
+          nullable: true
+          description: The customer name value associated with the transaction detail.
+        orderNumber:
+          type: string
+          nullable: true
+          description: Identifier provided during the Create Sale or IssueLite process and associated with the transaction detail.
+        maskedFirstSix:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The masked first six digits of the card number associated with the transaction detail.
+        maskedLastFour:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The masked last four digits of the card number associated with the transaction detail.
+      additionalProperties: false
+    ExtendedDataPaginatedItems:
+      type: object
+      properties:
+        totalItemCount:
+          type: integer
+          description: Count of all items available in the day's accounting detail.
+          format: int32
+        pageCount:
+          type: integer
+          description: Count of pages available in the day's accounting detail.
+          format: int32
+        pageItemCount:
+          type: integer
+          description: Count of items in the current page.
+          format: int32
+        pageNumber:
+          type: integer
+          description: Sequence number of the current page.
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedData'
+          description: Collection of accounting detail items for the current page.
+          nullable: true
+      additionalProperties: false
+    ExtendedDataRequest:
+      required:
+      - merchantGuid
+      type: object
+      properties:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        startDate:
+          description: The start date for the requested transactions.
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: The end date for the requested transactions.
+          type: string
+          format: date-time
+          nullable: true
+        presetTimeFrame:
+          description: A predefined time frame for the requested transactions. Valid values are '1week', '1month', and '3months'.
+          type: string
+          nullable: true
+        accountNumbers:
+          description: A list of account numbers to filter the requested transactions.
+          type: array
+          items:
+            type: string
+          nullable: true
+        customerName:
+          description: The customer name value associated with the requested transactions.
+          type: string
+          nullable: true
+        cardholderName:
+          description: The cardholder name value associated with the requested transactions.
+          type: string
+          nullable: true
+        orderNumber:
+          description: The order number value associated with the requested transactions.
+          type: string
+          nullable: true
+        cardGuid:
+          description: The unique identifier of the card associated with the requested transactions.
+          type: string
+          format: uuid
+          nullable: true
+        firstSix:
+          description: The first six digits of the card number associated with the requested transactions.
+          type: string
+          nullable: true
+        lastFour:
+          description: The last four digits of the card number associated with the requested transactions.
+          type: string
+          nullable: true
+        sortBy:
+          description: The field by which to sort the results. Valid values are 'postdate', 'departuredate', 'customername', 'cardholder', and 'ordernumber'. If not specified, results will be sorted by postdate.
+          type: string
+          nullable: true
+        sortOrder:
+          description: The order in which to sort the results. Valid values are 'asc' for Ascending and 'desc' for Descending.
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    UATPTransactions:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: "Merchant Guid\r\n            \r\nUnique identifier assigned to the client by ConnexPay."
+          format: uuid
+        merchantName:
+          type: string
+          description: "Merchant Name\r\n            \r\nName of the airline processing the transaction."
+          nullable: true
+        cardAcceptorName:
+          type: string
+          description: "Card Acceptor Name\r\n            \r\nAnother version of the name of the airline that is processing the transaction."
+          nullable: true
+        iataAirlineCode:
+          type: string
+          description: "IATA Airline Code\r\n            \r\nTwo-letter IATA airline designator. (https://www.iata.org/en/publications/directories/code-search/)"
+          nullable: true
+        accountNumber:
+          type: string
+          description: "Account Number\r\n            \r\nMasked account number for the payment."
+          nullable: true
+        ticketIssuedDate:
+          type: string
+          description: "Ticket Issued Date\r\n            \r\nDate the ticket was issued."
+          format: date-time
+        settledDate:
+          type: string
+          description: "Settled Date\r\n            \r\nDate when the transaction was settled."
+          format: date-time
+        ticketNumber:
+          type: string
+          description: "Ticket Number\r\n            \r\nAirline-provided identifier for the ticket."
+          nullable: true
+        merchantCurrency:
+          type: string
+          description: "Merchant Currency\r\n            \r\n3-letter alphabetic code for the currency accepted by the merchant / card acceptor. See ISO-4217 currency list for values (https://www.iso.org/obp/ui/)."
+          nullable: true
+        merchantCurrencyAmount:
+          type: number
+          description: "Merchant / Card Acceptor Currency Amount\r\n            \r\nThe amount of the transaction in the airline's / card acceptor's accepted currency."
+          format: double
+        merchantCountry:
+          type: string
+          description: "Merchant Country\r\n            \r\n3-letter country code of the airline / card acceptor. See ISO-3166 country list of Alpha-3 country codes (https://www.iso.org/obp/ui/)."
+          nullable: true
+        settledAmount:
+          type: number
+          description: "Settled Amount\r\n            \r\nConnexPay settlement amount, denominated in the customer's accounting currency. Value will be positive for a purchase or negative for returns."
+          format: double
+        transactionType:
+          type: string
+          description: "Transaction Type\r\n            \r\nValue will indicate either purchase or return."
+          nullable: true
+        idSettlement:
+          type: integer
+          format: int32
+          nullable: true
+          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for UATP Purchase and Return settlements.
+      additionalProperties: false
+    UATPTransactionsResponse:
+      type: object
+      properties:
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        totalPageCount:
+          description: Count of pages available.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        currentPage:
+          description: Current page.
+          type: integer
+          format: int32
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/UATPTransactions'
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- bearerAuth: []
+servers:
+- url: https://reportingapi.connexpay.com
+  description: Production

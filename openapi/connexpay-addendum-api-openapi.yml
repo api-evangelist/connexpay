@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Addendum API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Addendum
+paths:
+  /api/v1/Addendum/VirtualCard:
+    post:
+      summary: Virtual Card Addendum
+      description: ''
+      operationId: virtual-card-addendum
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ItemGuid:
+                  type: string
+                  description: Guid for the Virtual Card you are attaching information to with this addendum request. This Guid was returned to client when the Virtual Card was initially created.
+                  default: Mandatory
+                Value:
+                  type: string
+                  description: Character data to associate with the Virtual card.
+                  default: Mandatory
+                Category:
+                  type: string
+                  description: Can be used by client to specify a desired category for an Addenda item.
+                  default: Optional
+                IdExternal:
+                  type: string
+                  description: Can be supplied by client to associate this addendum with an ID in client's data.
+                  default: Optional
+                Note:
+                  type: string
+                  description: Additional information to associate with this addendum, as desired.
+                  default: Optional
+                Sequence:
+                  type: string
+                  description: If client creates multiple addenda for a single Virtual Card this sequence can be specified if a client desires.
+                  default: Optional
+            examples:
+              Addendum Request:
+                value:
+                  itemGuid: 2b586234-7f14-432e-b0f4-a2935f783f38
+                  value: 5AH6FT
+                  category: PNR
+                  idExternal: '299'
+                  note: Additional Info
+                  sequence: TICKET1
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Addendum Response:
+                  value: "{\n    \"guid\": \"3d1d79c8-3b3e-4bba-be77-e74df716c47c\",\n    \"itemGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n    \"value\": \"5AH6FT\",\n    \"category\": \"PNR\",\n    \"idExternal\": \"299\",\n    \"note\": \"Additional Info\",\n    \"sequence\": \"TICKET1\"\n}"
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: 3d1d79c8-3b3e-4bba-be77-e74df716c47c
+                  itemGuid:
+                    type: string
+                    example: 2b586234-7f14-432e-b0f4-a2935f783f38
+                  value:
+                    type: string
+                    example: 5AH6FT
+                  category:
+                    type: string
+                    example: PNR
+                  idExternal:
+                    type: string
+                    example: '299'
+                  note:
+                    type: string
+                    example: Additional Info
+                  sequence:
+                    type: string
+                    example: TICKET1
+      deprecated: false
+      tags:
+      - Addendum
+  /v1/Addendum/Remove/<guid>:
+    post:
+      summary: Addendum Remove
+      description: This endpoint deletes an Addendum information item from an object.
+      operationId: addendum-remove
+      parameters:
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      - name: Guid
+        in: path
+        description: The Addendum guid to terminate.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{
+
+                    "message": "Addendum Removed"
+
+                    }
+
+                    '
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Addendum Removed
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Addendum
+  /api/v1/Addendum/ACH:
+    post:
+      summary: ACH Purchase Addendum
+      description: ''
+      operationId: ach-purchase-addendum
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ItemGuid:
+                  type: string
+                  description: Guid for the ACH Purchase you are attaching information to with this addendum request. This Guid was returned to client when the ACH Purchase was initially created.
+                  default: Mandatory
+                Value:
+                  type: string
+                  description: Character data to associate with the Virtual card.
+                  default: Mandatory
+                Category:
+                  type: string
+                  description: Can be used by client to specify a desired category for an Addenda item. Consistent category parameters will aid in reporting consistently. See note below regarding the "MultipleSales" category and how to use the category specifically to associate an ACH Purchase to an existing sale(s).
+                  default: Optional
+                IdExternal:
+                  type: string
+                  description: Can be supplied by client to associate this addendum with an ID in client's data.
+                  default: Optional
+                Note:
+                  type: string
+                  description: Additional information to associate with this addendum, as desired.
+                  default: Optional
+                Sequence:
+                  type: string
+                  description: If client creates multiple addenda for a single ACH Purchase this sequence can be specified if a client desires.
+                  default: Optional
+            examples:
+              Addendum Request:
+                value:
+                  itemGuid: 2b586234-7f14-432e-b0f4-a2935f783f38
+                  value: Hilton
+                  category: Payee
+                  idExternal: InvcNbr1234
+                  note: Invoice
+                  sequence: 62321-1
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Addendum Response:
+                  value: "{\n    \"guid\": \"3d1d79c8-3b3e-4bba-be77-e74df716c47c\",\n    \"itemGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n    \"value\": \"Hilton\",\n    \"category\": \"Payee\",\n    \"idExternal\": \"InvcNbr1234\",\n    \"note\": \"Additional Info\",\n    \"sequence\": \"62321-1\"\n}"
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: 3d1d79c8-3b3e-4bba-be77-e74df716c47c
+                  itemGuid:
+                    type: string
+                    example: 2b586234-7f14-432e-b0f4-a2935f783f38
+                  value:
+                    type: string
+                    example: Hilton
+                  category:
+                    type: string
+                    example: Payee
+                  idExternal:
+                    type: string
+                    example: InvcNbr1234
+                  note:
+                    type: string
+                    example: Additional Info
+                  sequence:
+                    type: string
+                    example: 62321-1
+      deprecated: false
+      tags:
+      - Addendum
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

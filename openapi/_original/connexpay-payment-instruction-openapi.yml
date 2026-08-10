@@ -1,0 +1,708 @@
+openapi: 3.0.4
+info:
+  title: Payment Instruction API v1
+  description: API for submitting and managing Payment Instructions.
+  contact:
+    name: Payment Valet
+    url: https://paymentvalet.readme.io/reference/
+  version: v1
+servers:
+- url: https://sandbox.api.connexpay.com/valet/payment/v1
+  description: Sandbox
+paths:
+  /instruction/client/{clientId}:
+    post:
+      tags:
+      - PaymentInstruction
+      summary: Submit a Payment Instruction
+      description: Used to create a new payment instruction. The request must include all required fields such as clientId, clientPaymentId, payee details, payment amount, and currency code. Optional fields like paymentDueDate and user-defined fields may also be included.
+      operationId: CreatePaymentInstruction
+      parameters:
+      - name: clientId
+        in: path
+        description: Unique identifier assigned to the client organization by Payment Valet. Required in the path.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The payment instruction request object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentInstructionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentInstructionRequest'
+        required: true
+      responses:
+        '200':
+          description: Payment instruction created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentInstructionResponseResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '403':
+          description: Client ID from request does not match authenticated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '409':
+          description: ClientPaymentId already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '415':
+          description: Unsupported media type.
+          content:
+            application/json: {}
+        '422':
+          description: Valid request format but contains business rule violations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /instruction/client/{clientId}/clientPaymentId/{clientPaymentId}/fundingStatus:
+    get:
+      tags:
+      - PaymentInstruction
+      summary: Get Funding Status
+      description: This endpoint retrieves the funding status updates for a payment request identified by the client ID and client payment ID.
+      operationId: GetFundingStatus
+      parameters:
+      - name: clientId
+        in: path
+        description: Unique identifier assigned to the client organization by Payment Valet. Required in the path.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: clientPaymentId
+        in: path
+        description: Unique identifier assigned to the payment instruction by the client. Required in the path.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the funding status updates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequestStatusUpdate'
+        '400':
+          description: Invalid clientPaymentId provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '403':
+          description: Client ID from request does not match authenticated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '404':
+          description: No funding status found for the specified payment request.
+          content:
+            application/json:
+              schema: {}
+  /instruction/client/{clientId}/clientPaymentId/{clientPaymentId}/paymentStatus:
+    get:
+      tags:
+      - PaymentInstruction
+      summary: Get Payment Status
+      description: This endpoint retrieves the payment status updates for a payment request identified by the client ID and client payment ID.
+      operationId: GetPaymentStatus
+      parameters:
+      - name: clientId
+        in: path
+        description: Unique identifier assigned to the client organization by Payment Valet. Required in the path.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: clientPaymentId
+        in: path
+        description: Unique identifier assigned to the payment instruction by the client. Required in the path.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the funding status updates.
+          content:
+            application/json: {}
+        '400':
+          description: Invalid clientPaymentId provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '403':
+          description: Client ID from request does not match authenticated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '404':
+          description: No funding status found for the specified payment request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /instruction/client/{clientId}/clientPaymentId/{clientPaymentId}/void:
+    post:
+      tags:
+      - PaymentInstruction
+      summary: Void a Payment Instruction
+      description: This endpoint voids a payment instruction identified by the client ID and client payment ID.
+      operationId: VoidPaymentInstruction
+      responses:
+        '200':
+          description: Successful response
+        4XX:
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Error:
+                    type: string
+                    description: Issues related to client authentication, request content or request structure. Possible reasons:<br />Bad Request.<br />Invalid or malformed request.<br />Payment not found with supplied details.<br />Payment has already been voided.<br />Void unable to be processed due to payment redemption or card authorization.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ReasonCode:
+                  type: string
+                  description: Purpose of the void request.
+                  enum:
+                  - clientRequested
+                  - fraud
+                  - duplicatePayment
+                  - fundingNotReceived
+                reissue:
+                  type: boolean
+                  description: If true, the system will attempt to void the payment and create a new payment request. If false or omitted, the system will return funds upon successful void.
+                reissueClientPaymentId:
+                  type: string
+                  description: The provided value will be used as the clientPaymentId for the reissued request. Required when reissue value is true..
+                paymentRestrictions:
+                  type: object
+                  properties:
+                    forcedModality:
+                      type: string
+                      description: 'Specifies the payment modality or method. The only valid option at this time is ''Card''. Allowed: ACH, Card, Check.'
+                      enum:
+                      - Card
+                    excludedModalities:
+                      type: string
+                      description: List of payment modalities that are excluded from this payment instruction. At this time, there are no valid options.
+              required:
+              - ReasonCode
+      parameters:
+      - in: path
+        name: clientId
+        schema:
+          type: integer
+          format: int32
+        required: true
+        description: Unique identifier assigned to the client organization by Payment Valet. Required in the path.
+      - in: path
+        name: clientPaymentId
+        schema:
+          type: string
+        required: true
+        description: Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50.
+components:
+  schemas:
+    ClientDocuments:
+      required:
+      - documentName
+      type: object
+      properties:
+        documentName:
+          type: string
+          description: Document name including file extension. Should be unique for each payment instruction.
+          nullable: true
+          example: FileName.pdf
+        documentType:
+          type: string
+          description: The document type.
+          nullable: true
+          example: Explanation of Payment
+        documentRequired:
+          type: boolean
+          description: Indicates whether the document is required.
+          example: false
+        sequence:
+          type: integer
+          description: 'Sequence number of the document. When multiple files are provided,
+
+            Payment Valet will use this for ordering.'
+          format: int32
+          example: 1
+      additionalProperties: false
+    ContactType:
+      enum:
+      - Email
+      - Fax
+      - Phone
+      type: string
+      description: Specifies the preferred contact method available for a payee. Valid options are 'Email', 'Fax', or 'Phone'.
+    DistributionType:
+      enum:
+      - Email
+      - Fax
+      - Print
+      - Mail
+      type: string
+      description: Specifies the preferred method by which the payment is delivered. Valid options at this time are 'Email' and 'Mail'.
+    ModalityType:
+      enum:
+      - ACH
+      - Card
+      - Check
+      type: string
+      description: Specifies the payment modality or method. The only valid option at this time is 'Card'.
+    PayeeAddressCreate:
+      required:
+      - addressLine1
+      - city
+      - countryCode
+      - postalCode
+      type: object
+      properties:
+        careOf:
+          maxLength: 100
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Optional field for specifying a person or entity to receive mail on behalf of the payee.
+          nullable: true
+          example: Accounts Payable
+        addressLine1:
+          maxLength: 47
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Primary address line for the payee's location. Required.
+          example: 789 Main Street
+        addressLine2:
+          maxLength: 47
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Secondary address line for the payee's location. Optional.
+          nullable: true
+          example: Suite 12
+        city:
+          maxLength: 50
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: City of the payee's address. Required.
+          example: Austin
+        stateOrProvince:
+          maxLength: 50
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Two-letter state or province code (Alpha-2, ISO 3166-2) for the payee's address. Required when Country Code is USA, otherwise Optional.
+          nullable: true
+          example: TX
+        postalCode:
+          maxLength: 10
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Postal or ZIP code for the payee's address. Required.
+          example: '78746'
+        countryCode:
+          minLength: 1
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: Three-letter country code (Alpha-3, ISO 3166-1) for the payee's address. Required
+          example: USA
+      additionalProperties: false
+    PayeeContactCreate:
+      required:
+      - emailAddress
+      - name
+      - phoneNumber
+      - title
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          example: M. Smith
+          description: Name of the payee contact person. Required.
+        title:
+          minLength: 1
+          type: string
+          example: Manager
+          description: Title or position of the payee contact person. Required.
+        phoneNumber:
+          minLength: 1
+          pattern: ^\+?[0-9\s\-]{7,15}$
+          type: string
+          example: '+10000000000'
+          description: Phone number for the payee contact person. Required.
+        faxNumber:
+          pattern: ^\+?[0-9\s\-]{7,15}$
+          type: string
+          nullable: true
+          example: +0018008675309
+          description: Fax number for the payee contact person. Optional.
+        emailAddress:
+          maxLength: 100
+          minLength: 1
+          pattern: ^[^@\s]+@[^@\s]+\.[^@\s]+$
+          type: string
+          example: Manager@email.com
+          description: Email address for the payee contact person, in valid email format. Required.
+        preferredContactMethod:
+          $ref: '#/components/schemas/ContactType'
+        preferredDistributionMethod:
+          $ref: '#/components/schemas/DistributionType'
+      additionalProperties: false
+    PayeeCreate:
+      required:
+      - payeeAddress
+      - payeeName
+      - payeeType
+      type: object
+      properties:
+        payeeName:
+          maxLength: 47
+          minLength: 0
+          type: string
+          description: Name of the individual or business being paid. Required.
+          example: ExampleCo
+        payeeType:
+          $ref: '#/components/schemas/PayeeType'
+        payeeTaxId:
+          maxLength: 10
+          pattern: ^[a-zA-Z0-9]*$
+          type: string
+          description: Tax identification number for the payee. Optional.
+          nullable: true
+          example: '111222333'
+        clientPayeeIdentifier:
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9]*$
+          type: string
+          description: Unique client-specific identifier for the payee. Optional.
+          nullable: true
+          example: '1431243123'
+        payeeAddress:
+          $ref: '#/components/schemas/PayeeAddressCreate'
+        payeeContactInfo:
+          $ref: '#/components/schemas/PayeeContactCreate'
+      additionalProperties: false
+    PayeeType:
+      enum:
+      - Business
+      - Consumer
+      description: Defines if the payee is a business or consumer. Valid options are 'Business' or 'Consumer'.
+      type: string
+    PaymentInstructionRequest:
+      required:
+      - clientId
+      - clientPaymentId
+      - payee
+      - paymentAmount
+      - paymentCurrencyCode
+      - payorId
+      type: object
+      properties:
+        clientId:
+          type: integer
+          description: Unique identifier assigned to the client organization by Payment Valet. Required.
+          format: int32
+          example: 12345
+        payorId:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          description: Identifier for the payor (entity making the payment). This is used to determine branding and funding. Required.
+          format: int32
+          example: 2
+        payee:
+          $ref: '#/components/schemas/PayeeCreate'
+        clientPaymentId:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Required
+          example: '100012'
+        paymentDueDate:
+          type: string
+          description: Date and time when the payment is due. Optional.
+          format: date-time
+          nullable: true
+          example: '2025-12-26T00:00:00.0000000'
+        paymentAmount:
+          minimum: 0
+          type: number
+          description: Total amount to be paid in the specified currency. Required.
+          format: double
+          example: 123.45
+        paymentCurrencyCode:
+          minLength: 1
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: Three-letter currency code (Alpha-3, ISO 4217) for the payment. Required.
+          example: USD
+        paymentRestrictions:
+          $ref: '#/components/schemas/PaymentRestrictions'
+        userDefinedField1:
+          maxLength: 100
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: User-defined field for custom data. Optional.
+          nullable: true
+          example: 09182374
+        userDefinedField2:
+          maxLength: 100
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: User-defined field for custom data. Optional.
+          nullable: true
+          example: Ref123
+        userDefinedField3:
+          maxLength: 100
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: User-defined field for custom data. Optional.
+          nullable: true
+          example: Payment Valet
+        clientDocuments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientDocuments'
+          description: List of documents provided by the client related to the payment instruction. Optional.
+          nullable: true
+        paymentItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentItem'
+          description: List of individual payments comprising the entire request, such as invoices or claims. The sum of all provided items must total the PaymentAmount field.
+        paymentAddenda:
+          type: string
+          description: Additional information or notes related to the payment. Optional.
+          nullable: true
+          example: Release Payment for PO# 123
+      additionalProperties: false
+    PaymentInstructionResponse:
+      type: object
+      properties:
+        clientPaymentId:
+          type: string
+          description: Unique identifier for the payment instruction, assigned by the client.
+          nullable: true
+        generatedPaymentId:
+          type: string
+          description: Unique identifier for the payment instruction, generated by Payment Valet.
+          nullable: true
+        status:
+          type: boolean
+      additionalProperties: false
+    PaymentInstructionResponseResult:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+        statusCodeResult:
+          $ref: '#/components/schemas/StatusCodeResult'
+        message:
+          type: array
+          items:
+            type: string
+          nullable: true
+        value:
+          $ref: '#/components/schemas/PaymentInstructionResponse'
+      additionalProperties: false
+    PaymentItem:
+      description: Details of the individual items in the payment instruction.
+      required:
+      - amount
+      - itemId
+      type: object
+      properties:
+        itemType:
+          $ref: '#/components/schemas/PaymentItemType'
+        itemId:
+          maxLength: 50
+          minLength: 1
+          description: Unique identifier of the item in the payment breakdown.
+          pattern: ^[a-zA-Z0-9]*$
+          type: string
+          example: '12341234'
+        amount:
+          type: number
+          description: Amount of the item in the payment breakdown.
+          format: double
+          example: 123.45
+      additionalProperties: false
+    PaymentItemType:
+      description: Describes the type of the item in the payment breakdown. Required if ItemID or Amount are provided and valid options are 'Claim' and 'Invoice'.
+      enum:
+      - Claim
+      - Invoice
+      type: string
+    PaymentRestrictions:
+      type: object
+      description: Used to enforce or exclude specific payment modalities for the payment instruction.
+      properties:
+        forcedModality:
+          $ref: '#/components/schemas/ModalityType'
+        excludedModalities:
+          type: array
+          description: List of payment modalities that are excluded from this payment instruction. At this time, there are no valid options.
+          items:
+            $ref: '#/components/schemas/ModalityType'
+          nullable: true
+      additionalProperties: false
+    PaymentStatus:
+      enum:
+      - Submitted
+      - Processing
+      - Issued
+      - Completed
+      - Cancelled
+      - DecisioningRequested
+      - DecisioningCompleted
+      - FundingRequested
+      - FundingProcessing
+      - FundingCompleted
+      - PaymentCreated
+      - CardAuthorized
+      - PaymentSettled
+      - VoidRequested
+      - VoidCompleted
+      - VoidFailed
+      - FundingFailed
+      description: Description of the Payment Status. Refer to your Payment Valet team for additional details.
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    RequestStatusUpdate:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+        statusType:
+          $ref: '#/components/schemas/StatusType'
+        createdDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    Result:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+        statusCodeResult:
+          $ref: '#/components/schemas/StatusCodeResult'
+        message:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    StatusCodeResult:
+      type: object
+      description: Status code of the response.
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+      additionalProperties: false
+    StatusType:
+      enum:
+      - Funding
+      - Payment
+      - Document
+      type: string
+    ValidationProblemDetails:
+      type: object
+      description: Validation error details.
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          nullable: true
+      additionalProperties: {}
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      description: API Key required for access
+      name: Api-Key
+      in: header
+security:
+- ApiKey: []
+tags:
+- name: PaymentInstruction
+  description: Controller for handling Payment Instructions.

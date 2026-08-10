@@ -1,0 +1,212 @@
+openapi: 3.0.1
+info:
+  title: ConnexPay Reporting UATP API
+  description: REST API for retrieving reporting data. Currently Daily Accounting data only.
+  contact:
+    name: ConnexPay
+    url: https://docs.connexpay.com
+  version: v1
+servers:
+- url: https://reportingapi.connexpay.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: UATP
+paths:
+  /api/v1/UATP/Transactions:
+    get:
+      tags:
+      - UATP
+      summary: Get UATP Transactions
+      description: 'Either postDateFrom and postDateTo OR settledDateFrom and settledDateTo must be provided. (Note: Records will only be returned by the postDateFrom/To range if the transaction has settled.) For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.'
+      operationId: UATPtransactions
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: Unique identifier assigned to the client by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: postDateFrom
+        in: query
+        description: Starting ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: postDateTo
+        in: query
+        description: Ending ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: settledDateFrom
+        in: query
+        description: Starting settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required.
+        schema:
+          type: string
+          format: date
+      - name: settledDateTo
+        in: query
+        description: 'Ending settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required. '
+        schema:
+          type: string
+          format: date
+      - name: pageNumber
+        in: query
+        description: The page number for the transactions to retrieve in this call.
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of transactions to retrieve in this call.
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UATPTransactionsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    UATPTransactionsResponse:
+      type: object
+      properties:
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        totalPageCount:
+          description: Count of pages available.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        currentPage:
+          description: Current page.
+          type: integer
+          format: int32
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/UATPTransactions'
+          nullable: true
+      additionalProperties: false
+    UATPTransactions:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: "Merchant Guid\n            \nUnique identifier assigned to the client by ConnexPay."
+          format: uuid
+        merchantName:
+          type: string
+          description: "Merchant Name\n            \nName of the airline processing the transaction."
+          nullable: true
+        cardAcceptorName:
+          type: string
+          description: "Card Acceptor Name\n            \nAnother version of the name of the airline that is processing the transaction."
+          nullable: true
+        iataAirlineCode:
+          type: string
+          description: "IATA Airline Code\n            \nTwo-letter IATA airline designator. (https://www.iata.org/en/publications/directories/code-search/)"
+          nullable: true
+        accountNumber:
+          type: string
+          description: "Account Number\n            \nMasked account number for the payment."
+          nullable: true
+        ticketIssuedDate:
+          type: string
+          description: "Ticket Issued Date\n            \nDate the ticket was issued."
+          format: date-time
+        settledDate:
+          type: string
+          description: "Settled Date\n            \nDate when the transaction was settled."
+          format: date-time
+        ticketNumber:
+          type: string
+          description: "Ticket Number\n            \nAirline-provided identifier for the ticket."
+          nullable: true
+        merchantCurrency:
+          type: string
+          description: "Merchant Currency\n            \n3-letter alphabetic code for the currency accepted by the merchant / card acceptor. See ISO-4217 currency list for values (https://www.iso.org/obp/ui/)."
+          nullable: true
+        merchantCurrencyAmount:
+          type: number
+          description: "Merchant / Card Acceptor Currency Amount\n            \nThe amount of the transaction in the airline's / card acceptor's accepted currency."
+          format: double
+        merchantCountry:
+          type: string
+          description: "Merchant Country\n            \n3-letter country code of the airline / card acceptor. See ISO-3166 country list of Alpha-3 country codes (https://www.iso.org/obp/ui/)."
+          nullable: true
+        settledAmount:
+          type: number
+          description: "Settled Amount\n            \nConnexPay settlement amount, denominated in the customer's accounting currency. Value will be positive for a purchase or negative for returns."
+          format: double
+        transactionType:
+          type: string
+          description: "Transaction Type\n            \nValue will indicate either purchase or return."
+          nullable: true
+        idSettlement:
+          type: integer
+          format: int32
+          nullable: true
+          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for UATP Purchase and Return settlements.
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT

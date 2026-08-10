@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  version: v2
+  title: Purchases Stop Payment Service API
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+  description: Sandbox
+security:
+- BasicAuth: []
+tags:
+- name: StopPaymentService
+paths:
+  /api/v1/StopPayment:
+    post:
+      tags:
+      - StopPaymentService
+      summary: Stop Payment Service
+      description: Adds a card to the black list. Need to provide the card guid and other mandatory fields applicable for VISA or MasterCard.
+      operationId: StopPaymentService_AddCardToBlackList
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          example: Bearer <your-token>
+        description: Bearer token for authentication
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        description: Content type of the request body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              required:
+              - cardGuid
+              type: object
+              properties:
+                cardGuid:
+                  format: uuid
+                  description: Global Unique Identifier for the Card.
+                  type: string
+                  example: 00000000-0000-0000-0000-000000000000
+                purgeDate:
+                  pattern: ^\d{4}-\d{2}-\d{2}$
+                  description: An optional field that contains the date after which the record is deleted from the Visa Account Screen Authorization file or Mastercard Payment Cancellation Program. Maximum value is 40 months for Mastercard and 60 months for Visa from the request date. If not provided, the maximum value will be used. Format is YYYY-MM-DD.
+                  type: string
+                  format: date
+                  example: '2025-07-15'
+                acquirerId:
+                  description: The unique number assigned by Mastercard that identifies the acquirer. Mandatory field for Mastercard Payment Cancellation Program and will result in an error for Visa Account Screen Authorization file. It is also mandatory for Visa cards using Maestro network.
+                  type: string
+                cardAcceptorId:
+                  description: The unique acquirer-assigned number that identifies the merchant. Also known as the merchant ID. Mandatory field for Mastercard Payment Cancellation Program and will result in an error for Visa Account Screen Authorization file. It is also mandatory for Visa cards using Maestro network.
+                  type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopPaymentServiceResponse'
+        '400':
+          description: Invalid ModelState
+        '403':
+          description: User does not have access
+        '422':
+          description: Business error
+    put:
+      tags:
+      - StopPaymentService
+      summary: Update or Remove Stop Payment Service
+      description: Updates or removes a card from the black list. Need to provide the card guid, internalStatus, and other mandatory fields applicable for VISA or MasterCard.
+      operationId: StopPaymentService_UpdateOrRemoveBlackList
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          example: Bearer <your-token>
+        description: Bearer token for authentication
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+        description: Content type of the request body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopPaymentServiceUpdateRequest'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Invalid ModelState
+        '403':
+          description: User does not have access
+components:
+  schemas:
+    StopPaymentServiceResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    StopPaymentServiceUpdateRequest:
+      required:
+      - cardGuid
+      - internalStatus
+      type: object
+      properties:
+        cardGuid:
+          format: uuid
+          description: Global Unique Identifier for the Card.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        purgeDate:
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          description: An optional field that contains the date after which the record is deleted from the Visa Account Screen Authorization file or Mastercard Payment Cancellation Program. Maximum value is 40 months for Mastercard and 60 months for Visa from the request date. If not provided, the maximum value will be used. Format is YYYY-MM-DD.
+          type: string
+          format: date
+          example: '2025-07-15'
+        acquirerId:
+          description: The unique number assigned by Mastercard that identifies the acquirer. Mandatory field for Mastercard Payment Cancellation Program and will result in an error for Visa Account Screen Authorization file. It is also mandatory for Visa cards using Maestro network.
+          type: string
+        cardAcceptorId:
+          description: The unique acquirer-assigned number that identifies the merchant. Also known as the merchant ID. Mandatory field for Mastercard Payment Cancellation Program and will result in an error for Visa Account Screen Authorization file. It is also mandatory for Visa cards using Maestro network.
+          type: string
+        internalStatus:
+          description: Indicates the intended action for the black list record. Required for all PUT requests. Accepted values are CHANGED (to update an existing record) or REMOVED (to remove the card from the black list).
+          type: string
+          enum:
+          - CHANGED
+          - REMOVED
+      example:
+        cardGuid: 00000000-0000-0000-0000-000000000000
+        purgeDate: '2025-07-15'
+        acquirerId: string
+        cardAcceptorId: string
+        internalStatus: CHANGED
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Enter your ConnexPay username and password

@@ -1,0 +1,6 @@
+{
+ "resource": "https://docs.connexpay.com/mcp",
+ "authorization_servers": [
+  "https://dash.readme.com/oidc"
+ ]
+}

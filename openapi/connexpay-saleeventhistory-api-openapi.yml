@@ -1,0 +1,71 @@
+openapi: 3.1.0
+info:
+  title: sales-api Sale Event History API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: SaleEventHistory
+paths:
+  /api/v1/SaleEventHistory/Resend:
+    post:
+      summary: Sales Event History
+      description: Call this endpoint to retrieve Credit Card or ACH Sales Events
+      operationId: sales-event-history
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                SourceGuid:
+                  type: string
+                  description: The unique Sales GUID for a particular sale.
+                MerchantGuid:
+                  type: string
+                  description: Include your Merchant Guid instead of the Sale Guid if you want to see all events for a given date range (you must also include the date range to include)
+                FromDateTime:
+                  type: string
+                  description: Beginning date range
+                  format: date
+                ToDateTime:
+                  type: string
+                  description: Ending date range
+                  format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Request body with Sale Guid:
+                  value: '{
+
+                        "SourceGuid": "A3EEC280-CB18-48D3-8C95-EA9A29B66429",
+
+                    }'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - SaleEventHistory
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

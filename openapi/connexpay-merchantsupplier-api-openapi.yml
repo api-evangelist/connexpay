@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Merchantsupplier API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Merchantsupplier
+paths:
+  /api/v1/merchantsupplier/settings:
+    post:
+      summary: Merchant Supplier Setting
+      description: This endpoint allows you to create and tokenize a suppliers bank account information without actually making the Issue ACH call. That tokenized bank account can then be used in future Issue ACH or Issue ACH Lite API requests so you don't have to store the actual bank account information.
+      operationId: merchant-supplier-setting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - MerchantGuid
+              - SupplierName
+              - AccountHolder
+              properties:
+                MerchantGuid:
+                  type: string
+                  description: Merchant's guid. Application level value that indicates the ACH payment is being requested for clients account. Value provided by ConnexPay.
+                SupplierName:
+                  type: string
+                  description: Name of supplier to whom payment will be made
+                AccountHolder:
+                  type: object
+                  description: Payee's Account information
+                  properties:
+                    FirstName:
+                      type: string
+                      description: Conditional -  Payee's First name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    LastName:
+                      type: string
+                      description: Conditional - Payee's Last name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    MiddleName:
+                      type: string
+                      description: Payee's Middle name
+                    BusinessName:
+                      type: string
+                      description: Conditional - Can be left blank if FirstName and LastName are provided
+                      default: Default
+                    Email:
+                      type: string
+                      description: Email up to 100 characters
+                    Phone:
+                      type: string
+                      description: Phone number up to 10 characters
+                    Address:
+                      type: object
+                      description: Account Holder Address
+                      properties:
+                        Address1:
+                          type: string
+                          description: Address 1 up to 50 characters
+                        Address2:
+                          type: string
+                          description: Address 2 up to 50 characters
+                        City:
+                          type: string
+                          description: City up to 50 characters
+                        State:
+                          type: string
+                          description: US State up to 2 characters
+                        Country:
+                          type: string
+                          description: Country. 'US' only as of now
+                        ZipCode:
+                          type: string
+                          description: ZipCode up to 10 characters
+                    BankAccount:
+                      type: object
+                      description: Payee's Bank Account info
+                      required:
+                      - RoutingNumber
+                      - AccountNumber
+                      - AccountType
+                      - AccountHolderName
+                      properties:
+                        RoutingNumber:
+                          type: string
+                          description: Routing number up to 9 characters
+                        AccountNumber:
+                          type: string
+                          description: Account number up to 17 characters
+                        AccountType:
+                          type: string
+                          description: '''Checking'' or ''Saving'''
+                        AccountHolderName:
+                          type: string
+                          description: Account holder name up to 150 characters
+            examples:
+              Request Example:
+                value:
+                  MerchantGuid: '{{Merchant}}'
+                  SupplierName: Joe Supplier
+                  accountHolder:
+                    firstName: Test
+                    lastName: Supplier3
+                    middleName: M
+                    businessName: ''
+                    email: test@connexpay.com
+                    phone: '3121111111'
+                    address:
+                      address1: 123 stree1
+                      address2: null
+                      city: Minneapolis
+                      state: MN
+                      country: US
+                      zipcode: '55123'
+                    bankAccount:
+                      routingNumber: '042000314'
+                      accountNumber: '222333'
+                      accountType: checking
+                      accountHolderName: PR123
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"merchantGuid\": \"1818a55e-8541-4bfe-a288-bad870afbe1d\",\n    \"supplierName\": \"Joe Supplier\",\n    \"timeStamp\": \"2021-10-15T20:13:42.3444476Z\",\n    \"idUser\": 114,\n    \"idMerchantSupplierSettings\": 13,\n    \"accountHolder\": {\n        \"accountHolderGuid\": \"8b1f13fb-6085-4e6f-b4fb-eb8fb7f1ea1e\",\n        \"firstName\": \"Test\",\n        \"lastName\": \"Supplier3\",\n        \"_businessName\": \"\",\n        \"email\": \"test@connexpay.com\",\n        \"phone\": \"3121111111\",\n        \"address\": {\n            \"address1\": \"123 stree1\",\n            \"city\": \"Minneapolis\",\n            \"state\": \"MN\",\n            \"country\": \"US\",\n            \"zipcode\": \"55123\"\n        },\n        \"bankAccount\": {\n            \"bankAccountGuid\": \"9da122a8-7e13-490c-b10d-fa3309178354\",\n            \"accountType\": \"Checking\",\n            \"accountHolderName\": \"PR123\",\n            \"last4Digits\": \"2333\"\n        }\n    },\n    \"userName\": \"test-user\"\n}"
+              schema:
+                type: object
+                properties:
+                  merchantGuid:
+                    type: string
+                    example: 1818a55e-8541-4bfe-a288-bad870afbe1d
+                  supplierName:
+                    type: string
+                    example: Joe Supplier
+                  timeStamp:
+                    type: string
+                    example: '2021-10-15T20:13:42.3444476Z'
+                  idUser:
+                    type: integer
+                    example: 114
+                    default: 0
+                  idMerchantSupplierSettings:
+                    type: integer
+                    example: 13
+                    default: 0
+                  accountHolder:
+                    type: object
+                    properties:
+                      accountHolderGuid:
+                        type: string
+                        example: 8b1f13fb-6085-4e6f-b4fb-eb8fb7f1ea1e
+                      firstName:
+                        type: string
+                        example: Test
+                      lastName:
+                        type: string
+                        example: Supplier3
+                      _businessName:
+                        type: string
+                        example: ''
+                      email:
+                        type: string
+                        example: test@connexpay.com
+                      phone:
+                        type: string
+                        example: '3121111111'
+                      address:
+                        type: object
+                        properties:
+                          address1:
+                            type: string
+                            example: 123 stree1
+                          city:
+                            type: string
+                            example: Minneapolis
+                          state:
+                            type: string
+                            example: MN
+                          country:
+                            type: string
+                            example: US
+                          zipcode:
+                            type: string
+                            example: '55123'
+                      bankAccount:
+                        type: object
+                        properties:
+                          bankAccountGuid:
+                            type: string
+                            example: 9da122a8-7e13-490c-b10d-fa3309178354
+                          accountType:
+                            type: string
+                            example: Checking
+                          accountHolderName:
+                            type: string
+                            example: PR123
+                          last4Digits:
+                            type: string
+                            example: '2333'
+                  userName:
+                    type: string
+                    example: test-user
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchantsupplier
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,351 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Cards API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Cards
+paths:
+  /api/v1/Cards/{CardGuid}/{ShowFullPan}:
+    get:
+      summary: Get Issue Card Detail
+      description: This Endpoint returns Virtual Credit Card details for a specific card guid.
+      operationId: get-issuecard-detail
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      - name: CardGuid
+        in: path
+        description: Global Unique Identifier for the VCC.
+        schema:
+          type: string
+        required: true
+      - name: ShowFullPan
+        in: path
+        description: Set to True to indicate whether the response should include the full account number.
+        schema:
+          type: boolean
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Response example if 'False' (do not display full Pan):
+                  value:
+                    cardGuid: 290d31b4-1179-0f97-97ff-1019dd29507c
+                    amountLimit: 3
+                    usageLimit: 3
+                    limitWindow: LIFETIME
+                    expirationDate: '2027-09-02T00:00:00'
+                    expiration: 0927
+                    terminateDate: '2026-08-30T23:59:59'
+                    currencyCode: USD
+                    firstSix: '111111'
+                    lastFour: '1111'
+                    cardHolderGuid: 4d3c9425-fafd-4fcc-a8d0-99c817d8f949
+                    nameLine1: Test Name 1
+                    nameLine2: Test Name 2
+                    status: Card - Active
+                    bank: 7
+                    luBank:
+                      idBank: 7
+                      bankName: null
+                      reportingBankName: MVB
+                      countryCode: null
+                      idIssuer: 0
+                      binControl: []
+                      lU_Issuer: null
+                      card: []
+                    customerServicePhoneNumber: 1-612-601-0914
+                    sequenceNumber: Sample-seq-1
+                    issuedAmount: 3
+                    cardType: Visa
+                    purchaseType: '22'
+                    midWhitelist: []
+                    midBlacklist: []
+                    gatewayMerchantGuid: 9f47973a-b7c1-5bdd-ba34-1514526d99cd
+                    availableBalance: 3
+                    requestedCardAddendum:
+                      MerchantGuid: 9f47973a-b7c1-5bdd-ba34-1514526d99cd
+                      CustomerId: CXP test
+                      Payee: Delta
+                      FirstName: Te
+                      LastName: Test
+                      Phone: '7411237489'
+                      Address1: 345 Main Road
+                      Address2: ''
+                      City: Miami Beach
+                      State: MI
+                      Zipcode: '33109'
+                      Country: MX
+                      UsageLimit: 3
+                      AmountLimit: 3
+                      ExpirationDate: '2027-09-02'
+                      TerminateDate: '2026-08-30'
+                      PurchaseType: '22'
+                      SequenceNumber: Sample-seq-1
+                      OrderNumber: CXP Test
+                      NonDomesticSupplier: false
+                    isPhysical: false
+                    isLodged: false
+                    fingerprint: E1002518E3B5719A228C70BCBD231DDB
+                    fingerprintV2: 0ecdcaad6f46799a23df0bc5d053a68a19938bc9a336b90a4402eef508f1679b
+                    customerId: CXP test
+                    supplierId: null
+                    issuerId: 3
+                    country: ''
+                    cardBin: '42460511'
+                    cardClass: CommercialCredit
+                    toleranceAmount: 0
+                    isGLobal: false
+                    hasBooking: false
+                    cardHolder:
+                      cardHolderGuid: 4d3c9425-fafd-4fcc-a8d0-99c817d8f949
+                      firstName: Test
+                      lastName: Test
+                      phone: '7411237489'
+                      address1: 345 Main Road
+                      address2: ''
+                      city: Miami Beach
+                      state: MI
+                      zipcode: '33109'
+                      dateOfBirth: null
+                      country: MX
+                      createNewCard: false
+                      reissuePhysicalCard: false
+                    outgoingTransactionCode: 91F4B08639162727415646990E9B6145A6B6F4CDE
+                    createdBy: ' '
+                    isMaestro: false
+                    whitelistCountries: null
+                    blacklistCountries: null
+                    enableExactMatch: false
+                    avsCheck: false
+                    cardImageKey: null
+                    orderNumber: CXP Test
+                Response example if 'True' (display full Pan):
+                  summary: Response example if 'True' (display full Pan)
+                  value:
+                    cardGuid: 290d31b4-1179-0f97-97ff-1019dd29507c
+                    accountNumber: '1111111111111111'
+                    securityCode: '999'
+                    amountLimit: 3
+                    usageLimit: 3
+                    limitWindow: LIFETIME
+                    expirationDate: '2027-09-02T00:00:00'
+                    expiration: 0927
+                    terminateDate: '2026-08-30T23:59:59'
+                    currencyCode: USD
+                    firstSix: '111111'
+                    lastFour: '1111'
+                    cardHolderGuid: 4d3c9425-fafd-4fcc-a8d0-99c817d8f949
+                    nameLine1: Test Name 1
+                    nameLine2: Test Name 2
+                    status: Card - Active
+                    bank: 7
+                    luBank:
+                      idBank: 7
+                      bankName: null
+                      reportingBankName: MVB
+                      countryCode: null
+                      idIssuer: 0
+                      binControl: []
+                      lU_Issuer: null
+                      card: []
+                    customerServicePhoneNumber: 1-612-601-0914
+                    sequenceNumber: Sample-seq-1
+                    issuedAmount: 3
+                    cardType: Visa
+                    purchaseType: '22'
+                    midWhitelist: []
+                    midBlacklist: []
+                    gatewayMerchantGuid: 9f47973a-b7c1-5bdd-ba34-1514526d99cd
+                    availableBalance: 3
+                    requestedCardAddendum:
+                      MerchantGuid: 9f47973a-b7c1-5bdd-ba34-1514526d99cd
+                      CustomerId: CXP test
+                      Payee: Delta
+                      FirstName: Te
+                      LastName: Test
+                      Phone: '7411237489'
+                      Address1: 345 Main Road
+                      Address2: ''
+                      City: Miami Beach
+                      State: MI
+                      Zipcode: '33109'
+                      Country: MX
+                      UsageLimit: 3
+                      AmountLimit: 3
+                      ExpirationDate: '2027-09-02'
+                      TerminateDate: '2026-08-30'
+                      PurchaseType: '22'
+                      SequenceNumber: Sample-seq-1
+                      OrderNumber: CXP Test
+                      NonDomesticSupplier: false
+                    isPhysical: false
+                    isLodged: false
+                    fingerprint: E1002518E3B5719A228C70BCBD231DDB
+                    fingerprintV2: 0ecdcaad6f46799a23df0bc5d053a68a19938bc9a336b90a4402eef508f1679b
+                    customerId: CXP test
+                    supplierId: null
+                    issuerId: 3
+                    country: ''
+                    cardBin: '42460511'
+                    cardClass: CommercialCredit
+                    toleranceAmount: 0
+                    isGLobal: false
+                    hasBooking: false
+                    cardHolder:
+                      cardHolderGuid: 4d3c9425-fafd-4fcc-a8d0-99c817d8f949
+                      firstName: Test
+                      lastName: Test
+                      phone: '7411237489'
+                      address1: 345 Main Road
+                      address2: ''
+                      city: Miami Beach
+                      state: MI
+                      zipcode: '33109'
+                      dateOfBirth: null
+                      country: MX
+                      createNewCard: false
+                      reissuePhysicalCard: false
+                    outgoingTransactionCode: 91F4B08639162727415646990E9B6145A6B6F4CDE
+                    createdBy: ' '
+                    isMaestro: false
+                    whitelistCountries: null
+                    blacklistCountries: null
+                    enableExactMatch: false
+                    avsCheck: false
+                    cardImageKey: null
+                    orderNumber: CXP Test
+              schema:
+                type: object
+                properties:
+                  cardGuid:
+                    type: string
+                    example: b6c86e82-5621-440c-94ea-6bd5692e0497
+                  expirationDate:
+                    type: string
+                    example: '2022-12-30T23:59:59'
+                  expiration:
+                    type: string
+                    example: '1222'
+                  terminateDate:
+                    type: string
+                    example: '2022-12-30T23:59:59'
+                  currencyCode:
+                    type: string
+                    example: USD
+                  firstSix:
+                    type: string
+                    example: '111111'
+                  lastFour:
+                    type: string
+                    example: '3420'
+                  nameLine1:
+                    type: string
+                    example: Ping
+                  nameLine2:
+                    type: string
+                    example: VCC
+                  status:
+                    type: string
+                    example: Card - Active
+                  bank:
+                    type: integer
+                    example: 1
+                    default: 0
+                  issuedAmount:
+                    type: integer
+                    example: 80
+                    default: 0
+                  cardType:
+                    type: string
+                    example: Other
+                  purchaseType:
+                    type: string
+                    example: '01'
+                  availableBalance:
+                    type: integer
+                    example: 80
+                    default: 0
+      tags:
+      - Cards
+  /api/v1/Cards/Transactions/{cardGuid}:
+    get:
+      summary: Search Virtual Card History
+      description: This API allows you to pull back history of the Virtual Card. This is the same API (and data) that is used when clicking the “Transactions” button on the Virtual Card in the Portal to display the transaction history. The API will return the merchant name where the Virtual Card was used, the date and time, transaction type (auth, settlement, refund, void, etc.), the response/memo which correlates to the transaction type and the amount.
+      operationId: search-virtual-card-history
+      parameters:
+      - name: CardGuid
+        in: path
+        description: Global Unique Identifier for the Card. Required parameter.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Search Virtual Card History Response Example:
+                  value: "   {\n    \t\"transactions\": [\n    \t{\n    \t\t\"error\": \"Failed to retrieve transaction 3a1ab440-6b29-4bcb-aa21-546a6913f8fe\"\n    \t},\n    \t{\n    \t\t\"type\": \"authorization\",\n    \t\t\"amount\": 115.5,\n    \t\t\"status\": \"DECLINED\",\n    \t\t\"description\": \"Auth restriction found for given mid or mcc\",\n    \t\t\"merchantName\": \"Marqeta Storefront\",\n    \t\t\"timestamp\": \"2019-12-12T17:38:56Z\",\n    \t\t\"transactionGuid\": \"7bc38c88-c3b8-4ec9-97fc-354fa689c50a\",\n    \t\t\"cardGuid\": \"c3ac11ef-062f-4fd3-a309-0079d2d4b2fd\"\n    \t},\n    \t{\n    \t\t\"type\": \"authorization\",\n    \t\t\"amount\": 115.5,\n    \t\t\"status\": \"DECLINED\",\n    \t\t\"description\": \"Auth restriction found for given mid or mcc\",\n    \t\t\"merchantName\": \"Marqeta Storefront\",\n    \t\t\"timestamp\": \"2019-12-12T17:44:43Z\",\n    \t\t\"transactionGuid\": \"7ea1ee78-2f7c-4482-bb1f-8d0db4b54762\",\n    \t\t\"cardGuid\": \"c3ac11ef-062f-4fd3-a309-0079d2d4b2fd\"\n    \t}\n    \t]\n    }"
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        error:
+                          type: string
+                          example: Failed to retrieve transaction 3a1ab440-6b29-4bcb-aa21-546a6913f8fe
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Cards
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

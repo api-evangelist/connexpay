@@ -1,0 +1,783 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: Purchases API
+paths:
+  /api/v1/PushToCard/Payees:
+    get:
+      tags:
+      - PushToCard
+      summary: Get Payee
+      description: Use this endpoint to retrieve a Payee for a specific Payee guid. One or both 'payeeGuid' or 'payeeEmailAddress' must be provided.
+      operationId: PushToCard_GetPayee
+      parameters:
+      - name: payeeGuid
+        in: query
+        description: Globally Unique Identifier for the Payee being retrieved
+        required: false
+        schema:
+          type: string
+      - name: payeeEmailAddress
+        in: query
+        description: Email address of the Payee being retrieved
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+        '400':
+          description: The Payee's guid or email address must be provided
+        '401':
+          description: User doesn't have access to this merchant
+        '404':
+          description: Payee doesn't exist or doesn't belong to the user
+    post:
+      tags:
+      - PushToCard
+      summary: Create Payee
+      description: Use this endpoint to create a new Payee.
+      operationId: PushToCard_CreatePayee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayeeDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayeeDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PayeeDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PayeeDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PayeeDto'
+        description: The data for the Payee that will be created
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PayeeDto'
+        '400':
+          description: Bad request
+        '409':
+          description: A Payee with the provided email address already exists
+  /api/v1/PushToCard/Payees/{payeeGuid}/{status}:
+    put:
+      tags:
+      - PushToCard
+      summary: Manage Payee
+      description: Use this endpoint to enable or disable a Payee.
+      operationId: PushToCard_ManagePayee
+      parameters:
+      - name: payeeGuid
+        in: path
+        description: Globally Unique Identifier for the Payee that will be changed
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: status
+        in: path
+        description: Must be 'enable' or 'disable'
+        required: true
+        schema:
+          type: string
+          enum:
+          - enable
+          - disable
+      responses:
+        '200':
+          description: Payee status changed to the requested state --OR-- Payee is already in the requested state
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+        '400':
+          description: Status must be 'enable' or 'disable'
+        '401':
+          description: User doesn't have access to this merchant
+        '404':
+          description: Payee doesn't exist or doesn't belong to the user
+  /api/v1/PushToCard/Payees/{payeeGuid}:
+    patch:
+      tags:
+      - PushToCard
+      summary: Update Payee
+      description: Use this endpoint to update data for a Payee.
+      operationId: PushToCard_UpdatePayee
+      parameters:
+      - name: payeeGuid
+        in: path
+        description: Globally Unique Identifier for a the Payee that will be updated
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePayeeDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePayeeDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdatePayeeDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/UpdatePayeeDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdatePayeeDto'
+        description: The data for the Payee that will be updated
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+        '400':
+          description: payeeGuid must be a valid guid value
+        '401':
+          description: User doesn't have access to this merchant
+        '404':
+          description: Payee doesn't exist or doesn't belong to the user
+  /api/v1/PushToCard/Payouts:
+    post:
+      tags:
+      - PushToCard
+      summary: Create Payout
+      description: Use this endpoint to create a new Payout.
+      operationId: PushToCard_CreatePayout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayoutDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PayoutDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PayoutDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PayoutDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PayoutDto'
+        description: The data for the Payout being created
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayoutDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PayoutDto'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PayoutDto'
+        '400':
+          description: BadRequest
+  /api/v1/PushToCard/Payouts/{payoutGuid}/Cancel:
+    post:
+      tags:
+      - PushToCard
+      summary: Cancel Payments
+      description: Use this endpoint to cancel payments within a Payout.
+      operationId: PushToCard_CancelPayments
+      parameters:
+      - name: payoutGuid
+        in: path
+        description: Globally Unique Identifier for a the Payout that will be changed
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelPaymentsDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CancelPaymentsDto'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CancelPaymentsDto'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/CancelPaymentsDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CancelPaymentsDto'
+        description: Indicator of which payments to cancel
+        required: true
+      responses:
+        '200':
+          description: Payment has been canceled
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+        '400':
+          description: Payment list must not be empty
+        '404':
+          description: Payout doesn't exist or doesn't belong to the user --OR-- Payment doesn't exist or doesn't belong to payout
+        '409':
+          description: Payout is in 'Rejected' State --OR-- All Payments must be in 'Approved' state
+  /api/v1/PushToCard/Payouts/{payoutGuid}:
+    get:
+      tags:
+      - PushToCard
+      summary: Get Payout Details
+      description: Use this endpoint to retrieve the details for a Payout for a specific Payout guid.
+      operationId: PushToCard_GetPayoutDetails
+      parameters:
+      - name: payoutGuid
+        in: path
+        description: Globally Unique Identifier for a the Payout that will be retrieved
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DtoPayout'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DtoPayout'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DtoPayout'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DtoPayout'
+        '400':
+          description: Bad request
+        '401':
+          description: User doesn't have access to this merchant
+        '404':
+          description: Payout doesn't exist or doesn't belong to the user
+  /api/v1/PushToCard/AuthenticatePaymentWidget:
+    get:
+      tags:
+      - PushToCard
+      summary: Get Authentication Token for DropInUI
+      operationId: PushToCard_GetAuthenticationTokenAsync
+      parameters:
+      - name: payeeGuid
+        in: query
+        description: Globally Unique Identifier for the Payee being authenticated.
+        required: false
+        schema:
+          type: string
+      - name: payeeEmailAddress
+        in: query
+        description: Email address of the Payee being retrieved
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutAuthResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PayoutAuthResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PayoutAuthResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PayoutAuthResponse'
+        '400':
+          description: A valid Payee guid or email address must be provided
+        '401':
+          description: User doesn't have access to this merchant
+        '404':
+          description: Payee doesn't exist or doesn't belong to the user
+  /api/v1/PushToCard/Payments/{ridGuid}/{cardId}:
+    patch:
+      tags:
+      - PushToCard
+      summary: Push Funds to a Card
+      operationId: PushToCard_PushFundsToCardAsync
+      parameters:
+      - name: ridGuid
+        in: path
+        description: For Payment Widget clients. A ridGuid will will be returned upon creation of a Payout. That must be saved and passed here to complete the process.
+        required: true
+        schema:
+          type: string
+      - name: cardId
+        in: path
+        description: For Payment Widget clients. The cardId is retrieved by calling the Get Payee endpoint.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully pushed funds to card
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+        '400':
+          description: Valid values for ridGuid and cardId must be provided
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+components:
+  schemas:
+    PayeeDto:
+      required:
+      - merchantGuid
+      - firstName
+      - lastName
+      - email
+      - phone
+      type: object
+      properties:
+        payeeGuid:
+          format: uuid
+          description: Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGuid:
+          format: uuid
+          description: Merchant guid for the Payee to be created.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        firstName:
+          description: First name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: Last name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        email:
+          description: Email address for the Payee.
+          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+          type: string
+        address1:
+          description: Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          description: Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          description: Postal address city for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        state:
+          description: Postal address state for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        zipCode:
+          description: Postal code for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        phone:
+          description: Phone number for the Payee, up to 10-character string.
+          pattern: ^\+1\d{10}$
+          type: string
+        status:
+          description: Status for the Payee.
+          type: string
+        cardId:
+          description: Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.
+          type: string
+    UpdatePayeeDto:
+      type: object
+      properties:
+        firstName:
+          description: First name for the Payee to be updated.
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: Last name for the Payee to be updated.
+          maxLength: 50
+          minLength: 0
+          type: string
+        email:
+          description: Email address for the Payee to be updated.
+          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+          type: string
+        address1:
+          description: Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          description: Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          description: Postal address city for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        state:
+          description: Postal address state for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        zipCode:
+          description: Postal code for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        phone:
+          description: Phone number for the Payee to be updated, up to 10-character string.
+          pattern: ^\+1\d{10}$
+          type: string
+        status:
+          description: Status for the Payee to be updated.
+          type: string
+    PayoutDto:
+      required:
+      - merchantGuid
+      - memo
+      - payments
+      type: object
+      properties:
+        payoutGuid:
+          format: uuid
+          description: Guid assigned to the Payout by ConnexPay upon creation of a Payout.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGuid:
+          format: uuid
+          description: Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by ConnexPay support teams to research issues.
+          type: string
+        memo:
+          description: A brief description highlighting the reason for this Payout.
+          maxLength: 100
+          minLength: 0
+          type: string
+        status:
+          description: Status of the Payout.
+          type: string
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentsDto'
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+          maxLength: 50
+          minLength: 0
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+    PaymentsDto:
+      required:
+      - payeeGuid
+      - value
+      type: object
+      properties:
+        payeeReferenceToken:
+          description: The Payee identifier used by ConnexPay support teams to research issues related to the Payee.
+          type: string
+        ridReferenceToken:
+          description: For Payment Widget customers only. This is the identifier that used by ConnexPay support teams to research issues related to the Payment Widget.
+          type: string
+        payeeGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payee.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        paymentGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payment.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        ridGuid:
+          format: uuid
+          description: Unique identifier assigned when using the Payment Widget.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        value:
+          format: double
+          description: Amount of the Payment.
+          maximum: 50000
+          type: number
+        memo:
+          description: Payment-level description highlighting the reason for this Payment.
+          maxLength: 100
+          minLength: 0
+          type: string
+        field2:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field3:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field4:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field5:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+    CancelPaymentsDto:
+      required:
+      - merchantGuid
+      - payments
+      type: object
+      properties:
+        merchantGuid:
+          format: uuid
+          description: Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payments:
+          description: The Payment Guid returned in the Create Payout response.
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    DtoPayout:
+      type: object
+      properties:
+        payoutGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payout.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by our support teams to research issues.
+          type: string
+        memo:
+          description: A brief description highlighting the reason for this Payout.
+          type: string
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+          type: string
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtoPayments'
+    DtoPayments:
+      type: object
+      properties:
+        paymentGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        paymentReferenceToken:
+          description: Identifier needed by ConnexPay support teams to research Payment issues.
+          type: string
+        payeeReferenceToken:
+          description: Payee identifier needed by ConnexPay support teams to research Payee issues.
+          type: string
+        ridReferenceToken:
+          description: For Payment Widget customers only. Identifier needed by ConnexPay support teams to research issues related to the Payment Widget.
+          type: string
+        memo:
+          description: Payment-level description highlighting the reason for this Payment.
+          type: string
+        value:
+          format: double
+          description: Amount of the Payment.
+          type: number
+        status:
+          description: Status of the Payment.
+          type: string
+        field2:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field3:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field4:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field5:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        terminationDate:
+          type: string
+        payeeName:
+          description: The Payee's name.
+          type: string
+        email:
+          description: Email address the Payment was sent to for the Payee.
+          type: string
+        lastFour:
+          description: Last four digits of the Payee's card number.
+          type: string
+        address1:
+          description: Postal address line 1 of the Payee. Alphanumerics and [,.-'] are allowed.
+          type: string
+        address2:
+          description: Postal address line 2 of the Payee. Alphanumerics and [,.-'] are allowed.
+          type: string
+        city:
+          description: Postal address city of the Payee.
+          type: string
+        state:
+          description: Postal address state for the Payee.
+          type: string
+        zipCode:
+          description: Postal code for the Payee.
+          type: string
+        country:
+          description: Postal address country for the Payee.
+          type: string
+        createdBy:
+          type: string
+    PayoutAuthResponse:
+      type: object
+      properties:
+        AuthenticationResult:
+          $ref: '#/components/schemas/AuthenticationResult'
+    AuthenticationResult:
+      type: object
+      properties:
+        AccessToken:
+          type: string
+        ExpiresIn:
+          format: int32
+          type: integer
+        TokenType:
+          type: string
+        RefreshToken:
+          type: string
+        IdToken:
+          type: string
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

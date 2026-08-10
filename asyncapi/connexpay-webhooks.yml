@@ -1,0 +1,152 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/docs/webhook-events
+spec_type: null
+asyncapi_published: false
+note: ConnexPay operates a real, well-documented event surface — CXP Eventing — with a documented envelope, an ownership-validation handshake, a retry schedule, endpoint security options and a replay endpoint. It publishes NO AsyncAPI document, so the event catalog below is the harvested webhook reference rather than a machine-readable spec.
+x-evidence:
+- url: https://docs.connexpay.com/docs/webhook-events
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/docs/getting-started-with-webhooks
+  http_status: 200
+  fetched: '2026-08-09'
+docs:
+- https://docs.connexpay.com/docs/getting-started-with-webhooks
+- https://docs.connexpay.com/docs/webhook-events
+- https://docs.connexpay.com/docs/webhook-samples-for-purchase-card-events
+- https://docs.connexpay.com/docs/webhook-samples-for-push-to-card-payouts
+- https://docs.connexpay.com/docs/webhook-samples-for-sales-events
+- https://docs.connexpay.com/docs/payment-valet-webhooks
+transport:
+  protocol: HTTPS POST
+  direction: provider -> subscriber
+  required_response: HTTP 200
+  https_required: true
+envelope:
+  format: JSON
+  fields:
+  - name: id
+    description: Globally unique identifier (GUID) of the webhook event
+  - name: subject
+    description: The subscriber's merchant GUID or parent organization GUID
+  - name: data
+    description: Event-specific payload of descriptions and identifiers
+  - name: eventType
+    description: Type of event — one of the catalog below
+  - name: eventTime
+    description: Time the event was received at CXP Eventing
+  - name: dataVersion
+    description: Current schema version
+  note: Purchase card events carry an incomingTransactionCode token linking the event back to the funding sale.
+subscription:
+  self_service: true
+  where: Bridge UI self-setup
+  docs: https://docs.connexpay.com/docs/webhook-self-setup-through-bridge-ui
+  validation:
+  - mode: synchronous handshake
+    how: CXP posts a Subscription Validation Event containing a validationCode in data; the endpoint echoes it back in the response.
+  - mode: asynchronous handshake
+    how: The validation event carries a validationUrl in data; the subscriber performs a GET against it to complete the handshake. ConnexPay documents this as the recommended option.
+security:
+  endpoint_security: Optional client-defined values (secrets and similar) can be passed on every notification as query parameters or request headers, configured per subscription.
+  signature: null
+  signature_note: ConnexPay documents no cryptographic signature (no HMAC header) on webhook deliveries. Verification relies on the shared-secret header/query value the subscriber configures, plus the ownership handshake.
+delivery_semantics:
+  guarantee: at-least-once
+  duplicates: Documented as possible — retries can redeliver an event the subscriber already accepted.
+  retries: Scheduled retry queue; retry steps may be skipped when an endpoint is consistently unhealthy, down for an extended period, or appears overwhelmed.
+  replay:
+    operationId: purchase-event-history
+    source: openapi/connexpay-purchases-openapi.yml
+    docs: https://docs.connexpay.com/reference/purchase-event-history
+    how: Retrieves VCC, Lodged Card, Physical Card or ACH purchase events by GUID or over a date range — the documented recovery path for missed webhooks.
+event_count: 52
+events:
+  purchase.ach:
+  - event: purchase.ach.cancelled
+    description: An ACH purchase transaction has been cancelled.
+  - event: purchase.ach.noc
+    description: An ACH Notice of Change has been received. A Notice of Change occurs when previously valid ACH information has become outdated and must be updated for future requests.
+  - event: purchase.ach.notyetprocessed
+    description: An ACH purchase transaction has not yet begun to be processed
+  - event: purchase.ach.pending
+    description: An ACH purchase is created.
+  - event: purchase.ach.processed
+    description: An ACH transaction has been successfully processed.
+  - event: purchase.ach.processing
+    description: An ACH transaction is currently processing. ACH transactions are briefly in this status when the batches are processed each afternoon.
+  purchase.card:
+  - event: purchase.card.adjusted
+    description: A card has been adjusted, such as changing the reload amount or the purchase type
+  - event: purchase.card.auth.approved
+  - event: purchase.card.auth.declined
+  - event: purchase.card.auth.reversal.issuerexpiration
+  - event: purchase.card.auth.reversal.pending
+  - event: purchase.card.auth.reversal.settled
+  - event: purchase.card.auth.settled
+  - event: purchase.card.blacklist.added
+  - event: purchase.card.blacklist.pending
+  - event: purchase.card.blacklist.removed
+  - event: purchase.card.blacklist.updated
+  - event: purchase.card.chargeback.accepted
+  - event: purchase.card.chargeback.declined
+  - event: purchase.card.chargeback.initiated.declined
+  - event: purchase.card.chargeback.initiated.success
+  - event: purchase.card.chargeback.reversal.settled
+  - event: purchase.card.expired
+  - event: purchase.card.issued
+    description: A card has been successfully issued
+  - event: purchase.card.payment.deactivated
+    description: An individual payment within a payout has been canceled.
+  - event: purchase.card.payment.expired
+    description: An individual payment within a payout has expired.
+  - event: purchase.card.payment.failed
+    description: An individual payment within a payout failed at time of disbursement (card expired / do not honor)
+  - event: purchase.card.payment.payout
+    description: An individual payment within a payout has been successfully claimed by the recipient.
+  - event: purchase.card.payout.approved
+    description: A Push to Card payout has been created.
+  - event: purchase.card.payout.cancelled
+    description: All payments within a payout have been deactivated/canceled.
+  - event: purchase.card.return.auth.approved
+  - event: purchase.card.return.auth.declined
+  - event: purchase.card.return.auth.reversal
+  - event: purchase.card.return.auth.reversal.settled
+  - event: purchase.card.return.auth.settled
+  - event: purchase.card.return.completed
+  - event: purchase.card.terminated
+    description: A card has been successfully terminated
+  sale.ach:
+  - event: sale.ach.pending
+    description: The immediate status when an ACH payment is created.
+  - event: sale.ach.processed
+    description: The payment has been successfully processed
+  - event: sale.ach.processing
+    description: An ACH payment is currently processing. ACH transactions may be in this state briefly as ACH batches are processed.
+  - event: sale.ach.return.denied
+    description: ACH return denied by ConnexPay's processor, typically because the bank account is no longer a valid account.
+  - event: sale.ach.return.pending
+    description: The immediate status when an ACH return is created.
+  - event: sale.ach.return.pendingpayment
+    description: The return is waiting on a payment method / funding source to continue - should not see
+  - event: sale.ach.return.processed
+    description: The return has been successfully processed
+  - event: sale.ach.return.processing
+    description: An ACH return is currently processing. ACH return transactions may be in this state briefly as ACH batches are processed.
+  sale.card:
+  - event: sale.card.auth.approved
+    description: A card authorization in your sale processing has been approved.
+  - event: sale.card.auth.declined
+    description: A card authorization in your sale processing has been declined.
+  - event: sale.card.auth.voided
+    description: A previously approved card authorization in the processing of your sale has been voided.
+  - event: sale.card.authonly.approved
+    description: A card authorization only in your sale processing has been approved.
+  - event: sale.card.authonly.voided
+    description: A previously approved card authorization only in the processing of your sale has been voided.
+  - event: sale.card.return.auth.approved
+    description: An attempted return of a prior card authorization in your sale processing has been approved.
+  funding:
+  - event: sale.cash.balance.funding
+    description: An event is processed to withdraw or deposit funds with your merchant cash balance.

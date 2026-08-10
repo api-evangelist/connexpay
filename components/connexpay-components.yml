@@ -1,0 +1,62 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/docs/using-our-sdk
+docs:
+- https://docs.connexpay.com/docs/v2-docs
+- https://docs.connexpay.com/docs/quick-start-guide
+- https://docs.connexpay.com/docs/api-reference
+- https://docs.connexpay.com/docs/hosted-payment-page
+x-evidence:
+- url: https://js.connexpay.com/sdk/v2/connexpay.min.js
+  http_status: 200
+  content_type: application/x-javascript
+  bytes: 100820
+  fetched: '2026-08-09'
+families:
+- family: ConnexPay Payments SDK (v2)
+  kind: browser JavaScript element library
+  loader: https://js.connexpay.com/sdk/v2/connexpay.min.js
+  global: ConnexPay(clientId)
+  mount: createPaymentForm({ element, checkoutSessionID })
+  backing_operation: openapi/connexpay-checkout-session-openapi.yml#createcheckoutsession
+  purpose: Renders a hosted, PCI-scope-reducing payment form inside the merchant's own page. Card data never touches the merchant server.
+  payment_methods:
+  - Credit
+  - ACH
+  - GooglePay
+  - ApplePay
+  customization:
+  - method: setAppearance({theme, layout})
+    docs: https://docs.connexpay.com/docs/appearance-theming
+    note: CSS variables, preset themes and custom styling rules.
+  - method: setCustomer({...})
+    docs: https://docs.connexpay.com/docs/customer-data-collection
+  lifecycle:
+    events:
+    - ready
+    readiness: isSDKReady()
+    submit: confirmPayment()
+    docs: https://docs.connexpay.com/docs/sdk-lifecycle
+  errors: https://docs.connexpay.com/docs/error-codes
+  session: Checkout sessions expire after 60 minutes and are created server-side.
+- family: ConnexPay Payments SDK (v1)
+  kind: browser JavaScript element library
+  loader: https://js.connexpay.com/sdk/v1/connexpay.min.js
+  purpose: Prior generation of the payment widget, including Apple Pay and Google Pay integrations.
+  docs:
+  - https://docs.connexpay.com/docs/using-our-sdk
+  - https://docs.connexpay.com/docs/apple-pay-integration
+  - https://docs.connexpay.com/docs/googlepay
+- family: Hosted Payment Page (HPP)
+  kind: fully hosted redirect surface
+  backing_operations:
+  - openapi/connexpay-sales-openapi.yml#hpp-token-request
+  docs: https://docs.connexpay.com/docs/hosted-payment-page
+  purpose: ConnexPay-hosted checkout requested with an HPP token; no client-side embedding required.
+- family: Bridge Payment Links
+  kind: hosted, shareable payment link
+  docs: https://docs.connexpay.com/docs/bridge-payment-link
+- family: Bridge UI
+  kind: hosted operator console (not embeddable)
+  url: https://cxpbridge.com/
+  purpose: Submit, view and manage transaction activity; issue a virtual card without an API integration; self-configure webhook endpoints.

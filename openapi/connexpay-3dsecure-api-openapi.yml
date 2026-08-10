@@ -1,0 +1,478 @@
+openapi: 3.1.0
+info:
+  title: sales-api 3 D Secure API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: 3DSecure
+paths:
+  /api/v1/3DSecure:
+    post:
+      summary: 3D Secure Sales Authentication
+      description: "The 3D Secure 2.0 authentication process is initiated using the BrowserData parameter if you have interfaced with ConnexPay's solution. The transaction will be directed to Smart Adviser, which allows utilizes 3D secure rules for optimal performance.  Smart Advisor may allow the merchant to skip completing 3D authentication, which means the customer is less likely to abandon a transaction.  Exemptions to 3D secure authentication exist for transactions under a certain threshold, MOTO transactions and lodged card transactions.  For more information about exemptions, click here: https://www.visa.co.uk/dam/VCOM/regional/ve/unitedkingdom/PDF/sca/Visa-psd2-sca-scp-exemption-guide.pdf.\n\nIf Smart Adviser determines 3D secure authentication is required for the Sale or Auth, it will automatically route the transaction for 3D secure authentication.\nComing soon - additional info about 3DS Smart Adviser.  \n\nIf the Merchant has integrated to ConnexPay's solution, the Create Sale or Auth Only endpoints must be combined with the BrowserData field to initiate 3D secure authentication.  \n\nIn the event that the transaction requires a 3D secure device fingerprint, 3D secure cardholder challenge, or both, the Create Sale or Auth Only request must be resubmitted once the 3DS status is complete by using the specified parameters on the GET 3DS Status API endpoint for authentication.\n\nIf a device fingerprint is required, secure authentication occurs behind the scenes so that the cardholder is not impacted. To successfully complete the device fingerprint, the webpage being used for payment must be configured to use an embedded iFrame.  The iFrame is needed to complete the required redirection to the issuer's site.  Use the redirectUrl and redirectUrlRequetPayload provided in the response to complete authentication.  The response must occur within 10 seconds. \n\nIf a cardholder challenge is required, the secure authentication must be completed by the cardholder.  To successfully complete the challenge, the webpage being used for payment must be configured to use an embedded iFrame.   This will be used to complete the required redirection to the issuer's site.  Use the redirectUrl provided in the response to initiate the cardholder challenge. \n\nOnce a response is received, our callback API will be updated to show 3DS as complete.  Once the status is complete, the merchant will need to call a new API route to receive the secureData.  The secureData must be used to call the Sale or Auth route to complete the transaction.\n\nThe new route to GET 3ds status once the auth has occurred, as well as next steps, is located here: https://docs.connexpay.com/reference/get-3ds-status-group"
+      operationId: 3ds2-sales
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type Header
+        schema:
+          type: string
+          default: '"application/json"'
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - 3ds_initiate
+              - Amount
+              - CardNumber
+              - ExpirationDate
+              - CardHolderName
+              - Email
+              - Address1
+              - City
+              - State
+              - Zip
+              - RequestIP
+              - ProductDescription
+              - BrowserData
+              properties:
+                3ds_initiate:
+                  type: integer
+                  description: Initiates the Source 3D Secure Smart Adviser Authentication process.  This is hardcoded behind the scenes and can be ignored.
+                  default: null
+                  format: int32
+                Amount:
+                  type: number
+                  description: 'Amount of the transaction that will be processed. Note: this value is submitted multiple times (in different formats) within the integration to support different purposes i.e. risk analysis, merchant processing, etc.  The minimum amount is: $0.50.'
+                  default: null
+                  format: float
+                CardNumber:
+                  type: string
+                  description: 'Mandatory if Guid field is not provided. Card number.  Must be 16 characters. (example: 4532538795426624) or token (example: FfL7exC7Xe2y6624)'
+                ExpirationDate:
+                  type: string
+                  description: Card's expiry date in the YYMM format.
+                  format: date
+                CardHolderName:
+                  type: string
+                  description: Cardholder's name. Providing information in this field allows a user of the ConnexPay portal to search for a transaction using the cardholder name
+                Email:
+                  type: string
+                  description: Cardholder's valid email address which is available in various reports. It is critical that SendReceipt is set to FALSE so that ConnexPay does not send a receipt to the cardholder when the transaction is processed
+                Address1:
+                  type: string
+                  description: Cardholder's billing address street
+                City:
+                  type: string
+                  description: Cardholder's billing address city
+                State:
+                  type: string
+                  description: State, Province or Territory of the Cardholder's Billing Address
+                Zip:
+                  type: integer
+                  description: Postal/Zip Code Customer billing postal code. It is strongly recommended to send this value in a card-not-present environment. Min Length = 2 Max Length = 15
+                  format: int32
+                RequestIP:
+                  type: string
+                  description: Cardholder (AKA end-user) IP address
+                ProductDescription:
+                  type: string
+                  description: Optional transaction description
+                StatementDescription:
+                  type: string
+                  description: Optional billing description on cardholder's statement
+                BrowserData:
+                  type: object
+                  description: Parameters that must be submitted to initiate 3D Secure Authentication via ConnexPay's interface
+                  required:
+                  - AcceptanceHeader
+                  - ColorDepth
+                  - JavaEnabled
+                  - ScreenHeight
+                  - ScreenWidth
+                  - TimeZoneOffset
+                  - Language
+                  - RedirectURL
+                  - UserAgentHeader
+                  properties:
+                    AcceptanceHeader:
+                      type: string
+                      description: Required.  Exact content of the http accept header.
+                    ColorDepth:
+                      type: integer
+                      description: Required. Value representing the bit depth of the color palette for displaying images, in bits per pixel.
+                      format: int32
+                    JavaEnabled:
+                      type: boolean
+                      description: True or False response that represents ability of cardholder browser to execute Java
+                    ScreenHeight:
+                      type: integer
+                      description: Total height of the Cardholder's screen in pixels
+                      format: int32
+                    ScreenWidth:
+                      type: integer
+                      description: Total width of the Cardholder's screen in pixels
+                      format: int32
+                    TimeZoneOffset:
+                      type: integer
+                      description: Time Zone difference between browser time zone and UTC time, in hours.  Can be positive or negative.
+                      format: int32
+                    Language:
+                      type: string
+                      description: Value representing the browser language as defined in IETF BCP47
+                    RedirectURL:
+                      type: string
+                      description: The merchant URL to which the browser should be redirected after the challenge session.
+                    UserAgentHeader:
+                      type: string
+                      description: Exact content of the HTTP user-agent header.
+            examples:
+              Request Example:
+                value:
+                  CardDataSource: EMV2
+                  Amount: 1
+                  OrderNumber: ''
+                  CustomerId: ''
+                  SendReceipt: false
+                  isDelaySaleActivation: false
+                  activationDate: ''
+                  LabelIds:
+                  - 987654638
+                  StatementDescription: ''
+                  AssociationId: ''
+                  ConnexPayTransaction:
+                    ExpectedPayments: 0
+                  RiskData:
+                    ProductType: test
+                    ProductItem: test
+                    OrderNumber: ''
+                    SellerId: ''
+                    Email: ''
+                    Gender: ''
+                    DateOfBirth: ''
+                    ProductDesc: ''
+                    BillingPhoneNumber: ''
+                    BillingAddress1: ''
+                    BillingAddress2: ''
+                    BillingState: ''
+                    BillingCity: ''
+                    BillingPostalCode: ''
+                    FlightData:
+                      Airline: ''
+                      DepartureAirport: ''
+                      DepartureDate: ''
+                      DestinationAirport: ''
+                      HoursToDeparture: ''
+                      JourneyType: ''
+                      Route: ''
+                      RouteByCountry: ''
+                    FlightPassenger: []
+                  Card:
+                    CardNumber: '4018810001010010'
+                    CardHolderName: Jason Harmon
+                    Cvv2: '999'
+                    ExpirationDate: '2312'
+                    Customer:
+                      FirstName: Jason
+                      LastName: Harmon
+                      Email: ''
+                      Address1: ''
+                      Address2: ''
+                      State: ''
+                      City: ''
+                      Country: ''
+                      Zip: ''
+                      Phone: ''
+                      SSN4: ''
+                  DeviceGuid: e639a1dc-5cc4-43de-ab74-d5bea6c6b107
+                  TenderType: Credit
+                  BrowserData:
+                    AcceptanceHeader: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+                    ColorDepth: 32
+                    JavaEnabled: true
+                    ScreenHeight: 1000
+                    ScreenWidth: 1000
+                    TimeZoneOffset: 0
+                    Language: en-GB
+                    RedirectUrl: https://salesapi.connexpaydev.com/
+                    UserAgentHeader: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"guid\": \"2d78c80e-59c3-44ae-a770-c70dfa550768\",\n    \"status\": \"Transaction - Approved\",\n    \"type\": \"3D Secure\",\n    \"batchStatus\": \"Batch - Open\",\n    \"timeStamp\": \"2022-11-29T06:47:52.53-05:00\",\n    \"deviceGuid\": \"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\",\n    \"amount\": 1.00,\n    \"activated\": true,\n    \"tenderType\": \"Credit\",\n    \"effectiveAmount\": 1.00,\n    \"riskResponse\": {\n        \"transactionId\": null,\n        \"response\": \"Fraud Check Skipped for Finaro Request.\",\n        \"reason\": null,\n        \"score\": null\n    },\n    \"orderNumber\": \"\",\n    \"cardDataSource\": \"INTERNET\",\n    \"customerID\": \"\",\n    \"batchGuid\": \"c4513dc8-1f49-47c2-b384-6b0897c3734e\",\n    \"connexPayTransaction\": {\n        \"guid\": \"76d224b7-1abc-4fdb-9d0a-9a4b44cebbca\",\n        \"expectedPayments\": 0,\n        \"incomingTransCode\": \"7C9A573638053372540845316\"\n    },\n    \"associationId\": \"\",\n    \"processorStatusCode\": \"0\",\n    \"processorResponseMessage\": \"Transaction has been executed successfully.\",\n    \"wasProcessed\": true,\n    \"authCode\": \"697949\",\n    \"refNumber\": \"XZZ01c19f5570e6bDAFUP3DOWVUR5FSB\",\n    \"customerReceipt\": \"Not Available\",\n    \"statementDescription\": \"\",\n    \"generatedBy\": \"jharmonfinaro\",\n    \"card\": {\n        \"first6\": \"401881\",\n        \"first4\": \"4018\",\n        \"last4\": \"0036\",\n        \"cardHolderName\": \"Jason Harmon\",\n        \"cardType\": \"Visa\",\n        \"expirationDate\": \"2023-12\",\n        \"guid\": \"ff7777a8-d91b-43d7-a0e7-f02029d1b64f\",\n        \"customer\": {\n            \"guid\": \"3bea4ab2-b14c-416e-ba0a-e07d1b2ca317\",\n            \"firstName\": \"Jason\",\n            \"lastName\": \"Harmon\",\n            \"address1\": \"\",\n            \"address2\": \"\",\n            \"zip\": \"\",\n            \"city\": \"\",\n            \"country\": \"\",\n            \"phone\": \"\",\n            \"email\": \"\",\n            \"ssN4\": \"\"\n        }\n    },\n    \"addressVerificationResult\": \"Unavailable\",\n    \"cvvVerificationCode\": \"M\",\n    \"cvvVerificationResult\": \"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\",\n    \"cavvResponseCode\": \"2\",\n    \"walletProvider\": 0,\n    \"isFromIssueLite\": false,\n    \"labelIds\": [\n        987654638\n    ],\n    \"remainingAmount\": 1.00\n}"
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: 2d78c80e-59c3-44ae-a770-c70dfa550768
+                  status:
+                    type: string
+                    example: Transaction - Approved
+                  type:
+                    type: string
+                    example: 3D Secure
+                  batchStatus:
+                    type: string
+                    example: Batch - Open
+                  timeStamp:
+                    type: string
+                    example: '2022-11-29T06:47:52.53-05:00'
+                  deviceGuid:
+                    type: string
+                    example: e639a1dc-5cc4-43de-ab74-d5bea6c6b107
+                  amount:
+                    type: integer
+                    example: 1
+                    default: 0
+                  activated:
+                    type: boolean
+                    example: true
+                    default: true
+                  tenderType:
+                    type: string
+                    example: Credit
+                  effectiveAmount:
+                    type: integer
+                    example: 1
+                    default: 0
+                  riskResponse:
+                    type: object
+                    properties:
+                      transactionId: {}
+                      response:
+                        type: string
+                        example: Fraud Check Skipped for Finaro Request.
+                      reason: {}
+                      score: {}
+                  orderNumber:
+                    type: string
+                    example: ''
+                  cardDataSource:
+                    type: string
+                    example: INTERNET
+                  customerID:
+                    type: string
+                    example: ''
+                  batchGuid:
+                    type: string
+                    example: c4513dc8-1f49-47c2-b384-6b0897c3734e
+                  connexPayTransaction:
+                    type: object
+                    properties:
+                      guid:
+                        type: string
+                        example: 76d224b7-1abc-4fdb-9d0a-9a4b44cebbca
+                      expectedPayments:
+                        type: integer
+                        example: 0
+                        default: 0
+                      incomingTransCode:
+                        type: string
+                        example: 7C9A573638053372540845316
+                  associationId:
+                    type: string
+                    example: ''
+                  processorStatusCode:
+                    type: string
+                    example: '0'
+                  processorResponseMessage:
+                    type: string
+                    example: Transaction has been executed successfully.
+                  wasProcessed:
+                    type: boolean
+                    example: true
+                    default: true
+                  authCode:
+                    type: string
+                    example: '697949'
+                  refNumber:
+                    type: string
+                    example: XZZ01c19f5570e6bDAFUP3DOWVUR5FSB
+                  customerReceipt:
+                    type: string
+                    example: Not Available
+                  statementDescription:
+                    type: string
+                    example: ''
+                  generatedBy:
+                    type: string
+                    example: jharmonfinaro
+                  card:
+                    type: object
+                    properties:
+                      first6:
+                        type: string
+                        example: '401881'
+                      first4:
+                        type: string
+                        example: '4018'
+                      last4:
+                        type: string
+                        example: '0036'
+                      cardHolderName:
+                        type: string
+                        example: Jason Harmon
+                      cardType:
+                        type: string
+                        example: Visa
+                      expirationDate:
+                        type: string
+                        example: 2023-12
+                      guid:
+                        type: string
+                        example: ff7777a8-d91b-43d7-a0e7-f02029d1b64f
+                      customer:
+                        type: object
+                        properties:
+                          guid:
+                            type: string
+                            example: 3bea4ab2-b14c-416e-ba0a-e07d1b2ca317
+                          firstName:
+                            type: string
+                            example: Jason
+                          lastName:
+                            type: string
+                            example: Harmon
+                          address1:
+                            type: string
+                            example: ''
+                          address2:
+                            type: string
+                            example: ''
+                          zip:
+                            type: string
+                            example: ''
+                          city:
+                            type: string
+                            example: ''
+                          country:
+                            type: string
+                            example: ''
+                          phone:
+                            type: string
+                            example: ''
+                          email:
+                            type: string
+                            example: ''
+                          ssN4:
+                            type: string
+                            example: ''
+                  addressVerificationResult:
+                    type: string
+                    example: Unavailable
+                  cvvVerificationCode:
+                    type: string
+                    example: M
+                  cvvVerificationResult:
+                    type: string
+                    example: CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.
+                  cavvResponseCode:
+                    type: string
+                    example: '2'
+                  walletProvider:
+                    type: integer
+                    example: 0
+                    default: 0
+                  isFromIssueLite:
+                    type: boolean
+                    example: false
+                    default: true
+                  labelIds:
+                    type: array
+                    items:
+                      type: integer
+                      example: 987654638
+                      default: 0
+                  remainingAmount:
+                    type: integer
+                    example: 1
+                    default: 0
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Device Fingerprint Example Response:
+                  value: "{\n    \"guid\": \"92bcd4df-5576-48be-b4a6-8c142669a8b6\",\n    \"status\": \"3DS - Pending Fingerprint\",\n    \"timeStamp\": \"2022-11-28T19:49:13.7902906Z\",\n    \"deviceGuid\": \"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\",\n    \"amount\": 1.0,\n    \"redirectUrl\": \"https://x3d-sim.credorax.net/acs/3ds-method\",\n    \"redirectUrlRequestPayload\": \"threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImI5M2MzODkyLTFiMjItNDFlOS1iZmE3LTdkNTMzNzYzMTExMiJ9\",\n    \"card\": {\n        \"first6\": \"401881\",\n        \"first4\": \"4018\",\n        \"last4\": \"0010\",\n        \"cardHolderName\": \"Jason Harmon\",\n        \"cardType\": \"Visa\",\n        \"expirationDate\": \"2023-12\",\n        \"guid\": \"704f6c0b-1da4-4687-9a43-fdd4c46bb69b\"\n    }\n}"
+                Cardholder Challenge Example Response:
+                  value: '
+
+                    '
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: 92bcd4df-5576-48be-b4a6-8c142669a8b6
+                  status:
+                    type: string
+                    example: 3DS - Pending Fingerprint
+                  timeStamp:
+                    type: string
+                    example: '2022-11-28T19:49:13.7902906Z'
+                  deviceGuid:
+                    type: string
+                    example: e639a1dc-5cc4-43de-ab74-d5bea6c6b107
+                  amount:
+                    type: integer
+                    example: 1
+                    default: 0
+                  redirectUrl:
+                    type: string
+                    example: https://x3d-sim.credorax.net/acs/3ds-method
+                  redirectUrlRequestPayload:
+                    type: string
+                    example: threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImI5M2MzODkyLTFiMjItNDFlOS1iZmE3LTdkNTMzNzYzMTExMiJ9
+                  card:
+                    type: object
+                    properties:
+                      first6:
+                        type: string
+                        example: '401881'
+                      first4:
+                        type: string
+                        example: '4018'
+                      last4:
+                        type: string
+                        example: '0010'
+                      cardHolderName:
+                        type: string
+                        example: Jason Harmon
+                      cardType:
+                        type: string
+                        example: Visa
+                      expirationDate:
+                        type: string
+                        example: 2023-12
+                      guid:
+                        type: string
+                        example: 704f6c0b-1da4-4687-9a43-fdd4c46bb69b
+      deprecated: false
+      tags:
+      - 3DSecure
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

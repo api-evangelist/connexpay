@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ConnexPay Purchases API - Stop Payment Service
+  version: 1.0.0
+extends: openapi/connexpay-stop-payment-service-openapi.yml
+x-provenance:
+  generated: '2026-08-09'
+  method: generated
+  source: https://docs.connexpay.com/reference/ — spec harvested verbatim from the ReadMe reference hydration payload; this overlay carries API Evangelist annotations only and never mutates the harvested document.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: connexpay
+    x-apievangelist-harvest:
+      source: docs.connexpay.com ReadMe reference pages
+      date: '2026-08-09'
+      method: searched
+    x-apievangelist-artifacts:
+      authentication: authentication/connexpay-authentication.yml
+      conventions: conventions/connexpay-conventions.yml
+      errors: errors/connexpay-problem-types.yml
+      decline_codes: errors/connexpay-decline-codes.yml
+      sandbox: sandbox/connexpay-sandbox.yml
+      webhooks: asyncapi/connexpay-webhooks.yml
+      lifecycle: lifecycle/connexpay-lifecycle.yml
+      data_model: data-model/connexpay-data-model.yml
+    x-apievangelist-notes:
+      idempotency: Not supported. No idempotency key exists on any operation; duplicate submissions surface after the fact as processor decline codes D0001/D0003/D0008/D0009.
+      rate_limits: Not documented by the provider.
+      auth: Bearer token obtained from a per-API token endpoint using a username/password grant. The oauth2 securityScheme in this document has an empty flows object and is a docs-platform placeholder, not a real OAuth 2.0 deployment.
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+      operations_total: 2
+      operations_untagged: 0
+      note: Contract-content gaps are recorded, not patched — the scorer reads the provider’s original document.

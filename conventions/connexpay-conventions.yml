@@ -1,0 +1,71 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/docs/getting-started
+docs:
+- https://docs.connexpay.com/docs/platform-overview
+- https://docs.connexpay.com/docs/status-and-error-codes
+- https://docs.connexpay.com/docs/integration-best-practices
+- https://docs.connexpay.com/docs/getting-started-with-webhooks
+authentication:
+  style: token exchange — username/password POSTed to a per-API token endpoint, then a bearer token on every subsequent call
+  token_endpoints:
+  - api: Sales
+    operationId: sales-token
+    path: /api/v1/token
+    ttl: 24 hours
+  - api: Purchases
+    operationId: issuing-token
+    ttl: 24 hours
+  - api: Reporting / Bridge
+    operationId: reporting-token
+    ttl: 60 minutes
+    note: Uses Bridge credentials, assigned separately from the Sales and Purchases API credentials. Production only.
+  - api: Payment Valet
+    scheme: Api-Key header
+  credential_scope: One connection (username/password) per MID.
+  artifact: authentication/connexpay-authentication.yml
+idempotency:
+  supported: false
+  note: ConnexPay documents no idempotency key. No Idempotency-Key header or parameter appears in any of the ten harvested OpenAPI documents, and the docs corpus contains no idempotency guidance. Duplicate submission is instead surfaced after the fact through processor decline codes D0001 (Duplicate Request - Approved previously), D0003 (Duplicate Request - Declined previously), D0008 (Possible Duplicate Request) and D0009 (Duplicate Request - Reversed previously). Retry safety is the integrator's responsibility.
+  evidence: errors/connexpay-decline-codes.yml
+pagination:
+  style: page-number, in the URL path
+  params:
+  - pageNumber
+  - pageSize
+  - exportable
+  shape: POST /api/v1/Search/{Resource}/{exportable}/{pageNumber}/{pageSize}
+  note: Search operations across Sales, Voids, Returns, Verify, Settlements and Issued Cards all take page number and page size as path segments rather than query parameters. The `exportable` segment toggles an export-shaped response.
+  evidence: openapi/connexpay-sales-openapi.yml, openapi/connexpay-purchases-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1 across Sales, Purchases, Reporting and Payment Valet; v2 for the Checkout Session / SDK surface
+  note: Platform releases are versioned separately (8.x) and published on the changelog; the URI version has not moved with them.
+  artifact: lifecycle/connexpay-lifecycle.yml
+error_envelope:
+  format: application/json, ConnexPay's own envelope — not RFC 9457 problem+json
+  http_semantics: Standard HTTP status codes; 200/201 success, 4xx client, 5xx server. Third-party (partner) errors are passed through inside the response body.
+  authorization_failures: An authorization that is declined is a business outcome, not an HTTP error — it comes back with a processor status code and response message. See errors/connexpay-decline-codes.yml.
+  artifact: errors/connexpay-problem-types.yml
+request_tracing:
+  correlation: IncomingTransactionCode (ITC) links a Sale to the PayOuts issued against it; webhook events carry an `id` GUID per event and a `subject` (merchant GUID).
+  request_id_header: null
+content_negotiation:
+  request:
+  - application/json
+  - application/x-www-form-urlencoded (token endpoints)
+  response:
+  - application/json
+  - text/json
+  - application/xml
+  - text/xml
+rate_limits:
+  documented: false
+  note: No published rate limit, quota or 429 semantics were found in the docs corpus or in any harvested OpenAPI.
+webhooks:
+  delivery: HTTPS POST from CXP Eventing; endpoint must return 200.
+  validation: Ownership handshake required — synchronous (echo validationCode) or asynchronous (GET the validationUrl).
+  security: Optional client-defined secrets passed as query parameters or request headers on every notification (up to a documented maximum).
+  retries: Scheduled retry queue; duplicates are possible, and retry steps may be skipped when an endpoint is persistently unhealthy.
+  replay: Purchase Event History endpoint replays events by GUID or date range.
+  artifact: asyncapi/connexpay-webhooks.yml

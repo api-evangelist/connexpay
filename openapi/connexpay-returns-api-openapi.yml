@@ -1,0 +1,766 @@
+openapi: 3.1.0
+info:
+  title: sales-api Returns API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Returns
+paths:
+  /api/v1/returns:
+    post:
+      summary: Return
+      description: ''
+      operationId: return
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type Header
+        schema:
+          type: string
+          default: '"application/json"'
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - DeviceGuid
+              - Amount
+              properties:
+                DeviceGuid:
+                  type: string
+                  description: Device's Guid
+                SaleGuid:
+                  type: string
+                  description: Mandatory when SaleReferenceNumber field is not sent. Sale's Guid.
+                SaleReferenceNumber:
+                  type: integer
+                  description: Mandatory when SaleGuid field is not sent. Sale's Reference Number
+                  format: int32
+                Amount:
+                  type: number
+                  description: 'Transaction’s amount. Min. amt.: $0.50'
+                  format: float
+                SequenceNumber:
+                  type: string
+                  description: 'Transaction sequence number within client environment. Provide a unique SequenceNumber for each new request. If the same value is sent within 30 minutes it will be considered a duplicate request. Note: value is not searchable or reportable in ConnexPay portal.  The maximum length is 100 alpha-numeric characters.'
+                ReturnRetryCard:
+                  type: object
+                  description: Card data to be used in the event a sale return to the original card is declined and a retry to a new card should be attempted. This attempt needs to be made within 7 days of the failed return authorization
+                  properties:
+                    CardNumber:
+                      type: string
+                      description: Card number. Must be 16 characters.
+                    CardHolderName:
+                      type: string
+                      description: Cardholder's name
+                    Cvv2:
+                      type: integer
+                      description: The three or four digit CVV code at the back side of the credit and debit card
+                      format: int32
+                    ExpirationDate:
+                      type: string
+                      description: Card's expiry date in the YYMM format
+                      format: date
+                OrderNumber:
+                  type: string
+                  description: 'A value that is commonly used for reporting on and reconciling your PayIns and PayOuts. The Order Number is searchable in the ConnexPay Bridge and referenced in Analytics and reporting, and can be any identifier within your environment to associate with the sale or payment, such as a Record Locator, PNR, or transaction ID. The maximum length is 50 alpha-numeric characters and allows the following special characters: [._ /- ].'
+            examples:
+              Return Request Example:
+                value:
+                  guid: 4f31b350-edd1-49fd-a1ad-4b065f78d7b9
+                  batchStatus: Batch - Open
+                  timeStamp: '2017-07-11T11:10:38.11'
+                  deviceGuid: 8f65764d-72c1-4dee-ac9f-4cd4c98e8c35
+                  saleGuid: ded98ad3-0553-4607-b84c-1bbd85f474d5
+                  status: Transaction - Approved
+                  amount: 19.74
+                  batchGuid: 450463e0-5050-4c33-8c2f-4e39a2dd8614
+                  processorStatusCode: A0014
+                  wasProcessed: true
+                  authCode: VTLMC1
+                  refNumber: '13283670'
+                  invoiceNumber: '11518'
+                  customerReceipt: 'SUR TECHNOLOGY HOLDINGS
+
+                    8320 S HARDY DRIVE
+
+                    TEMPE AZ 85284
+
+                    07/11/2017 07:10:42
+
+
+                    CREDIT - VOID
+
+
+                    CARD # : **** **** **** 0213
+
+                    CARD TYPE :MASTERCARD
+
+                    Entry Mode : MANUAL
+
+
+                    REF # : 13283670
+
+                    Invoice number : 11518
+
+
+                    Void Amount:                    $19.74
+
+                    --------------------------------------
+
+
+
+
+                    John Doe
+
+
+                    CUSTOMER ACKNOWLEDGES RECEIPT OF
+
+                    GOODS AND/OR SERVICES IN THE AMOUNT
+
+                    OF THE TOTAL SHOWN HEREON AND AGREES
+
+                    TO PERFORM THE OBLIGATIONS SET FORTH
+
+                    BY THE CUSTOMER`S AGREEMENT WITH THE
+
+                    ISSUER
+
+                    APPROVED
+
+
+
+
+
+                    Customer Copy
+
+                    '
+                  sequenceNumber: Sample-seq-1
+                  sale:
+                    guid: ded98ad3-0553-4607-b84c-1bbd85f474d5
+                    status: Transaction - Approved
+                    batchStatus: Batch - Closed
+                    timeStamp: '2017-07-11T11:09:53.5'
+                    deviceGuid: 8f65764d-72c1-4dee-ac9f-4cd4c98e8c35
+                    amount: 19.74
+                    effectiveAmount: 0
+                    orderNumber: '11518'
+                    orderDate: '2017-02-03T00:00:00'
+                    batchGuid: 1564cb1b-eddb-4747-9565-61a7d7d225f9
+                    processorStatusCode: A0000
+                    processorResponseMessage: Success
+                    wasProcessed: true
+                    authCode: VTLMC1
+                    refNumber: '13283670'
+                    invoiceNumber: '11518'
+                    customerReceipt: 'SUR TECHNOLOGY HOLDINGS
+
+                      8320 S HARDY DRIVE
+
+                      TEMPE AZ 85284
+
+                      07/11/2017 07:09:56
+
+
+                      CREDIT - SALE
+
+
+                      CARD # : **** **** **** 0213
+
+                      CARD TYPE :MASTERCARD
+
+                      Entry Mode : MANUAL
+
+
+                      REF # : 13283670
+
+                      Invoice number : 11518
+
+                      AUTH CODE : VTLMC1
+
+                      Subtotal:                       $19.74
+
+                      --------------------------------------
+
+                      Total:                          $19.74
+
+                      --------------------------------------
+
+
+
+
+                      John Doe
+
+
+                      CUSTOMER ACKNOWLEDGES RECEIPT OF
+
+                      GOODS AND/OR SERVICES IN THE AMOUNT
+
+                      OF THE TOTAL SHOWN HEREON AND AGREES
+
+                      TO PERFORM THE OBLIGATIONS SET FORTH
+
+                      BY THE CUSTOMER`S AGREEMENT WITH THE
+
+                      ISSUER
+
+                      APPROVED
+
+
+
+
+
+                      Customer Copy
+
+                      '
+                    customData: order details
+                    card:
+                      first4: '5306'
+                      last4: '0213'
+                      cardNumber: 1zcGT7J4pkGh0213
+                      cardHolderName: John Doe
+                      expirationDate: 2019-07
+                      customer:
+                        guid: d1cf828d-3050-4e4c-b7cf-f4038d114d39
+                        firstName: John
+                        lastName: Doe
+                        phone: '9177563007'
+                        city: New York
+                        country: US
+                        email: johnd@gmail.com
+                        zip: '10007'
+                        address1: 107 7th Av.
+                        address2: ''
+                        state: NY
+                        dateOfBirth: '1987-07-07T00:00:00'
+                        driverLicenseNumber: '12345678'
+                        driverLicenseState: TX
+                        ssN4: '1210'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Return Response Example:
+                  value: "{\n    \"guid\": \"4f31b350-edd1-49fd-a1ad-4b065f78d7b9\",\n    \"batchStatus\": \"Batch - Open\",\n    \"timeStamp\": \"2017-07-11T11:10:38.11\",\n    \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n    \"saleGuid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n    \"status\": \"Transaction - Approved\",\n    \"amount\": 19.74,\n    \"batchGuid\": \"450463e0-5050-4c33-8c2f-4e39a2dd8614\",\n    \"processorStatusCode\": \"A0014\",\n    \"wasProcessed\": true,\n    \"authCode\": \"VTLMC1\",\n    \"refNumber\": \"13283670\",\n    \"invoiceNumber\": \"11518\",\n    \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\\\n8320 S HARDY DRIVE\\\\nTEMPE AZ 85284\\\\n07/11/2017 07:10:42\\\\n\\\\nCREDIT - VOID\\\\n\\\\nCARD # : **** **** **** 0213\\\\nCARD TYPE :MASTERCARD\\\\nEntry Mode : MANUAL\\\\n\\\\nREF # : 13283670\\\\nInvoice number : 11518\\\\n\\\\nVoid Amount:                    $19.74\\\\n--------------------------------------\\\\n\\\\n\\\\n\\\\nJohn Doe\\\\n\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\nBY THE CUSTOMER’S AGREEMENT WITH THE\\\\nISSUER\\\\nAPPROVED\\\\n\\\\n\\\\n\\\\n\\\\nCustomer Copy\\\\n\",\n    \"sequenceNumber\": \"Sample-seq-1\",\n    \"sale\": {\n        \"guid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n        \"status\": \"Transaction - Approved\",\n        \"batchStatus\": \"Batch - Closed\",\n        \"timeStamp\": \"2017-07-11T11:09:53.5\",\n        \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n        \"amount\": 19.74,\n        \"effectiveAmount\": 0,\n        \"orderNumber\": \"11518\",\n        \"orderDate\": \"2017-02-03T00:00:00\",\n        \"batchGuid\": \"1564cb1b-eddb-4747-9565-61a7d7d225f9\",\n        \"processorStatusCode\": \"A0000\",\n        \"processorResponseMessage\": \"Success\",\n        \"wasProcessed\": true,\n        \"authCode\": \"VTLMC1\",\n        \"refNumber\": \"13283670\",\n        \"invoiceNumber\": \"11518\",\n        \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\\\n8320 S HARDY DRIVE\\\\nTEMPE AZ 85284\\\\n07/11/2017 07:09:56\\\\n\\\\nCREDIT - SALE\\\\n\\\\nCARD # : **** **** **** 0213\\\\nCARD TYPE :MASTERCARD\\\\nEntry Mode : MANUAL\\\\n\\\\nREF # : 13283670\\\\nInvoice number : 11518\\\\nAUTH CODE : VTLMC1\\\\nSubtotal:                       $19.74\\\\n--------------------------------------\\\\nTotal:                          $19.74\\\\n--------------------------------------\\\\n\\\\n\\\\n\\\\nJohn Doe\\\\n\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\nBY THE CUSTOMER’S AGREEMENT WITH THE\\\\nISSUER\\\\nAPPROVED\\\\n\\\\n\\\\n\\\\n\\\\nCustomer Copy\\\\n\",\n        \"customData\": \"order details\",\n        \"card\": {\n            \"first4\": \"5306\",\n            \"last4\": \"0213\",\n            \"cardNumber\": \"1zcGT7J4pkGh0213\",\n            \"cardHolderName\": \"John Doe\",\n            \"expirationDate\": \"2019-07\",\n            \"customer\": {\n                \"guid\": \"d1cf828d-3050-4e4c-b7cf-f4038d114d39\",\n                \"firstName\": \"John\",\n                \"lastName\": \"Doe\",\n                \"phone\": \"9177563007\",\n                \"city\": \"New York\",\n                \"country\": \"US\",\n                \"email\": \"johnd@gmail.com\",\n                \"zip\": \"10007\",\n                \"address1\": \"107 7th Av.\",\n                \"address2\": \"\",\n                \"state\": \"NY\",\n                \"dateOfBirth\": \"1987-07-07T00:00:00\",\n                \"driverLicenseNumber\": \"12345678\",\n                \"driverLicenseState\": \"TX\",\n                \"ssN4\": \"1210\"\n            }\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: 4f31b350-edd1-49fd-a1ad-4b065f78d7b9
+                  batchStatus:
+                    type: string
+                    example: Batch - Open
+                  timeStamp:
+                    type: string
+                    example: '2017-07-11T11:10:38.11'
+                  deviceGuid:
+                    type: string
+                    example: 8f65764d-72c1-4dee-ac9f-4cd4c98e8c35
+                  saleGuid:
+                    type: string
+                    example: ded98ad3-0553-4607-b84c-1bbd85f474d5
+                  status:
+                    type: string
+                    example: Transaction - Approved
+                  amount:
+                    type: number
+                    example: 19.74
+                    default: 0
+                  batchGuid:
+                    type: string
+                    example: 450463e0-5050-4c33-8c2f-4e39a2dd8614
+                  processorStatusCode:
+                    type: string
+                    example: A0014
+                  wasProcessed:
+                    type: boolean
+                    example: true
+                    default: true
+                  authCode:
+                    type: string
+                    example: VTLMC1
+                  refNumber:
+                    type: string
+                    example: '13283670'
+                  invoiceNumber:
+                    type: string
+                    example: '11518'
+                  customerReceipt:
+                    type: string
+                    example: 'SUR TECHNOLOGY HOLDINGS\n8320 S HARDY DRIVE\nTEMPE AZ 85284\n07/11/2017 07:10:42\n\nCREDIT - VOID\n\nCARD # : **** **** **** 0213\nCARD TYPE :MASTERCARD\nEntry Mode : MANUAL\n\nREF # : 13283670\nInvoice number : 11518\n\nVoid Amount:                    $19.74\n--------------------------------------\n\n\n\nJohn Doe\n\nCUSTOMER ACKNOWLEDGES RECEIPT OF\nGOODS AND/OR SERVICES IN THE AMOUNT\nOF THE TOTAL SHOWN HEREON AND AGREES\nTO PERFORM THE OBLIGATIONS SET FORTH\nBY THE CUSTOMER’S AGREEMENT WITH THE\nISSUER\nAPPROVED\n\n\n\n\nCustomer Copy\n'
+                  sequenceNumber:
+                    type: string
+                    example: Sample-seq-1
+                  sale:
+                    type: object
+                    properties:
+                      guid:
+                        type: string
+                        example: ded98ad3-0553-4607-b84c-1bbd85f474d5
+                      status:
+                        type: string
+                        example: Transaction - Approved
+                      batchStatus:
+                        type: string
+                        example: Batch - Closed
+                      timeStamp:
+                        type: string
+                        example: '2017-07-11T11:09:53.5'
+                      deviceGuid:
+                        type: string
+                        example: 8f65764d-72c1-4dee-ac9f-4cd4c98e8c35
+                      amount:
+                        type: number
+                        example: 19.74
+                        default: 0
+                      effectiveAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      orderNumber:
+                        type: string
+                        example: '11518'
+                      orderDate:
+                        type: string
+                        example: '2017-02-03T00:00:00'
+                      batchGuid:
+                        type: string
+                        example: 1564cb1b-eddb-4747-9565-61a7d7d225f9
+                      processorStatusCode:
+                        type: string
+                        example: A0000
+                      processorResponseMessage:
+                        type: string
+                        example: Success
+                      wasProcessed:
+                        type: boolean
+                        example: true
+                        default: true
+                      authCode:
+                        type: string
+                        example: VTLMC1
+                      refNumber:
+                        type: string
+                        example: '13283670'
+                      invoiceNumber:
+                        type: string
+                        example: '11518'
+                      customerReceipt:
+                        type: string
+                        example: 'SUR TECHNOLOGY HOLDINGS\n8320 S HARDY DRIVE\nTEMPE AZ 85284\n07/11/2017 07:09:56\n\nCREDIT - SALE\n\nCARD # : **** **** **** 0213\nCARD TYPE :MASTERCARD\nEntry Mode : MANUAL\n\nREF # : 13283670\nInvoice number : 11518\nAUTH CODE : VTLMC1\nSubtotal:                       $19.74\n--------------------------------------\nTotal:                          $19.74\n--------------------------------------\n\n\n\nJohn Doe\n\nCUSTOMER ACKNOWLEDGES RECEIPT OF\nGOODS AND/OR SERVICES IN THE AMOUNT\nOF THE TOTAL SHOWN HEREON AND AGREES\nTO PERFORM THE OBLIGATIONS SET FORTH\nBY THE CUSTOMER’S AGREEMENT WITH THE\nISSUER\nAPPROVED\n\n\n\n\nCustomer Copy\n'
+                      customData:
+                        type: string
+                        example: order details
+                      card:
+                        type: object
+                        properties:
+                          first4:
+                            type: string
+                            example: '5306'
+                          last4:
+                            type: string
+                            example: '0213'
+                          cardNumber:
+                            type: string
+                            example: 1zcGT7J4pkGh0213
+                          cardHolderName:
+                            type: string
+                            example: John Doe
+                          expirationDate:
+                            type: string
+                            example: 2019-07
+                          customer:
+                            type: object
+                            properties:
+                              guid:
+                                type: string
+                                example: d1cf828d-3050-4e4c-b7cf-f4038d114d39
+                              firstName:
+                                type: string
+                                example: John
+                              lastName:
+                                type: string
+                                example: Doe
+                              phone:
+                                type: string
+                                example: '9177563007'
+                              city:
+                                type: string
+                                example: New York
+                              country:
+                                type: string
+                                example: US
+                              email:
+                                type: string
+                                example: johnd@gmail.com
+                              zip:
+                                type: string
+                                example: '10007'
+                              address1:
+                                type: string
+                                example: 107 7th Av.
+                              address2:
+                                type: string
+                                example: ''
+                              state:
+                                type: string
+                                example: NY
+                              dateOfBirth:
+                                type: string
+                                example: '1987-07-07T00:00:00'
+                              driverLicenseNumber:
+                                type: string
+                                example: '12345678'
+                              driverLicenseState:
+                                type: string
+                                example: TX
+                              ssN4:
+                                type: string
+                                example: '1210'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Returns
+  /api/v1/returns/CreateCredit:
+    post:
+      summary: Create Credit
+      description: This Endpoint allows you to create a credit to your consumer without having an associated sale.
+      operationId: create-credit
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type Header
+        schema:
+          type: string
+          default: '"application/json"'
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - Amount
+              - Card
+              properties:
+                DeviceGuid:
+                  type: string
+                  description: Device's Guid
+                Amount:
+                  type: integer
+                  description: Amount to be credited to consumer.
+                  format: int64
+                OrderNumber:
+                  type: string
+                  description: This is the most common number you'll see throughout the ConnexPay Portal.  Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. Customers in the travel space often send the Record Locator/PNR in this field.  The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+                CustomerId:
+                  type: string
+                  description: Transaction ID within client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes.  The maximum length is 50 characters and is alpha-numeric.
+                TenderType:
+                  type: string
+                  description: Currently only "Credit" is allowed.
+                Card:
+                  type: object
+                  description: Customer's card data.
+                  properties:
+                    CardNumber:
+                      type: string
+                      description: 'Mandatory if Guid field is not provided. Card number.  Must be 16 characters. (example: 4532538795426624) or token (example: FfL7exC7Xe2y6624)'
+                    CardHolderName:
+                      type: string
+                      description: Cardholder's name. Providing information in this field allows a user of the ConnexPay portal to search for a transaction using the cardholder name
+                    Cvv2:
+                      type: string
+                      description: The three or four digit CVV code at the back side of the credit and debit card. This value is required for all card-not-present processing environments
+                    ExpirationDate:
+                      type: string
+                      description: Optional with Token. Card's expiry date in the YYMM format
+                      format: date
+                    Guid:
+                      type: string
+                      description: Guid is the unique identifier for a card info generated by Connexpay upon previous Sale creation. Create Sale API will accept either card info or Guid, but not both
+                    IsRecurring:
+                      type: boolean
+                      description: 'Flagging a transaction as "IsRecurring": true allows a recurring sale to be submitted without a valid CVV code, which is only intended for scenarios where you might be storing card data to perform repeated payments on the same card, such as a monthly subscriptions. Typically IsRecurring can be defaulted to False.'
+                      default: false
+                    Customer:
+                      type: object
+                      description: Customer data
+                      properties:
+                        FirstName:
+                          type: string
+                          description: Mandatory for ACH Sales.  Min Length = 2 Max Length = 30
+                        LastName:
+                          type: string
+                          description: Mandatory for ACH Sales. Min Length = 2 Max Length = 30
+                        Phone:
+                          type: string
+                          description: Customer's phone number. Phone number up to 15 characters. Numbers and plus sign (+) allowed only.   3D Secure Authentication requires a valid customer email address or phone number is included.
+                        City:
+                          type: string
+                          description: Customer's City
+                        State:
+                          type: string
+                          description: Customer's short name state.  The ISO 3166-2 CA and US state or province code of a customer. Length = 2.
+                        Country:
+                          type: string
+                          description: Customer's country. The ISO country code of a customer’s country.  Length = 2
+                        Email:
+                          type: string
+                          description: Customer's valid email address which is available in various reports. It is critical that SendReceipt is set to FALSE so that ConnexPay does not send a receipt to the cardholder when the transaction is processed.  3D Secure Authentication requires a valid customer email address or phone number is included.
+                        Address1:
+                          type: string
+                          description: 'Customer billing address 1. It is strongly recommended to send this value in a card-not-present environment such that enhanced Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction. Note: only the street number value portion of address is used for enhanced AVS check'
+                        Address2:
+                          type: string
+                          description: Customer billing address 2. It is strongly recommended to send this value in a card-not-present environment such that Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction
+                        Zip:
+                          type: string
+                          description: Customer billing postal code. It is strongly recommended to send this value in a card-not-present environment such that basic Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction.  Only the a standard U.S. 5 digit zip code is eligible for basic AVS check. Min Length = 2 Max Length = 15. Alphanumerics and "-" allowed.
+                        DateOfBirth:
+                          type: string
+                          description: 'Customer''s date of birth. Allowed format: YYYY-MM-DD. For example: 2002-05-30'
+                          format: date
+                        DriversLicenseNumber:
+                          type: integer
+                          description: Customer's driver license number.  Only letters, numbers and a hyphen is allowed
+                          format: int32
+                        DriversLicenseState:
+                          type: string
+                          description: Mandatory when DriverLicenseNumber is provided. Customer's driver license short name state. The ISO 3166-2 CA and US state or province code of a customer.  Length = 2
+                        SSN4:
+                          type: integer
+                          description: Last 4 of Customer's Social Security Number
+                          format: int32
+                    ThreeDS:
+                      type: object
+                      description: 'ThreeDS object is required when 3DS authentication parameters are being passed in the Sale or Auth.  For US clients: the parameters are identified using the 3DS Authentication endpoint.  For EU clients: the parameters are identified when a cardholder challenge and/or fingerprint authentication is required after calling the Create Sale or Auth Only endpoint with the BrowserData object details.'
+                      properties:
+                        SecureCode:
+                          type: string
+                        Cavv:
+                          type: string
+                          description: Cardholder authentication verification value
+                        Version:
+                          type: string
+                          description: Version of 3DS being used
+                        DirectoryServerTransactionID:
+                          type: string
+                          description: Unique identifier provided by the card scheme as part of 3D Secure authentication.
+                        AcsTransactionId:
+                          type: string
+                          description: Unique Identifier provided by the Access Control Server of the Card Issuer.
+                        ECI:
+                          type: string
+                          description: Displays the Electronic Commerce Indicator (ECI). The ECI indicates the security level of the payment information provided to the merchant. A value of 0, 1 or 2 is a Mastercard transaction. A value of 5, 6 or 7 is a Visa, American Express, Diners or Discover card.
+            examples:
+              Create Credit without Associated Sale Sample Request:
+                value:
+                  DeviceGuid: '{{Device}}'
+                  Amount: '2.03'
+                  OrderNumber: ord-03
+                  CustomerID: cust-03
+                  TenderType: Credit
+                  Card:
+                    CardHolderName: John Doe
+                    CardNumber: '{card number}'
+                    ExpirationDate: '2212'
+                    Customer:
+                      FirstName: John
+                      LastName: Doe
+                      Phone: '5551231234'
+                      City: New York
+                      State: NY
+                      Country: US
+                      _Email: johndoe@test.com
+                      Address1: 107 7th Av.
+                      Address2: ''
+                      Zip: '10007'
+                      DateOfBirth: '1990-12-07'
+                      DriverLicenseNumber: '12345678'
+                      DriverLicenseState: TX
+                      SSN4: '1210'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Create Credit without Associated Sale Sample Response:
+                  value: "{\n    \"guid\": \"edd157f3-0c17-475d-9951-3a87f91bd30c\",\n    \"batchStatus\": \"Batch - Open\",\n    \"timeStamp\": \"2021-07-28T09:51:13.76-05:00\",\n    \"deviceGuid\": \"{Device}\",\n    \"status\": \"Transaction - Approved\",\n    \"amount\": 2.06,\n    \"batchGuid\": \"f15b017f-0daa-4a53-b7f4-fb336f44acfd\",\n    \"processorStatusCode\": \"A0000\",\n    \"wasProcessed\": true,\n    \"authCode\": \"DSC745\",\n    \"refNumber\": \"11027747\",\n    \"invoiceNumber\": \"11027747\",\n    \"customerReceipt\": \"CONNEXPAY\\\\n8320 S HARDY DRIVE\\\\nTEMPE AZ 85284\\\\n07/28/2021 12:51:15\\\\n\\\\nCREDIT - RETURN\\\\n\\\\nCARD # : **** **** **** 6909\\\\nCARD TYPE :DISCOVER\\\\nEntry Mode : MANUAL\\\\n\\\\nTRANSACTION ID : 11027747\\\\nInvoice number : 11027747\\\\nAUTH CODE : DSC745\\\\nReturn Amount:                  $02.06\\\\n--------------------------------------\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\nISSUER\\\\nAPPROVED\\\\n\\\\n\\\\n\\\\n\\\\nCustomer Copy\\\\n\",\n    \"isInternalCashReturnForIssueLite\": false,\n    \"orderNumber\": \"ord-06\",\n    \"customerID\": \"cust-03\",\n    \"tenderType\": \"Credit\",\n    \"card\": {\n        \"first6\": \"555500\",\n        \"first4\": \"5555\",\n        \"last4\": \"6909\",\n        \"cardType\": \"Discover\",\n        \"expirationDate\": \"2022-12\",\n        \"guid\": \"95d95b9e-de29-4382-9953-b592f7b03cc0\",\n        \"customer\": {\n            \"guid\": \"885909d6-dad7-4434-96d5-82a43953c11c\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"dateOfBirth\": \"1990-12-07T00:00:00\",\n            \"address1\": \"107 7th Av.\",\n            \"address2\": \"\",\n            \"zip\": \"10007\",\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"country\": \"US\",\n            \"phone\": \"9177563007\",\n            \"email\": \"johndoe@test.com\",\n            \"ssN4\": \"1210\",\n            \"driverLicenseNumber\": \"12345678\",\n            \"driverLicenseState\": \"TX\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  guid:
+                    type: string
+                    example: edd157f3-0c17-475d-9951-3a87f91bd30c
+                  batchStatus:
+                    type: string
+                    example: Batch - Open
+                  timeStamp:
+                    type: string
+                    example: '2021-07-28T09:51:13.76-05:00'
+                  deviceGuid:
+                    type: string
+                    example: '{Device}'
+                  status:
+                    type: string
+                    example: Transaction - Approved
+                  amount:
+                    type: number
+                    example: 2.06
+                    default: 0
+                  batchGuid:
+                    type: string
+                    example: f15b017f-0daa-4a53-b7f4-fb336f44acfd
+                  processorStatusCode:
+                    type: string
+                    example: A0000
+                  wasProcessed:
+                    type: boolean
+                    example: true
+                    default: true
+                  authCode:
+                    type: string
+                    example: DSC745
+                  refNumber:
+                    type: string
+                    example: '11027747'
+                  invoiceNumber:
+                    type: string
+                    example: '11027747'
+                  customerReceipt:
+                    type: string
+                    example: 'CONNEXPAY\n8320 S HARDY DRIVE\nTEMPE AZ 85284\n07/28/2021 12:51:15\n\nCREDIT - RETURN\n\nCARD # : **** **** **** 6909\nCARD TYPE :DISCOVER\nEntry Mode : MANUAL\n\nTRANSACTION ID : 11027747\nInvoice number : 11027747\nAUTH CODE : DSC745\nReturn Amount:                  $02.06\n--------------------------------------\n\n\n\n\n\nCUSTOMER ACKNOWLEDGES RECEIPT OF\nGOODS AND/OR SERVICES IN THE AMOUNT\nOF THE TOTAL SHOWN HEREON AND AGREES\nTO PERFORM THE OBLIGATIONS SET FORTH\nBY THE CUSTOMER`S AGREEMENT WITH THE\nISSUER\nAPPROVED\n\n\n\n\nCustomer Copy\n'
+                  isInternalCashReturnForIssueLite:
+                    type: boolean
+                    example: false
+                    default: true
+                  orderNumber:
+                    type: string
+                    example: ord-06
+                  customerID:
+                    type: string
+                    example: cust-03
+                  tenderType:
+                    type: string
+                    example: Credit
+                  card:
+                    type: object
+                    properties:
+                      first6:
+                        type: string
+                        example: '555500'
+                      first4:
+                        type: string
+                        example: '5555'
+                      last4:
+                        type: string
+                        example: '6909'
+                      cardType:
+                        type: string
+                        example: Discover
+                      expirationDate:
+                        type: string
+                        example: 2022-12
+                      guid:
+                        type: string
+                        example: 95d95b9e-de29-4382-9953-b592f7b03cc0
+                      customer:
+                        type: object
+                        properties:
+                          guid:
+                            type: string
+                            example: 885909d6-dad7-4434-96d5-82a43953c11c
+                          firstName:
+                            type: string
+                            example: John
+                          lastName:
+                            type: string
+                            example: Doe
+                          dateOfBirth:
+                            type: string
+                            example: '1990-12-07T00:00:00'
+                          address1:
+                            type: string
+                            example: 107 7th Av.
+                          address2:
+                            type: string
+                            example: ''
+                          zip:
+                            type: string
+                            example: '10007'
+                          city:
+                            type: string
+                            example: New York
+                          state:
+                            type: string
+                            example: NY
+                          country:
+                            type: string
+                            example: US
+                          phone:
+                            type: string
+                            example: '9177563007'
+                          email:
+                            type: string
+                            example: johndoe@test.com
+                          ssN4:
+                            type: string
+                            example: '1210'
+                          driverLicenseNumber:
+                            type: string
+                            example: '12345678'
+                          driverLicenseState:
+                            type: string
+                            example: TX
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Returns
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

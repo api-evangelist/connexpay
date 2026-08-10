@@ -1,0 +1,83 @@
+generated: '2026-08-09'
+method: searched
+source: openapi/connexpay-chargebacks-openapi.yml, openapi/connexpay-checkout-session-openapi.yml, openapi/connexpay-payment-instruction-openapi.yml, openapi/connexpay-purchases-openapi.yml, openapi/connexpay-reporting-authentication-openapi.yml, openapi/connexpay-reporting-openapi.yml, openapi/connexpay-sales-openapi.yml, openapi/connexpay-stop-payment-service-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+schemes:
+- name: sec0
+  type: http
+  scheme: basic
+  sources:
+  - openapi/connexpay-chargebacks-openapi.yml
+  - openapi/connexpay-purchases-openapi.yml
+  - openapi/connexpay-reporting-authentication-openapi.yml
+  - openapi/connexpay-stop-payment-service-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token obtained from ConnexPay authentication
+  sources:
+  - openapi/connexpay-checkout-session-openapi.yml
+  - openapi/connexpay-reporting-openapi.yml
+- name: ApiKey
+  type: apiKey
+  in: header
+  parameter: Api-Key
+  description: API Key required for access
+  sources:
+  - openapi/connexpay-payment-instruction-openapi.yml
+- name: sec0
+  type: oauth2
+  flows: []
+  sources:
+  - openapi/connexpay-sales-openapi.yml
+docs:
+- https://docs.connexpay.com/reference/issuing-token
+- https://docs.connexpay.com/reference/reporting-token
+- https://docs.connexpay.com/docs/environments-1
+model:
+  style: username/password grant against a per-API token endpoint, returning a bearer token used on all subsequent calls
+  credential_scope: One connection (username, password, merchant ID, device ID) per MID, issued by the ConnexPay implementation team via a User Access Form and delivered by email. Credentials are not self-service and differ per environment.
+  token_endpoints:
+  - api: Sales
+    operationId: sales-token
+    path: /api/v1/token
+    host: salesapi.connexpay.com
+    ttl: 24 hours
+    grant: password
+  - api: Purchases
+    operationId: issuing-token
+    path: /api/v1/token
+    host: purchasesapi.connexpay.com
+    ttl: 24 hours
+    grant: password
+  - api: Reporting / Bridge
+    operationId: reporting-token
+    host: api.cxpbridge.com
+    ttl: 60 minutes
+    grant: password
+    note: Uses Bridge credentials assigned separately from the Sales and Purchases API credentials. Documented as valid in Production only.
+  - api: Payment Valet
+    scheme: Api-Key header
+    header: Api-Key
+    host: sandbox.api.connexpay.com
+  oauth2: false
+  oauth2_note: 'The oauth2 securityScheme named sec0 in the Sales OpenAPI carries an EMPTY flows object. It is a ReadMe docs-platform placeholder, not a real OAuth 2.0 deployment: there is no authorization server, no scopes, no consent, and /.well-known/oauth-authorization-server and /.well-known/openid-configuration both return 404 on every ConnexPay host. Treat ConnexPay as password-grant-to-bearer-token, not OAuth.'
+  mtls: false
+  ip_allowlisting: null
+x-evidence:
+- url: https://docs.connexpay.com/reference/issuing-token
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/docs/environments-1
+  http_status: 200
+  fetched: '2026-08-09'
+- url: https://salesapi.connexpay.com/.well-known/oauth-authorization-server
+  http_status: 404
+  fetched: '2026-08-09'

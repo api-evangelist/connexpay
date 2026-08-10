@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: Connexpay Chargeback API
+  version: '1.0'
+  description: 'Operations tagged Chargeback across 2 of this provider''s published API definitions: connexpay-chargebacks-openapi.yml, connexpay-purchases-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://cmsapi.connexpay.com
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Chargeback
+paths:
+  /api/chargeback/GetByUser:
+    get:
+      summary: Sales Chargebacks
+      description: ''
+      operationId: sales-chargebacks-1
+      parameters:
+      - name: /GetByUser?startDate=2016-12-01
+        in: path
+        description: Return all chargebacks for the authenticated user with a start date
+        schema:
+          type: string
+        required: true
+      - name: /GetByUser?startDate=2016-12-01&endDate=2016-12-01
+        in: path
+        description: Return all chargebacks for the authenticated user with a start and end date
+        schema:
+          type: string
+        required: true
+      - name: /GetByResolvedDate?startDate=2019-09-20&endDate=2019-10-21
+        in: path
+        description: Return all chargebacks for the authenticated user with a start and end date based on resolved date
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    {\n        \"ID\": 00001,\n        \"UUID\": \"abc123 \",\n        \"FileId\": 00001,\n        \"MerchantId\": 001,\n        \"Arn\": \"12312312312312312312312\",\n        \"CaseNumber\": \"0000000000001\",\n        \"Amount\": 298.00,\n        \"RecordType\": \" \",\n        \"CaseType\": \"25\",\n        \"ReasonCode\": \"4837\",\n        \"ReasonDescription\": \"No Cardholder Authorization                       \",\n        \"CardBrand\": 2,\n        \"TransactionCode\": \"05\",\n        \"ResolutionTo\": \"M\",\n        \"TransactionDate\": \"2020-12-08T00:00:00\",\n        \"LoadDate\": \"2021-02-12T00:00:00\",\n        \"PostDate\": \"2020-12-08T00:00:00\",\n        \"ResolvedDate\": \"2021-03-02T00:00:00\",\n        \"FamilyId\": 00000001,\n        \"HasImage\": false,\n        \"HasResponse\": false,\n        \"ImageFileUrl\": \"\",\n        \"Created\": \"2021-03-02T23:01:00\",\n        \"OrderNumber\": \"23447161\",\n        \"DueDate\": \"2021-02-24T00:00:00\",\n        \"IsSurrendered\": false,\n        \"IdSale\": 0000001,\n        \"IncomingTransactionCode\": \"1231231231231231231231231\",\n        \"SaleGuid\": \"1238aff0-18b3-46ce-b123-1ede8ff09123\",\n        \"SaleFirstFour\": \"1234\",\n        \"SaleLastFour\": \"1234\",\n        \"AuthCode\": \"12312Z\",\n        \"NetPosition\": -298.0000,\n        \"WinLoss\": \"Loss (Pending)\"\n    },\n    {\n        \"ID\": 00002,\n        \"UUID\": \"abc456 \",\n        \"FileId\": 00001,\n        \"MerchantId\": 115,\n        \"Arn\": \"45645645645645645645645\",\n        \"CaseNumber\": \"0000000000002\",\n        \"Amount\": 61.39,\n        \"RecordType\": \" \",\n        \"CaseType\": \"21\",\n        \"ReasonCode\": \"13.1\",\n        \"ReasonDescription\": \"Merchandise/Services Not Received                 \",\n        \"CardBrand\": 1,\n        \"TransactionCode\": \"05\",\n        \"ResolutionTo\": \"M\",\n        \"TransactionDate\": \"2021-02-04T00:00:00\",\n        \"LoadDate\": \"2021-02-16T00:00:00\",\n        \"PostDate\": \"2021-02-04T00:00:00\",\n        \"ResolvedDate\": \"2021-02-16T00:00:00\",\n        \"FamilyId\": 00000002,\n        \"HasImage\": false,\n        \"HasResponse\": false,\n        \"ImageFileUrl\": \"\",\n        \"Created\": \"2021-02-16T23:02:00\",\n        \"OrderNumber\": \"45121742\",\n        \"DueDate\": \"2021-02-28T00:00:00\",\n        \"IsSurrendered\": false,\n        \"IdSale\": 0000002,\n        \"IncomingTransactionCode\": \"456DF6263745611632034566\",\n        \"SaleGuid\": \"456f41ef-4564-456e-85dc-d1a0545684d8\",\n        \"SaleFirstFour\": \"4567\",\n        \"SaleLastFour\": \"4567\",\n        \"AuthCode\": \"45645A\",\n        \"NetPosition\": 0.0000,\n        \"WinLoss\": \"Win\"\n    }\n]"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Chargeback
+    servers:
+    - url: https://cmsapi.connexpay.com
+  /api/v1/chargeback:
+    post:
+      summary: Create Chargeback
+      description: "Use this endpoint to create a virtual card chargeback. \n\nWhat is behind this API?\n- When a user calls this API, we will create a new case/dispute to Marqeta\n- When case/dispute creation success, the API will transmit the case for Marqeta review\n- When the review passes, the API will transmit the case to the Card Network for Chargeback"
+      operationId: create-chargeback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - MerchantGuid
+              - CardGuid
+              - TransactionGuid
+              - ChargebackReason
+              properties:
+                MerchantGuid:
+                  type: string
+                  description: Merchant's guid. Application level value that indicates a virtual card is being requested for clients account. Value provided by ConnexPay.
+                CardGuid:
+                  type: string
+                TransactionGuid:
+                  type: string
+                  description: Card Transactions that need to chargeback. Also, Transaction must be with Type = 'authorization.clearing' and Status = “COMPLETION“, which means the transaction has been settlement, and is allowed for chargeback.
+                Memo:
+                  type: string
+                  description: Max length 512 characters. Optional
+                ChargebackReason:
+                  type: string
+                  description: Reason for Chargeback
+            examples:
+              Request Example:
+                value:
+                  MerchantGuid: 76A40912-5863-4928-AFB4-93E22D5A36A5
+                  CardGuid: 39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6
+                  TransactionGuid: 40951746-7cab-4b29-974b-3b2c2a20b57c
+                  Memo: Test 09
+                  ChargebackReason: SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"merchantGuid\": \"76a40912-5863-4928-afb4-93e22d5a36a5\",\n    \"cardGuid\": \"39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6\",\n    \"transactionGuid\": \"40951746-7cab-4b29-974b-3b2c2a20b57c\",\n    \"chargebackReason\": \"SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED\",\n    \"chargebackGuid\": \"b894da6b-47f1-45fd-9bad-78bd0b2e0df0\",\n    \"status\": \"Initiated\",\n    \"statusReason\": \"Chargeback with no Credit\",\n    \"chargebackAmount\": 10.90,\n    \"memo\": \"Test 09\",\n    \"createdDateTime\": \"2021-12-09T20:09:28.7900736Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  merchantGuid:
+                    type: string
+                    example: 76a40912-5863-4928-afb4-93e22d5a36a5
+                  cardGuid:
+                    type: string
+                    example: 39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6
+                  transactionGuid:
+                    type: string
+                    example: 40951746-7cab-4b29-974b-3b2c2a20b57c
+                  chargebackReason:
+                    type: string
+                    example: SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED
+                  chargebackGuid:
+                    type: string
+                    example: b894da6b-47f1-45fd-9bad-78bd0b2e0df0
+                  status:
+                    type: string
+                    example: Initiated
+                  statusReason:
+                    type: string
+                    example: Chargeback with no Credit
+                  chargebackAmount:
+                    type: number
+                    example: 10.9
+                    default: 0
+                  memo:
+                    type: string
+                    example: Test 09
+                  createdDateTime:
+                    type: string
+                    example: '2021-12-09T20:09:28.7900736Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Chargeback
+    servers:
+    - url: https://sandboxpurchasesapi.connexpay.com
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-refined-from:
+- connexpay-chargebacks-openapi.yml
+- connexpay-purchases-openapi.yml
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

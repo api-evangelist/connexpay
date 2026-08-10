@@ -1,0 +1,604 @@
+openapi: 3.0.1
+info:
+  title: ConnexPay Reporting Extended Data API
+  description: REST API for retrieving reporting data. Currently Daily Accounting data only.
+  contact:
+    name: ConnexPay
+    url: https://docs.connexpay.com
+  version: v1
+servers:
+- url: https://reportingapi.connexpay.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: ExtendedData
+paths:
+  /api/v1/ExtendedData/{pageNumber}/{pageSize}:
+    post:
+      tags:
+      - ExtendedData
+      summary: Get Enhanced (Level 2 and Level 3) Travel Data
+      description: Retrieves enhanced data for travel-related transactions. This includes airline and hotel details, such as passenger names, flight numbers, hotel charges, etc. The data is paginated and can be filtered by various parameters. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+      operationId: GetExtendedData
+      parameters:
+      - name: pageNumber
+        in: path
+        description: Page number (1-based)
+        required: true
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: path
+        description: Number of items per page
+        required: true
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      requestBody:
+        description: Filter parameters for enhanced data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExtendedDataRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedDataPaginatedItems'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ExtendedDataRequest:
+      required:
+      - merchantGuid
+      type: object
+      properties:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        startDate:
+          description: The start date for the requested transactions.
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          description: The end date for the requested transactions.
+          type: string
+          format: date-time
+          nullable: true
+        presetTimeFrame:
+          description: A predefined time frame for the requested transactions. Valid values are '1week', '1month', and '3months'.
+          type: string
+          nullable: true
+        accountNumbers:
+          description: A list of account numbers to filter the requested transactions.
+          type: array
+          items:
+            type: string
+          nullable: true
+        customerName:
+          description: The customer name value associated with the requested transactions.
+          type: string
+          nullable: true
+        cardholderName:
+          description: The cardholder name value associated with the requested transactions.
+          type: string
+          nullable: true
+        orderNumber:
+          description: The order number value associated with the requested transactions.
+          type: string
+          nullable: true
+        cardGuid:
+          description: The unique identifier of the card associated with the requested transactions.
+          type: string
+          format: uuid
+          nullable: true
+        firstSix:
+          description: The first six digits of the card number associated with the requested transactions.
+          type: string
+          nullable: true
+        lastFour:
+          description: The last four digits of the card number associated with the requested transactions.
+          type: string
+          nullable: true
+        sortBy:
+          description: The field by which to sort the results. Valid values are 'postdate', 'departuredate', 'customername', 'cardholder', and 'ordernumber'. If not specified, results will be sorted by postdate.
+          type: string
+          nullable: true
+        sortOrder:
+          description: The order in which to sort the results. Valid values are 'asc' for Ascending and 'desc' for Descending.
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExtendedData:
+      type: object
+      properties:
+        fileName:
+          type: string
+          nullable: true
+        lineNumber:
+          type: integer
+          format: int64
+          nullable: true
+        idSettlement:
+          type: integer
+          format: int32
+          nullable: true
+          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for settlements.
+        passengerName:
+          type: string
+          nullable: true
+          description: Airline related. Name of passenger.
+        ticketNumber:
+          type: string
+          nullable: true
+          description: Airline related. Ticket number
+        departureDate:
+          type: string
+          format: date
+          nullable: true
+          description: Airline related. Date of passenger's departure
+        originationCityAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating the city and/or airport where the trip originates.
+        flightNumberLeg1:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 1 of the trip.
+        tripLeg1CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg1ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg1StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg1DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg1:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 1 of the trip.
+        flightNumberLeg2:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 2 of the trip.
+        tripLeg2CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg2ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg2StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg2DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg2:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 2 of the trip.
+        flightNumberLeg3:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 3 of the trip.
+        tripLeg3CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg3ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg3StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg3DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg3:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 3 of the trip.
+        flightNumberLeg4:
+          type: string
+          nullable: true
+          description: Airline related. Number of the airline flight to be taken on Leg 4 of the trip.
+        tripLeg4CarrierCode:
+          type: string
+          nullable: true
+          description: Airline related. Code indicating name of carrier (United Airlines, Jet Blue, etc.).
+        tripLeg4ServiceClass:
+          type: string
+          nullable: true
+          description: Airline related. Indicates service class (first class, business class, etc.)
+        tripLeg4StopOverCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether a stopover is allowed on this ticket.
+        tripLeg4DestinationAirportCode:
+          type: string
+          nullable: true
+          description: Airline related. Indicates destination city's airport code.
+        fareBasisCodeLeg4:
+          type: string
+          nullable: true
+          description: Airline related. Fare basis code used for Leg 4 of the trip.
+        ticketIssueDate:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the date in which the Ticket was Issued.
+        travelAgencyCode:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the Travel Agency Code
+        travelAgencyName:
+          type: string
+          nullable: true
+          description: Airline related. This field contains the Travel Agency Name.
+        totalClearingAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Airline related. This field contains total clearing amount.
+        restrictedTicketIndicator:
+          type: string
+          nullable: true
+          description: Airline related. Indicates whether this ticket is non-refundable (Space = No restriction; 0 = No restriction; 1 = Restricted (non-refundable) ticket
+        creditReasonIndicator:
+          type: string
+          nullable: true
+          description: 'Airline related. Indicates the reason for a credit to the cardholder. This field should contain space or one of these codes:
+
+            A – Passenger Transport Ancillary Purchase Cancellation
+
+            B – Airline Ticket and Passenger Transport Ancillary Purchase Cancellation
+
+            O – Other
+
+            VIC Edit: The VIC'
+        ticketChangeIndicator:
+          type: string
+          nullable: true
+          description: 'Airline related. This field contains the Ticket Change Indicator. Values are:
+
+            C = Change to existing ticket
+
+            N = New ticket'
+        travelAuthorizationCode:
+          type: string
+          nullable: true
+          description: 'Airline related. Mastercard only. Indicates the code provided by the company to a travel  agent authorizing ticket issuance.
+
+            This code is identified as Customer File Reference Number in Airline Reporting Corporation
+
+            (ARC) specifications.'
+        iataClientCode:
+          type: string
+          nullable: true
+          description: 'Airline related. Mastercard only. Provides the International Air Transport Association (IATA) code
+
+            identifying the company that purchased the ticket.'
+        guestName:
+          type: string
+          nullable: true
+          description: Hotel related. This field will contain the name of the guest who is registered for the room.
+        arrivalDate:
+          type: string
+          nullable: true
+          description: Hotel related. The date the customer checked into the hotel, or in the case of a no-show or an advance lodging, the scheduled arrival date.
+        roomServiceCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the room service charges.
+        loungeBarCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the lounge and bar charges.
+        transportationCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the transportation charges.
+        gratuityCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the gratuity charges.
+        conferenceRoomCharges:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Contains the amount of the charges associated with
+
+            conference room use.'
+        audioVisualCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the audiovisual equipment charges.
+        banquetCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the banquet charges.
+        internetAccessCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount of the internet access charges.
+        earlyDepartureCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the amount charged because of early departure.
+        lodgingDepartureDate:
+          type: string
+          nullable: true
+          description: Hotel related. Departure Date.
+        folioNumber:
+          type: string
+          nullable: true
+          description: Hotel related. Mastercard only. Contains the acceptor’s internal invoice or billing ID reference number.
+        roomRate:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Daily rate being charged for the room exclusive of taxes and fees.
+        totalRoomTax:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Total room tax being billed.
+        phoneCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the charges for telephone use.
+        restaurantCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the restaurant charges.
+        miniBarCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the mini-bar charges.
+        giftShopCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the gift shop charges.
+        laundryAndDryCleaningCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the laundry and dry cleaning charges.
+        otherServices:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Contains the total amount of other service charges, not elsewhere
+
+            classified.'
+        lodgingTotalTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the total taxes paid during a lodging stay.
+        taxExemptIndicator:
+          type: string
+          nullable: true
+          description: Hotel related. This field contains a value that indicates whether the transaction is tax-exempt.
+        noShowIndicator:
+          type: string
+          nullable: true
+          description: 'Hotel related. An indicator that the cardholder is being billed for a reserved room that was not actually rented (AKA a “no-show” charge). 0 = Not applicable
+
+            1 = No-show'
+        totalAuthorizedAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Total authorized amount of the transaction including taxes and miscellaneous fees less reversals.
+        totalTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the Total Tax Amount.
+        totalRoomNights:
+          type: integer
+          format: int32
+          nullable: true
+          description: Hotel related. This field contains the total number of rooms for the lodging stay.
+        prepaidExpenses:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the prepaid expenses.
+        totalNonRoomTaxAmount:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. This field contains the total tax amount for non-room charges.
+        cashAdvances:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Any Folio cash advances being billed.
+        valetCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the charges associated with the use of valet services.
+        movieCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the amount charged for in-room movies.
+        businessCenterCharges:
+          type: number
+          format: double
+          nullable: true
+          description: 'Hotel related. Mastercard only. Provides the amount charged for business center use and
+
+            supplies.'
+        healthClubCharges:
+          type: number
+          format: double
+          nullable: true
+          description: Hotel related. Mastercard only. Provides the amount charged for health club use and supplies.
+        idCard:
+          type: integer
+          format: int32
+          nullable: true
+          description: The idCard value associated with the transaction detail.
+        postDate:
+          type: string
+          format: date
+          nullable: true
+          description: The settlement posting date of the transaction.
+        cardGuid:
+          type: string
+          format: uuid
+          nullable: true
+          description: Guid value return from the Issue Card method in the Purchases API associated with the transaction detail.
+        firstSix:
+          type: string
+          nullable: true
+          description: The first six digits of the card number associated with the transaction detail.
+        lastFour:
+          type: string
+          nullable: true
+          description: The last four digits of the card number associated with the transaction detail.
+        idCardHolder:
+          type: integer
+          format: int32
+          nullable: true
+          description: The CardHolder ID value associated with the transaction detail.
+        cardHolder:
+          type: string
+          nullable: true
+          description: The CardHolder value associated with the transaction detail.
+        customerName:
+          type: string
+          nullable: true
+          description: The customer name value associated with the transaction detail.
+        orderNumber:
+          type: string
+          nullable: true
+          description: Identifier provided during the Create Sale or IssueLite process and associated with the transaction detail.
+        maskedFirstSix:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The masked first six digits of the card number associated with the transaction detail.
+        maskedLastFour:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The masked last four digits of the card number associated with the transaction detail.
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    ExtendedDataPaginatedItems:
+      type: object
+      properties:
+        totalItemCount:
+          type: integer
+          description: Count of all items available in the day's accounting detail.
+          format: int32
+        pageCount:
+          type: integer
+          description: Count of pages available in the day's accounting detail.
+          format: int32
+        pageItemCount:
+          type: integer
+          description: Count of items in the current page.
+          format: int32
+        pageNumber:
+          type: integer
+          description: Sequence number of the current page.
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedData'
+          description: Collection of accounting detail items for the current page.
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT

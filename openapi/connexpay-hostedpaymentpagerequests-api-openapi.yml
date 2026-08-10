@@ -1,0 +1,340 @@
+openapi: 3.1.0
+info:
+  title: sales-api Hosted Payment Page Requests API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: HostedPaymentPageRequests
+paths:
+  /api/v1/HostedPaymentPageRequests:
+    post:
+      summary: HPP Token Request
+      description: ''
+      operationId: hpp-token-request
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type Header
+        schema:
+          type: string
+          default: '"application/json"'
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - MerchantName
+              - Sale
+              properties:
+                MerchantName:
+                  type: string
+                  description: Merchant Name. ConnexPay displays this on the Hosted Payment Page. The max length is 100 characters.
+                Description:
+                  type: string
+                  description: Additional information ConnexPay can display in the Hosted Payment Page. The max length is 2048 characters.
+                ResultRedirectUrl:
+                  type: string
+                  description: This is a ConnexPay CLIENT server route ConnexPay uses to (re)direct the consumer payment result back to our client upon payment success, failure or cancel. If this data is not set, then it will use the default one from ConnexPay.
+                LogoUrl:
+                  type: string
+                  description: ConnexPay can display this instead of “MerchantName” in the payment dialog.
+                TenderTypeOptions:
+                  type: array
+                  description: Payment types you wish to make available to your consumer when they enter payment information into the Hosted Payment Page. Options are "ACH", "Credit", "GooglePay", and "ApplePay".
+                  default:
+                  - Credit
+                  items:
+                    type: string
+                Expiration:
+                  type: string
+                  description: Client can request a specific expiration date to identify when the HPP Link will expire. Timestamps will be converted to UTC for consistency within the ConnexPay environment.
+                  default: Current DateTime UTC
+                  format: date-time
+                Sale:
+                  type: object
+                  required:
+                  - DeviceGuid
+                  - Amount
+                  properties:
+                    DeviceGuid:
+                      type: string
+                      description: Device's Guid provided by ConnexPay
+                    Amount:
+                      type: integer
+                      description: 'Amount of the transaction that will be processed. Note: this value is submitted multiple times (in different formats) within the integration to support different purposes i.e. risk analysis, merchant processinging, etc.  The minimun amount is: $0.50.'
+                      format: int64
+                    SequenceNumber:
+                      type: string
+                      description: 'Transaction sequence number within client environment. Note: value is not searchable or reportable in ConnexPay portal.  Alphanumeric.'
+                    OrderNumber:
+                      type: string
+                      description: This is the most common number you'll see throughout the ConnexPay Portal.  Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. Customers in the travel space often send the Record Locator/PNR in this field.  The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+                    SendReceipt:
+                      type: boolean
+                      description: Value determines whether or not a customer shall be emailed a receipt from the ConnexPay platform if the email address is provided in the API customer block. The default value is TRUE. Set to FALSE so that an email receipt is not sent to the customer. Set to TRUE or leave empty if you want e-mail to be sent. If TRUE, customer's email must be included in the "Card.Customer.email" parameter.
+                    RiskProcessingOnly:
+                      type: boolean
+                      description: 'Indicator that determines if client would like to evaluate the transactions as risk only rather than process as merchant of record and create a virtual card. The allowed values:  1. Set to TRUE will only run risk validations. If TenderType is set to Cash, setting TRUE will throw a validation error.  2. Set to FALSE will run risk validations and an authorization on the card. For this option a Processing Merchant account is required, contact ConnexPay support if any questions.  3. Set to NULL and your Merchant Level settings would apply.'
+                    StatementDescription:
+                      type: string
+                      description: 'The statement description allows a client to customize the Merchant name that appears on the cardholder statement such that the cardholder recognizes the transaction on their statement. ConnexPay recommends sending a recognizable DBA along with the PNR i.e. ABC Travel ABC123. Note: functionality not applicable for American Express OptBlue program.  The maximun length is 25 alpha-numeric characters.'
+                    CustomerID:
+                      type: string
+                      description: Transaction ID within client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes.  The maximum length is 50 characters and is alpha-numeric.
+                    ActivationDate:
+                      type: string
+                      description: Set a future date on which to run this sale, at least one day from creation date and within one year. If this parameter is supplied a record for this sale is created, supplied consumer card information is internally tokenized, but fraud check and authorization do not occur until ConnexPay processes it on the supplied ActivationDate. Alternatively, a client can force activation via the Activate API (see below). If this date is not supplied a sale is authorized immediately.
+                    GroupId:
+                      type: string
+                      description: When needing to issue a Virtual Card that ties to more than one Sale transaction, you can send in a GroupId (with the same GroupId) on the Sales that you need to group together. By including a common GroupId for two or more Sales transaction, a Virtual Card may then be created for the sum of the Sales within that GroupId.  A common use case for this is when multiple families are going on a cruise - each family may want to pay separately on their credit card. However, the Travel Agent may want to pay for the cruise with one virtual card.  The maximum length is 25 alpha-numeric characters.  This is for limited use - please contact your Customer Success Manager if you would like to enable this functionality.
+                    RiskData:
+                      type: object
+                      description: Required if TenderType options "Credit", "GooglePay", or "ApplePay" are included.
+                      properties:
+                        SessionId:
+                          type: string
+                          description: If you are using Kount's Device Data Collector, this would be the SessionId from that particular session. Do not include this property if not using Kount's Device Data Collector.
+                        Name:
+                          type: string
+                          description: 'This is the name of the individual making the purchase i.e. cardholder who may or may not also be the customer. This value is submitted in multiple integration points for different purposes. This value/object is specific to fraud mitigation. Note: for airline ticket purchases this value may or may not be the same as the passenger. Max = 64 characters.'
+                        Gender:
+                          type: string
+                          description: Cardholder gender. "M" or "F".
+                        DateOfBirth:
+                          type: string
+                          description: Cardholder date of birth
+                        BillingPhoneNumber:
+                          type: string
+                          description: Phone number associated with cardholder making purchase. This could be used for risk analysis, decisioning, and rule creation. Max = 15 characters. Numbers and plus sign (+) allowed.
+                        BillingAddress1:
+                          type: string
+                          description: Cardholder billing address 1. This could be used for risk analysis, decisioning, and rule creation.
+                        BillingAddress2:
+                          type: string
+                          description: Cardholder billing address 2. This could be used for risk analysis, decisioning, and rule creation.
+                        BillingCity:
+                          type: string
+                          description: Cardholder billing city. This could be used for risk analysis, decisioning, and rule creation.
+                        BillingState:
+                          type: string
+                          description: Cardholder billing state. This could be used for risk analysis, decisioning, and rule creation.
+                        BillingPostalCode:
+                          type: string
+                          description: Cardholder billing postal code. This could be used for risk analysis, decisioning, and rule creation. Max = 15 characters. Alphanumerics and "-" allowed.
+                        BillingCountryCode:
+                          type: string
+                          description: Cardholder billing country code. This could be used for risk analysis, decisioning, and rule creation. Max = 2 characters.
+                        Email:
+                          type: string
+                          description: Cardholder's valid email address. This could be used for risk analysis, decisioning, and rule creation.
+                        ProductType:
+                          type: string
+                          description: Generalized description of the item added passed as plain text. This could be flight, tour, hotel, etc. (This is part of shopping cart information in Kount Console). Each transaction submitted for risk analysis and decisioning must be submitted with one shopping cart item.
+                        ProductDescription:
+                          type: string
+                          description: Attribute for a specific description of the item being purchased i.e. airline ticket. This information is general shopping cart information that describes the type of item being purchased. ConnexPay suggests clients submitted a high level description such as Flight, Hotel, Car Rental, etc... and leverage custom parameters to submit more detailed information that can be used for rule creation and transaction decisioning.
+                        ProductItem:
+                          type: string
+                          description: Typically the SKU for an item passed as plain text. This information is general shopping cart information to provide secondary detail to the ProductDesc above. ConnexPay suggests clients submit a high level description such as One Way, Round Trip, Seven Nights, etc...and several customer parameters to submit more detailed information that can be used for rule creation and transaction decisioning.  Field is required by Kount therefore some value must be submitted. Alphanumeric.
+                        ProductQuantity:
+                          type: integer
+                          description: Quantity of the item being purchased in the shopping cart. This is just a general quantity field.
+                          format: int32
+                        ProductPrice:
+                          type: integer
+                          description: 'Price per unit item, displayed in lowest currency factor - expressed in cents. Example: 42400 (which is $424.00).'
+                          format: int32
+                        OrderNumber:
+                          type: string
+                          description: Transaction ID within client environment associated with the order. The value is searchable and reportable in the Kount portal. This value may be sent in multiple instances of the integration for multiple purposes. Customers in the travel space often send the Record Locator/PNR in this field.  Max = 32 characters. Alpha-numeric characters and dashes ( - ) allowed.
+                        SellerId:
+                          type: string
+                          description: Transaction ID within client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the Kount portal. This value may be sent in multiple times within the integration for multiple purposes.  Max = 32 characters.
+                        FlightData:
+                          type: object
+                          description: Flight Data
+                          properties:
+                            Airline:
+                              type: string
+                              description: Name of airline; likely carrier code
+                              default: AA
+                            DepartureAirport:
+                              type: string
+                              description: Departure airport code
+                              default: NY
+                            DepartureDate:
+                              type: string
+                              description: 'Departure date of flight. Format: mm/dd/yyyy'
+                              default: 06/20/1993
+                            DestinationAirport:
+                              type: string
+                              description: Destination airport code
+                              default: CA
+                            HoursToDeparture:
+                              type: string
+                              description: Time in hours to flight departure
+                              default: '5'
+                            JourneyType:
+                              type: string
+                              description: Type of journey i.e. Day/Night journey
+                              default: Day
+                            Route:
+                              type: string
+                              description: The route type i.e. Direct/Indirect
+                              default: Direct
+                            RouteByCountry:
+                              type: string
+                              description: Complete flight route by country
+                              default: NY, CA
+                        FlightPassengers:
+                          type: array
+                          items:
+                            properties:
+                              Country:
+                                type: string
+                                description: Country of origin of passenger
+                                default: USA
+                              DateOfBirth:
+                                type: string
+                                description: DOB of first passenger
+                                default: '2020-06-20'
+                                format: date
+                              Id:
+                                type: string
+                                description: Passport, drivers license or id# associated with passenger
+                                default: JXY123
+                              Name:
+                                type: string
+                                description: Passenger information. Each passenger should be sent in it's own object.
+                                default: John Doe
+                            type: object
+                        CustomParameters:
+                          type: object
+                          description: Custom Parameters. Array.
+                          properties: {}
+                    IncludeRiskAnalysis:
+                      type: boolean
+                      description: Required if Tender Type option "ACH" is included. True or False.
+                    Customer:
+                      type: object
+                      description: Required if Tender Type option "ACH" is included.
+                      properties:
+                        FirstName:
+                          type: string
+                          description: Mandatory for ACH Sales.  Min Length = 2 Max Length = 30
+                        LastName:
+                          type: string
+                          description: Mandatory for ACH Sales. Min Length = 2 Max Length = 30
+                        Phone:
+                          type: string
+                          description: Customer's phone number. Phone number up to 15 characters. Numbers and plus sign (+) allowed only.   3D Secure Authentication requires a valid customer email address or phone number is included.
+                        City:
+                          type: string
+                          description: Customer's City
+                        State:
+                          type: string
+                          description: Customer's short name state.  The ISO 3166-2 CA and US state or province code of a customer. Length = 2.
+                        Country:
+                          type: string
+                          description: Customer's country. The ISO country code of a customer’s country.  Length = 2
+                        Email:
+                          type: string
+                          description: Customer's valid email address which is available in various reports. It is critical that SendReceipt is set to FALSE so that ConnexPay does not send a receipt to the cardholder when the transaction is processed.  3D Secure Authentication requires a valid customer email address or phone number is included.
+                        Address1:
+                          type: string
+                          description: 'Customer billing address 1. It is strongly recommended to send this value in a card-not-present environment such that enhanced Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction. Note: only the street number value portion of address is used for enhanced AVS check'
+                        Address2:
+                          type: string
+                          description: Customer billing address 2. It is strongly recommended to send this value in a card-not-present environment such that Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction
+                        Zip:
+                          type: string
+                          description: Customer billing postal code. It is strongly recommended to send this value in a card-not-present environment such that basic Address Validation (AVS) can be performed on transaction and the lowest possible interchange is received on transaction.  Only the a standard U.S. 5 digit zip code is eligible for basic AVS check. Min Length = 2 Max Length = 15. Alphanumerics and "-" allowed.
+                        DateOfBirth:
+                          type: string
+                          description: 'Customer''s date of birth. Allowed format: YYYY-MM-DD. For example: 2002-05-30'
+                          format: date
+                        DriversLicenseNumber:
+                          type: integer
+                          description: Customer's driver license number.  Only letters, numbers and a hyphen is allowed
+                          format: int32
+                        DriversLicenseState:
+                          type: string
+                          description: Mandatory when DriverLicenseNumber is provided. Customer's driver license short name state. The ISO 3166-2 CA and US state or province code of a customer.  Length = 2
+                        SSN4:
+                          type: integer
+                          description: Last 4 of Customer's Social Security Number
+                          format: int32
+                    ConnexPayTransaction:
+                      type: object
+                      required:
+                      - ExpectedPayments
+                      properties:
+                        ExpectedPayments:
+                          type: integer
+                          description: This is the number of outbound payments that will be made to suppliers. If paying a single supplier the value is 1, if paying two suppliers the value is 2, etc. If no outbound payments will be made, set to 0.
+                          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"merchantName\": \"ACME\",\n    \"description\": \"Hundred Dollar Trip\",\n    \"amount\": 100.00,\n    \"resultRedirectUrl\": \"https://sandboxsales.connexpay.com/#!/HostedPaymentResult\",\n    \"tempToken\": \"8263d54a-b61b-4601-a4a8-f7231565b87e\",\n    \"expiration\": \"2020-11-20T14:35:59.14\",\n    \"logoUrl\": \"https://connexpay.com/wp-content/uploads/2018/10/newlogo.png\"\n}\n"
+              schema:
+                type: object
+                properties:
+                  merchantName:
+                    type: string
+                    example: ACME
+                  description:
+                    type: string
+                    example: Hundred Dollar Trip
+                  amount:
+                    type: integer
+                    example: 100
+                    default: 0
+                  resultRedirectUrl:
+                    type: string
+                    example: https://sandboxsales.connexpay.com/#!/HostedPaymentResult
+                  tempToken:
+                    type: string
+                    example: 8263d54a-b61b-4601-a4a8-f7231565b87e
+                  expiration:
+                    type: string
+                    example: '2020-11-20T14:35:59.14'
+                  logoUrl:
+                    type: string
+                    example: https://connexpay.com/wp-content/uploads/2018/10/newlogo.png
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - HostedPaymentPageRequests
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

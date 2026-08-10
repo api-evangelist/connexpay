@@ -1,0 +1,460 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Issue ACH API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: IssueACH
+paths:
+  /api/v1/IssueACH:
+    post:
+      summary: Issue ACH
+      description: This endpoint creates an ACH Credit payment. May be used by USD merchant accounts only.
+      operationId: issue-ach
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - MerchantGuid
+              - Amount
+              - PayeeName
+              - IncomingTransactionCode
+              - AccountHolder
+              properties:
+                MerchantGuid:
+                  type: string
+                  description: Merchant's guid. Application level value that indicates the ACH payment is being requested for clients account. Value provided by ConnexPay.
+                Amount:
+                  type: number
+                  description: Payment amount. Minimum amount 0.01.
+                  format: float
+                PayeeName:
+                  type: string
+                  description: Payee name up to 100 characters.
+                PayeeId:
+                  type: string
+                  description: Identifier for the payee. The field accepts up to 100 alpha-numeric characters.
+                PayorId:
+                  type: string
+                  description: An optional field used to tie the PayOut to a created Payor. This may assist with reconciling when using multiple bank accounts for funding your cash balance.
+                StatementCompanyName:
+                  type: string
+                  description: Company Name to display Bank Statement. The first 16 characters will display on the bank account holders statement. Special characters are not allowed in this field.
+                  default: Merchant Alias
+                Description:
+                  type: string
+                  description: For banks who accept statement descriptors, the first 10 characters will display on the bank account holders statement.
+                IncomingTransactionCode:
+                  type: string
+                  description: ITC for short Application level setting to associate the ACH payment request with an original sale or sale group. The value is provided in the sale response of the original sale transaction, or in the Group Sale response of the group sale. All ACH payment requests must be associated with an original sale or group transaction.
+                AccountHolder:
+                  type: object
+                  description: Payee's account information
+                  properties:
+                    FirstName:
+                      type: string
+                      description: Conditional -  Payee's First name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    LastName:
+                      type: string
+                      description: Conditional - Payee's Last name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    MiddleName:
+                      type: string
+                      description: Payee's Middle name
+                    BusinessName:
+                      type: string
+                      description: Conditional - Can be left blank if FirstName and LastName are provided
+                      default: Default
+                    Email:
+                      type: string
+                      description: Email up to 100 characters
+                    Phone:
+                      type: string
+                      description: Phone number up to 10 characters
+                    Address:
+                      type: object
+                      description: Account Holder Address
+                      properties:
+                        Address1:
+                          type: string
+                          description: Address 1 up to 50 characters
+                        Address2:
+                          type: string
+                          description: Address 2 up to 50 characters
+                        City:
+                          type: string
+                          description: City up to 50 characters
+                        State:
+                          type: string
+                          description: US State up to 2 characters
+                        Country:
+                          type: string
+                          description: Country. 'US' only as of now
+                        ZipCode:
+                          type: string
+                          description: ZipCode up to 10 characters
+                    BankAccount:
+                      type: object
+                      description: Payee's Bank Account info
+                      required:
+                      - RoutingNumber
+                      - AccountNumber
+                      - AccountType
+                      - AccountHolderName
+                      properties:
+                        RoutingNumber:
+                          type: string
+                          description: Routing number up to 9 characters
+                        AccountNumber:
+                          type: string
+                          description: Account number up to 17 characters
+                        AccountType:
+                          type: string
+                          description: '''Checking'' or ''Saving'''
+                        AccountHolderName:
+                          type: string
+                          description: Account holder name up to 150 characters
+            examples:
+              Issue ACH Request Example:
+                value:
+                  merchantGuid: '{{Merchant}}'
+                  amount: 100
+                  payeeName: Ultra Merchant LLC
+                  description: ACH Test
+                  incomingTransactionCode: '{{IncomingTransactionCode}}'
+                  accountHolder:
+                    firstName: January
+                    lastName: Test
+                    businessName: Ultra Merchant LLC - Test ACH Payment 0209_02
+                    email: test@connexpay.com
+                    phone: '3121111111'
+                    address:
+                      address1: 123 stree1
+                      address2: null
+                      city: Minneapolis
+                      state: MN
+                      country: US
+                      zipcode: '55123'
+                    bankAccount:
+                      routingNumber: '042000314'
+                      accountNumber: '111222'
+                      accountType: checking
+                      accountHolderName: Test
+              Issue ACH Request Example using tokenized bank accout:
+                value:
+                  merchantGuid: '{{Merchant}}'
+                  amount: 23
+                  payeeName: PR
+                  _description: ACHTest04Issuing
+                  incomingTransactionCode: '{{IncomingTransactionCode}}'
+                  _scheduleDate: '2021-04-12'
+                  accountHolder:
+                    bankAccount:
+                      bankAccountGuid: '{{bankAccountGuid}}'
+                  _LabelIds:
+                  - 102
+                  - 103
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Issue ACH Response Example:
+                  value: "{\n    \"merchantId\": \"1818a55e-8541-4bfe-a288-bad870afbe1d\",\n    \"incomingTransactionCode\": \"511C171637487375170935405\",\n    \"paymentId\": \"6bd251b4-8dfd-4478-9e2e-41390a59687f\",\n    \"isCredit\": true,\n    \"amount\": 100.0,\n    \"payeeName\": \"Ultra Merchant LLC\",\n    \"description\": \"ACH Test\",\n    \"paymentStatus\": \"NotYetProcessed\",\n    \"scheduleDate\": \"2021-02-12T00:00:00\",\n    \"receiptDate\": \"2021-02-12T00:00:00\",\n    \"processingDate\": null\n}"
+              schema:
+                type: object
+                properties:
+                  merchantId:
+                    type: string
+                    example: 1818a55e-8541-4bfe-a288-bad870afbe1d
+                  incomingTransactionCode:
+                    type: string
+                    example: 511C171637487375170935405
+                  paymentId:
+                    type: string
+                    example: 6bd251b4-8dfd-4478-9e2e-41390a59687f
+                  isCredit:
+                    type: boolean
+                    example: true
+                    default: true
+                  amount:
+                    type: integer
+                    example: 100
+                    default: 0
+                  payeeName:
+                    type: string
+                    example: Ultra Merchant LLC
+                  description:
+                    type: string
+                    example: ACH Test
+                  paymentStatus:
+                    type: string
+                    example: NotYetProcessed
+                  scheduleDate:
+                    type: string
+                    example: '2021-02-12T00:00:00'
+                  receiptDate:
+                    type: string
+                    example: '2021-02-12T00:00:00'
+                  processingDate: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - IssueACH
+  /api/v1/IssueACH/IssueLite:
+    post:
+      summary: Issue ACH Lite
+      description: This endpoint creates an ACH Credit payment that does not have an associated sale. This allows ConnexPay Lite clients to submit the issue payment call only. May be used by USD merchant accounts only.
+      operationId: issue-ach-lite
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - MerchantGuid
+              - Amount
+              - PayeeName
+              - AccountHolder
+              properties:
+                MerchantGuid:
+                  type: string
+                  description: Merchant's guid. Application level value that indicates the ACH payment is being requested for clients account. Value provided by ConnexPay.
+                Amount:
+                  type: number
+                  description: Payment amount with the minimum amount 0.01.
+                  format: float
+                PayeeName:
+                  type: string
+                  description: Payee name up to 100 characters.
+                PayeeId:
+                  type: string
+                  description: Identifier for the payee. The field accepts up to 100 alpha-numeric characters.
+                PayorId:
+                  type: string
+                  description: An optional field used to tie the PayOut to a created Payor. This may assist with reconciling when using multiple bank accounts for funding your cash balance.
+                StatementCompanyName:
+                  type: string
+                  description: Company Name to display Bank Statement. The first 16 characters will display on the bank account holders statement. Special characters are not allowed in this field.
+                  default: Merchant Alias
+                Description:
+                  type: string
+                  description: For banks who accept statement descriptors, the first 10 characters will display on the bank account holders statement.
+                AccountHolder:
+                  type: object
+                  description: Payee's account information.
+                  properties:
+                    FirstName:
+                      type: string
+                      description: Conditional -  Payee's First name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    LastName:
+                      type: string
+                      description: Conditional - Payee's Last name between 2 to 40 characters. Can be left blank if BusinessName is provided
+                    MiddleName:
+                      type: string
+                      description: Payee's Middle name
+                    BusinessName:
+                      type: string
+                      description: Conditional - Can be left blank if FirstName and LastName are provided
+                      default: Default
+                    Email:
+                      type: string
+                      description: Email up to 100 characters
+                    Phone:
+                      type: string
+                      description: Phone number up to 10 characters
+                    Address:
+                      type: object
+                      description: Account Holder Address
+                      properties:
+                        Address1:
+                          type: string
+                          description: Address 1 up to 50 characters
+                        Address2:
+                          type: string
+                          description: Address 2 up to 50 characters
+                        City:
+                          type: string
+                          description: City up to 50 characters
+                        State:
+                          type: string
+                          description: US State up to 2 characters
+                        Country:
+                          type: string
+                          description: Country. 'US' only as of now
+                        ZipCode:
+                          type: string
+                          description: ZipCode up to 10 characters
+                    BankAccount:
+                      type: object
+                      description: Payee's Bank Account info
+                      required:
+                      - RoutingNumber
+                      - AccountNumber
+                      - AccountType
+                      - AccountHolderName
+                      properties:
+                        RoutingNumber:
+                          type: string
+                          description: Routing number up to 9 characters
+                        AccountNumber:
+                          type: string
+                          description: Account number up to 17 characters
+                        AccountType:
+                          type: string
+                          description: '''Checking'' or ''Saving'''
+                        AccountHolderName:
+                          type: string
+                          description: Account holder name up to 150 characters
+                OrderNumber:
+                  type: string
+                  description: 'This is the most common number you''ll see throughout the ConnexPay Portal.  Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. Customers in the travel space often send the Record Locator/PNR in this field. The maximum length is 50 alpha-numeric characters and allows the following special characters: [\/\[\]@:_].'
+                  default: 7H2345
+                SequenceNumber:
+                  type: string
+                  description: 'Transaction sequence number within client environment. Note: value is not searchable or reportable in ConnexPay portal. The maximum length is 100 alpha-numeric characters.'
+                AssociationId:
+                  type: string
+                  description: This parameter allows you to input an up to 100 character association ID that can be used to tie this ACH Purchase to a sale (Association ID also needs to be included on the sale request). This is useful if you issue the ACH purchase prior to creating the sale that associates to it. The maximum length is 100 alpha-numeric characters.
+            examples:
+              IssueACH Lite Request Example:
+                value:
+                  merchantGuid: '{{Merchant}}'
+                  amount: 100
+                  payeeName: Ultra Merchant LLC
+                  description: ACH Test
+                  accountHolder:
+                    firstName: January
+                    lastName: Test
+                    businessName: Ultra Merchant LLC - Test ACH Payment 0209_02
+                    email: test@connexpay.com
+                    phone: '3121111111'
+                    address:
+                      address1: 123 stree1
+                      address2: null
+                      city: Minneapolis
+                      state: MN
+                      country: US
+                      zipcode: '55123'
+                    bankAccount:
+                      routingNumber: '042000314'
+                      accountNumber: '111222'
+                      accountType: checking
+                      accountHolderName: Test
+              Issue ACH Lite request example using tokenized bank account:
+                value:
+                  merchantGuid: '{{Merchant}}'
+                  amount: 23
+                  payeeName: PR
+                  description: ACHTest
+                  accountHolder:
+                    bankAccount:
+                      bankAccountGuid: '{{bankAccountGuid}}'
+                  _LabelIds:
+                  - 102
+                  - 103
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                IssueACH Lite Response Example:
+                  value: "{\n    \"merchantId\": \"1818a55e-8541-4bfe-a288-bad870afbe1d\",\n    \"incomingTransactionCode\": \"511C171637487375170935405\",\n    \"paymentId\": \"6bd251b4-8dfd-4478-9e2e-41390a59687f\",\n    \"isCredit\": true,\n    \"amount\": 100.0,\n    \"payeeName\": \"Ultra Merchant LLC\",\n    \"description\": \"ACH Test\",\n    \"paymentStatus\": \"NotYetProcessed\",\n    \"scheduleDate\": \"2021-02-12T00:00:00\",\n    \"receiptDate\": \"2021-02-12T00:00:00\",\n    \"processingDate\": null\n}"
+              schema:
+                type: object
+                properties:
+                  merchantId:
+                    type: string
+                    example: 1818a55e-8541-4bfe-a288-bad870afbe1d
+                  incomingTransactionCode:
+                    type: string
+                    example: 511C171637487375170935405
+                  paymentId:
+                    type: string
+                    example: 6bd251b4-8dfd-4478-9e2e-41390a59687f
+                  isCredit:
+                    type: boolean
+                    example: true
+                    default: true
+                  amount:
+                    type: integer
+                    example: 100
+                    default: 0
+                  payeeName:
+                    type: string
+                    example: Ultra Merchant LLC
+                  description:
+                    type: string
+                    example: ACH Test
+                  paymentStatus:
+                    type: string
+                    example: NotYetProcessed
+                  scheduleDate:
+                    type: string
+                    example: '2021-02-12T00:00:00'
+                  receiptDate:
+                    type: string
+                    example: '2021-02-12T00:00:00'
+                  processingDate: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - IssueACH
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

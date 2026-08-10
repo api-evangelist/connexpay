@@ -1,0 +1,650 @@
+openapi: 3.0.3
+info:
+  title: ConnexPay Checkout Session API
+  description: "API for creating secure checkout sessions for payment processing with ConnexPay. Used in conjunection with our SDK 2.0; additional reference documentation is found here: https://docs.connexpay.com/docs/v2-docs.\n\n## Overview\nCheckout sessions serve as a secure bridge between your backend and the ConnexPay SDK, \ncontaining all payment details for a transaction while ensuring sensitive data cannot \nbe tampered with on the client side.\n\n## Security\n- All endpoints require Bearer token authentication\n- Sessions expire after 60 minutes for enhanced security\n- Device authorization is validated for each request\n\n## Base URL\n- Sandbox: `https://sandboxsalesapi.connexpay.com`\n- Production: `https://salesapi.connexpay.com`\n"
+  version: 2.0.0
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+  description: Sandbox environment
+- url: https://salesapi.connexpay.com
+  description: Production environment
+security:
+- BearerAuth: []
+paths:
+  /api/v2/Checkout/checkout-session:
+    post:
+      summary: Create Checkout Session
+      description: 'Creates a new secure checkout session for payment processing.
+
+
+        The session contains all payment details for a transaction and expires after 60 minutes for security.
+
+        Returns a checkout session ID that can be used with the ConnexPay SDK for frontend payment processing.
+
+
+        ## Key Features
+
+        - Secure session management with 60-minute expiration
+
+        - Support for multiple tender types (Credit, ACH, GooglePay, ApplePay)
+
+        - Comprehensive customer and transaction data support
+
+        - Device authorization validation
+
+        - Risk analysis and fraud prevention integration
+
+
+        ## Usage Flow
+
+        1. Create checkout session on your backend
+
+        2. Pass the returned `checkoutSessionId` to your frontend
+
+        3. Use the session ID with ConnexPay SDK to render payment form
+
+        4. Process payments through the SDK using the session
+
+        '
+      operationId: createCheckoutSession
+      tags:
+      - Checkout Sessions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DtoCheckoutSession'
+            examples:
+              simple_transaction:
+                summary: Simple Transaction
+                description: Basic credit card payment with customer information
+                value:
+                  ClientId: your_client_id
+                  TenderTypeOptions: Credit,GooglePay,ApplePay
+                  Sale:
+                    DeviceGuid: 12345678-1234-1234-1234-123456789012
+                    Amount: 125.5
+                    OrderNumber: ORD-2024-001
+                    InvoiceNumber: INV-2024-001
+                    StatementDescription: Online Purchase
+                    Customer:
+                      FirstName: Sarah
+                      LastName: Johnson
+                      Email: sarah@example.com
+                      Phone: '15550123456'
+                      Address1: 123 Main St
+                      City: Anytown
+                      State: CA
+                      Zip: '12345'
+                      Country: US
+              enhanced_transaction:
+                summary: Enhanced Transaction Data
+                description: Transaction with line items and enhanced data
+                value:
+                  ClientId: your_client_id
+                  TenderTypeOptions: Credit,GooglePay
+                  Sale:
+                    DeviceGuid: 12345678-1234-1234-1234-123456789012
+                    Amount: 175.5
+                    OrderNumber: ORD-2024-003
+                    TipAmount: 25
+                    ServiceFee: 5
+                    Customer:
+                      FirstName: Alice
+                      LastName: Smith
+                      Email: alice@example.com
+                      BusinessName: Smith Consulting
+                    EnhancedData:
+                      CustomerCode: CUST_001
+                      SalesTax: 12.5
+                      LineItems:
+                      - Description: Premium Service
+                        ProductCode: SVC_001
+                        UnitCost: 150
+                        Quantity: 1
+                        TotalAmount: 150
+                        TaxAmount: 12.5
+      responses:
+        '200':
+          description: Successfully created checkout session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSessionResponse'
+              examples:
+                success_response:
+                  summary: Successful checkout session creation
+                  value:
+                    CheckoutSessionIdValue: cs_1a2b3c4d5e6f7g8h9i0j
+                    Amount: 125.5
+                    Expiration: '2024-11-04T15:30:00Z'
+                    TimeStamp: '2024-11-04T14:30:00Z'
+                    TenderTypeOptions: Credit,GooglePay,ApplePay
+                    ClientId: your_client_id
+                    Expired: false
+                    DisplayCreditCard: true
+                    Completed: false
+        '400':
+          description: Invalid request data or validation errors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validation_error:
+                  summary: Validation error
+                  value:
+                    error: Validation failed
+                    message: Invalid request data
+                    details:
+                    - field: Sale.Amount
+                      message: Amount must be greater than 0
+                    - field: Sale.DeviceGuid
+                      message: DeviceGuid is required
+        '401':
+          description: Unauthorized - invalid or missing authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                unauthorized:
+                  summary: Authentication required
+                  value:
+                    error: Unauthorized
+                    message: Invalid or missing authentication token
+        '422':
+          description: Business logic error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalid_device:
+                  summary: Invalid device GUID
+                  value:
+                    error: Business Error
+                    message: Invalid Device GUID
+                invalid_activation_date:
+                  summary: Invalid activation date
+                  value:
+                    error: Business Error
+                    message: Invalid activation date
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from ConnexPay authentication
+  schemas:
+    DtoCheckoutSession:
+      type: object
+      required:
+      - ClientId
+      - TenderTypeOptions
+      - Sale
+      properties:
+        ClientId:
+          type: string
+          description: Your ConnexPay client identifier
+          example: your_client_id
+        TenderTypeOptions:
+          type: string
+          description: Comma-separated list of available payment methods
+          enum:
+          - Credit
+          - ACH
+          - GooglePay
+          - ApplePay
+          - Credit,GooglePay
+          - Credit,ApplePay
+          - Credit,GooglePay,ApplePay
+          - ACH,Credit
+          example: Credit,GooglePay,ApplePay
+        Sale:
+          $ref: '#/components/schemas/SaleData'
+    SaleData:
+      type: object
+      required:
+      - DeviceGuid
+      - Amount
+      - TenderType
+      properties:
+        DeviceGuid:
+          type: string
+          format: uuid
+          description: Authorized device identifier
+          example: 12345678-1234-1234-1234-123456789012
+        Amount:
+          type: number
+          format: decimal
+          minimum: 0.01
+          description: Transaction amount (decimal format)
+          example: 125.5
+        TenderType:
+          type: string
+          enum:
+          - Credit
+          - ACH
+          - GooglePay
+          - ApplePay
+          description: Payment method type
+          example: Credit
+        Currency:
+          type: string
+          description: Currency code
+          default: USD
+          example: USD
+        OrderNumber:
+          type: string
+          maxLength: 50
+          description: Merchant order number
+          example: ORD-2024-001
+        OrderDate:
+          type: string
+          format: date-time
+          description: Order date in ISO 8601 format
+          example: '2024-11-04T14:30:00Z'
+        InvoiceNumber:
+          type: string
+          description: Invoice number
+          example: INV-2024-001
+        CustomerID:
+          type: string
+          maxLength: 100
+          description: Merchant customer identifier
+          example: CUST_12345
+        BusinessName:
+          type: string
+          description: Business name for the transaction
+          example: Tech Solutions Inc.
+        CustomerLabel:
+          type: string
+          description: Customer label
+          example: Premium Customer
+        TipAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Tip amount
+          example: 15
+        ServiceFee:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Service fee amount
+          example: 5
+        Discount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Discount amount
+          example: 10
+        GrossAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Gross transaction amount
+          example: 140.5
+        EffectiveAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Effective amount after fees and discounts
+          example: 125.5
+        Surcharge:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Surcharge amount
+          example: 3.5
+        SurchargeLabel:
+          type: string
+          description: Label for the surcharge
+          example: Processing Fee
+        SurchargeType:
+          type: string
+          description: Type of surcharge
+          example: Percentage
+        CardDataSource:
+          type: string
+          enum:
+          - SWIPE
+          - NFC
+          - EMV
+          - EMV_CONTACTLESS
+          - FALLBACK_SWIPE
+          - BAR_CODE
+          - MANUAL
+          - PHONE
+          - MAIL
+          - INTERNET
+          description: Source of card data
+          example: MANUAL
+        RequestIp:
+          type: string
+          format: ipv4
+          description: Client IP address (required for ACH payments)
+          example: 192.168.1.100
+        StatementDescription:
+          type: string
+          maxLength: 25
+          pattern: ^[a-zA-Z0-9\s.*-]*$
+          description: Description that appears on customer statement
+          example: Online Purchase
+        Customer:
+          $ref: '#/components/schemas/Customer'
+        IncludeRiskAnalysis:
+          type: boolean
+          description: Whether to include risk analysis
+          example: true
+        RiskProcessingOnly:
+          type: boolean
+          description: Process for risk analysis only
+          example: false
+        CheckRiskScore:
+          type: boolean
+          description: Whether to check risk score
+          example: true
+        EnhancedData:
+          $ref: '#/components/schemas/EnhancedData'
+        CustomData:
+          type: string
+          description: Custom merchant data
+          example: Additional transaction info
+        SendReceipt:
+          type: boolean
+          description: Whether to send email receipt
+          example: true
+        CardholderEmail:
+          type: string
+          format: email
+          description: Email address for receipt
+          example: customer@example.com
+        AssociateCustomerCard:
+          type: boolean
+          description: Whether to associate card with customer
+          example: true
+        ActivationDate:
+          type: string
+          format: date-time
+          description: Transaction activation date
+          example: '2024-11-04T14:30:00Z'
+        PurchaseActivationDate:
+          type: string
+          format: date-time
+          description: Purchase activation date
+          example: '2024-11-04T14:30:00Z'
+    Customer:
+      type: object
+      properties:
+        FirstName:
+          type: string
+          maxLength: 30
+          description: Customer first name
+          example: Sarah
+        LastName:
+          type: string
+          maxLength: 30
+          description: Customer last name
+          example: Johnson
+        Email:
+          type: string
+          format: email
+          description: Customer email address
+          example: sarah@example.com
+        Phone:
+          type: string
+          pattern: ^\+?[0-9]\d{1,14}$
+          description: Customer phone number (up to 15 characters, numbers and plus sign only)
+          example: '15550123456'
+        BusinessName:
+          type: string
+          minLength: 2
+          maxLength: 300
+          description: Business name
+          example: Tech Solutions Inc.
+        DateOfBirth:
+          type: string
+          format: date
+          description: Date of birth in YYYY-MM-DD format
+          example: '1990-05-15'
+        Address1:
+          type: string
+          maxLength: 100
+          description: Primary address line
+          example: 123 Main St
+        Address2:
+          type: string
+          maxLength: 100
+          description: Secondary address line
+          example: Apt 4B
+        City:
+          type: string
+          pattern: ^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\-,.' ]+$
+          description: City name
+          example: Anytown
+        State:
+          type: string
+          pattern: ^[a-zA-Z0-9 ]{1,3}$
+          description: State abbreviation (1-3 characters)
+          example: CA
+        Zip:
+          type: string
+          minLength: 2
+          maxLength: 15
+          description: Postal/ZIP code
+          example: '12345'
+        Country:
+          type: string
+          description: Country code
+          example: US
+        SSN4:
+          type: string
+          pattern: ^[0-9]{4}$
+          description: Last 4 digits of SSN
+          example: '1234'
+        DriverLicenseNumber:
+          type: string
+          pattern: ^[a-zA-Z0-9-]+$
+          description: Driver's license number
+          example: D123456789
+        DriverLicenseState:
+          type: string
+          pattern: ^[a-zA-Z]{2}$
+          description: Driver's license state (2 characters)
+          example: CA
+        customerId:
+          type: string
+          description: Custom customer identifier
+          example: CUST_12345
+    EnhancedData:
+      type: object
+      properties:
+        CustomerCode:
+          type: string
+          description: Customer code
+          example: CUST_001
+        SalesTax:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Sales tax amount
+          example: 10.04
+        FreightAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Freight/shipping amount
+          example: 5.99
+        DutyAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Duty amount
+          example: 2.5
+        DestinationPostalCode:
+          type: string
+          description: Destination postal code
+          example: '90210'
+        DestinationCountryCode:
+          type: string
+          description: Destination country code
+          example: US
+        ShipFromPostalCode:
+          type: string
+          description: Ship from postal code
+          example: '12345'
+        DiscountAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total discount amount
+          example: 5
+        LineItems:
+          type: array
+          description: Transaction line items
+          items:
+            $ref: '#/components/schemas/LineItem'
+    LineItem:
+      type: object
+      required:
+      - Description
+      - UnitCost
+      - Quantity
+      - TotalAmount
+      properties:
+        Description:
+          type: string
+          description: Item description
+          example: Premium Widget
+        ProductCode:
+          type: string
+          description: Product code
+          example: WIDGET_001
+        CommodityCode:
+          type: string
+          description: Commodity code
+          example: '1234567890'
+        UnitOfMeasure:
+          type: string
+          description: Unit of measure
+          example: EA
+        UnitCost:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Cost per unit
+          example: 115.46
+        Quantity:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Quantity
+          example: 1
+        TotalAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total amount for line item
+          example: 115.46
+        TaxAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Tax amount for line item
+          example: 10.04
+        DiscountAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Discount amount for line item
+          example: 0
+    CheckoutSessionResponse:
+      type: object
+      properties:
+        CheckoutSessionIdValue:
+          type: string
+          format: uuid
+          description: Unique checkout session identifier
+          example: cs_1a2b3c4d5e6f7g8h9i0j
+        Amount:
+          type: number
+          format: decimal
+          description: Transaction amount
+          example: 125.5
+        Expiration:
+          type: string
+          format: date-time
+          description: Session expiration time (60 minutes from creation)
+          example: '2024-11-04T15:30:00Z'
+        TimeStamp:
+          type: string
+          format: date-time
+          description: Session creation timestamp
+          example: '2024-11-04T14:30:00Z'
+        TenderTypeOptions:
+          type: string
+          description: Available payment methods
+          example: Credit,GooglePay,ApplePay
+        ClientId:
+          type: string
+          description: Client identifier
+          example: your_client_id
+        Expired:
+          type: boolean
+          description: Whether the session has expired
+          example: false
+        DisplayCreditCard:
+          type: boolean
+          description: Whether credit card options should be displayed
+          example: true
+        Completed:
+          type: boolean
+          description: Whether the session has been completed
+          example: false
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: Validation Error
+        message:
+          type: string
+          description: Error message
+          example: Invalid request data
+        details:
+          type: array
+          description: Detailed error information
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name that caused the error
+                example: Sale.Amount
+              message:
+                type: string
+                description: Field-specific error message
+                example: Amount must be greater than 0
+tags:
+- name: Checkout Sessions
+  description: 'Operations for creating and managing checkout sessions.
+
+
+    Checkout sessions are secure server-side objects that contain all payment details
+
+    for a transaction. They serve as a bridge between your backend and the ConnexPay SDK,
+
+    ensuring that sensitive transaction data cannot be tampered with on the client side.
+
+    '

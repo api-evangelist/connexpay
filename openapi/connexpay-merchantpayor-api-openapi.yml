@@ -1,0 +1,246 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: Purchases Merchant Payor API
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+tags:
+- name: MerchantPayor
+paths:
+  /api/v1/Merchants/{merchantGuid}/Payors:
+    post:
+      tags:
+      - MerchantPayor
+      summary: Create merchant payor
+      description: Create a payor for a merchant
+      operationId: MerchantPayor_CreatePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/MerchantPayorDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+        '400':
+          description: Invalid ModelState
+        '403':
+          description: User does not have access to merchant.
+        '409':
+          description: A payor with this payorID already exists
+  /api/v1/Merchants/{merchantGuid}/Payors/{payorGuid}:
+    get:
+      tags:
+      - MerchantPayor
+      summary: Get Merchant Payor
+      description: Get a merchant payor by guid.
+      operationId: MerchantPayor_GetPayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be retrieved.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+        '204':
+          description: No MerchantPayor found
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+    put:
+      tags:
+      - MerchantPayor
+      summary: Update Merchant Payor
+      description: Update a merchant payor by guid.
+      operationId: MerchantPayor_UpdatePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be updated.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/MerchantPayorDto'
+      responses:
+        '204':
+          description: NoContent
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+        '409':
+          description: A payor with this payorID already exists
+    delete:
+      tags:
+      - MerchantPayor
+      summary: Delete Merchant Payor
+      description: Delete a merchant payor by guid.
+      operationId: MerchantPayor_DeletePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be deleted.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Merchant Found
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+components:
+  requestBodies:
+    MerchantPayorDto:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+      required: true
+  schemas:
+    MerchantPayorResponse:
+      required:
+      - payorId
+      - payorName
+      - accountName
+      type: object
+      properties:
+        payorId:
+          maxLength: 200
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+        payorName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        accountType:
+          type: string
+        accountName:
+          maxLength: 200
+          minLength: 0
+          type: string
+        accountNumberLastFour:
+          type: string
+        routingNumberLastFour:
+          type: string
+        idMerchantPayor:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    MerchantPayorDto:
+      required:
+      - payorId
+      - payorName
+      - accountType
+      - accountName
+      - accountNumber
+      - routingNumber
+      type: object
+      properties:
+        payorId:
+          maxLength: 200
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+          description: The ID value to be assigned to the created Payor.
+        payorName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: The Name to be assigned to the created Payor.
+        accountType:
+          type: string
+          description: '''1'' for Checking or ''2'' for Savings account.'
+        accountName:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: Name that appears on the bank account.
+        accountNumber:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Numeric bank account number.
+        routingNumber:
+          maxLength: 9
+          minLength: 0
+          pattern: ^[0-9]{9}$
+          type: string
+          description: 9 digit numeric bank routing number.

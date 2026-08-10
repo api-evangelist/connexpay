@@ -1,0 +1,244 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/connexpay-chargebacks-openapi.yml, openapi/connexpay-checkout-session-openapi.yml, openapi/connexpay-merchant-payor-openapi.yml, openapi/connexpay-payment-instruction-openapi.yml, openapi/connexpay-purchases-openapi.yml, openapi/connexpay-push-to-card-openapi.yml, openapi/connexpay-reporting-authentication-openapi.yml, openapi/connexpay-reporting-openapi.yml, openapi/connexpay-sales-openapi.yml, openapi/connexpay-stop-payment-service-openapi.yml
+format: http-status
+note: ConnexPay does not publish RFC 9457 application/problem+json. Errors are returned as application/json with the platform's own envelope; the docs describe standard HTTP status semantics and point at the decline-code reference for authorization-level failures.
+docs:
+- https://docs.connexpay.com/docs/status-and-error-codes
+- https://docs.connexpay.com/reference/decline-codes
+- https://docs.connexpay.com/docs/error-codes
+status_codes_in_use:
+  '400': 20
+  '401': 5
+  '403': 4
+  '404': 6
+  '409': 5
+  '415': 1
+  '422': 6
+  4XX: 1
+  '500': 4
+  default: 1
+problems:
+- status: '400'
+  title: '400'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-chargebacks-openapi.yml#sales-chargebacks-1
+- status: '400'
+  title: Invalid request data or validation errors
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-checkout-session-openapi.yml#createCheckoutSession
+- status: '401'
+  title: Unauthorized - invalid or missing authentication
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-checkout-session-openapi.yml#createCheckoutSession
+- status: '422'
+  title: Business logic error
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-checkout-session-openapi.yml#createCheckoutSession
+- status: '500'
+  title: Internal server error
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-checkout-session-openapi.yml#createCheckoutSession
+- status: '400'
+  title: Invalid ModelState
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_CreatePayor
+- status: '403'
+  title: User does not have access to merchant.
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_CreatePayor
+- status: '409'
+  title: A payor with this payorID already exists
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_CreatePayor
+- status: '400'
+  title: Bad request
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_GetPayor
+- status: '400'
+  title: Bad Request
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: '403'
+  title: Client ID from request does not match authenticated client.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: '409'
+  title: ClientPaymentId already exists.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: '415'
+  title: Unsupported media type.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: '422'
+  title: Valid request format but contains business rule violations.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: default
+  title: Error
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- status: '400'
+  title: Invalid clientPaymentId provided.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#GetFundingStatus
+- status: '404'
+  title: No funding status found for the specified payment request.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#GetFundingStatus
+- status: 4XX
+  title: Client Error
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#VoidPaymentInstruction
+- status: '400'
+  title: '400'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#issuing-token
+- status: '403'
+  title: '403'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#create-user-defined-parameter
+- status: '409'
+  title: '409'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#create-user-defined-parameter
+- status: '500'
+  title: '500'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#create-chargeback
+- status: '422'
+  title: '422'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_apiv1IssueCardPhysicalCard-1
+- status: '401'
+  title: Unauthorized
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_api-v1-cardbooking
+- status: '422'
+  title: Unprocessable Entity
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_api-v1-cardbooking
+- status: '500'
+  title: Internal Server Error
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_api-v1-cardbooking
+- status: '400'
+  title: The Payee's guid or email address must be provided
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayee
+- status: '401'
+  title: User doesn't have access to this merchant
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayee
+- status: '404'
+  title: Payee doesn't exist or doesn't belong to the user
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayee
+- status: '400'
+  title: Bad request
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CreatePayee
+- status: '409'
+  title: A Payee with the provided email address already exists
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CreatePayee
+- status: '400'
+  title: Status must be 'enable' or 'disable'
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_ManagePayee
+- status: '400'
+  title: payeeGuid must be a valid guid value
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_UpdatePayee
+- status: '400'
+  title: BadRequest
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CreatePayout
+- status: '400'
+  title: Payment list must not be empty
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CancelPayments
+- status: '404'
+  title: Payout doesn't exist or doesn't belong to the user --OR-- Payment doesn't exist or doesn't belong to payout
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CancelPayments
+- status: '409'
+  title: Payout is in 'Rejected' State --OR-- All Payments must be in 'Approved' state
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CancelPayments
+- status: '404'
+  title: Payout doesn't exist or doesn't belong to the user
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayoutDetails
+- status: '400'
+  title: A valid Payee guid or email address must be provided
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetAuthenticationTokenAsync
+- status: '400'
+  title: Valid values for ridGuid and cardId must be provided
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_PushFundsToCardAsync
+- status: '400'
+  title: '400'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-authentication-openapi.yml#reporting-token
+- status: '400'
+  title: The request was invalid.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetDetail
+- status: '401'
+  title: The request was not authorized.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetDetail
+- status: '404'
+  title: No data was found for the provided parameters.
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetDetail
+- status: '400'
+  title: Bad Request
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#AvailableCreditReport
+- status: '401'
+  title: Unauthorized
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#AvailableCreditReport
+- status: '404'
+  title: Not Found
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-reporting-openapi.yml#AvailableCreditReport
+- status: '400'
+  title: '400'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-sales-openapi.yml#sales-token
+- status: '422'
+  title: '422'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-sales-openapi.yml#merchantselfservicefunding
+- status: '500'
+  title: '500'
+  media_types:
+  - application/json
+  source_operation: openapi/connexpay-sales-openapi.yml#merchantselfservicefunding
+- status: '400'
+  title: Invalid ModelState
+  source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_AddCardToBlackList
+- status: '403'
+  title: User does not have access
+  source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_AddCardToBlackList
+- status: '422'
+  title: Business error
+  source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_AddCardToBlackList

@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: sales-api Merchant Flex Funding API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: MerchantFlexFunding
+paths:
+  /api/v1/MerchantFlexFunding/Funds/Transfer:
+    post:
+      summary: Client Funds Transfer
+      description: Use this endpoint to transfer funds between your merchant cash balances within the same Corporate entity.
+      operationId: client-funds-transfer
+      parameters:
+      - name: Content-Type
+        in: header
+        description: '"application/json"'
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - TransferredFrom
+              - TransferredTo
+              - Amount
+              properties:
+                TransferredFrom:
+                  type: string
+                  description: The merchant's GUID of the withdrawn account. Value provided by ConnexPay.
+                TransferredTo:
+                  type: string
+                  description: The merchant's GUID of the deposited account. Value provided by ConnexPay.
+                Amount:
+                  type: number
+                  description: Transferred funding amount that will be processed. Maximum transaction and daily funding limits are set by ConnexPay.
+                  format: float
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"TransferredFrom\": \"10DAD551-5FB8-456B-BC69-F6D903C93D40\", \n    \"TransferredTo\": \"EBFF36A1-E430-4998-A8C1-18840D6C8D90\", \n    \"Amount\": 100\n}"
+              schema:
+                type: object
+                properties:
+                  TransferredFrom:
+                    type: string
+                    example: 10DAD551-5FB8-456B-BC69-F6D903C93D40
+                  TransferredTo:
+                    type: string
+                    example: EBFF36A1-E430-4998-A8C1-18840D6C8D90
+                  Amount:
+                    type: integer
+                    example: 100
+                    default: 0
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - MerchantFlexFunding
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

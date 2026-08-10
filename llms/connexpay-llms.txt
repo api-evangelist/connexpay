@@ -1,0 +1,151 @@
+# ConnexPay Documentation
+
+> Documentation for ConnexPay
+
+## Guides
+- [Platform Overview](https://docs.connexpay.com/docs/platform-overview.md)
+- [Integration Milestones](https://docs.connexpay.com/docs/integration-milestones.md): Milestones track progress towards a successful integration with CXP and represent specific progress points on the development and implementation timeline.
+- [Environments](https://docs.connexpay.com/docs/environments-1.md)
+- [Status and Error Codes](https://docs.connexpay.com/docs/status-and-error-codes.md)
+- [Sandbox Validation](https://docs.connexpay.com/docs/sandbox.md)
+- [Card and Security Controls](https://docs.connexpay.com/docs/card-and-security-controls.md)
+- [Operational Considerations](https://docs.connexpay.com/docs/operational-considerations.md)
+- [Self Service Funding](https://docs.connexpay.com/docs/self-service-funding.md)
+- [Integration Best Practices](https://docs.connexpay.com/docs/integration-best-practices.md)
+- [Common Integration Questions](https://docs.connexpay.com/docs/common-integration-questions.md): These are the most common questions that come up during the integration process
+- [ConnexPay's Payment SDK/Widget](https://docs.connexpay.com/docs/using-our-sdk.md): The ConnexPay SDK helps you easily integrate ConnexPay into your payment process.
+- [Credit Card Integration](https://docs.connexpay.com/docs/credit-card.md)
+- [Apple Pay ™ Integration](https://docs.connexpay.com/docs/apple-pay-integration.md)
+- [Google Pay ™ Integration](https://docs.connexpay.com/docs/googlepay.md)
+- [V2 Docs - Introduction](https://docs.connexpay.com/docs/v2-docs.md): Welcome to the ConnexPay JavaScript SDK v2. This guide helps you embed a secure, customizable payment form in your web application with minimal effort
+- [Getting Started: Quick Start Guide](https://docs.connexpay.com/docs/quick-start-guide.md): Get the ConnexPay payments SDK running in your application in under 5 minutes with this step-by-step guide.
+- [Getting Started: Core Concepts](https://docs.connexpay.com/docs/core-concepts.md): Before diving deep into the SDK, it's important to understand the key concepts and terminology that form the foundation of ConnexPay's payment processing.
+- [Integration Guide: Checkout Session Management](https://docs.connexpay.com/docs/checkout-session-management.md): Checkout sessions are the foundation of secure payment processing with the ConnexPay payments SDK. This guide covers everything you need to know about creating, managing, and using checkout sessions effectively.
+- [Integration Guide: Payment Form Creation](https://docs.connexpay.com/docs/payment-form-creation.md): Learn how to create, configure, and manage ConnexPay payment forms in your application. This guide covers everything from basic form creation to advanced customization options.
+- [Integration Guide: SDK Lifecycle](https://docs.connexpay.com/docs/sdk-lifecycle.md): Understanding the ConnexPay SDK lifecycle is crucial for building robust payment integrations. This guide covers the essential phases from SDK initialization to payment completion, focusing on the three core events you need to handle.
+- [Customization: Appearance Theming](https://docs.connexpay.com/docs/appearance-theming.md): Customize the look and feel of your ConnexPay payment forms to match your brand and design requirements. The SDK provides comprehensive theming capabilities through CSS variables, preset themes, and custom styling rules.
+- [Customization: Customer Data Collection](https://docs.connexpay.com/docs/customer-data-collection.md): Learn how to collect, manage, and pre-populate customer information in ConnexPay payment forms. This guide covers the Customer interface, data validation, and best practices for handling customer data.
+- [Customization: Loading States](https://docs.connexpay.com/docs/loading-states.md): Provide excellent user experience by implementing proper loading states throughout the payment flow. This guide covers SDK readiness, form rendering, payment processing, and custom loading indicators.
+- [Payment Processing: Error Handling](https://docs.connexpay.com/docs/error-handling.md): Robust error handling is crucial for providing a good user experience with payment processing. This guide covers the error types, handling strategies, and best practices for the ConnexPay SDK v2.
+- [Payment Processing: Payment Methods](https://docs.connexpay.com/docs/payment-methods.md): The ConnexPay payments SDK supports multiple payment methods including credit cards, digital wallets, and ACH payments. This guide covers the available payment methods, their configuration, and implementation details.
+- [References: API Reference](https://docs.connexpay.com/docs/api-reference.md): Complete reference for all ConnexPay payments SDK methods, interfaces, and configuration options.
+- [Reference: Error Codes](https://docs.connexpay.com/docs/error-codes.md): Complete reference for all error codes, messages, and resolution steps in the ConnexPay payments SDK
+- [Creating and Managing Bridge Payment Links](https://docs.connexpay.com/docs/bridge-payment-link.md): aaronreidy
+- [Hosted Payment Page](https://docs.connexpay.com/docs/hosted-payment-page.md)
+- [IPI (Intelligent PayIns)](https://docs.connexpay.com/docs/isr-intelligent-payins.md)
+- [Return](https://docs.connexpay.com/docs/returns.md)
+- [Cancel](https://docs.connexpay.com/docs/sales-cancel.md)
+- [AVS and CVV PayIn Responses](https://docs.connexpay.com/docs/avs-and-cvv-responses.md)
+- [Card Tokenization](https://docs.connexpay.com/docs/card-tokenization.md)
+- [Auth and Capture](https://docs.connexpay.com/docs/auth-and-capture.md)
+- [Delayed Activation](https://docs.connexpay.com/docs/delayed-activation.md)
+- [Risk Only Transactions](https://docs.connexpay.com/docs/risk-only-transactions.md)
+- [3D Secure Sales Authentication](https://docs.connexpay.com/docs/3d-secure-sales-authentication.md)
+- [3D Secure Process Flow & Payload Response for US & CA Clients](https://docs.connexpay.com/docs/3d-secure-payload-response-for-us-clients-using-connexpay.md)
+- [3D Secure Process Flow & Payload Response for EU Clients](https://docs.connexpay.com/docs/3d-secure-payload-response-for-eu-clients-using-connexpay-solution.md)
+- [Blacklisted Countries of VCC Acceptance](https://docs.connexpay.com/docs/blacklisted-countries-of-vcc-acceptance.md)
+- [Prohibited Merchant Category Codes](https://docs.connexpay.com/docs/prohibited-merchant-category-codes.md)
+- [3D Secure for Card PayOuts](https://docs.connexpay.com/docs/3d-secure-for-purchases.md)
+- [PayOut Decline Codes](https://docs.connexpay.com/docs/purchase-decline-codes.md): Declines codes that can be provided on attempted purchases.
+- [Country Code IDs](https://docs.connexpay.com/docs/country-code-ids.md): Integer IDs to be used when specifying the countries where a created Virtual Card may be used
+- [Purchase Types](https://docs.connexpay.com/docs/purchase-types.md): Available Purchase Types that can be used when creating a Virtual Card PayOut. Allowed Purchase Types are decided during underwriting. Ask a ConnexPay team member for Purchase Types enabled on your account. Best Practice is to always assign a Purchase Type that is restrictive as possible.
+- [Issue Lite](https://docs.connexpay.com/docs/issue-lite.md)
+- [Issuing a Lodged Card](https://docs.connexpay.com/docs/lodged-cards.md): Lodged Cards are Virtual Cards that can be used multiple times over the course of months or years.
+- [Using Bridge to Issue a VCC](https://docs.connexpay.com/docs/issuing-a-virtual-card-from-the-portal.md)
+- [Adding Funds to a Virtual Card](https://docs.connexpay.com/docs/adding-funds-to-a-virtual-card.md)
+- [IPO (Intelligent PayOuts)](https://docs.connexpay.com/docs/ipo-intelligent-payouts.md)
+- [Global VCC](https://docs.connexpay.com/docs/global-travel-vcc.md)
+- [Global VCC Reduced Interchange Rates](https://docs.connexpay.com/docs/global-tiered-vcc.md)
+- [VCC Transmission](https://docs.connexpay.com/docs/vcc-transmission.md)
+- [Email Templates](https://docs.connexpay.com/docs/email-templates.md): Email Templates give clients the ability to customize their email remittances to suppliers they pay using virtual cards by including personalized messages and data without having to individually create each correspondence.
+- [User Defined Parameters](https://docs.connexpay.com/docs/user-defined-parameters.md): User Defined Parameters give our clients the ability to add their own fields on a PayOut. This functionality will allow clients to add critical data to their PayOuts that is needed for their suppliers when making payments that is not currently available in standard PayOut data.
+- [Virtual Card Events/History](https://docs.connexpay.com/docs/virtual-card-events-history.md)
+- [Client VCC Decisioning](https://docs.connexpay.com/docs/client-vcc-decisioning.md): Client VCC Decisioning is designed to allow ConnexPay clients with proper permissions to have the ability to decision authorizations directed to them, rather than Connexpay decisioning the authorizations.
+- [Issuing an ACH PayOut](https://docs.connexpay.com/docs/issuing-an-ach-payout.md)
+- [Explaining Available to Authorize (ATA)](https://docs.connexpay.com/docs/explaining-available-to-authorize.md)
+- [Explaining Available to Issue (ATI)](https://docs.connexpay.com/docs/explaining-available-to-issue-ati.md)
+- [Credit ](https://docs.connexpay.com/docs/credit.md): Clients can now apply for a line a credit from ConnexPay.
+- [Getting Started with Payment Valet](https://docs.connexpay.com/docs/getting-started-with-payment-valet.md): Solve All Payment Problems, Not Just Some
+- [Designing your Integration](https://docs.connexpay.com/docs/designing-your-integration.md): What to expect as you plan for integration
+- [Identify your Payors](https://docs.connexpay.com/docs/identify-your-payors.md): Your Brand, Every Payment, Every Time.
+- [Identify your Payees](https://docs.connexpay.com/docs/identify-your-payees.md): Precision Matters: Identify Payees, Personalize Payments.
+- [Choose Supported Modalities](https://docs.connexpay.com/docs/choose-supported-modalities.md): Choose from a menu of options to customize the modalities and distribution types used in your program
+- [Planning for Payee Support](https://docs.connexpay.com/docs/planning-for-payee-support.md): Your call center or our's?
+- [Payment Processing 101](https://docs.connexpay.com/docs/payment-processing-101.md): Hand Us the Keys — Payment Valet Parks Your Payments with Precision!
+- [Payment Valet Webhooks](https://docs.connexpay.com/docs/payment-valet-webhooks.md): Connect, Notify, and Automate—Webhooks Made Simple for Payment Valet
+- [Submitting Payment Instructions](https://docs.connexpay.com/docs/submitting-payment-instructions.md): A single access point for Card, Check and ACH payments.
+- [Daily Reconciliation Reports](https://docs.connexpay.com/docs/daily-accounting-files.md)
+- [Cash Balance Report](https://docs.connexpay.com/docs/cash-balance-report.md)
+- [Daily Accounting File & Daily Accounting Report](https://docs.connexpay.com/docs/daf-dar-flex-funding-model.md)
+- [New Analytics Walkthrough](https://docs.connexpay.com/docs/new-analytics-walkthrough.md)
+- [Monthly Invoice Detail and Definitions](https://docs.connexpay.com/docs/monthly-invoice-detail-and-definitions.md): An emailed report of your monthly invoice that is sent out around the 10th of each month and contains transactions from the previous month. Note: Monthly invoice reports come from this email address analyticssmtp@connexpay.com
+- [CMS System and Chargeback Best Practices](https://docs.connexpay.com/docs/cms-chargeback-management-system.md): Connexpay’s comprehensive solution to respond to chargeback disputes raised against the merchant.
+- [CMS API](https://docs.connexpay.com/docs/cms-api.md): The CMS API is used to pull Chargeback case data from ConnexPay’s CMS (Chargeback Management System).
+- [Chargeback / Dispute Rules](https://docs.connexpay.com/docs/chargeback-dispute-rules-and-best-practices.md)
+- [Getting Started with  Webhooks](https://docs.connexpay.com/docs/getting-started-with-webhooks.md)
+- [Webhook Events](https://docs.connexpay.com/docs/webhook-events.md)
+- [Webhook Samples for Purchase Card Events](https://docs.connexpay.com/docs/webhook-samples-for-purchase-card-events.md)
+- [Webhook Samples for Push to Card](https://docs.connexpay.com/docs/webhook-samples-for-push-to-card-payouts.md)
+- [Webhook Samples for Sales Events](https://docs.connexpay.com/docs/webhook-samples-for-sales-events.md)
+
+## API Reference
+- [Create Sale](https://docs.connexpay.com/reference/getting-started-with-your-api.md): The Create Sale Endpoint is used by acquiring clients. The Sale transaction is used to create a sale for your consumer. You can create a credit sale or an ACH sale (ACH sales apply to US Clients only). A credit sale will charge a consumer's credit card. The consumer's credit card will be authorized immediately when the Sales request is received and will automatically settle/batch that same night. In other words, this one Sale request is just like running an AuthOnly and a Capture in one request.You can postpone charging the consumer's credit card by providing a date in the 'ActivationDate' of your request. Doing so will delay the authorization and charge to the consumer's credit card until that future date.An ACH sale will create an ACH transaction that will debit the consumer's bank account. ACH sales received prior to 3:00 PM EST will process overnight. ACH Sales received after 3:00 PM EST will process the following night.
+- [Void](https://docs.connexpay.com/reference/void.md): This endpoint creates a void.
+- [Return](https://docs.connexpay.com/reference/return.md)
+- [Cancel](https://docs.connexpay.com/reference/cancel.md): The Cancel route should be used in the event the entire trip/booking (sale & purchase) require cancellation. In this case, the traveler/cardholder would be due a refund from the sale and the Virtual Card would be terminated to prevent the travel supplier from authorizing the Virtual Card.
+- [Auth Only](https://docs.connexpay.com/reference/auth-only.md): The Auth Only Endpoint is applicable to acquiring clients.  Call Auth Only when you want to process an Authorization only, which will not settle until it's Captured.  We do not allow you to Capture an Authorization after 5 business days have passed.Calling this endpoint will authorize the card, however, it will not be settled until the [Capture endpoint](https://docs.connexpay.com/reference/capture) is called. Authorizations expire after 5 days.
+- [Capture](https://docs.connexpay.com/reference/capture.md): Call this endpoint to Capture an Authorization so that it settles
+- [3DS Authentication](https://docs.connexpay.com/reference/3ds-authentication.md): This endpoint can be used for obtaining 3D Secure Authentication separate from the Create Sale or Auth-Only calls.  This is recommended for our US and CA clients.
+- [Get 3DS Status Group](https://docs.connexpay.com/reference/get-3ds-status-group.md): This endpoint returns the 3D Secure status of an authentication when a device fingerprint and/or cardholder challenge are required for 3D Secure Authentication.
+- [Update Delayed Sale](https://docs.connexpay.com/reference/update-delayed-sale.md): Updates the sale amount or activation date on a delayed activation sale.
+- [HPP (Hosted Payment Page)](https://docs.connexpay.com/reference/hosted-pay-page.md)
+- [HPP Token Request](https://docs.connexpay.com/reference/hpp-token-request.md)
+- [Decline Codes - Sales](https://docs.connexpay.com/reference/decline-codes.md): Decline Codes for US, EU, and CAD clients are separated into three tables within this page. The identified codes are API sales authorization responses that exclude any risk-related declines that may be configured with Equifax or your risk provider.
+- [Client Self-Service Funding](https://docs.connexpay.com/reference/merchantselfservicefunding.md): Use this endpoint to fund or withdraw your merchant cash balance with your merchant bank account.
+- [Client Funds Transfer](https://docs.connexpay.com/reference/client-funds-transfer.md): Use this endpoint to transfer funds between your merchant cash balances within the same Corporate entity.
+- [Create Checkout Session](https://docs.connexpay.com/reference/createcheckoutsession.md): Creates a new secure checkout session for payment processing.  The session contains all payment details for a transaction and expires after 60 minutes for security. Returns a checkout session ID that can be used with the ConnexPay SDK for frontend payment processing.  ## Key Features - Secure session management with 60-minute expiration - Support for multiple tender types (Credit, ACH, GooglePay, ApplePay) - Comprehensive customer and transaction data support - Device authorization validation - Risk analysis and fraud prevention integration  ## Usage Flow 1. Create checkout session on your backend 2. Pass the returned `checkoutSessionId` to your frontend 3. Use the session ID with ConnexPay SDK to render payment form 4. Process payments through the SDK using the session
+- [Issuing Token](https://docs.connexpay.com/reference/issuing-token.md): API requests require a combination of assigned user name, password, and successfully generated authentication token. The received token is valid for 24 hours from issuance and may be used for all requests during its lifespan.
+- [Issue Card](https://docs.connexpay.com/reference/issuecard.md): Use this endpoint to issue virtual cards associated with a credit or ACH sale. Do not use this endpoint if you fund your virtual cards from cash and therefore don't have an associated sale. If you aren't sure which Issuance API to use, please contact your client support representative.
+- [Issue Lite](https://docs.connexpay.com/reference/issuelite.md): For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative.
+- [Issue Lodged Card](https://docs.connexpay.com/reference/issue-lodged-card.md): Use this endpoint to create a Lodged Card
+- [Update Card](https://docs.connexpay.com/reference/updatecard.md)
+- [Update Lodged Card](https://docs.connexpay.com/reference/update-lodged-card.md)
+- [Resend Transmission](https://docs.connexpay.com/reference/resendtransmission.md): This endpoint resends payment information to recipient. Or returns a URL you can use within your application to direct a user to a visual representation of the virtual card.
+- [Update Virtual Card with Delayed Activation](https://docs.connexpay.com/reference/update-delayed-card.md): Request this endpoint to update the activation date or card limit of a virtual card with a future activation date.
+- [Card Booking](https://docs.connexpay.com/reference/card-booking.md): Use the Card Booking endpoint to send booking details for existing virtual cards that were issued without them. This supports workflows where a travel management company issues the card before the booking details are finalized. Booking details cannot be updated once successfully submitted. The Sertifi platform is used to automate the hotel booking authorization through this request. Contact your ConnexPay representative before use as fees will be applied and configuration is required.
+- [Currency and Region Codes](https://docs.connexpay.com/reference/currency-and-region-codes.md): Valid currency and region codes to use with the currencyCode and region fields in Issue Card & Issue Lite endpoints.
+- [Create User Defined Parameter](https://docs.connexpay.com/reference/create-user-defined-parameter.md): Use this endpoint to create User Defined Parameters to associate with your PayOuts.
+- [Update User Defined Parameter](https://docs.connexpay.com/reference/update-user-defined-parameter.md): Use this endpoint to update a previously created User Defined Parameter. Only the name and maximum length may be updated.
+- [Delete User Defined Parameter](https://docs.connexpay.com/reference/delete-user-defined-parameter.md): Use this endpoint to delete a created User Defined Parameters. Once a User Defined Parameter has been used with a PayOut or EmailTemplate, it may not be deleted.
+- [Stop Payment Service](https://docs.connexpay.com/reference/stoppaymentservice.md): Adds a card to the black list. Need to provide the card guid and other mandatory fields applicable for VISA or MasterCard.
+- [Create merchant payor](https://docs.connexpay.com/reference/merchantpayor_createpayor.md): Create a payor for a merchant. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/issuing-token.
+- [Get Merchant Payor](https://docs.connexpay.com/reference/merchantpayor_getpayor.md): Get a merchant payor by guid.  For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/issuing-token.
+- [Update Merchant Payor](https://docs.connexpay.com/reference/merchantpayor_updatepayor.md): Update a merchant payor by guid. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/issuing-token.
+- [Delete Merchant Payor](https://docs.connexpay.com/reference/merchantpayor_deletepayor.md): Delete a merchant payor by guid. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/issuing-token.
+- [Decline Codes - Purchases](https://docs.connexpay.com/reference/decline-codes-purchases.md): Decline Codes for Purchase Card Authorizations
+- [Issue ACH](https://docs.connexpay.com/reference/issue-ach.md): This endpoint creates an ACH Credit payment. May be used by USD merchant accounts only.
+- [Issue ACH Lite](https://docs.connexpay.com/reference/issue-ach-lite.md): This endpoint creates an ACH Credit payment that does not have an associated sale. This allows ConnexPay Lite clients to submit the issue payment call only. May be used by USD merchant accounts only.
+- [Search Settlements](https://docs.connexpay.com/reference/search-settlements.md): This endpoint searches for Virtual Card Settlements.
+- [Available Funds](https://docs.connexpay.com/reference/available-funds.md): Use this endpoint to pull details regarding your Available Funds like cash balance, Available to Authorize (ATA) or Available to Issue (ATI), and the details that make up the final number.
+- [Purchase Event History (Replay Webhooks)](https://docs.connexpay.com/reference/purchase-event-history.md): Call this endpoint to receive VCC, Lodged Card, Physical Card or ACH purchase events either by unique Guid or for a specified date range. If you subscribe to webhooks and are concerned you may be missing events, this endpoint can retrieve past events.
+- [Submit a Payment Instruction](https://docs.connexpay.com/reference/createpaymentinstruction.md): Used to create a new payment instruction. The request must include all required fields such as clientId, clientPaymentId, payee details, payment amount, and currency code. Optional fields like paymentDueDate and user-defined fields may also be included.
+- [Get Funding Status](https://docs.connexpay.com/reference/getfundingstatus.md): This endpoint retrieves the funding status updates for a payment request identified by the client ID and client payment ID.
+- [Get Payment Status](https://docs.connexpay.com/reference/getpaymentstatus.md): This endpoint retrieves the payment status updates for a payment request identified by the client ID and client payment ID.
+- [Void a Payment Instruction](https://docs.connexpay.com/reference/voidpaymentinstruction.md): This endpoint voids a payment instruction identified by the client ID and client payment ID.
+- [Sales Chargebacks](https://docs.connexpay.com/reference/sales-chargebacks-1.md)
+- [Reporting Token](https://docs.connexpay.com/reference/reporting-token.md): Reporting API requests require a combination of assigned Bridge user name, Bridge password, and a successfully generated authentication token. The Bridge credentials used are assigned separately from the Purchase and Sales API credentials. The received token for Reporting is valid for 60 minutes from issuance and may be used for all requests during its lifespan. Note: This endpoint is only valid in the Production environment.
+- [Get UATP Transactions](https://docs.connexpay.com/reference/uatptransactions.md): Either postDateFrom and postDateTo OR settledDateFrom and settledDateTo must be provided. (Note: Records will only be returned by the postDateFrom/To range if the transaction has settled.) For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+- [Get Available Credit Report](https://docs.connexpay.com/reference/availablecreditreport.md)
+- [Get Enhanced (Level 2 and Level 3) Travel Data](https://docs.connexpay.com/reference/getextendeddata.md): Retrieves enhanced data for travel-related transactions. This includes airline and hotel details, such as passenger names, flight numbers, hotel charges, etc. The data is paginated and can be filtered by various parameters. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+
+## Changelog
+- [July 22, 2026 - v 8.15.00](https://docs.connexpay.com/changelog/july-22-2026-v-81500.md)
+- [July 8, 2026 - v 8.14.00](https://docs.connexpay.com/changelog/july-8-2026-v-81400.md)
+- [July 1, 2026 - v 8.13.00](https://docs.connexpay.com/changelog/july-1-2026-v-81300.md)
+- [June 23, 2026 - v 8.13.00](https://docs.connexpay.com/changelog/june-23-2026-v-81300.md)
+- [June 3, 2026 - v 8.11.00](https://docs.connexpay.com/changelog/june-3-2026-v-81100.md)
+- [May 13, 2026 - v 8.10.00](https://docs.connexpay.com/changelog/may-13-2026-v-81000.md)
+- [April 29, 2026 - v 8.09.00](https://docs.connexpay.com/changelog/april-29-2026-v-80900.md)
+- [April 15, 2026 - v 8.08.00](https://docs.connexpay.com/changelog/april-15-2026-v-80800.md)
+- [April 1, 2026 - v 8.07.00](https://docs.connexpay.com/changelog/april-1-2026-v-80700.md)
+- [March 18, 2026 - v 8.06.00](https://docs.connexpay.com/changelog/march-18-2026-v-80600.md)

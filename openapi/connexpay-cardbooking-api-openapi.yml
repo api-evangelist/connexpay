@@ -1,0 +1,252 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Card Booking API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: CardBooking
+paths:
+  /api/v1/CardBooking:
+    post:
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Created:
+                  summary: Created
+                  value: '{
+
+                    "Success": true,
+
+                    "Message": "Booking created successfully and is pending on card validation.",
+
+                    "BookingGuid": "new-booking-guid",
+
+                    "CardGuid": "original-card-guid",
+
+                    "BookingStatus": "PendingCardValidation",
+
+                    "CreatedAt": "2026-02-19T10:30:00Z",
+
+                    "ProcessorRefNumber": "SERT-REF-12345",
+
+                    "HotelInfo": {
+
+                    "GDSCode": "HTL001",
+
+                    "PropertyAddress": "456 Hotel Avenue, New York, NY 10002, USA",
+
+                    "IsVerified": true,
+
+                    "VerifiedTimestamp": "2026-02-19T10:35:00Z",
+
+                    "PropertyName": "Grand Plaza Hotel"
+
+                    }'
+          description: Created
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Unauthorized:
+                  summary: Unauthorized
+                  value: '{}'
+          description: Unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Unprocessable Entity:
+                  summary: Unprocessable Entity
+                  value: '{}'
+          description: Unprocessable Entity
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                Internal Server Error:
+                  summary: Internal Server Error
+                  value: '{}'
+          description: Internal Server Error
+      parameters:
+      - in: header
+        name: Content-Type
+        schema:
+          type: string
+          default: application/json
+        description: '"application/json"'
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+          default: Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+      summary: Card Booking
+      description: Use the Card Booking endpoint to send booking details for existing virtual cards that were issued without them. This supports workflows where a travel management company issues the card before the booking details are finalized. Booking details cannot be updated once successfully submitted. The Sertifi platform is used to automate the hotel booking authorization through this request. Contact your ConnexPay representative before use as fees will be applied and configuration is required.
+      operationId: post_api-v1-cardbooking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                CardGuid:
+                  type: string
+                  description: Global Unique Identifier for the Virtual Card.
+                Booking Detail:
+                  type: object
+                  properties:
+                    ArrivalDate:
+                      type: string
+                      format: date
+                      description: Guest arrival date in YYYY-MM-DD format.
+                    PaymentInstruction:
+                      type: string
+                      description: Instructions for payment processing. System automatically appends "This is a virtual credit card". Maximum length of 4000 characters.
+                    ReferenceNumber:
+                      type: string
+                      description: Booking reference number for tracking. This should match the booking confirmation number in the hotel’s property management system. Maximum length of 100 characters.
+                    Traveler:
+                      type: object
+                      description: Traveler information.
+                      properties:
+                        FirstName:
+                          type: string
+                          description: Traveler's first name. Maximum length of 100 characters.
+                        LastName:
+                          type: string
+                          description: Traveler's last name. Maximum length of 100 characters.
+                    Company:
+                      type: object
+                      properties:
+                        Name:
+                          type: string
+                          description: Company Name. Maximum length of 200 characters.
+                        Address1:
+                          type: string
+                          description: Primary company address line. Maximum length of 100 characters.
+                        Address2:
+                          type: string
+                          description: Secondary company address line. Maximum length of 100 characters.
+                        City:
+                          type: string
+                          description: Company city. Maximum length of 100 characters.
+                        State:
+                          type: string
+                          description: Company state/province. Maximum length of 50 characters.
+                        Zipcode:
+                          type: string
+                          description: Company postal/ZIP code. Maximum length of 20 characters.
+                        Country:
+                          type: string
+                          description: Company country. Maximum length of 100 characters.
+                      description: Company information for the company paying for the charges.
+                    Contact:
+                      type: object
+                      properties:
+                        PhoneNumber:
+                          type: string
+                          description: The phone number of the company that will be paying for the charges. Maximum of 20 characters.
+                        EmailAddress:
+                          type: string
+                          description: Primary contact email address of the company that will be paying for the charges. Maximum of 255 characters.
+                        InvoiceEmailAddress:
+                          type: string
+                          description: Invoice/billing email address. Maximum of 255 characters.
+                      description: Contact information for the company that will be paying for the charges.
+                      required:
+                      - EmailAddress
+                    Property:
+                      type: object
+                      properties:
+                        GDSCode:
+                          type: string
+                        Address1:
+                          type: string
+                        Address2:
+                          type: string
+                        City:
+                          type: string
+                          description: Property city. Maximum of 100 characters.
+                        State:
+                          type: string
+                          description: Property state/province. Maximum of 50 characters.
+                        Zipcode:
+                          type: string
+                          description: Property postal/ZIP code. Maximum of 20 characters.
+                        Country:
+                          type: string
+                          description: Property country. Maximum of 100 characters.
+                      description: Hotel property information.
+                      required:
+                      - GDSCode
+                  description: When provided, the system will attempt to create a booking authorization with the hotel property using the card details. Contact your ConnexPay representative before use as fees will be applied and configuration is required.
+                  required:
+                  - ArrivalDate
+                  - PaymentInstruction
+                  - ReferenceNumber
+              required:
+              - CardGuid
+              - Booking Detail
+            examples:
+              Card Booking Example:
+                summary: Card Booking Example
+                value:
+                  CardGuid: 12345678-1234-1234-1234-123456789012
+                  BookingDetail:
+                    ArrivalDate: '2025-12-01'
+                    PaymentInstruction: Payment for hotel accommodation - This is a virtual credit card
+                    ReferenceNumber: REF123456789
+                    Traveler:
+                      FirstName: M
+                      LastName: Smith
+                    Company:
+                      Name: Example Corporation
+                      Address1: 123 Main Street
+                      Address2: Suite 100
+                      City: New York
+                      State: NY
+                      Zipcode: '10001'
+                      Country: US
+                    Contact:
+                      PhoneNumber: +1-555-123-4567
+                      EmailAddress: m.smith@example.com
+                      InvoiceEmailAddress: billing@example.com
+                    Property:
+                      GDSCode: HTL001
+                      Address1: 456 Hotel Boulevard
+                      Address2: Floor 1
+                      City: Las Vegas
+                      State: NV
+                      Zipcode: '89101'
+                      Country: US
+      tags:
+      - CardBooking
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

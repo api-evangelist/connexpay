@@ -1,0 +1,45 @@
+generated: '2026-08-09'
+method: generated
+source: Generated from the ten harvested ConnexPay OpenAPI documents plus the docs corpus. Every operationId referenced was verified present in the spec it names.
+note: ConnexPay publishes no AGENTS.md and no provider-authored skills; these are API Evangelist packaged operating instructions.
+skills:
+- file: connexpay-embedded-checkout.md
+  name: Embed a ConnexPay checkout form without touching card data
+  description: Create a server-side checkout session and render ConnexPay's browser SDK payment form, so credit, ACH, Apple Pay and Google Pay all flow through ConnexPay's iframe and card data never reaches your server.
+  api: openapi/connexpay-checkout-session-openapi.yml, openapi/connexpay-sales-openapi.yml
+  operations:
+  - sales-token
+  - createCheckoutSession
+  - hpp-token-request
+- file: connexpay-push-to-card-payouts.md
+  name: Pay a payee with a push-to-card payout
+  description: Register a payee, create a push-to-card payout, let the payee claim funds to their own card through the payment widget, and cancel or reconcile the payout — using ConnexPay's Push to Card operations.
+  api: openapi/connexpay-push-to-card-openapi.yml
+  operations:
+  - PushToCard_CreatePayee
+  - PushToCard_GetPayee
+  - PushToCard_UpdatePayee
+  - PushToCard_ManagePayee
+  - PushToCard_CreatePayout
+  - PushToCard_GetPayoutDetails
+  - PushToCard_CancelPayments
+  - PushToCard_GetAuthenticationTokenAsync
+  - PushToCard_PushFundsToCardAsync
+- file: connexpay-sale-and-issue-virtual-card.md
+  name: Take a payment and issue a supplier virtual card
+  description: Charge a consumer with the ConnexPay Sales API, then issue a virtual card funded by that exact sale to pay the supplier. This matched pair is ConnexPay's core model — money in funds money out, with no float in between.
+  api: openapi/connexpay-sales-openapi.yml, openapi/connexpay-purchases-openapi.yml
+  operations:
+  - sales-token
+  - issuing-token
+  - getting-started-with-your-api
+  - issuecard
+  - get-issuecard-detail
+  - terminatecard
+- file: connexpay-webhook-eventing.md
+  name: Subscribe to CXP Eventing and reconcile safely
+  description: Stand up a ConnexPay webhook endpoint — pass the ownership handshake, verify deliveries, survive at-least-once duplicates, and recover missed events with the purchase event history replay endpoint.
+  api: openapi/connexpay-purchases-openapi.yml
+  operations:
+  - issuing-token
+  - purchase-event-history

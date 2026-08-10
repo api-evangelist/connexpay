@@ -1,0 +1,5157 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: Purchases API
+paths:
+  /api/v1/Merchants/{merchantGuid}/Payors:
+    post:
+      tags:
+      - MerchantPayor
+      summary: Create merchant payor
+      description: Create a payor for a merchant
+      operationId: MerchantPayor_CreatePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/MerchantPayorDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+        '400':
+          description: Invalid ModelState
+        '403':
+          description: User does not have access to merchant.
+        '409':
+          description: A payor with this payorID already exists
+  /api/v1/Merchants/{merchantGuid}/Payors/{payorGuid}:
+    get:
+      tags:
+      - MerchantPayor
+      summary: Get Merchant Payor
+      description: Get a merchant payor by guid.
+      operationId: MerchantPayor_GetPayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be retrieved.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/MerchantPayorResponse'
+        '204':
+          description: No MerchantPayor found
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+    put:
+      tags:
+      - MerchantPayor
+      summary: Update Merchant Payor
+      description: Update a merchant payor by guid.
+      operationId: MerchantPayor_UpdatePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be updated.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '#/components/requestBodies/MerchantPayorDto'
+      responses:
+        '204':
+          description: NoContent
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+        '409':
+          description: A payor with this payorID already exists
+    delete:
+      tags:
+      - MerchantPayor
+      summary: Delete Merchant Payor
+      description: Delete a merchant payor by guid.
+      operationId: MerchantPayor_DeletePayor
+      parameters:
+      - name: merchantGuid
+        in: path
+        description: The client identifier assigned by ConnexPay.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: payorGuid
+        in: path
+        description: The guid of the merchant payor to be deleted.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Merchant Found
+        '400':
+          description: Bad request
+        '403':
+          description: User does not have access to merchant.
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+components:
+  requestBodies:
+    MerchantPayorDto:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+      required: true
+  schemas:
+    MccGroupDto:
+      required:
+      - name
+      - mccArray
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          type: string
+        mccArray:
+          type: string
+        holdIncreaseType:
+          type: string
+        holdIncreaseValue:
+          format: double
+          type: number
+        holdExpirationDays:
+          format: int32
+          type: integer
+        purchaseType:
+          type: string
+        status:
+          type: string
+        isGlobal:
+          type: boolean
+    MerchantPayeeDto:
+      required:
+      - isBusiness
+      - payeeId
+      - preferredPayoutMethod
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        isBusiness:
+          type: boolean
+        firstName:
+          maxLength: 100
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+        lastName:
+          maxLength: 100
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+        dbaName:
+          maxLength: 200
+          minLength: 0
+          type: string
+        payeeId:
+          maxLength: 100
+          minLength: 0
+          pattern: ^[a-zA-Z0-9\s!@#$%^&*(),.?":{}|<>]*$
+          type: string
+        taxId:
+          maxLength: 50
+          minLength: 0
+          pattern: '^[A-Za-z0-9-]+(?: +[A-Za-z0-9-]+)*$'
+          type: string
+        customerId:
+          maxLength: 100
+          minLength: 0
+          type: string
+        email:
+          pattern: ^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$
+          type: string
+        address1:
+          maxLength: 150
+          minLength: 0
+          type: string
+        address2:
+          type: string
+        city:
+          maxLength: 50
+          minLength: 0
+          type: string
+        state:
+          maxLength: 3
+          minLength: 0
+          type: string
+        zip:
+          maxLength: 10
+          minLength: 0
+          type: string
+        country:
+          pattern: ^[0-9a-zA-Z ]{2,40}$
+          type: string
+        preferredPayoutMethod:
+          type: string
+        preferredCardBrand:
+          type: string
+        preferredCardClass:
+          type: string
+        purchaseType:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timestamp:
+          format: date-time
+          type: string
+        bankAccountNumber:
+          type: string
+        bankRoutingNumber:
+          type: string
+        bankAccountType:
+          type: string
+        confirmBankAccountNumber:
+          type: string
+        confirmBankRoutingNumber:
+          type: string
+        taxIdLastFour:
+          type: string
+        bankAccountNumberLastFour:
+          type: string
+        bankRoutingNumberLastFour:
+          type: string
+        confirmBankAccountNumberLastFour:
+          type: string
+        confirmBankRoutingNumberLastFour:
+          type: string
+      example:
+        idMerchant: 0
+        isBusiness: false
+        firstName: John
+        lastName: Doe
+        dbaName: ''
+        payeeId: payeeID01
+        taxId: 12-3456789
+        customerId: customerID01
+        email: test@test.com
+        address1: 123 Main St
+        address2: ''
+        city: Anytown
+        zip: '12345'
+        country: US
+        preferredPayoutMethod: VCC
+        preferredCardBrand: Visa
+        preferredCardClass: CreditCommercial
+        purchaseType: '01'
+        guid: 00000000-0000-0000-0000-000000000000
+        timestamp: '0001-01-01T00:00:00'
+    SearchMerchantPayeeDto:
+      type: object
+      properties:
+        searchTerm:
+          type: string
+      example:
+        searchTerm: payeeID01
+    MerchantPayeePaginatedResponse:
+      type: object
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        totalPageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        currentPage:
+          format: int32
+          type: integer
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPayeeDto'
+    MerchantPayor:
+      type: object
+      properties:
+        idMerchantPayor:
+          format: int32
+          type: integer
+        payorName:
+          type: string
+        payorId:
+          type: string
+        idMerchant:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        accountName:
+          type: string
+        accountType:
+          type: string
+        encryptedAccountNumber:
+          type: string
+        encryptedRoutingNumber:
+          type: string
+        idEncryptionKey:
+          format: int32
+          type: integer
+        accountNumberLastFour:
+          type: string
+        routingNumberLastFour:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        isDeleted:
+          type: boolean
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        extensionRoutingNumber:
+          type: string
+        extensionAccountNumber:
+          type: string
+    Merchant:
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        mid:
+          type: string
+        dba:
+          type: string
+        legalName:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        createdBy:
+          format: int32
+          type: integer
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        zipcode:
+          type: string
+        idState:
+          format: int32
+          type: integer
+        phone:
+          type: string
+        email:
+          type: string
+        gatewayDeviceGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idMerchantBrandRouting:
+          format: int32
+          type: integer
+        profitabilityThreshold:
+          format: double
+          type: number
+        marginDelay:
+          format: int32
+          type: integer
+        gatewayMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        visasIssuedCount:
+          format: int32
+          type: integer
+        masterCardsIssuedCount:
+          format: int32
+          type: integer
+        country:
+          type: string
+        allowSetCardBrandAndClass:
+          type: boolean
+        alias:
+          type: string
+        toleranceAllowed:
+          format: int32
+          type: integer
+        maxVcReloadPercentage:
+          format: int32
+          type: integer
+        dailyInternalAlertThreshold:
+          format: int32
+          type: integer
+        dailyMaxReloadAmount:
+          format: int32
+          type: integer
+        allowSetVCbrandClassBySupplierAndClient:
+          type: boolean
+        idTsysStatus:
+          format: int32
+          type: integer
+        usePreferredBins:
+          type: boolean
+        acquiringOnly:
+          type: boolean
+        issuingOnly:
+          type: boolean
+        fundOnSettlement:
+          type: boolean
+        merchantNumber:
+          type: string
+        stateName:
+          type: string
+        achProcessorMerchantID:
+          format: int32
+          type: integer
+        customerSupportNumber:
+          type: string
+        merchantCompanyLogo:
+          format: byte
+          type: string
+        isFlexMerchant:
+          type: boolean
+        availableToIssuePlus:
+          format: double
+          type: number
+        atiNotificationEmail:
+          type: string
+        atiThreshold:
+          format: int32
+          type: integer
+        webhookEnabledMerchants:
+          type: boolean
+        isParentMerchant:
+          type: boolean
+        isSubMerchant:
+          type: boolean
+        parentMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        atiEmailDate:
+          format: date-time
+          type: string
+        isATAEnabled:
+          type: boolean
+        availableToAuthorizePlus:
+          format: double
+          type: number
+        ataNotificationEmail:
+          type: string
+        isPurchaseACHSameDay:
+          type: boolean
+        currency:
+          type: string
+        idCorporateCountryCode:
+          format: int32
+          type: integer
+        achPayment:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+        cardHolder:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardHolder'
+        incomingTransactionCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingTransactionCode'
+        merchantBankRouting:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantBankRouting'
+        merchantBrandRouting:
+          $ref: '#/components/schemas/MerchantBrandRouting'
+        merchantInvoiceRebateRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceRebateRange'
+        merchantInvoiceSetting:
+          $ref: '#/components/schemas/MerchantInvoiceSetting'
+        merchantIssuingBank:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantIssuingBank'
+        merchantPhysicalCardSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPhysicalCardSettings'
+        merchantNotificationSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantNotificationSetting'
+        merchantPurchaseTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPurchaseTypes'
+        merchantSupplierSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantSupplierSettings'
+        merchantPayee:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPayee'
+        merchantPayor:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPayor'
+        profitabilityThreshold1:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitabilityThreshold'
+        transactionEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEvent'
+        merchantInvoiceFeeRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceFeeRange'
+        lU_State:
+          $ref: '#/components/schemas/LU_State'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        lU_TrisourceStatus:
+          $ref: '#/components/schemas/LU_TrisourceStatus'
+        merchantAdmin:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantAdmin'
+        merchantInvoiceFees:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceFee'
+        iprMerchantSpread:
+          $ref: '#/components/schemas/IprMerchantSpread'
+        uatpAccountPayments:
+          type: array
+          items:
+            $ref: '#/components/schemas/UATPAccountPayment'
+        extensionNewStatus:
+          type: string
+        nullableAllowSetCardBrandAndClass:
+          type: boolean
+        nullableAllowSetVCbrandClassBySupplierAndClient:
+          type: boolean
+        nullableUsePreferredBins:
+          type: boolean
+        nullableMaxVcReloadPercentage:
+          format: int32
+          type: integer
+        issuingBanksChanged:
+          type: boolean
+        isATIEnabled:
+          type: boolean
+    ACHPayment:
+      required:
+      - payeeName
+      type: object
+      properties:
+        idACHPayment:
+          format: int64
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        paymentReferenceId:
+          type: string
+        idMerchant:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        idAccountHolder:
+          format: int64
+          type: integer
+        amount:
+          format: double
+          type: number
+        isCredit:
+          type: boolean
+        payeeName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        achProcessorWebhookId:
+          maxLength: 50
+          minLength: 0
+          type: string
+        receiptDate:
+          format: date-time
+          type: string
+        scheduleDate:
+          format: date-time
+          type: string
+        processingDate:
+          format: date-time
+          type: string
+        idBankAccount:
+          format: int64
+          type: integer
+        associationId:
+          maxLength: 100
+          minLength: 0
+          type: string
+        sequenceNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+        errorMessage:
+          maxLength: 500
+          minLength: 0
+          type: string
+        isFailed:
+          type: boolean
+        createdBy:
+          format: int32
+          type: integer
+        errorCode:
+          maxLength: 20
+          minLength: 0
+          type: string
+        accountHolder:
+          $ref: '#/components/schemas/AccountHolder'
+        bankAccount:
+          $ref: '#/components/schemas/BankAccount'
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        achPaymentCancelDeclined:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentCancelDeclined'
+        achPaymentLabel:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentLabel'
+        achPaymentStatusLog:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentStatusLog'
+        settlement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        achPaymentMetaData:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentMetaData'
+    CardHolder:
+      type: object
+      properties:
+        idCardHolder:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        createdBy:
+          format: int32
+          type: integer
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        zipcode:
+          type: string
+        idState:
+          format: int32
+          type: integer
+        dateOfBirth:
+          format: date-time
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        country:
+          type: string
+        idIssuer:
+          format: int32
+          type: integer
+        issuerCardHolderId:
+          type: string
+        state:
+          type: string
+        lU_Issuer:
+          $ref: '#/components/schemas/LU_Issuer'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        settlement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        transactionEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEvent'
+        extensionMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionAddressCode:
+          type: string
+        extensionPhoneNoCode:
+          type: string
+        extensionCustomerId:
+          type: string
+        extensionCountryCodeAlpha3:
+          type: string
+        extensionCurrencyCode:
+          type: string
+    IncomingTransactionCode:
+      type: object
+      properties:
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        incomingTransactionCodeValue:
+          type: string
+        idStatus:
+          format: int32
+          type: integer
+        modifiedDateTime:
+          format: date-time
+          type: string
+        cardAddendum:
+          type: string
+        expectedOutcomingPayments:
+          format: int32
+          type: integer
+        amount:
+          format: double
+          type: number
+        transactionReceipt:
+          type: string
+        cardType:
+          type: string
+        cardFirstFour:
+          type: string
+        cardLastFour:
+          type: string
+        cardHolder:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        gatewayGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        gatewayVoidGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        voidReceipt:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        idCustomer:
+          format: int32
+          type: integer
+        closeDate:
+          format: date-time
+          type: string
+        idProfitabilityThreshold:
+          format: int32
+          type: integer
+        gatewayRefundGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        refundReceipt:
+          type: string
+        saleSettled:
+          type: boolean
+        isReleased:
+          type: boolean
+        orderNumber:
+          type: string
+        customerID:
+          type: string
+        gatewayReturnGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        dirty:
+          type: boolean
+        voidAmount:
+          format: double
+          type: number
+        activationDate:
+          format: date-time
+          type: string
+        activated:
+          type: boolean
+        isFromIssueLite:
+          type: boolean
+        achPayment:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+        achPaymentCancelDeclined:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentCancelDeclined'
+        balanceControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceControl'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        incomingTransactionCodeReturned:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingTransactionCodeReturned'
+        profitabilityThreshold:
+          $ref: '#/components/schemas/ProfitabilityThreshold'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        itcCustomParam:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItcCustomParam'
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        extensionMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionCustomerGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionCustomer:
+          $ref: '#/components/schemas/Customer'
+        extensionProfitabilityThreshold:
+          $ref: '#/components/schemas/ProfitabilityThreshold'
+        openAmount:
+          format: double
+          type: number
+        openTransactions:
+          format: int32
+          type: integer
+        extensionTermPurchasesOnly:
+          type: boolean
+    MerchantBankRouting:
+      type: object
+      properties:
+        idMerchantBankRouting:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        metaIssuingPercent:
+          format: double
+          type: number
+        suttonIssuedCardCount:
+          format: int32
+          type: integer
+        metaIssuedCardCount:
+          format: int32
+          type: integer
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    MerchantBrandRouting:
+      type: object
+      properties:
+        idMerchantBrandRouting:
+          format: int32
+          type: integer
+        visa:
+          format: double
+          type: number
+        mastercard:
+          format: double
+          type: number
+        timeStamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
+    MerchantInvoiceRebateRange:
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        idInvoiceRebate:
+          format: int32
+          type: integer
+        lowRange:
+          format: double
+          type: number
+        highRange:
+          format: double
+          type: number
+        rebatePercent:
+          format: double
+          type: number
+        nonStandardKeep:
+          format: double
+          type: number
+        clientShare:
+          format: double
+          type: number
+        nonStandardGiveRebatePercent:
+          format: double
+          type: number
+        exclusivesFloorPercent:
+          format: double
+          type: number
+        idMerchantInvoiceRebateRange:
+          format: int32
+          type: integer
+        lU_InvoiceRebate:
+          $ref: '#/components/schemas/LU_InvoiceRebate'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        revenueShare:
+          format: double
+          type: number
+    MerchantInvoiceSetting:
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        idInvoiceRebateModel:
+          format: int32
+          type: integer
+        isGlobalTravelVCCRebateEnabled:
+          type: boolean
+        keepPurchasePerItemFee:
+          format: double
+          type: number
+        keepReturnRebatePercent:
+          format: double
+          type: number
+        nonStandardRebatePercent:
+          format: double
+          type: number
+        exclusiveFees:
+          format: double
+          type: number
+        isOverrideRebateRateEnabled:
+          type: boolean
+        overrideRebatePercent:
+          format: double
+          type: number
+        isPerPhysicalCardFeeWaived:
+          type: boolean
+        perPhysicalCardFee:
+          format: double
+          type: number
+        monthlyPhysicalCardFee:
+          format: double
+          type: number
+        isPerChargebackFeeWaived:
+          type: boolean
+        perChargebackFee:
+          format: double
+          type: number
+        monthlyChargebackFee:
+          format: double
+          type: number
+        idInvoiceRebateWindow:
+          format: int32
+          type: integer
+        isMerchantChainingEnabled:
+          type: boolean
+        idRebateTier:
+          format: int32
+          type: integer
+        isInvoiceRollupEnabled:
+          type: boolean
+        parentMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isNoRebateForVisaPrePaidReturns:
+          type: boolean
+        isDirectReturnInterchangePassThru:
+          type: boolean
+        isPurchaseRebateLossProtection:
+          type: boolean
+        lU_RebateTier:
+          $ref: '#/components/schemas/LU_RebateTier'
+        lU_InvoiceRebateModel:
+          $ref: '#/components/schemas/LU_InvoiceRebateModel'
+        lU_InvoiceRebateWindow:
+          $ref: '#/components/schemas/LU_InvoiceRebateWindow'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        returnFee:
+          format: double
+          type: number
+        connexPayMinimumKeep:
+          format: double
+          type: number
+        merchantNumberList:
+          type: array
+          items:
+            type: string
+        merchantGatewayGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    MerchantIssuingBank:
+      type: object
+      properties:
+        idMerchantIssuingBank:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        idIssuingBank:
+          format: int32
+          type: integer
+        issuingPercent:
+          format: double
+          type: number
+        issuedCardCount:
+          format: int32
+          type: integer
+        defaultGlobalVccIssuingBank:
+          type: boolean
+        lU_IssuingBank:
+          $ref: '#/components/schemas/LU_IssuingBank'
+        lU_Bank:
+          $ref: '#/components/schemas/LU_Bank'
+        calculatedPercentage:
+          format: double
+          type: number
+        applicablePercentage:
+          format: double
+          type: number
+    MerchantPhysicalCardSettings:
+      type: object
+      properties:
+        idMerchantPhysicalCardSettings:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        address1:
+          maxLength: 255
+          minLength: 0
+          type: string
+        address2:
+          maxLength: 255
+          minLength: 0
+          type: string
+        city:
+          maxLength: 50
+          minLength: 0
+          type: string
+        zipcode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        idState:
+          format: int32
+          type: integer
+        country:
+          maxLength: 40
+          minLength: 0
+          type: string
+        phone:
+          maxLength: 20
+          minLength: 0
+          type: string
+        templateID:
+          maxLength: 50
+          minLength: 0
+          type: string
+        logoFileName:
+          maxLength: 1024
+          minLength: 0
+          type: string
+        logoThumbNailFileName:
+          maxLength: 1024
+          minLength: 0
+          type: string
+        messageFileName:
+          maxLength: 1024
+          minLength: 0
+          type: string
+        messageLine:
+          maxLength: 60
+          minLength: 0
+          type: string
+        lU_State:
+          $ref: '#/components/schemas/LU_State'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        extensionState:
+          type: string
+    MerchantNotificationSetting:
+      type: object
+      properties:
+        idMerchantNotificationSettings:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        ataPercentNotificationEmail:
+          type: string
+        ataAmountNotificationEmail:
+          type: string
+        ataPercentNotificationThreshold:
+          format: double
+          type: number
+        ataAmountNotificationThreshold:
+          format: double
+          type: number
+        lastPercentNotificationSent:
+          format: date-time
+          type: string
+        lastAmountNotificationSent:
+          format: date-time
+          type: string
+        atiAmountNotificationThreshold:
+          format: double
+          type: number
+        atiAmountNotificationEmail:
+          type: string
+        lastATIAmountNotificationEmailSent:
+          format: date-time
+          type: string
+        achRejectsNotificationEmail:
+          type: string
+        vccAmountLimitThreshold:
+          format: double
+          type: number
+        vccAmountLimitNotificationEmail:
+          type: string
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    MerchantPurchaseTypes:
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        idMccGroup:
+          format: int32
+          type: integer
+        timestamp:
+          format: date-time
+          type: string
+        idUser:
+          format: int32
+          type: integer
+        isDefault:
+          type: boolean
+        mccGroup:
+          $ref: '#/components/schemas/MccGroup'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    MerchantSupplierSettings:
+      required:
+      - supplierName
+      type: object
+      properties:
+        idMerchantSupplierSettings:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        supplierName:
+          maxLength: 200
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        modByIdUser:
+          format: int32
+          type: integer
+        idAccountHolder:
+          format: int64
+          type: integer
+        accountHolder:
+          $ref: '#/components/schemas/AccountHolder'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        user:
+          $ref: '#/components/schemas/User'
+    MerchantPayee:
+      type: object
+      properties:
+        idMerchantPayee:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idMerchant:
+          format: int32
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dbaName:
+          type: string
+        payeeId:
+          type: string
+        taxId:
+          type: string
+        taxIdLastFour:
+          type: string
+        customerId:
+          type: string
+        email:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        preferredCardBrand:
+          format: int32
+          type: integer
+        preferredCardClass:
+          format: int32
+          type: integer
+        preferredPayoutMethod:
+          type: string
+        purchaseType:
+          type: string
+        idState:
+          format: int32
+          type: integer
+        stateName:
+          type: string
+        isBusiness:
+          type: boolean
+        isDeleted:
+          type: boolean
+        timestamp:
+          format: date-time
+          type: string
+        bankAccountNumber:
+          type: string
+        bankRoutingNumber:
+          type: string
+        bankAccountNumberLastFour:
+          type: string
+        bankRoutingNumberLastFour:
+          type: string
+        bankAccountType:
+          type: string
+        idAccountHolder:
+          format: int64
+          type: integer
+        idEncryptionKey:
+          format: int32
+          type: integer
+        accountHolder:
+          $ref: '#/components/schemas/AccountHolder'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    ProfitabilityThreshold:
+      type: object
+      properties:
+        idProfitabilityThreshold:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        sumItc:
+          format: double
+          type: number
+        sumOtc:
+          format: double
+          type: number
+        agreedProfitPercentage:
+          format: double
+          type: number
+        actualProfitPercentage:
+          format: double
+          type: number
+        idReleaseStatus:
+          format: int32
+          type: integer
+        releaseDate:
+          format: date-time
+          type: string
+        idApprovedUser:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        approvalDate:
+          format: date-time
+          type: string
+        rFundingReleasedDate:
+          format: date-time
+          type: string
+        sentToCrm:
+          type: boolean
+        addedToReserveFundingFunction:
+          format: int32
+          type: integer
+        sumPartialVoids:
+          format: double
+          type: number
+        incomingTransactionCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingTransactionCode'
+        user:
+          $ref: '#/components/schemas/User'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        extensionMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionApprovedUserGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    TransactionEvent:
+      type: object
+      properties:
+        idTransactionEvent:
+          format: int32
+          type: integer
+        token:
+          type: string
+        amount:
+          format: double
+          type: number
+        eventType:
+          type: string
+        idEventType:
+          format: int32
+          type: integer
+        cardGuid:
+          type: string
+        idCard:
+          format: int32
+          type: integer
+        cardHolderGuid:
+          type: string
+        idCardHolder:
+          format: int32
+          type: integer
+        streetAddress:
+          type: string
+        zip:
+          type: string
+        state:
+          type: string
+        currencyCode:
+          type: string
+        network:
+          type: string
+        cardAcceptorName:
+          type: string
+        cardAcceptorMid:
+          type: string
+        cardAcceptorNetworkMid:
+          type: string
+        cardAcceptorMcc:
+          type: string
+        cardAcceptorCity:
+          type: string
+        cardAcceptorState:
+          type: string
+        cardAcceptorZip:
+          type: string
+        country:
+          type: string
+        fundingSourceToken:
+          type: string
+        isDefaultAccount:
+          type: boolean
+        ledgerBalance:
+          format: double
+          type: number
+        availableBalance:
+          format: double
+          type: number
+        creditBalance:
+          format: double
+          type: number
+        pendingCredits:
+          format: double
+          type: number
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timestamp:
+          format: date-time
+          type: string
+        virtualCardCountry:
+          type: string
+        visaMerchantName:
+          type: string
+        merchantGuid:
+          type: string
+        parentMerchantGuid:
+          type: string
+        idMerchant:
+          format: int32
+          type: integer
+        visaMerchantMcc:
+          type: string
+        authCode:
+          type: string
+        authMessage:
+          type: string
+        precedingRelatedToken:
+          type: string
+        authorizationCurrencyCode:
+          type: string
+        authorizationAmount:
+          format: double
+          type: number
+        visaNetTransactionId:
+          type: string
+        locSEQ:
+          type: string
+        seq:
+          type: string
+        cardBank:
+          type: string
+        swTerm:
+          type: string
+        originalEventDate:
+          format: date-time
+          type: string
+        approveBy:
+          format: int32
+          type: integer
+        cardHolder:
+          $ref: '#/components/schemas/CardHolder'
+        lU_EventType:
+          $ref: '#/components/schemas/LU_EventType'
+        card:
+          $ref: '#/components/schemas/Card'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        cardAvailableBalance:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardAvailableBalance'
+        transactionEventExtension:
+          $ref: '#/components/schemas/TransactionEventExtension'
+        merchantIdentifier:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantName:
+          type: string
+        cardAcceptorCountry:
+          type: string
+        orderNumber:
+          type: string
+        transactionTime:
+          format: date-time
+          type: string
+        decisionBy:
+          type: string
+        isCxpDirect:
+          type: boolean
+    MerchantInvoiceFeeRange:
+      type: object
+      properties:
+        idMerchantInvoiceFeeRange:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        idInvoiceFee:
+          format: int32
+          type: integer
+        lowRange:
+          format: double
+          type: number
+        highRange:
+          format: double
+          type: number
+        feePercentage:
+          format: double
+          type: number
+        feeAmount:
+          format: double
+          type: number
+        minimumFeeAmount:
+          format: double
+          type: number
+        maximumFeeAmount:
+          format: double
+          type: number
+        lU_InvoiceFee:
+          $ref: '#/components/schemas/LU_InvoiceFee'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    LU_State:
+      required:
+      - shortName
+      - name
+      type: object
+      properties:
+        idState:
+          format: int32
+          type: integer
+        shortName:
+          maxLength: 2
+          minLength: 0
+          type: string
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        accountHolder:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountHolder'
+        merchantPhysicalCardSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPhysicalCardSettings'
+        customer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        customer1:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        merchant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
+    LU_Status:
+      required:
+      - description
+      type: object
+      properties:
+        idStatus:
+          format: int32
+          type: integer
+        description:
+          maxLength: 200
+          minLength: 0
+          type: string
+        allowsActivity:
+          type: boolean
+        information:
+          maxLength: 500
+          minLength: 0
+          type: string
+        category:
+          maxLength: 50
+          minLength: 0
+          type: string
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        achPayment:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+        achPaymentCancelDeclined:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentCancelDeclined'
+        achPaymentStatusLog:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentStatusLog'
+        cardHolder:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardHolder'
+        cardSpendControlAmountLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlAmountLimit'
+        cardSpendControlMerchantLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlMerchantLimit'
+        chargeback:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chargeback'
+        incomingTransactionCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingTransactionCode'
+        mccGroup:
+          type: array
+          items:
+            $ref: '#/components/schemas/MccGroup'
+        profitabilityThreshold:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitabilityThreshold'
+        velocity:
+          type: array
+          items:
+            $ref: '#/components/schemas/Velocity'
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        merchant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
+        settlement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        merchantStatusTransition:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantStatusTransition'
+    LU_TrisourceStatus:
+      required:
+      - description
+      type: object
+      properties:
+        idTrisourceStatus:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        merchant:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
+    MerchantAdmin:
+      type: object
+      properties:
+        idMerchantAdmin:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        idAdmin:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        isBridgeUser:
+          type: boolean
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+        user:
+          $ref: '#/components/schemas/User'
+        extensionMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionAdminGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    MerchantInvoiceFee:
+      type: object
+      properties:
+        idMerchantInvoiceFee:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        idInvoiceFee:
+          format: int32
+          type: integer
+        isSet:
+          type: boolean
+        totalAmount:
+          format: double
+          type: number
+        totalPercentage:
+          format: double
+          type: number
+        effectiveDate:
+          format: date-time
+          type: string
+        apiIntegration:
+          type: boolean
+        netVolume:
+          format: double
+          type: number
+        notes:
+          type: string
+        isRollupEnabled:
+          type: boolean
+        merchantFeeIncentives:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantFeeIncentives'
+        lU_InvoiceFee:
+          $ref: '#/components/schemas/LU_InvoiceFee'
+    IprMerchantSpread:
+      type: object
+      properties:
+        idMerchant:
+          format: int32
+          type: integer
+        spread:
+          format: double
+          type: number
+        active:
+          format: int32
+          type: integer
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    UATPAccountPayment:
+      type: object
+      properties:
+        idUATPAccountPayment:
+          format: int32
+          type: integer
+        idMerchant:
+          format: int32
+          type: integer
+        paymentRequestId:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idCard:
+          format: int32
+          type: integer
+        paymentAmount:
+          format: double
+          type: number
+        referenceNumber:
+          maxLength: 100
+          minLength: 0
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          type: string
+        errorMessage:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        requestedByIdUser:
+          format: int32
+          type: integer
+        connexpayReleasedDate:
+          format: date-time
+          type: string
+        merchantGatewayGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cardEncryptedPan:
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    AccountHolder:
+      type: object
+      properties:
+        idAccountHolder:
+          format: int64
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idMerchant:
+          format: int32
+          type: integer
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        businessName:
+          maxLength: 150
+          minLength: 0
+          type: string
+        address1:
+          maxLength: 50
+          minLength: 0
+          type: string
+        address2:
+          maxLength: 50
+          minLength: 0
+          type: string
+        city:
+          maxLength: 50
+          minLength: 0
+          type: string
+        zipcode:
+          maxLength: 10
+          minLength: 0
+          type: string
+        idState:
+          format: int32
+          type: integer
+        country:
+          maxLength: 40
+          minLength: 0
+          type: string
+        phone:
+          maxLength: 20
+          minLength: 0
+          type: string
+        email:
+          maxLength: 50
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        createdBy:
+          format: int32
+          type: integer
+        processorRefToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        counterpartyName:
+          type: string
+          readOnly: true
+        lU_State:
+          $ref: '#/components/schemas/LU_State'
+        achPayment:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+        merchantSupplierSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantSupplierSettings'
+        bankAccount:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankAccount'
+        extensionStateShortName:
+          type: string
+        hasBankAccount:
+          type: boolean
+          readOnly: true
+        hasBankAccountToken:
+          type: boolean
+          readOnly: true
+    BankAccount:
+      required:
+      - encryptedAccountNumber
+      - encryptedRoutingNumber
+      - accountHolderName
+      - extensionRoutingNumber
+      - extensionAccountNumber
+      type: object
+      properties:
+        idBankAccount:
+          format: int64
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idAccountHolder:
+          format: int64
+          type: integer
+        idAccountType:
+          format: int32
+          type: integer
+        encryptedAccountNumber:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        encryptedRoutingNumber:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        accountHolderName:
+          maxLength: 150
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        idEncryptionKey:
+          format: int32
+          type: integer
+        lastFour:
+          maxLength: 4
+          minLength: 0
+          type: string
+        routingNumberLastFour:
+          maxLength: 4
+          minLength: 0
+          type: string
+        fingerprint:
+          maxLength: 64
+          minLength: 0
+          type: string
+        accountHolder:
+          $ref: '#/components/schemas/AccountHolder'
+        achPayment:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        extensionRoutingNumber:
+          type: string
+        extensionAccountNumber:
+          type: string
+    ACHPaymentCancelDeclined:
+      required:
+      - errorMessage
+      type: object
+      properties:
+        idACHPaymentCancelDeclined:
+          format: int32
+          type: integer
+        idACHPayment:
+          format: int64
+          type: integer
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        cancelRequestedAt:
+          format: date-time
+          type: string
+        cancelRequestedBy:
+          format: int32
+          type: integer
+        errorMessage:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        isDeclinedByProcessor:
+          type: boolean
+        idStatusBeforeCancelRequest:
+          format: int32
+          type: integer
+        achPayment:
+          $ref: '#/components/schemas/ACHPayment'
+        user:
+          $ref: '#/components/schemas/User'
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+    ACHPaymentLabel:
+      type: object
+      properties:
+        idAchPayment:
+          format: int64
+          type: integer
+        idLabel:
+          format: int32
+          type: integer
+        achPayment:
+          $ref: '#/components/schemas/ACHPayment'
+    ACHPaymentStatusLog:
+      type: object
+      properties:
+        idACHPayment:
+          format: int64
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        statusDate:
+          format: date-time
+          type: string
+        payload:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        encryptedNocCorrectedData:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        encryptedNocAccountNum:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        idEncryptionKey:
+          format: int32
+          type: integer
+        extensionNocCode:
+          type: string
+        extensionNocDesc:
+          type: string
+        extensionIncorrectData:
+          type: string
+        extensionCorrectData:
+          type: string
+        achPayment:
+          $ref: '#/components/schemas/ACHPayment'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+    Settlement:
+      type: object
+      properties:
+        idSettlement:
+          format: int32
+          type: integer
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        totalAmount:
+          format: double
+          type: number
+        timeStamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        program:
+          type: string
+        transactionCode:
+          type: string
+        postDate:
+          format: date-time
+          type: string
+        initiatingTransactionToken:
+          type: string
+        referenceTransactionToken:
+          type: string
+        transactionStatus:
+          type: string
+        idCardHolder:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        merchant:
+          type: string
+        network:
+          type: string
+        merchantCategoyCode:
+          type: string
+        currency:
+          type: string
+        purchases:
+          format: double
+          type: number
+        returns:
+          format: double
+          type: number
+        interchange:
+          format: double
+          type: number
+        pinDebitAssocFees:
+          format: double
+          type: number
+        currencyConversionFees:
+          format: double
+          type: number
+        idStatus:
+          format: int32
+          type: integer
+        addedToReserveFundingFunction:
+          format: int32
+          type: integer
+        chargebacks:
+          format: double
+          type: number
+        chargebackToken:
+          format: int64
+          type: integer
+        idACHPayment:
+          format: int64
+          type: integer
+        achPayment:
+          $ref: '#/components/schemas/ACHPayment'
+        cardHolder:
+          $ref: '#/components/schemas/CardHolder'
+        clearingImport:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingImport'
+        clearingImportACH:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingImportACH'
+        clearingRemoved:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingRemoved'
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        extensionCardHolderGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionCardGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    ACHPaymentMetaData:
+      type: object
+      properties:
+        idACHPaymentMetaData:
+          format: int32
+          type: integer
+        idACHPayment:
+          format: int64
+          type: integer
+        idMerchantPayor:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        achPayment:
+          $ref: '#/components/schemas/ACHPayment'
+    LU_Issuer:
+      required:
+      - name
+      type: object
+      properties:
+        idIssuer:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        binControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BinControl'
+        cardHolder:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardHolder'
+        lU_Bank:
+          type: array
+          items:
+            $ref: '#/components/schemas/LU_Bank'
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        velocity:
+          type: array
+          items:
+            $ref: '#/components/schemas/Velocity'
+    Card:
+      type: object
+      properties:
+        idCard:
+          format: int32
+          type: integer
+        idCardHolder:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        nameLine1:
+          type: string
+        nameLine2:
+          type: string
+        modifiedDateTime:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        expirationDate:
+          type: string
+        firstSix:
+          type: string
+        lastFour:
+          type: string
+        binUsed:
+          type: string
+        actualExpirationDate:
+          format: date-time
+          type: string
+        blocked:
+          type: boolean
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        balance:
+          format: double
+          type: number
+        residualAmount:
+          format: double
+          type: number
+        supplierId:
+          type: string
+        country:
+          type: string
+        idBank:
+          format: int32
+          type: integer
+        supplierCategory:
+          type: string
+        sequenceNumber:
+          type: string
+        terminateDate:
+          format: date-time
+          type: string
+        idIssuer:
+          format: int32
+          type: integer
+        internalIssuerId:
+          format: int32
+          type: integer
+        cardIssuerTerminationStatus:
+          format: int32
+          type: integer
+        isLodgedCard:
+          type: boolean
+        associationId:
+          type: string
+        clientProgram:
+          type: string
+        chaseOrderId:
+          type: string
+        availableBalance:
+          format: double
+          type: number
+        encryptedPan:
+          type: string
+        encryptedCvc:
+          type: string
+        isPhysical:
+          type: boolean
+        fingerprint:
+          type: string
+        cardIssuerId:
+          type: string
+        isoCurrencyCode:
+          type: string
+        approvalDate:
+          format: date-time
+          type: string
+        approvedBy:
+          type: string
+        declinedDate:
+          format: date-time
+          type: string
+        declinedBy:
+          type: string
+        balanceControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceControl'
+        cardFulfillment:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardFulfillment'
+        cardHolder:
+          $ref: '#/components/schemas/CardHolder'
+        cardLabel:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardLabel'
+        cardSpendControlAmountLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlAmountLimit'
+        cardSpendControlMerchantLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlMerchantLimit'
+        cardTerminationErrorLog:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTerminationErrorLog'
+        chargeback:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chargeback'
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+        lU_Bank:
+          $ref: '#/components/schemas/LU_Bank'
+        lU_Issuer:
+          $ref: '#/components/schemas/LU_Issuer'
+        transactionEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEvent'
+        velocity:
+          type: array
+          items:
+            $ref: '#/components/schemas/Velocity'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        settlement:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        cardAvailableBalance:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardAvailableBalance'
+        cPayDirectCard:
+          type: array
+          items:
+            $ref: '#/components/schemas/CPayDirectCard'
+        cardMetaData:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardMetaData'
+        extensionCardHolderGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionFullPan:
+          type: string
+        extensionCvv:
+          type: string
+        merchantEmail:
+          type: string
+        merchantPhone:
+          type: string
+        extensionBrand:
+          type: string
+        extensionFaxStatuscallbackBaseUrl:
+          type: string
+        extensionIssuerCardHolderId:
+          type: string
+        extensionAddressCode:
+          type: string
+        extensionPhoneNoCode:
+          type: string
+        extensionProgramId:
+          type: string
+        extensionCardDesign:
+          type: string
+        extensionProgramFeatureSet:
+          type: string
+        extensionPurchaseType:
+          type: string
+        extensionMIDWhiteList:
+          type: array
+          items:
+            type: string
+        extensionMIDBlackList:
+          type: array
+          items:
+            type: string
+        extensionLeftoverAuths:
+          format: int32
+          type: integer
+        extensionAmountLimit:
+          format: double
+          type: number
+        extensionUsageLimit:
+          format: int32
+          type: integer
+        extensionCustomerId:
+          type: string
+        extensionOrderNumber:
+          type: string
+        extensionLoidValue:
+          type: string
+        extensionActivationDate:
+          format: date-time
+          type: string
+        extensionIsFromDelayedToActivate:
+          type: boolean
+        hasCardFulfillment:
+          type: boolean
+        isRegularVCC:
+          type: boolean
+        extensionIsConnexpayDirectCard:
+          type: boolean
+        extensionMerchantPhysicalCardSettings:
+          $ref: '#/components/schemas/MerchantPhysicalCardSettings'
+    BalanceControl:
+      type: object
+      properties:
+        idBalanceControl:
+          format: int32
+          type: integer
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        modifiedDateTime:
+          format: date-time
+          type: string
+        expectedOutcomingPayments:
+          format: int32
+          type: integer
+        thisPaymentNumber:
+          format: int32
+          type: integer
+        availablePayments:
+          format: int32
+          type: integer
+        authorizedAmount:
+          format: double
+          type: number
+        thisTransactionAmount:
+          format: double
+          type: number
+        balance:
+          format: double
+          type: number
+        currencyCode:
+          type: string
+        purchaseType:
+          type: string
+        filler:
+          type: string
+        outgoingTransactionCode:
+          type: string
+        idVelocity:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        idCardIssued:
+          format: int32
+          type: integer
+        binUsed:
+          type: string
+        addedToReserveFundingFunction:
+          format: int32
+          type: integer
+        idOutgoingTransactionType:
+          format: int32
+          type: integer
+        idOutgoingTransaction:
+          format: int64
+          type: integer
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+        velocity:
+          $ref: '#/components/schemas/Velocity'
+        card:
+          $ref: '#/components/schemas/Card'
+        isLastAllowedBalanceControl:
+          type: boolean
+    Customer:
+      type: object
+      properties:
+        idCustomer:
+          format: int32
+          type: integer
+        modifiedDateTime:
+          format: date-time
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          format: date-time
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        idState:
+          format: int32
+          type: integer
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        ssN4:
+          type: string
+        dlNumber:
+          type: string
+        idDLState:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        incomingTransactionCode:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomingTransactionCode'
+        lU_State:
+          $ref: '#/components/schemas/LU_State'
+        lU_State1:
+          $ref: '#/components/schemas/LU_State'
+    IncomingTransactionCodeReturned:
+      type: object
+      properties:
+        idIncomingTransactionCodeReturned:
+          format: int32
+          type: integer
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        incomingTransactionCodeValue:
+          type: string
+        originalAmount:
+          format: double
+          type: number
+        returnAmount:
+          format: double
+          type: number
+        gatewaySaleGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        gatewayRefundGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timestamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        status:
+          format: int32
+          type: integer
+        returnSettled:
+          type: boolean
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+    ItcCustomParam:
+      type: object
+      properties:
+        idItcCustomParam:
+          format: int32
+          type: integer
+        name:
+          type: string
+        value:
+          type: string
+        idIncomingTransactionCode:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        incomingTransactionCode:
+          $ref: '#/components/schemas/IncomingTransactionCode'
+    LU_InvoiceRebate:
+      required:
+      - description
+      type: object
+      properties:
+        idInvoiceRebate:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        idInvoiceRebateModel:
+          format: int32
+          type: integer
+        merchantInvoiceRebateRange:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceRebateRange'
+        lU_InvoiceRebateModel:
+          $ref: '#/components/schemas/LU_InvoiceRebateModel'
+    LU_RebateTier:
+      required:
+      - description
+      type: object
+      properties:
+        idRebateTier:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        merchantInvoiceSetting:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceSetting'
+    LU_InvoiceRebateModel:
+      required:
+      - description
+      type: object
+      properties:
+        idInvoiceRebateModel:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        lU_InvoiceRebate:
+          type: array
+          items:
+            $ref: '#/components/schemas/LU_InvoiceRebate'
+        merchantInvoiceSetting:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceSetting'
+    LU_InvoiceRebateWindow:
+      required:
+      - description
+      type: object
+      properties:
+        idInvoiceRebateWindow:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        merchantInvoiceSetting:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantInvoiceSetting'
+    LU_IssuingBank:
+      required:
+      - description
+      - country
+      type: object
+      properties:
+        idIssuingBank:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+        country:
+          maxLength: 5
+          minLength: 0
+          type: string
+        currency:
+          type: string
+    LU_Bank:
+      required:
+      - bankName
+      - countryCode
+      type: object
+      properties:
+        idBank:
+          format: int32
+          type: integer
+        bankName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        countryCode:
+          maxLength: 3
+          minLength: 0
+          type: string
+        idIssuer:
+          format: int32
+          type: integer
+        binControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BinControl'
+        lU_Issuer:
+          $ref: '#/components/schemas/LU_Issuer'
+        card:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+    MccGroup:
+      type: object
+      properties:
+        idMccGroup:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        name:
+          type: string
+        mccArray:
+          type: string
+        holdIncreaseType:
+          type: string
+        holdIncreaseValue:
+          format: double
+          type: number
+        holdExpirationDays:
+          format: int32
+          type: integer
+        purchaseType:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        cardSpendControlMerchantLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlMerchantLimit'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        merchantPurchaseTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPurchaseTypes'
+        velocity:
+          type: array
+          items:
+            $ref: '#/components/schemas/Velocity'
+        oakMccGroupId:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        deletedBy:
+          format: int32
+          type: integer
+        deletedOn:
+          format: date-time
+          type: string
+        isGlobal:
+          type: boolean
+    User:
+      type: object
+      properties:
+        idUser:
+          format: int32
+          type: integer
+        userName:
+          type: string
+        email:
+          type: string
+        emailConfirmed:
+          type: boolean
+        phone:
+          type: string
+        phoneNumberConfirmed:
+          type: boolean
+        password:
+          type: string
+        securityStamp:
+          type: string
+        twoFactorEnabled:
+          type: boolean
+        failedLoginAttempts:
+          format: int32
+          type: integer
+        isLocked:
+          type: boolean
+        mustChangePassword:
+          type: boolean
+        lockoutEndDateUtc:
+          format: date-time
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+        editionDate:
+          format: date-time
+          type: string
+        createdBy:
+          format: int32
+          type: integer
+        editedBy:
+          format: int32
+          type: integer
+        idRole:
+          format: int32
+          type: integer
+        idUserString:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        marketing:
+          type: boolean
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        idState:
+          format: int32
+          type: integer
+        zipcode:
+          type: string
+        accountNumber:
+          type: string
+        idStatus:
+          format: int32
+          type: integer
+        resetKey:
+          type: string
+        resetKeyExpiration:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        country:
+          type: string
+        loadAmountLimitPerVCC:
+          format: int32
+          type: integer
+        loadAmountLimitPerDay:
+          format: int32
+          type: integer
+        issueCountLimitPerDayVirtualCard:
+          format: int32
+          type: integer
+        issueCountLimitPerDayPhysicalCard:
+          format: int32
+          type: integer
+        issueCountLimitPerDayACHCard:
+          format: int32
+          type: integer
+        issueCountLimitPerDayLodgedCard:
+          format: int32
+          type: integer
+        canIssueACH:
+          type: boolean
+        maxACHTransactionAmount:
+          format: int32
+          type: integer
+        maxDailyACHAmount:
+          format: int32
+          type: integer
+        canCreateVirtualCard:
+          type: boolean
+        loadPhysicalCardAmountLimitPerDay:
+          format: double
+          type: number
+        loadAmountLimitPerPhysicalCard:
+          format: double
+          type: number
+        maxLodgedCardIssueAmount:
+          format: double
+          type: number
+        canModifyPurchaseInfo:
+          type: boolean
+        canCreateLodgedCard:
+          type: boolean
+        isDeleted:
+          type: boolean
+        achPaymentCancelDeclined:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPaymentCancelDeclined'
+        chargeback:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chargeback'
+        merchantSupplierSettings:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantSupplierSettings'
+        profitabilityThreshold:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfitabilityThreshold'
+        access:
+          type: array
+          items:
+            $ref: '#/components/schemas/Access'
+        audit:
+          type: array
+          items:
+            $ref: '#/components/schemas/Audit'
+        merchantAdmin:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantAdmin'
+        rolesHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolesHistory'
+        userRolesHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRolesHistory'
+        loadAmountLimitPerVCCChanged:
+          type: boolean
+        loadAmountLimitPerDayChanged:
+          type: boolean
+        maxLodgedCardIssueAmountChanged:
+          type: boolean
+        maxACHTransactionAmountChanged:
+          type: boolean
+        maxDailyACHAmountChanged:
+          type: boolean
+    LU_EventType:
+      required:
+      - name
+      type: object
+      properties:
+        idEventType:
+          format: int32
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        transactionEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEvent'
+    CardAvailableBalance:
+      type: object
+      properties:
+        idCardAvailableBalance:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        amount:
+          format: double
+          type: number
+        availableBalanceAsOf:
+          format: double
+          type: number
+        idEventType:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        idTransactionEvent:
+          format: int32
+          type: integer
+        note:
+          maxLength: 300
+          minLength: 0
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        transactionEvent:
+          $ref: '#/components/schemas/TransactionEvent'
+    TransactionEventExtension:
+      type: object
+      properties:
+        idTransactionEvent:
+          format: int32
+          type: integer
+        oakSystemId:
+          format: int64
+          type: integer
+        isCxpDirect:
+          type: boolean
+        retrievalReferenceNumber:
+          type: string
+        transactionEvent:
+          $ref: '#/components/schemas/TransactionEvent'
+    LU_InvoiceFee:
+      required:
+      - description
+      type: object
+      properties:
+        idInvoiceFee:
+          format: int32
+          type: integer
+        description:
+          maxLength: 50
+          minLength: 0
+          type: string
+    CardSpendControlAmountLimit:
+      required:
+      - name
+      type: object
+      properties:
+        idCardSpendControlAmountLimit:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        idStatus:
+          format: int32
+          type: integer
+        usageLimit:
+          format: int32
+          type: integer
+        amountLimit:
+          format: double
+          type: number
+        idLimitWindow:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        idCurrency:
+          format: int32
+          type: integer
+        toleranceAmount:
+          format: double
+          type: number
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        lU_VelocityWindow:
+          $ref: '#/components/schemas/LU_VelocityWindow'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        extensionLimitWindow:
+          enum:
+          - UNKNOWN
+          - DAY
+          - WEEK
+          - MONTH
+          - LIFETIME
+          type: string
+        extensionReloadAmount:
+          format: double
+          type: number
+        extensionMaxVcReloadPercentage:
+          format: int32
+          type: integer
+    CardSpendControlMerchantLimit:
+      required:
+      - name
+      type: object
+      properties:
+        idCardSpendControlMerchantLimit:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        idStatus:
+          format: int32
+          type: integer
+        isWhitelist:
+          type: boolean
+        idMerchantScopeType:
+          format: int32
+          type: integer
+        mid:
+          maxLength: 36
+          minLength: 0
+          type: string
+        mcc:
+          maxLength: 4
+          minLength: 0
+          type: string
+        idMccGroup:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        mccGroup:
+          $ref: '#/components/schemas/MccGroup'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        extensionMerchantScopeType:
+          enum:
+          - MCC
+          - MCC_Group
+          - MID
+          type: string
+        extensionPurchaseType:
+          type: string
+    Chargeback:
+      type: object
+      properties:
+        idChargeback:
+          format: int32
+          type: integer
+        chargebackGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idCard:
+          format: int32
+          type: integer
+        transactionGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idStatus:
+          format: int32
+          type: integer
+        idChargebackReasonType:
+          format: int32
+          type: integer
+        chargebackAmount:
+          format: double
+          type: number
+        memo:
+          maxLength: 512
+          minLength: 0
+          type: string
+        initiatedByIdUser:
+          format: int32
+          type: integer
+        createdDateTime:
+          format: date-time
+          type: string
+        processorCaseToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        statusDescription:
+          maxLength: 500
+          minLength: 0
+          type: string
+        processorCaseState:
+          maxLength: 100
+          minLength: 0
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_ChargebackReason:
+          $ref: '#/components/schemas/LU_ChargebackReason'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        user:
+          $ref: '#/components/schemas/User'
+        chargebackDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargebackDetails'
+        chargebackStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargebackStates'
+        isSuccess:
+          type: boolean
+        cardBrand:
+          enum:
+          - Visa
+          - MasterCard
+          type: string
+        chargebackDetailsDictionary:
+          type: object
+          additionalProperties:
+            type: string
+          readOnly: true
+    Velocity:
+      type: object
+      properties:
+        idVelocity:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        idStatus:
+          format: int32
+          type: integer
+        name:
+          type: string
+        startTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+        modifiedDateTime:
+          format: date-time
+          type: string
+        usageLimit:
+          format: int32
+          type: integer
+        amountLimit:
+          format: double
+          type: number
+        idVelocityWindow:
+          format: int32
+          type: integer
+        mcc:
+          type: string
+        idMccGroup:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        toleranceAmount:
+          format: double
+          type: number
+        authControlGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idIssuer:
+          format: int32
+          type: integer
+        internalIssuerId:
+          format: int32
+          type: integer
+        balanceControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceControl'
+        lU_Issuer:
+          $ref: '#/components/schemas/LU_Issuer'
+        lU_VelocityWindow:
+          $ref: '#/components/schemas/LU_VelocityWindow'
+        mccGroup:
+          $ref: '#/components/schemas/MccGroup'
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+        extensionCardGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        extensionPurchaseType:
+          type: string
+        mccGroupGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        mccGroupName:
+          type: string
+        extensionAuthControlGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        isTolerancePercentage:
+          type: boolean
+        saleAmount:
+          format: double
+          type: number
+        country:
+          type: string
+        currencyCode:
+          type: string
+        extensionBank:
+          enum:
+          - Sutton
+          - Meta
+          - Peoples
+          - Central
+          - Chase
+          - USBank
+          - MVB
+          - SuttonPhysical
+          - Monavate_EUR
+          - Monavate_GBP
+          - UATP
+          type: string
+        idMerchant:
+          format: int32
+          type: integer
+    MerchantStatusTransition:
+      type: object
+      properties:
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGatewayGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        idStatus:
+          format: int32
+          type: integer
+        reason:
+          maxLength: 500
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        availableToAuthorizeAmount:
+          format: double
+          type: number
+        isSuccess:
+          type: boolean
+        lU_Status:
+          $ref: '#/components/schemas/LU_Status'
+    MerchantFeeIncentives:
+      type: object
+      properties:
+        idMerchantFeeIncentives:
+          format: int32
+          type: integer
+        idMerchantInvoiceFee:
+          format: int32
+          type: integer
+        lowRange:
+          format: double
+          type: number
+        highRange:
+          format: double
+          type: number
+        totalFeePercentage:
+          format: double
+          type: number
+        totalFeeAmount:
+          format: double
+          type: number
+        dueDate:
+          format: date-time
+          type: string
+        startDate:
+          format: date-time
+          type: string
+        isIssuing:
+          type: boolean
+        isAquiring:
+          type: boolean
+        minimumFeeAmount:
+          format: double
+          type: number
+        maximumFeeAmount:
+          format: double
+          type: number
+        netVolume:
+          format: double
+          type: number
+        additionalFee:
+          format: double
+          type: number
+        description:
+          type: string
+        acquiringVolume:
+          format: double
+          type: number
+        issuingVolume:
+          format: double
+          type: number
+        totalVolume:
+          format: double
+          type: number
+        amount:
+          format: double
+          type: number
+        issueBonusOnInvoice:
+          type: boolean
+        feeThreshold:
+          format: int32
+          type: integer
+    LU_Type:
+      type: object
+      properties:
+        idType:
+          format: int32
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        balanceControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceControl'
+        cardFulfillment:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardFulfillment'
+        cardSpendControlAmountLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlAmountLimit'
+        cardSpendControlMerchantLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlMerchantLimit'
+        clearingImportBatch:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingImportBatch'
+        encryptionKeyManagement:
+          type: array
+          items:
+            $ref: '#/components/schemas/EncryptionKeyManagement'
+        bankAccount:
+          type: array
+          items:
+            $ref: '#/components/schemas/BankAccount'
+        cardAvailableBalance:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardAvailableBalance'
+    ClearingImport:
+      type: object
+      properties:
+        idClearingImport:
+          format: int32
+          type: integer
+        idClearingImportBatch:
+          format: int32
+          type: integer
+        idSettlement:
+          format: int32
+          type: integer
+        program:
+          type: string
+        bank:
+          type: string
+        transactionToken:
+          type: string
+        postDate:
+          format: date-time
+          type: string
+        initiatingTransactionToken:
+          type: string
+        referenceTransactionToken:
+          format: int64
+          type: integer
+        reversalToken:
+          format: int64
+          type: integer
+        transactionType:
+          type: string
+        transactionStatus:
+          type: string
+        transactionProcessingType:
+          type: string
+        parentUserToken:
+          type: string
+        parentUai:
+          type: string
+        actingUserToken:
+          type: string
+        actingUai:
+          type: string
+        businessUserToken:
+          type: string
+        businessName:
+          type: string
+        actingCardToken:
+          type: string
+        actingCardProduct:
+          type: string
+        cardType:
+          type: string
+        actingCardLastFour:
+          type: string
+        merchant:
+          type: string
+        merchantCountry:
+          type: string
+        merchantState:
+          type: string
+        merchantCity:
+          type: string
+        network:
+          type: string
+        subNetwork:
+          type: string
+        cleanMerchant:
+          type: string
+        merchantCategoryCode:
+          format: int64
+          type: integer
+        merchantCategoryCodeGroup:
+          type: string
+        merchantCategoryCodeDescription:
+          type: string
+        standinApprovedBy:
+          type: string
+        currency:
+          type: string
+        sigPurchases:
+          format: double
+          type: number
+        pinPurchases:
+          format: double
+          type: number
+        sigReturns:
+          format: double
+          type: number
+        pinReturns:
+          format: double
+          type: number
+        sigInterchange:
+          format: double
+          type: number
+        pinInterchange:
+          format: double
+          type: number
+        chargebacks:
+          format: double
+          type: number
+        pinDebitAssocFees:
+          format: double
+          type: number
+        currencyConversionFees:
+          format: double
+          type: number
+        crossBorderFees:
+          format: double
+          type: number
+        lastModifiedTime:
+          format: date-time
+          type: string
+        switchFees:
+          format: double
+          type: number
+        chargebacksInterchange:
+          format: double
+          type: number
+        chargebacksAcquirerFees:
+          format: double
+          type: number
+        chargebacksCrossBorderFees:
+          format: double
+          type: number
+        chargebacksCurrencyConversionFees:
+          format: double
+          type: number
+        chargebacksSwitchFees:
+          format: double
+          type: number
+        transentryToken:
+          format: int64
+          type: integer
+        accountGroup:
+          type: string
+        chargebackToken:
+          format: int64
+          type: integer
+        oakReferenceTransactionToken:
+          type: string
+        clearingError:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingError'
+        clearingImportBatch:
+          $ref: '#/components/schemas/ClearingImportBatch'
+        settlement:
+          $ref: '#/components/schemas/Settlement'
+    ClearingImportACH:
+      required:
+      - transactionToken
+      type: object
+      properties:
+        idClearingImportACH:
+          format: int32
+          type: integer
+        idClearingImportBatch:
+          format: int32
+          type: integer
+        idSettlement:
+          format: int32
+          type: integer
+        transactionToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        transactionStatus:
+          maxLength: 50
+          minLength: 0
+          type: string
+        transactionStatusFromProvider:
+          maxLength: 50
+          minLength: 0
+          type: string
+        transactionStatusDateTime:
+          format: date-time
+          type: string
+        receiptDate:
+          format: date-time
+          type: string
+        processDate:
+          format: date-time
+          type: string
+        scheduleDate:
+          format: date-time
+          type: string
+        currency:
+          maxLength: 20
+          minLength: 0
+          type: string
+        amount:
+          format: double
+          type: number
+        paymentDirection:
+          maxLength: 20
+          minLength: 0
+          type: string
+        accountHolderToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        accountToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        accountType:
+          maxLength: 20
+          minLength: 0
+          type: string
+        accountHolderName:
+          maxLength: 100
+          minLength: 0
+          type: string
+        accountStatus:
+          maxLength: 50
+          minLength: 0
+          type: string
+        last4Digits:
+          maxLength: 4
+          minLength: 0
+          type: string
+        institution:
+          maxLength: 100
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        shouldImport:
+          type: boolean
+        hasPaymentInDB:
+          type: boolean
+        hasSettledBefore:
+          type: boolean
+        note:
+          maxLength: 250
+          minLength: 0
+          type: string
+        parentTransactionToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        extensionUrl:
+          type: string
+        clearingImportBatch:
+          $ref: '#/components/schemas/ClearingImportBatch'
+        settlement:
+          $ref: '#/components/schemas/Settlement'
+    ClearingRemoved:
+      type: object
+      properties:
+        idClearingRemoved:
+          format: int32
+          type: integer
+        idClearingImportBatch:
+          format: int32
+          type: integer
+        idClearingImport:
+          format: int32
+          type: integer
+        idSettlement:
+          format: int32
+          type: integer
+        transactionToken:
+          maxLength: 64
+          minLength: 0
+          type: string
+        clearingImportBatch:
+          $ref: '#/components/schemas/ClearingImportBatch'
+        settlement:
+          $ref: '#/components/schemas/Settlement'
+    BinControl:
+      type: object
+      properties:
+        idBinControl:
+          format: int32
+          type: integer
+        marquetaToken:
+          type: string
+        matquetaName:
+          type: string
+        active:
+          type: boolean
+        marquetaStartDate:
+          format: date-time
+          type: string
+        marquetaCreatedTime:
+          format: date-time
+          type: string
+        marquetaLastModifiedTime:
+          format: date-time
+          type: string
+        sourceAmount:
+          format: double
+          type: number
+        usedAmount:
+          format: double
+          type: number
+        availableAmount:
+          format: double
+          type: number
+        cardBrand:
+          type: string
+        lastTimeUsed:
+          format: date-time
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        cardClass:
+          format: int32
+          type: integer
+        country:
+          type: string
+        idBank:
+          format: int32
+          type: integer
+        preferred:
+          type: boolean
+        idIssuer:
+          format: int32
+          type: integer
+        programFeatureSet:
+          type: string
+        cardDesign:
+          type: string
+        idLimitWindow:
+          format: int32
+          type: integer
+        isPhysicalOnly:
+          type: boolean
+        firstSix:
+          type: string
+        c3DSEnabled:
+          type: boolean
+        isPrepaid:
+          type: boolean
+        cardBin:
+          type: string
+        isGlobal:
+          type: boolean
+        canSupportLodgedCard:
+          type: boolean
+        isUniversal:
+          type: boolean
+        isIprOnlyBinControl:
+          type: boolean
+        lU_VelocityWindow:
+          $ref: '#/components/schemas/LU_VelocityWindow'
+        lU_Bank:
+          $ref: '#/components/schemas/LU_Bank'
+        lU_Issuer:
+          $ref: '#/components/schemas/LU_Issuer'
+    CardFulfillment:
+      required:
+      - cardNameLine1
+      - firstName
+      - lastName
+      - address1
+      - city
+      - state
+      - zip
+      type: object
+      properties:
+        idCardFulfillment:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        idPhysicalCardShippingMethod:
+          format: int32
+          type: integer
+        expedite:
+          type: boolean
+        cardNameLine1:
+          maxLength: 21
+          minLength: 0
+          type: string
+        cardNameLine2:
+          maxLength: 21
+          minLength: 0
+          type: string
+        firstName:
+          maxLength: 100
+          minLength: 0
+          type: string
+        lastName:
+          maxLength: 100
+          minLength: 0
+          type: string
+        phone:
+          maxLength: 100
+          minLength: 0
+          type: string
+        address1:
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          maxLength: 100
+          minLength: 0
+          type: string
+        state:
+          maxLength: 32
+          minLength: 0
+          type: string
+        zip:
+          maxLength: 10
+          minLength: 0
+          type: string
+        country:
+          maxLength: 40
+          minLength: 0
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        extensionShippingMethod:
+          type: string
+    CardLabel:
+      type: object
+      properties:
+        idCard:
+          format: int32
+          type: integer
+        idLabel:
+          format: int32
+          type: integer
+        card:
+          $ref: '#/components/schemas/Card'
+    CardTerminationErrorLog:
+      type: object
+      properties:
+        idCardTerminationErrorLog:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        terminateDate:
+          format: date-time
+          type: string
+        terminateRunAt:
+          format: date-time
+          type: string
+        errorMessage:
+          maxLength: 500
+          minLength: 0
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+    CPayDirectCard:
+      type: object
+      properties:
+        idCPayDirectCard:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        fingerprint:
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+    CardMetaData:
+      type: object
+      properties:
+        idCardMetaData:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        idMerchantPayor:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+    Access:
+      type: object
+      properties:
+        idAccess:
+          format: int32
+          type: integer
+        idUser:
+          format: int32
+          type: integer
+        user:
+          $ref: '#/components/schemas/User'
+    Audit:
+      required:
+      - ipUser
+      type: object
+      properties:
+        idAudit:
+          format: int32
+          type: integer
+        idUser:
+          format: int32
+          type: integer
+        ipUser:
+          maxLength: 50
+          minLength: 0
+          type: string
+        action:
+          format: int32
+          type: integer
+        idModule:
+          format: int32
+          type: integer
+        idRelatedEntity:
+          format: int32
+          type: integer
+        description:
+          maxLength: 250
+          minLength: 0
+          type: string
+        change:
+          type: string
+        date:
+          format: date-time
+          type: string
+        module:
+          $ref: '#/components/schemas/Module'
+        user:
+          $ref: '#/components/schemas/User'
+    RolesHistory:
+      type: object
+      properties:
+        idRolesHistory:
+          format: int32
+          type: integer
+        idUser:
+          format: int32
+          type: integer
+        idOldRole:
+          format: int32
+          type: integer
+        idNewRole:
+          format: int32
+          type: integer
+        note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        role1:
+          $ref: '#/components/schemas/Role'
+        user:
+          $ref: '#/components/schemas/User'
+    UserRolesHistory:
+      type: object
+      properties:
+        idUserRolesHistory:
+          format: int32
+          type: integer
+        idUser:
+          format: int32
+          type: integer
+        idRole:
+          format: int32
+          type: integer
+        note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        user:
+          $ref: '#/components/schemas/User'
+    LU_VelocityWindow:
+      required:
+      - name
+      type: object
+      properties:
+        idVelocityWindow:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        binControl:
+          type: array
+          items:
+            $ref: '#/components/schemas/BinControl'
+        cardSpendControlAmountLimit:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSpendControlAmountLimit'
+        velocity:
+          type: array
+          items:
+            $ref: '#/components/schemas/Velocity'
+    LU_ChargebackReason:
+      required:
+      - name
+      type: object
+      properties:
+        idChargebackReason:
+          format: int32
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 0
+          type: string
+        isMastercardNetwork:
+          type: boolean
+        isVisaNetwork:
+          type: boolean
+        chargeback:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chargeback'
+    ChargebackDetails:
+      required:
+      - value
+      type: object
+      properties:
+        idChargebackDetails:
+          format: int32
+          type: integer
+        idChargeback:
+          format: int32
+          type: integer
+        idChargebackDetailsQuestion:
+          format: int32
+          type: integer
+        value:
+          maxLength: 500
+          minLength: 0
+          type: string
+        chargeback:
+          $ref: '#/components/schemas/Chargeback'
+        lU_ChargebackDetailsQuestion:
+          $ref: '#/components/schemas/LU_ChargebackDetailsQuestion'
+        extensionQuestionText:
+          type: string
+        extensionQuestionType:
+          enum:
+          - UNKNOWN
+          - TEXT
+          - BOOLEAN
+          - NUMBER
+          - DATETIME
+          type: string
+    ChargebackStates:
+      type: object
+      properties:
+        idChargebackStates:
+          format: int32
+          type: integer
+        idChargeback:
+          format: int32
+          type: integer
+        transitionToken:
+          maxLength: 50
+          minLength: 0
+          type: string
+        actionCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        reasonCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        createdByIdUser:
+          format: int32
+          type: integer
+        memo:
+          maxLength: 512
+          minLength: 0
+          type: string
+        reasonDescription:
+          maxLength: 500
+          minLength: 0
+          type: string
+        fromState:
+          maxLength: 100
+          minLength: 0
+          type: string
+        state:
+          maxLength: 100
+          minLength: 0
+          type: string
+        createdDateTime:
+          format: date-time
+          type: string
+        failureReason:
+          maxLength: 500
+          minLength: 0
+          type: string
+        chargeback:
+          $ref: '#/components/schemas/Chargeback'
+    ClearingImportBatch:
+      type: object
+      properties:
+        idClearingImportBatch:
+          format: int32
+          type: integer
+        url:
+          type: string
+        fromDate:
+          format: date-time
+          type: string
+        toDate:
+          format: date-time
+          type: string
+        batchCount:
+          format: int32
+          type: integer
+        batchStatus:
+          format: int32
+          type: integer
+        updateTime:
+          format: date-time
+          type: string
+        clearingRemovedCount:
+          format: int32
+          type: integer
+        idBatchType:
+          format: int32
+          type: integer
+        clearingImport:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingImport'
+        clearingImportACH:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingImportACH'
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+        clearingRemoved:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClearingRemoved'
+        reserveFundingToCRM:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReserveFundingToCRM'
+    EncryptionKeyManagement:
+      required:
+      - keyVersion
+      type: object
+      properties:
+        idKey:
+          format: int32
+          type: integer
+        idKeyType:
+          format: int32
+          type: integer
+        keyVersion:
+          maxLength: 100
+          minLength: 0
+          type: string
+        timeStamp:
+          format: date-time
+          type: string
+        isDisabled:
+          type: boolean
+        lU_Type:
+          $ref: '#/components/schemas/LU_Type'
+    ClearingError:
+      required:
+      - transactionToken
+      type: object
+      properties:
+        idClearingError:
+          format: int32
+          type: integer
+        transactionToken:
+          maxLength: 128
+          minLength: 0
+          type: string
+        idClearingImport:
+          format: int32
+          type: integer
+        idCard:
+          format: int32
+          type: integer
+        idCardHolder:
+          format: int32
+          type: integer
+        idSettlement:
+          format: int32
+          type: integer
+        itcStatus:
+          format: int32
+          type: integer
+        clearingImport:
+          $ref: '#/components/schemas/ClearingImport'
+    Module:
+      required:
+      - name
+      type: object
+      properties:
+        idModule:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        status:
+          format: int32
+          type: integer
+        idParent:
+          format: int32
+          type: integer
+        viewOnProfile:
+          type: boolean
+        audit:
+          type: array
+          items:
+            $ref: '#/components/schemas/Audit'
+        module1:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+        module2:
+          $ref: '#/components/schemas/Module'
+        page:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+    Role:
+      type: object
+      properties:
+        idRole:
+          format: int32
+          type: integer
+        name:
+          type: string
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        timeStamp:
+          format: date-time
+          type: string
+        description:
+          type: string
+        rolesHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolesHistory'
+        rolesHistory1:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolesHistory'
+        rolesPermissionsHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolesPermissionsHistory'
+        userRolesHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRolesHistory'
+        rolePermission:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolePermission'
+    LU_ChargebackDetailsQuestion:
+      required:
+      - question
+      - questionType
+      type: object
+      properties:
+        idChargebackDetailsQuestion:
+          format: int32
+          type: integer
+        question:
+          maxLength: 200
+          minLength: 0
+          type: string
+        questionType:
+          maxLength: 20
+          minLength: 0
+          type: string
+        chargebackDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargebackDetails'
+    ReserveFundingToCRM:
+      type: object
+      properties:
+        idReserveFundingToCRM:
+          format: int32
+          type: integer
+        idClearingImportBatch:
+          format: int32
+          type: integer
+        idClearingImport:
+          format: int32
+          type: integer
+        idSettlement:
+          format: int32
+          type: integer
+        gatewayMerchantGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        queueType:
+          format: int32
+          type: integer
+        holdType:
+          format: int32
+          type: integer
+        holdValueType:
+          format: int32
+          type: integer
+        holdValue:
+          format: double
+          type: number
+        outgoingTransactionCode:
+          maxLength: 50
+          minLength: 0
+          type: string
+        entityGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        status:
+          format: int32
+          type: integer
+        clearingImportBatch:
+          $ref: '#/components/schemas/ClearingImportBatch'
+    Page:
+      required:
+      - name
+      - url
+      - class
+      type: object
+      properties:
+        idPage:
+          format: int32
+          type: integer
+        idModule:
+          format: int32
+          type: integer
+        pageOrder:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        url:
+          maxLength: 100
+          minLength: 0
+          type: string
+        isMenu:
+          type: boolean
+        idParent:
+          format: int32
+          type: integer
+        class:
+          maxLength: 100
+          minLength: 0
+          type: string
+        inNewTab:
+          type: boolean
+        status:
+          format: int32
+          type: integer
+        module:
+          $ref: '#/components/schemas/Module'
+        page1:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+        page2:
+          $ref: '#/components/schemas/Page'
+        pagePermission:
+          type: array
+          items:
+            $ref: '#/components/schemas/PagePermission'
+    RolesPermissionsHistory:
+      type: object
+      properties:
+        idRolesPermissionsHistory:
+          format: int32
+          type: integer
+        idRole:
+          format: int32
+          type: integer
+        idPermission:
+          format: int32
+          type: integer
+        timeStamp:
+          format: date-time
+          type: string
+        permission:
+          $ref: '#/components/schemas/Permission'
+        role:
+          $ref: '#/components/schemas/Role'
+    RolePermission:
+      type: object
+      properties:
+        idRolePermission:
+          format: int32
+          type: integer
+        idRole:
+          format: int32
+          type: integer
+        idPermission:
+          format: int32
+          type: integer
+        permission:
+          $ref: '#/components/schemas/Permission'
+        role:
+          $ref: '#/components/schemas/Role'
+    PagePermission:
+      type: object
+      properties:
+        idPagePermission:
+          format: int32
+          type: integer
+        idPage:
+          format: int32
+          type: integer
+        requiredPermission:
+          format: int32
+          type: integer
+        page:
+          $ref: '#/components/schemas/Page'
+    Permission:
+      required:
+      - name
+      - codeFriendlyName
+      type: object
+      properties:
+        idPermission:
+          format: int32
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+        codeFriendlyName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        rolesPermissionsHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolesPermissionsHistory'
+        rolePermission:
+          type: array
+          items:
+            $ref: '#/components/schemas/RolePermission'
+    MerchantPayorDto:
+      required:
+      - payorId
+      - payorName
+      - accountType
+      - accountName
+      - accountNumber
+      - routingNumber
+      type: object
+      properties:
+        payorId:
+          maxLength: 200
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+          description: The ID value to be assigned to the created Payor.
+        payorName:
+          maxLength: 50
+          minLength: 0
+          type: string
+          description: The Name to be assigned to the created Payor.
+        accountType:
+          type: string
+          description: '''1'' for Checking or ''2'' for Savings account.'
+        accountName:
+          maxLength: 200
+          minLength: 0
+          type: string
+          description: Name that appears on the bank account.
+        accountNumber:
+          maxLength: 17
+          minLength: 0
+          type: string
+          description: Numeric bank account number.
+        routingNumber:
+          maxLength: 9
+          minLength: 0
+          pattern: ^[0-9]{9}$
+          type: string
+          description: 9 digit numeric bank routing number.
+    MerchantPayorResponse:
+      required:
+      - payorId
+      - payorName
+      - accountName
+      type: object
+      properties:
+        payorId:
+          maxLength: 200
+          minLength: 0
+          pattern: '^[A-Za-z0-9]+(?: +[A-Za-z0-9]+)*$'
+          type: string
+        payorName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        accountType:
+          type: string
+        accountName:
+          maxLength: 200
+          minLength: 0
+          type: string
+        accountNumberLastFour:
+          type: string
+        routingNumberLastFour:
+          type: string
+        idMerchantPayor:
+          format: int32
+          type: integer
+        guid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+    SearchMerchantPayorDto:
+      type: object
+      properties:
+        searchTerm:
+          type: string
+    MerchantPayorPaginatedResponse:
+      type: object
+      properties:
+        totalCount:
+          format: int32
+          type: integer
+        totalPageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        currentPage:
+          format: int32
+          type: integer
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantPayorResponse'
+    PayeeDto:
+      required:
+      - merchantGuid
+      - firstName
+      - lastName
+      - email
+      - phone
+      type: object
+      properties:
+        payeeGuid:
+          format: uuid
+          description: Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGuid:
+          format: uuid
+          description: Merchant guid for the Payee to be created.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        firstName:
+          description: First name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: Last name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        email:
+          description: Email address for the Payee.
+          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+          type: string
+        address1:
+          description: Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          description: Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          description: Postal address city for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        state:
+          description: Postal address state for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        zipCode:
+          description: Postal code for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        phone:
+          description: Phone number for the Payee, up to 10-character string.
+          pattern: ^\+1\d{10}$
+          type: string
+        status:
+          description: Status for the Payee.
+          type: string
+        cardId:
+          description: Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.
+          type: string
+    UpdatePayeeDto:
+      type: object
+      properties:
+        firstName:
+          description: First name for the Payee to be updated.
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: Last name for the Payee to be updated.
+          maxLength: 50
+          minLength: 0
+          type: string
+        email:
+          description: Email address for the Payee to be updated.
+          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+          type: string
+        address1:
+          description: Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          description: Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          description: Postal address city for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        state:
+          description: Postal address state for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        zipCode:
+          description: Postal code for the Payee to be updated.
+          maxLength: 30
+          minLength: 0
+          type: string
+        phone:
+          description: Phone number for the Payee to be updated, up to 10-character string.
+          pattern: ^\+1\d{10}$
+          type: string
+        status:
+          description: Status for the Payee to be updated.
+          type: string
+    PayoutDto:
+      required:
+      - merchantGuid
+      - memo
+      - payments
+      type: object
+      properties:
+        payoutGuid:
+          format: uuid
+          description: Guid assigned to the Payout by ConnexPay upon creation of a Payout.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGuid:
+          format: uuid
+          description: Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by ConnexPay support teams to research issues.
+          type: string
+        memo:
+          description: A brief description highlighting the reason for this Payout.
+          maxLength: 100
+          minLength: 0
+          type: string
+        status:
+          description: Status of the Payout.
+          type: string
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentsDto'
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+          maxLength: 50
+          minLength: 0
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+    PaymentsDto:
+      required:
+      - payeeGuid
+      - value
+      type: object
+      properties:
+        payeeReferenceToken:
+          description: The Payee identifier used by ConnexPay support teams to research issues related to the Payee.
+          type: string
+        ridReferenceToken:
+          description: For Payment Widget customers only. This is the identifier that used by ConnexPay support teams to research issues related to the Payment Widget.
+          type: string
+        payeeGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payee.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        paymentGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payment.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        ridGuid:
+          format: uuid
+          description: Unique identifier assigned when using the Payment Widget.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        value:
+          format: double
+          description: Amount of the Payment.
+          maximum: 50000
+          type: number
+        memo:
+          description: Payment-level description highlighting the reason for this Payment.
+          maxLength: 100
+          minLength: 0
+          type: string
+        field2:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field3:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field4:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+        field5:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          maxLength: 50
+          minLength: 0
+          type: string
+    CancelPaymentsDto:
+      required:
+      - merchantGuid
+      - payments
+      type: object
+      properties:
+        merchantGuid:
+          format: uuid
+          description: Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payments:
+          description: The Payment Guid returned in the Create Payout response.
+          type: array
+          items:
+            format: uuid
+            type: string
+            example: 00000000-0000-0000-0000-000000000000
+    DtoPayout:
+      type: object
+      properties:
+        payoutGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payout.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by our support teams to research issues.
+          type: string
+        memo:
+          description: A brief description highlighting the reason for this Payout.
+          type: string
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+          type: string
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtoPayments'
+    DtoPayments:
+      type: object
+      properties:
+        paymentGuid:
+          format: uuid
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        paymentReferenceToken:
+          description: Identifier needed by ConnexPay support teams to research Payment issues.
+          type: string
+        payeeReferenceToken:
+          description: Payee identifier needed by ConnexPay support teams to research Payee issues.
+          type: string
+        ridReferenceToken:
+          description: For Payment Widget customers only. Identifier needed by ConnexPay support teams to research issues related to the Payment Widget.
+          type: string
+        memo:
+          description: Payment-level description highlighting the reason for this Payment.
+          type: string
+        value:
+          format: double
+          description: Amount of the Payment.
+          type: number
+        status:
+          description: Status of the Payment.
+          type: string
+        field2:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field3:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field4:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        field5:
+          description: Additional data field that can be used to provide additional data to the Payee and for your reporting purposes.
+          type: string
+        terminationDate:
+          type: string
+        payeeName:
+          description: The Payee's name.
+          type: string
+        email:
+          description: Email address the Payment was sent to for the Payee.
+          type: string
+        lastFour:
+          description: Last four digits of the Payee's card number.
+          type: string
+        address1:
+          description: Postal address line 1 of the Payee. Alphanumerics and [,.-'] are allowed.
+          type: string
+        address2:
+          description: Postal address line 2 of the Payee. Alphanumerics and [,.-'] are allowed.
+          type: string
+        city:
+          description: Postal address city of the Payee.
+          type: string
+        state:
+          description: Postal address state for the Payee.
+          type: string
+        zipCode:
+          description: Postal code for the Payee.
+          type: string
+        country:
+          description: Postal address country for the Payee.
+          type: string
+        createdBy:
+          type: string

@@ -1,0 +1,151 @@
+generated: '2026-08-09'
+method: derived
+source: openapi/connexpay-chargebacks-openapi.yml, openapi/connexpay-checkout-session-openapi.yml, openapi/connexpay-merchant-payor-openapi.yml, openapi/connexpay-payment-instruction-openapi.yml, openapi/connexpay-purchases-openapi.yml, openapi/connexpay-push-to-card-openapi.yml, openapi/connexpay-reporting-authentication-openapi.yml, openapi/connexpay-reporting-openapi.yml, openapi/connexpay-sales-openapi.yml, openapi/connexpay-stop-payment-service-openapi.yml
+note: 'Derived from the harvested OpenAPI paths and the object identifiers the ConnexPay docs describe. ConnexPay''s core model is a matched pair: an inbound Sale (PayIn) produces an Incoming Transaction Code (ITC) that funds one or more outbound Purchases (PayOuts) — virtual card, ACH or push-to-card. Identifiers are GUIDs.'
+identifiers:
+- name: IncomingTransactionCode
+  alias: ITC
+  description: Token returned by a Sale that links it to the virtual cards / ACH payouts issued against it. The join key of the whole model.
+  evidence: openapi/connexpay-purchases-openapi.yml, https://docs.connexpay.com/docs/sandbox
+- name: SaleGuid
+  description: GUID of a sale (PayIn).
+- name: GroupGuid
+  description: GUID of a group sale.
+- name: MerchantGuid
+  description: Merchant identity; also the webhook `subject`.
+  evidence: https://docs.connexpay.com/docs/webhook-events
+- name: DeviceGuid
+  description: Device/terminal identity supplied on a sale.
+- name: clientPaymentId
+  description: Client-assigned payment identifier on Payment Valet payment instructions.
+  evidence: openapi/connexpay-payment-instruction-openapi.yml
+entities:
+- entity: Merchant
+  domain: identity
+  description: The ConnexPay client account (MID). Owns cash balance, ATA/ATI, credentials.
+- entity: Sale
+  domain: payins
+  description: An inbound credit-card or ACH charge to a consumer. Produces an ITC.
+- entity: AuthOnly
+  domain: payins
+  description: Authorization without settlement; expires after 5 business days unless captured.
+- entity: Capture
+  domain: payins
+  description: Settles a prior AuthOnly.
+- entity: Void
+  domain: payins
+  description: Cancels a sale prior to batch settlement.
+- entity: Return
+  domain: payins
+  description: Refunds a settled sale.
+- entity: CheckoutSession
+  domain: payins
+  description: Short-lived (60 minute) secure session consumed by the browser SDK to render a payment form.
+- entity: ThreeDSecureAuthentication
+  domain: payins
+  description: 3-D Secure authentication result attached to a sale.
+- entity: HostedPaymentPage
+  domain: payins
+  description: Hosted checkout page requested with an HPP token.
+- entity: VirtualCard
+  domain: payouts
+  description: Single-use, lodged or physical card issued to pay a supplier. Carries purchase type, usage/amount limits, activation date, country restrictions.
+- entity: LodgedCard
+  domain: payouts
+  description: A virtual card reusable over months or years.
+- entity: ACHPayout
+  domain: payouts
+  description: ACH credit payment to a supplier (USD merchant accounts only).
+- entity: PushToCardPayout
+  domain: payouts
+  description: Funds pushed to a payee's own card.
+- entity: Payee
+  domain: payouts
+  description: Recipient of a push-to-card payout.
+- entity: MerchantPayor
+  domain: payouts
+  description: A payor registered under a merchant.
+- entity: PaymentInstruction
+  domain: payment-valet
+  description: A single access point instruction for card, check or ACH delivery.
+- entity: UserDefinedParameter
+  domain: payouts
+  description: Client-defined field carried on a PayOut and email remittance.
+- entity: Settlement
+  domain: reporting
+  description: Virtual card settlement record.
+- entity: AvailableFunds
+  domain: reporting
+  description: Cash balance plus Available to Authorize (ATA) and Available to Issue (ATI).
+- entity: ChargebackCase
+  domain: chargebacks
+  description: Sales chargeback case held in the CMS.
+- entity: WebhookEvent
+  domain: eventing
+  description: CXP Eventing notification; 51 documented event types.
+relationships:
+- from: Merchant
+  to: Sale
+  type: has_many
+  via: MerchantGuid
+- from: Sale
+  to: VirtualCard
+  type: has_many
+  via: IncomingTransactionCode
+  note: Bounded by the sale's ExpectedPayments and Amount; issuing beyond either fails.
+- from: Sale
+  to: ACHPayout
+  type: has_many
+  via: IncomingTransactionCode
+- from: Sale
+  to: Void
+  type: has_one
+  via: SaleGuid
+- from: Sale
+  to: Return
+  type: has_many
+  via: SaleGuid
+- from: Sale
+  to: ThreeDSecureAuthentication
+  type: has_one
+  via: GUID
+- from: AuthOnly
+  to: Capture
+  type: has_one
+  via: SaleGuid
+- from: Sale
+  to: GroupSale
+  type: belongs_to
+  via: GroupGuid
+- from: CheckoutSession
+  to: Sale
+  type: has_one
+  via: checkoutSessionId
+- from: VirtualCard
+  to: Settlement
+  type: has_many
+  via: card guid
+- from: VirtualCard
+  to: UserDefinedParameter
+  type: has_many
+  via: user defined parameter name
+- from: PushToCardPayout
+  to: Payee
+  type: belongs_to
+  via: payee id
+- from: Merchant
+  to: MerchantPayor
+  type: has_many
+  via: payor guid
+- from: Merchant
+  to: AvailableFunds
+  type: has_one
+  via: MerchantGuid
+- from: Sale
+  to: ChargebackCase
+  type: has_many
+  via: sale reference
+- from: Merchant
+  to: WebhookEvent
+  type: has_many
+  via: subject

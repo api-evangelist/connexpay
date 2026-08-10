@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: purchases-api Purchase Event History API
+  version: '1.0'
+servers:
+- url: https://sandboxpurchasesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: PurchaseEventHistory
+paths:
+  /api/v1/PurchaseEventHistory/Resend:
+    post:
+      summary: Purchase Event History (Replay Webhooks)
+      description: Call this endpoint to receive VCC, Lodged Card, Physical Card or ACH purchase events either by unique Guid or for a specified date range. If you subscribe to webhooks and are concerned you may be missing events, this endpoint can retrieve past events.
+      operationId: purchase-event-history
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                SourceGuid:
+                  type: string
+                  description: The unique card guid associated with a particular purchase.  This would be the original card guid returned on your virtual card, lodged card, physical card or ACH issue call.
+                MerchantGuid:
+                  type: string
+                  description: Include your Merchant Guid instead of the Source Guid if you want to see all events for a given date range (you must also include the date range parameters)
+                EventGuid:
+                  type: string
+                  description: Transaction ID as displayed in Bridge
+                FromDateTime:
+                  type: string
+                  description: From date
+                  format: date
+                ToDateTime:
+                  type: string
+                  description: To date
+                  format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Request by SourceGuid:
+                  value: '"Your request has been received and will be processed"'
+              schema:
+                type: string
+                example: Your request has been received and will be processed
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - PurchaseEventHistory
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers:
+  - key: Authorization
+    value: Basic <JWT>
+  explorer-enabled: false
+  proxy-enabled: true
+x-readme-fauxas: true

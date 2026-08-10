@@ -1,0 +1,2448 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/reference/decline-codes
+x-evidence:
+  fetched: '2026-08-09'
+  url: https://docs.connexpay.com/reference/decline-codes
+  http_status: 200
+summary: ConnexPay publishes processor decline/status codes for its PayIn (Sales) authorization surface, split into three regional tables (US, EU/UK, and Canada by card brand), plus a separate PayOut (virtual-card authorization) decline list for cards ConnexPay itself issues.
+surfaces:
+- surface: PayIns / Sales authorizations
+  docs: https://docs.connexpay.com/reference/decline-codes
+  envelope_field: processorStatusCode / processorResponseMessage
+  note: Codes are the acquirer/processor response returned on the Sales API authorization result. Risk-related declines configured with Equifax (Kount 360) or another risk provider are excluded from these tables.
+- surface: PayOuts / Purchase (virtual card) authorizations
+  docs: https://docs.connexpay.com/reference/decline-codes-purchases
+  envelope_field: decline message
+  note: Declines raised by ConnexPay when a supplier attempts to authorize a virtual card ConnexPay issued.
+counts:
+  us: 523
+  eu_uk: 39
+  ca: 113
+  payout: 18
+decline_codes:
+- code: D0001
+  message: Duplicate Request (Approved previously)
+  description: The transaction was already performed and approved. Verify if the request was submitted twice for the same transaction ID or external reference number.
+  region: US
+- code: D0003
+  message: Duplicate Request (Declined previously)
+  description: The transaction was already performed and declined. Verify if the request was submitted twice for the same transaction ID or external reference number.
+  region: US
+- code: D0004
+  message: Reversal Not Allowed
+  description: The transaction is not authorized for reversal. This error may occur because the transaction was not settled, was declined, or already reversed.
+  region: US
+- code: D0005
+  message: Return Not Allowed
+  description: The transaction is not authorized for return. This error may occur because the transaction was not settled, was declined, or already reversed.
+  region: US
+- code: D0006
+  message: Supervisor Override Required
+  region: US
+- code: D0007
+  message: Modify Transaction Not Allowed
+  description: The transaction is not authorized for modification. This error may occur because the transaction was already settled, or was declined.
+  region: US
+- code: D0008
+  message: Possible Duplicate Request
+  description: This is a duplicate request. The credentials for this transaction (i.e. amount, card number or same service) are the same as another transaction submitted less than one minute apart.
+  region: US
+- code: D0009
+  message: Duplicate Request (Reversed previously)
+  description: The request with the same credentials (amount, card number, or same service) hit the server twice within a minute.
+  region: US
+- code: E0010
+  message: Inactive Device (Terminal)
+  description: The device is not registered, or is inactive in the system.
+  region: US
+- code: E0011
+  message: Device (Terminal) Configuration missing
+  description: The configuration parameter is missing.
+  region: US
+- code: E0012
+  message: Insufficient privileges
+  region: US
+- code: E0013
+  message: Incremental Auth Not Allowed
+  region: US
+- code: E0015
+  message: Unable to process your request. Settlement InProgress.
+  description: The transaction settlement is in progress.
+  region: US
+- code: E0016
+  message: Functionality currently not available.
+  description: The functionality is not supported.
+  region: US
+- code: E0020
+  message: Inactive Merchant (Account)
+  description: The merchant is not registered, or is inactive in the system.
+  region: US
+- code: E0021
+  message: Merchant (Account) configuration missing
+  description: The configuration parameter is missing.
+  region: US
+- code: E0022
+  message: Processor configuration missing
+  description: The processor parameter is missing.
+  region: US
+- code: D0023
+  message: Merchant already active
+  region: US
+- code: E0030
+  message: Unique ID Error The terminal unique ID is invalid, or is not registered in the system.
+  region: US
+- code: D0050
+  message: Inactive terminal (Backend)
+  description: The device is inactive, or is not registered at the host.
+  region: US
+- code: D0060
+  message: Inactive account (Backend)
+  description: The account is inactive, or is not registered at the host.
+  region: US
+- code: D0070
+  message: Unique ID Error (Backend)
+  description: The terminal unique ID is invalid, or is not registered at the host.
+  region: US
+- code: D0080
+  message: Duplicate Request (Backend)
+  description: This is a duplicate transaction. This transaction was already approved and processed.
+  region: US
+- code: D0090
+  message: Reversal Not Allowed (Backend)
+  description: The transaction is not authorized for reversal. This error may occur because the transaction was settled, declined, or already reversed.
+  region: US
+- code: D0091
+  message: Return Not Allowed (Backend)
+  description: The transaction is not authorized for return. This error may occur because the transaction was settled, declined, or already reversed.
+  region: US
+- code: D0092
+  message: Request Format Error (Backend)
+  region: US
+- code: D0093
+  message: Encryption failure from host
+  region: US
+- code: D0094
+  message: Return not allowed, Card number requested does not match with original transaction card number
+  region: US
+- code: D0095
+  message: Invalid taskID
+  region: US
+- code: D0096
+  message: Currency code mismatch with original transaction
+  region: US
+- code: D0097
+  message: Multiple amount format in single request not supported
+  region: US
+- code: D0098
+  message: Multiple tax with same tax type is not allowed.
+  description: A request includes multiple tax with same tax type.
+  region: US
+- code: E0110
+  message: System Error (BillParam)
+  region: US
+- code: E0111
+  message: System Error (UBillACC)
+  region: US
+- code: E0200
+  message: System Error (Tran)
+  region: US
+- code: E0201
+  message: System Error (BillpayTran)
+  region: US
+- code: E0202
+  message: System Error (CardTran)
+  region: US
+- code: E0203
+  message: System Error (CheckTran)
+  region: US
+- code: E0204
+  message: System Error (MTTran)
+  region: US
+- code: E0205
+  message: System Error (MOTran)
+  region: US
+- code: E0206
+  message: System Error (AccTran)
+  region: US
+- code: E0207
+  message: System Error (Shipping_Info Tran)
+  region: US
+- code: E0208
+  message: System Error (Products Tran)
+  region: US
+- code: E0209
+  message: System Error (Override Tran)
+  region: US
+- code: E0210
+  message: System Error (PayMode Tran)
+  region: US
+- code: E0300
+  message: System Error (UTran)
+  region: US
+- code: E0301
+  message: System Error (BillpayUTran)
+  region: US
+- code: E0302
+  message: System Error (CardUTran)
+  region: US
+- code: E0303
+  message: System Error (CheckUTran)
+  region: US
+- code: E0304
+  message: System Error (MTUTran)
+  region: US
+- code: E0305
+  message: System Error (MoUTran)
+  region: US
+- code: E0306
+  message: System Error (ACCUTran)
+  region: US
+- code: E0310
+  message: System Error (BillPay WAY UTran)
+  region: US
+- code: E0311
+  message: System Error (BillPay WAY Seq)
+  region: US
+- code: E0350
+  message: System Error (UTranStatus)
+  region: US
+- code: E0360
+  message: System Error (PERIUTran)
+  region: US
+- code: E0370
+  message: System Error (SearchTran)
+  region: US
+- code: E0380
+  message: System Error (chkc history)
+  region: US
+- code: E0400
+  message: System Error (Login)
+  region: US
+- code: E0450
+  message: System Error (NoFee)
+  region: US
+- code: E0451
+  message: System Error (GetFEE)
+  region: US
+- code: E0460
+  message: System Error (EXRate)
+  region: US
+- code: E0470
+  message: System Error (PhCountry)
+  region: US
+- code: E0480
+  message: System Error (PrePay Number)
+  region: US
+- code: E0481
+  message: System Error (PrePay update)
+  region: US
+- code: E0482
+  message: System Error (PrePay List)
+  region: US
+- code: E0490
+  message: System Error (Bin Lookup)
+  region: US
+- code: E0491
+  message: System Error (Merchant Bin Lookup)
+  region: US
+- code: E0500
+  message: System Error (BrdCorp)
+  region: US
+- code: E0501
+  message: System Error (BrdMer)
+  region: US
+- code: E0502
+  message: System Error (Upate DeviceProc)
+  region: US
+- code: E0503
+  message: System Error (Upate MerchProductProc)
+  region: US
+- code: E0504
+  message: System Error (Upate LogoProc)
+  region: US
+- code: E0510
+  message: System Error (Upate MerchantProc)
+  region: US
+- code: E0511
+  message: System Error (Upate OperatorProc)
+  region: US
+- code: E0550
+  message: System Error (Search Corporation)
+  region: US
+- code: E0551
+  message: System Error (Search Merchant)
+  region: US
+- code: E0560
+  message: System Error (Modify Schedule)
+  region: US
+- code: E0561
+  message: System Error (Modify Payment)
+  region: US
+- code: E0600
+  message: System Error (CCust)
+  region: US
+- code: E0601
+  message: System Error (CCustID)
+  region: US
+- code: E0610
+  message: System Error (UCust)
+  region: US
+- code: E0611
+  message: System Error (UCustID)
+  region: US
+- code: E0620
+  message: System Error (SCust)
+  region: US
+- code: E0621
+  message: System Error (CustDt)
+  region: US
+- code: E0630
+  message: System Error (ECustACC)
+  region: US
+- code: E0631
+  message: System Error (ECust)
+  region: US
+- code: E0632
+  message: System Error (Deactivate Cust Account)
+  region: US
+- code: E0650
+  message: System Error (CRec)
+  region: US
+- code: E0651
+  message: System Error (CRecID)
+  region: US
+- code: E0660
+  message: System Error (URec)
+  region: US
+- code: E0661
+  message: System Error (URecID)
+  region: US
+- code: E0670
+  message: System Error (SRec)
+  region: US
+- code: E0671
+  message: System Error (RecDt)
+  region: US
+- code: E0672
+  message: System Error (CAdminTran)
+  region: US
+- code: E0673
+  message: System Error (BoardFee)
+  region: US
+- code: E0713
+  message: Transaction Key Expired
+  description: Transaction Key provided in request is expired. Register new key with our system.
+  region: US
+- code: E0720
+  message: System Error(Async Insert)
+  region: US
+- code: E0721
+  message: System Error (Async Update)
+  region: US
+- code: E0722
+  message: System Error (Async Call Fail)
+  region: US
+- code: E0723
+  message: System Error (Async Select Fail)
+  region: US
+- code: E0724
+  message: System Error (Key Gen Fail)
+  description: System Error. Please contact help desk.
+  region: US
+- code: E0800
+  message: System Error (KeyNox Error)
+  region: US
+- code: E0910
+  message: Time out
+  region: US
+- code: E0911
+  message: System Error
+  region: US
+- code: E0912
+  message: Error on Host
+  region: US
+- code: D1001
+  message: Account Number Invalid
+  description: Account number provided in request is not a valid account number.
+  region: US
+- code: D1002
+  message: Valid Account, Cash payments only.
+  region: US
+- code: D1003
+  message: Amount invalid.
+  region: US
+- code: D1004
+  message: Biller ID Invalid.
+  description: Biller ID provided in request is not valid.
+  region: US
+- code: D1005
+  message: Cash only biller.
+  region: US
+- code: D1006
+  message: Bill Pay Processor Code is missing or is incorrect. Processing host is not configured please contact help desk.
+  region: US
+- code: D1007
+  message: One or more Fields missing or incorrect.
+  region: US
+- code: D1020
+  message: Pre Pay Number not available.
+  region: US
+- code: D1201
+  message: Unable to determine merchant ID.
+  description: Merchant is not register with Mobilozophy.
+  region: US
+- code: D1202
+  message: Unable to process your request.
+  region: US
+- code: D1203
+  message: Invalid redemption code.
+  description: Redemption code provided in request is invalid.
+  region: US
+- code: D1204
+  message: Unable to determine coupon ID.
+  description: Unable to determine coupon ID.
+  region: US
+- code: D1205
+  message: Coupon not valid at this location.
+  description: Coupon not valid at this location.
+  region: US
+- code: D1206
+  message: Minimum Purchase Amount criteria not met.
+  description: Minimum Purchase Amount criteria not met.
+  region: US
+- code: D1207
+  message: Either end user ID or registration ID is required.
+  description: Either end user ID or registration ID is required.
+  region: US
+- code: D1208
+  message: Unable to modify coupon.
+  description: Modification of coupon data is not allowed.
+  region: US
+- code: D1209
+  message: Unable to modify coupon.
+  description: Modification of coupon data is not allowed.
+  region: US
+- code: D1210
+  message: Unable to modify coupon.
+  description: Modification of coupon data is not allowed.
+  region: US
+- code: D1211
+  message: Unable to modify coupon.
+  description: Modification of coupon data is not allowed.
+  region: US
+- code: D1212
+  message: This code has already been redeemed.
+  description: This code has already been redeemed.
+  region: US
+- code: D1213
+  message: This code has been deleted.
+  description: This code has been deleted.
+  region: US
+- code: D1214
+  message: Invalid store ID.
+  description: Invalid store ID.
+  region: US
+- code: D1215
+  message: Invalid amount.
+  description: Amount provided in request is invalid.
+  region: US
+- code: D1217
+  message: Coupon service is temporarily unavailable.
+  description: Coupon service is temporarily unavailable.
+  region: US
+- code: D1999
+  message: General Bill Pay Decline.
+  description: General declined please contact help desk.
+  region: US
+- code: D2001
+  message: Refer to Issuer.
+  description: The merchant must call the issuer to obtain verbal authorization.
+  region: US
+- code: D2002
+  message: Suspected Card (pick-up, hot-card)
+  description: 'This credit card has been flagged for fraud. the merchant should call the number on the back of the card to obtain further instructions. Suspected card error occurs in the following scenarios: 1-The card is restricted by the issuer 2-Loss of card is reported 3-Theft of card is reported'
+  region: US
+- code: D2003
+  message: Honor with identification?
+  description: The card is not identified.
+  region: US
+- code: D2004
+  message: Invalid Amount
+  description: The amount exceeds the limits established by the issuer for this type of transaction.
+  region: US
+- code: D2005
+  message: Invalid Card
+  description: The issuer indicates that this card is invalid.
+  region: US
+- code: D2006
+  message: No such issuer
+  description: The card issuer number is invalid.
+  region: US
+- code: D2007
+  message: Invalid fee
+  description: The transaction fee is unacceptable.
+  region: US
+- code: D2008
+  message: Incorrect Pin
+  description: The PIN entered by the cardholder is incorrect.
+  region: US
+- code: D2009
+  message: Pin attempts exceeded
+  description: The number of attempts to enter the PIN has exceeded.
+  region: US
+- code: D2010
+  message: Key synchronization failed from the host
+  description: The failure of a key synchronization from the host.
+  region: US
+- code: D2011
+  message: Expired Card
+  description: The card has expired.
+  region: US
+- code: D2012
+  message: Insufficient Funds
+  description: The credit limit for this account has exceeded, or the amount is not enough to perform the transaction.
+  region: US
+- code: D2013
+  message: Invalid From Account
+  description: The transaction account is invalid.
+  region: US
+- code: D2014
+  message: Invalid To Account
+  description: The transaction account is invalid.
+  region: US
+- code: D2015
+  message: Withdrawal Limit exceeded
+  description: The withdrawal limit on an account is exceeded.
+  region: US
+- code: D2016
+  message: Withdrawal frequency exceeded
+  description: The withdrawal frequency on an account is exceeded.
+  region: US
+- code: D2017
+  message: Time limit for Pre-Auth reached
+  description: The time for Pre-Auth has reached its limit.
+  region: US
+- code: D2018
+  message: AVS FAILED
+  description: The address verification has failed and the merchant is configured for auto decline on AVS failure.
+  region: US
+- code: D2019
+  message: Billing ZIP Mismatch
+  description: The zip provided does not match the billing address on file and merchant is configured for auto decline on ZIP code mismatch.
+  region: US
+- code: D2020
+  message: CVV2 verification failed
+  description: The V code provided is invalid or does not match what is on file and merchant set up for auto decline on CVV2 failure.
+  region: US
+- code: D2021
+  message: Issuer or Switch inoperative
+  description: The bank is unavailable to authorize this transaction.
+  region: US
+- code: D2022
+  message: Duplicate transaction ( Same amount / Account)
+  description: The transaction with same amount and account is performed twice.
+  region: US
+- code: D2023
+  message: Balance unavailable for inquiry
+  description: The balance cannot be validated.
+  region: US
+- code: D2024
+  message: Check Digit Err
+  description: The credit card number entered did not pass validation. Correct and re-enter the credit card number.
+  region: US
+- code: D2025
+  message: Excluded Bin ID for Merchant
+  description: Card is not allowed to do transaction at this merchant.
+  region: US
+- code: D2026
+  message: Do not honor
+  description: The transaction was declined by the issuer.
+  region: US
+- code: D2027
+  message: AVS and CVV2 failed
+  description: The address verification and V code verification failed and merchant set up for auto decline on AVS anc CVV2 failure.
+  region: US
+- code: D2028
+  message: Invalid Date
+  description: The credit card expiration date is invalid. Verify and re-enter the expiration date.
+  region: US
+- code: D2029
+  message: Invalid Service / Suspected Fraud
+  description: The transaction is declined by the issuer. Call the 800 number on the back of the card for further detail from the card issuer.
+  region: US
+- code: D2030
+  message: Host Validation Error
+  description: The host is an invalid host.
+  region: US
+- code: D2031
+  message: Activity Limit exceeded
+  description: The daily card activity limit has been exceeded.
+  region: US
+- code: D2032
+  message: Cannot complete because of Violation
+  description: The transaction cannot be completed because the credit card account has been flagged with a violation.
+  region: US
+- code: D2033
+  message: Debit Pin Required
+  region: US
+- code: D2034
+  message: Debit Pin Required
+  description: The BIN is blocked by the issuer.
+  region: US
+- code: D2035
+  message: Check Service authentication failure
+  region: US
+- code: D2039
+  message: Could Not Retrieve a Valid Card Number for Token
+  region: US
+- code: E2042
+  message: No Card found for the BIN No Card found for the BIN
+  region: US
+- code: D2200
+  message: UNKNOWN_ERROR
+  region: US
+- code: D2201
+  message: CONTENT_TYPE_NOT_SET
+  region: US
+- code: D2202
+  message: UNKNOWN_CONTENT_TYPE
+  region: US
+- code: D2203
+  message: CONTENT_LENGTH_NOT_SET
+  region: US
+- code: D2204
+  message: INCOMING_REQUEST_READ_ERROR
+  region: US
+- code: D2205
+  message: OUTGOING_RESPONSE_SEND_ERROR
+  region: US
+- code: D2206
+  message: INPUT_VALIDATION_ERROR
+  region: US
+- code: D2208
+  message: OCT_FAILED
+  region: US
+- code: D2209
+  message: AFT_FAILED
+  region: US
+- code: D2210
+  message: AFTR_FAILED
+  region: US
+- code: D2211
+  message: REMOTE_VPP_ERROR
+  region: US
+- code: D2212
+  message: INVALID_ISSUER_COUNTRY_CODE
+  region: US
+- code: D2213
+  message: FAST_FUNDS_NOT_ENABLED
+  region: US
+- code: D2214
+  message: INTERNAL_ERROR
+  region: US
+- code: D2215
+  message: ACNL_FAILED
+  region: US
+- code: D2216
+  message: ReceiverLimitExceeded
+  region: US
+- code: D2800
+  message: Invalid FCS ID
+  region: US
+- code: D2801
+  message: Invalid Voucher Serial Number
+  region: US
+- code: D2802
+  message: Invalid Voucher Approval Code
+  region: US
+- code: D2803
+  message: Electronics Benefit Transactions cannot contain Fee or Tax
+  region: US
+- code: D2998
+  message: PreFraudScout Decline
+  description: Transaction is declined in Pre Fraud rules.
+  region: US
+- code: D2999
+  message: General Card Auth Decline
+  description: This is a general decline error.
+  region: US
+- code: D3001
+  message: Invalid Bank Routing Number
+  description: Invalid routing number in the request message.
+  region: US
+- code: D3002
+  message: Invalid Bank Account Number
+  description: The bank account number in the request message is invalid.
+  region: US
+- code: D3003
+  message: Invalid MICR Data
+  description: The MICR data in the request message is invalid.
+  region: US
+- code: D3004
+  message: Invalid Account Type
+  description: The account type in the request message is invalid.
+  region: US
+- code: D3005
+  message: Invalid Check Type
+  description: The check type in the request message is invalid.
+  region: US
+- code: D3006
+  message: Invalid Amount
+  description: The amount for a transaction is invalid.
+  region: US
+- code: D3007
+  message: Missing Signature
+  region: US
+- code: D3008
+  message: Missing Endorsement
+  region: US
+- code: D3009
+  message: Invalid Check Date
+  description: The date format in the request message is invalid.
+  region: US
+- code: D3010
+  message: Car Lar Mismatch
+  description: Mismatch between the check amount written in numbers (courtesy amount) and letters (legal amount) provided on check image.
+  region: US
+- code: D3011
+  message: CallNox Timeout
+  region: US
+- code: D3012
+  message: Duplicate Check
+  region: US
+- code: D3013
+  message: Blocked Account
+  description: The account provided in transaction is blocked.
+  region: US
+- code: D3014
+  message: Blocked Check
+  description: The check provided in transaction is blocked.
+  region: US
+- code: D3015
+  message: Cannot Process Image
+  region: US
+- code: D3016
+  message: Invalid Check Number
+  description: The check number in the request message is invalid.
+  region: US
+- code: D3017
+  message: Bank Account Closed
+  description: The bank account does not exist.
+  region: US
+- code: D3018
+  message: Decline NSF
+  region: US
+- code: D3019
+  message: Check Image Decline
+  region: US
+- code: D3020
+  message: Invalid SEC
+  region: US
+- code: D3101
+  message: Maker Check Return Stop Pay Limit Exceeded
+  region: US
+- code: D3102
+  message: Maker Check Return No Auth Limit Exceeded
+  region: US
+- code: D3103
+  message: Maker Check Return No Settlement Limit Exceeded
+  region: US
+- code: D3104
+  message: Maker Check Return NSF/Other Limit Exceeded
+  region: US
+- code: D3105
+  message: Maker Check Return Limit Exceeded
+  region: US
+- code: D3106
+  message: Customer Check Return Stop Pay Limit Exceeded
+  region: US
+- code: D3107
+  message: Customer Check Return No Auth Limit Exceeded
+  region: US
+- code: D3108
+  message: Customer Check Return No Settlement Limit Exceede
+  region: US
+- code: D3109
+  message: Customer Check Return NSF/Other Limit Exceeded
+  region: US
+- code: D3110
+  message: Customer Check Return Limit Exceeded
+  region: US
+- code: D3111
+  message: Check Image Processing Error
+  region: US
+- code: D3112
+  message: Customer Check Cashing Limit Exceeded
+  region: US
+- code: D3200
+  message: Record(s) Processed Successfully
+  region: US
+- code: D3201
+  message: Duplicate Custom Fields Not Allowed.
+  description: Duplicate Custom Field Not Allowed.
+  region: US
+- code: D3202
+  message: Item code already exists.
+  description: Item code already exists.
+  region: US
+- code: D3203
+  message: Custom Field Type cannot be modified during update.
+  description: Custom Field Type cannot be modified during update.
+  region: US
+- code: D3204
+  message: Could not find Product for Update.
+  description: Product is not registered in the system.
+  region: US
+- code: D3205
+  message: Could not find Product for Removal.
+  description: Product is not registered in the system.
+  region: US
+- code: D3206
+  message: Unidentified Tax Category
+  description: Tax Category is not set in our system.
+  region: US
+- code: D3207
+  message: Some Record(s) Processed Successfully
+  region: US
+- code: D3208
+  message: No Records Processed
+  description: No records are processed further.
+  region: US
+- code: D3211
+  message: Parsing Failed
+  description: Issue with request parameter.
+  region: US
+- code: D3212
+  message: Product Enroll Fail at Merchant Level
+  description: Merchant level data is not added or updated in the system.
+  region: US
+- code: D3213
+  message: Item code not provided
+  description: The item code in the request message is invalid.
+  region: US
+- code: D3214
+  message: Product Enroll Fail at Merchant Custom Level
+  description: Merchant level custom data is not added and updated in the system.
+  region: US
+- code: D3215
+  message: Product Enroll Fail at Global Level
+  description: The UPC level data is not added and updated in our system.
+  region: US
+- code: D3216
+  message: Product Removal Failed
+  description: Product Removal Failed.
+  region: US
+- code: D3217
+  message: No Tax Category Found
+  description: No Tax Category Found.
+  region: US
+- code: D3218
+  message: Category already exists
+  region: US
+- code: D3219
+  message: Invalid Category Code
+  region: US
+- code: D3220
+  message: Modifier already exists
+  region: US
+- code: D3221
+  message: Invalid Modifier Code
+  region: US
+- code: D3222
+  message: Variation already exists
+  region: US
+- code: D3223
+  message: Invalid Variation
+  region: US
+- code: D3224
+  message: Invalid Product Code
+  region: US
+- code: D3225
+  message: Duplicate Variation Option Fields Not Allowed
+  region: US
+- code: D3226
+  message: Discount already exists
+  region: US
+- code: D3227
+  message: Start Date should be current date or future date
+  region: US
+- code: D3228
+  message: End Date should be current date or future date
+  region: US
+- code: D3229
+  message: Invalid Discount Code
+  region: US
+- code: D3230
+  message: No Product found for given search criteria.
+  description: No product is found for given search criteria.
+  region: US
+- code: D3231
+  message: End Date should be greater than Start Date
+  region: US
+- code: D3232
+  message: Discount amount should be less than Max Discount amount
+  region: US
+- code: D3233
+  message: Discount percentage should be less than 100
+  region: US
+- code: D3234
+  message: Max Discount amount should be less than Discount Qualifying amount
+  region: US
+- code: D3235
+  message: Discount Code already removed
+  region: US
+- code: D3236
+  message: Already Associated
+  region: US
+- code: D3237
+  message: Invalid role
+  region: US
+- code: D3238
+  message: Invalid Operation
+  region: US
+- code: D3239
+  message: Role Already Exist
+  region: US
+- code: D3240
+  message: Operation Type Already Exist
+  region: US
+- code: D3241
+  message: Role does not Exist
+  region: US
+- code: D3242
+  message: Role can not be Deleted
+  region: US
+- code: D3243
+  message: Default Role can not be Modified
+  region: US
+- code: D3250
+  message: Invalid modifierOptionDetails
+  description: Invalid modifierOptionDetails
+  region: US
+- code: D3253
+  message: Order service date can not be a previous date
+  region: US
+- code: E3254
+  message: Order creation failed
+  region: US
+- code: E3255
+  message: OrderID not found
+  region: US
+- code: E3256
+  message: Order updation failed
+  region: US
+- code: E3257
+  message: Order can not be modified
+  region: US
+- code: D3259
+  message: Invalid modifier categoryCode
+  description: Invalid modifier categoryCode
+  region: US
+- code: D3260
+  message: Invalid product categoryCode
+  description: Invalid product categoryCode
+  region: US
+- code: D3264
+  message: currentPaymentSequenceNumber should be less than and equal totalPaymentCount
+  description: The currentPaymentSequenceNumber value entered does not meet the required criteria.
+  region: US
+- code: D3999
+  message: Check Auth Decline
+  region: US
+- code: D4000
+  message: Invalid content, one of \{encodedCardData, keyedCardData, returnTransactionData} group is required
+  region: US
+- code: E4001
+  message: Invalid Source Country Code
+  region: US
+- code: E4002
+  message: Invalid Source Currency Code
+  region: US
+- code: E4003
+  message: Invalid Destination Location
+  region: US
+- code: E4004
+  message: Invalid Destination Currency Code
+  region: US
+- code: E4005
+  message: Invalid Source Agent
+  region: US
+- code: E4006
+  message: Invalid Destination Agent
+  region: US
+- code: E4007
+  message: Invalid Conversion Rate
+  region: US
+- code: E4008
+  message: Invalid Fee
+  region: US
+- code: E4009
+  message: Missing/Invalid Amount
+  region: US
+- code: E4010
+  message: Missing/Invalid Payout Amount
+  region: US
+- code: E4011
+  message: Invalid MTCN
+  region: US
+- code: E4012
+  message: Duplicate transaction ( Same amount/ Account ).
+  region: US
+- code: E4050
+  message: Missing /Invalid Sender Name
+  region: US
+- code: E4051
+  message: Invalid Sender ID Type
+  region: US
+- code: E4052
+  message: Invalid Sender ID
+  region: US
+- code: E4053
+  message: Invalid Sender Address
+  region: US
+- code: E4054
+  message: Invalid Sender phone number
+  region: US
+- code: E4055
+  message: Missing /Invalid Receiver Name
+  region: US
+- code: E4056
+  message: Invalid Receiver ID Type
+  region: US
+- code: E4057
+  message: Invalid Receiver ID
+  region: US
+- code: E4058
+  message: Invalid Receiver Address
+  region: US
+- code: E4059
+  message: Invalid Receiver phone number
+  region: US
+- code: E4060
+  message: Missing / Invalid Input
+  region: US
+- code: E4999
+  message: General Money Transfer Decline
+  region: US
+- code: E5000
+  message: Invalid Money order Number.
+  region: US
+- code: E5001
+  message: Invalid Amount.
+  region: US
+- code: D5201
+  message: Invalid Page size in the request
+  region: US
+- code: D5202
+  message: Invalid Report column name for requested report
+  region: US
+- code: D5203
+  message: Invalid date range, redefine your search
+  region: US
+- code: D5204
+  message: Invalid search column for requested report
+  region: US
+- code: D5205
+  message: Invalid optional column for requested report
+  region: US
+- code: D5206
+  message: Invalid Report column name for requested report
+  region: US
+- code: D5207
+  message: Invalid/Expired Report data identifier
+  region: US
+- code: D5208
+  message: Invalid search column value for requested report
+  region: US
+- code: D5209
+  message: No data found, please redefine your search
+  region: US
+- code: D5210
+  message: One or more duplicate columns used for search, sort or for optional columns
+  region: US
+- code: D5211
+  message: Invalid search condition, transactionID is required
+  region: US
+- code: D5212
+  message: Invalid search condition, productCode is required
+  region: US
+- code: D5213
+  message: Service is temporarily unavailable.Please try later
+  region: US
+- code: E5213
+  message: Service is temporarily unavailable.Please try later
+  region: US
+- code: D5214
+  message: Invalid search condition, dateRange is required
+  region: US
+- code: E5500
+  message: Invalid Payroll Info
+  region: US
+- code: E5599
+  message: General Payroll Decline.
+  region: US
+- code: E5999
+  message: General Money order Decline
+  region: US
+- code: E6000
+  message: Missing /Invalid Name
+  region: US
+- code: E6001
+  message: Invalid ID Type
+  region: US
+- code: E6002
+  message: Invalid ID Number
+  region: US
+- code: E6004
+  message: Invalid Address
+  description: The address provided in the transaction is invalid.
+  region: US
+- code: E6005
+  message: Invalid phone number
+  description: The phone number provided in the transaction is Invalid.
+  region: US
+- code: E6006
+  message: Invalid SSN
+  description: The SSN provided in the transaction is Invalid.
+  region: US
+- code: E6007
+  message: Invalid DOB
+  description: The DOB provided in the transaction is Invalid.
+  region: US
+- code: E6008
+  message: Missing/Invalid Gender
+  region: US
+- code: E6009
+  message: Missing/Invalid customer Image
+  region: US
+- code: E6010
+  message: Missing/Invalid ID Image
+  region: US
+- code: E6011
+  message: Missing/Invalid Finger Print Image
+  region: US
+- code: E6012
+  message: Biometric Auth failure
+  region: US
+- code: E6013
+  message: BFD failed
+  region: US
+- code: E6014
+  message: OTP failed
+  region: US
+- code: E6050
+  message: Duplicate Enrollment
+  description: The Customer is enrolled. Verify if the request is send twice for the same customer.
+  region: US
+- code: E6051
+  message: OFAC Match
+  region: US
+- code: E6052
+  message: Blocked Customer
+  region: US
+- code: E6053
+  message: Blocked Biometrics
+  region: US
+- code: E6054
+  message: Declined Score below threshold.
+  region: US
+- code: E6055
+  message: Customer Not Enrolled.
+  description: The customer code provided in request is not registered.
+  region: US
+- code: E6056
+  message: Financial Account Not Enrolled.
+  region: US
+- code: E6057
+  message: Customer requested stop of specific recurring payment
+  description: Customers request to stop recurring payments.
+  region: US
+- code: E6058
+  message: Customer requested stop of all recurring payments from specific merchant
+  description: Customers request to stop recurring payments from specific merchant.
+  region: US
+- code: E6059
+  message: Missing Customer ID/External Customer Number
+  description: Customer ID or external customer number is not provided in request.
+  region: US
+- code: E6060
+  message: Inactive Customer
+  description: Inactive Customer
+  region: US
+- code: E6061
+  message: Invalid UID
+  description: UID number provided in request is invalid.
+  region: US
+- code: E6062
+  message: Incorrect or No Card Indicator Value
+  region: US
+- code: E6063
+  message: Customer Group Name already exists
+  region: US
+- code: E6064
+  message: Invalid Customer Group code
+  region: US
+- code: E6065
+  message: Customer Code already associated
+  region: US
+- code: E6066
+  message: Invalid Customer Code
+  region: US
+- code: E6067
+  message: Search criteria not found.
+  description: The search request does not include any search criteria fields.The search criteria includes the firstName, lastName, paymentInstrumentID, or customerID fields.
+  region: US
+- code: E6068
+  message: External Customer number is already available.
+  region: US
+- code: E6069
+  message: Invalid Search Criteria
+  region: US
+- code: E6071
+  message: Customer modification not allowed, payment is in process.
+  description: The application is unable to delete a customer record while a recurring transaction for the customer is processing.
+  region: US
+- code: E6072
+  message: Transaction is in process. Please try again after some time.
+  description: Simultaneous actions cannot be performed on the same customer record. The application is unable to perform edits on a customer record while the record is in use.
+  region: US
+- code: E6100
+  message: Inactive Customer
+  description: Inactive Customer.
+  region: US
+- code: E6901
+  message: Duplicate Schedule Billing Reference Number
+  description: Duplicate schedule billing reference number.
+  region: US
+- code: E6902
+  message: Payment Count Cannot be Greater than Processed Count
+  description: Payment count cannot be greater than processed count.
+  region: US
+- code: E6903
+  message: Next start date cannot be earlier than Current Date
+  description: Next start date cannot be earlier than current date.
+  region: US
+- code: E6904
+  message: Schedule cannot be added without a Payment Methods (i.e. Card, Account...)
+  region: US
+- code: E6905
+  message: Schedule not found
+  region: US
+- code: E6906
+  message: Invalid Schedule string
+  region: US
+- code: E6999
+  message: General Customer Auth Decline
+  description: General declined.
+  region: US
+- code: D7000
+  message: Record not found
+  description: The transaction requested is not available.
+  region: US
+- code: E7001
+  message: Invalid User ID
+  description: The user Id provided in request message is invalid.
+  region: US
+- code: E7002
+  message: Record Not Found.
+  description: The Transaction is not present in the system.
+  region: US
+- code: E7003
+  message: User Locked. Call CSR
+  region: US
+- code: E7004
+  message: Invalid Security Question/Answer
+  description: Invalid security question and answer.
+  region: US
+- code: E7005
+  message: User Already Logged in
+  description: User Already Logged in try after some time.
+  region: US
+- code: E7006
+  message: Your Password has Expired, Please change the password.
+  description: Change your password.
+  region: US
+- code: E7007
+  message: User Inactive. Call CSR
+  region: US
+- code: E7008
+  message: Operator Not Found
+  description: The user ID is not registered in the system.
+  region: US
+- code: E7009
+  message: Expired Client Password
+  description: The client password is expired.
+  region: US
+- code: E7010
+  message: Invalid Host ID
+  description: The Host Id provided in the request message is invalid.
+  region: US
+- code: E7011
+  message: Client Authentication Failed
+  description: This message may occur for more than one reason. 1.  The manifest included in the request is not configured properly. 2.  The Domain Key included in the request manifest is expired. 3.  The Host Password included in the request is expired.
+  region: US
+- code: E7012
+  message: Invalid user or password
+  description: The User id and password is invalid.
+  region: US
+- code: D7013
+  message: Multiple users with same email. Enter Login ID
+  region: US
+- code: E7013
+  message: Multiple users with same email. Enter Login ID
+  description: There are multiple users with the same email ID. Enter your login ID.
+  region: US
+- code: E7014
+  message: Invalid Manifest
+  description: Manifest provided in the request message is invalid.
+  region: US
+- code: E7015
+  message: Invalid Transaction Key
+  description: The transaction key provided in the request message is invalid.
+  region: US
+- code: E7016
+  message: Invalid UserID or EmailID
+  region: US
+- code: D7017
+  message: User Modification Request Failed
+  region: US
+- code: E7018
+  message: The provided authentication credentials are not correct
+  region: US
+- code: E7019
+  message: Duplicate Questions/answers not allowed
+  region: US
+- code: E7020
+  message: The question cannot be same as any of the answers
+  region: US
+- code: E7021
+  message: Unable to process, retry with terminalNumber
+  region: US
+- code: E7022
+  message: Unable to process, retry with profileName or profileID
+  region: US
+- code: E7023
+  message: Unable to find profile
+  region: US
+- code: E7024
+  message: Security question expired, please fetch a new question
+  region: US
+- code: E7027
+  message: Unable to process, retry with userID
+  description: Multiple entries found for the merchantID and emailID search criteria used.
+  region: US
+- code: E7100
+  message: General Login Decline
+  description: General Login Decline.
+  region: US
+- code: E7101
+  message: User_ID already exists
+  description: User_ID already exists.
+  region: US
+- code: E7102
+  message: Operation not allowed
+  description: Operation not allowed.
+  region: US
+- code: E7103
+  message: Operator not Register/Present
+  description: Operator is not Register or Present in the system.
+  region: US
+- code: E7104
+  message: Last active admin operator in the system
+  description: The last Active Admin operator in the system. At least one Admin operator should be active for a merchant.
+  region: US
+- code: E7105
+  message: Admin operator cannot change his own status or type
+  description: The Admin operator cannot change his own profile details.
+  region: US
+- code: E7106
+  message: Not allowed to add Administrator
+  description: The operator is not allowed to add Admin operator.
+  region: US
+- code: E7107
+  message: Input Password does not adhere to complexity norms
+  description: The Input Password does not adhere to complexity norms.
+  region: US
+- code: E7108
+  message: New password must not match previous password. Please enter a unique new password
+  description: The new password must not match previous password. Please enter a unique new password.
+  region: US
+- code: E7109
+  message: Suspended/Inactive User
+  description: The User Id provided in request is Suspended or Inactive. Please reactivate to perform transaction.
+  region: US
+- code: E7110
+  message: Invalid password length
+  description: The password length must be between 8 and 20 characters.
+  region: US
+- code: E7111
+  message: Parameter validation Error
+  region: US
+- code: E7112
+  message: User already exists
+  region: US
+- code: E7113
+  message: User Credential not active
+  region: US
+- code: E7114
+  message: Security question not set for user
+  region: US
+- code: E7200
+  message: General User Admin Decline
+  description: General User Admin Decline.
+  region: US
+- code: E7201
+  message: Client not registered to our system.
+  description: The client domain name or unique ID is not registered.
+  region: US
+- code: E7202
+  message: Invalid Client Key
+  description: The client key is invalid. Re-enter the correct key and resubmit the transaction.
+  region: US
+- code: E7203
+  message: Client Validity Expired, Please re-register
+  description: The client validity is expired. Re-register the domain or the unique ID.
+  region: US
+- code: E7204
+  message: Invalid merchant details
+  region: US
+- code: E7251
+  message: Invalid one time password
+  description: The one time password is invalid. Re-enter the correct password and resubmit the transaction.
+  region: US
+- code: E7252
+  message: Duplicate one time password
+  description: The one time password is a duplicate. Re-enter the correct password and resubmit the transaction.
+  region: US
+- code: E7253
+  message: One time password validity expired
+  description: The one time password has expired. Generate a new password and resubmit the transaction.
+  region: US
+- code: E7254
+  message: Host Operator not allowed
+  description: The host operator is not allowed.
+  region: US
+- code: E7255
+  message: Operator is not Host
+  description: The operator ID for this transaction is invalid.
+  region: US
+- code: E7256
+  message: Token services cannot be enabled until the merchant account is set up with a token zone
+  description: Tokenization service is not enabled for the merchant.
+  region: US
+- code: E7257
+  message: Tokenization service not enabled
+  description: Tokenization service not enabled for the merchant.
+  region: US
+- code: E7259
+  message: De-tokenization service not enabled
+  description: De-tokenization service is not enabled for the merchant.
+  region: US
+- code: E7260
+  message: De-tokenization UnSuccessful
+  description: The token is invalid. Resubmit with a valid token number.
+  region: US
+- code: E7261
+  message: Tokenization UnSuccessful
+  description: Service is not available. Resubmit the transaction.
+  region: US
+- code: D7500
+  message: record not found (backend)
+  description: The record was not found.
+  region: US
+- code: D7501
+  message: Chargeback Protection is not allowed
+  description: The transaction is not eligible for Chargeback Protection.
+  region: US
+- code: E8000
+  message: Customer not found
+  description: Customer is not register in our system.
+  region: US
+- code: E8001
+  message: Customer not enrolled
+  description: Customer is not register in our system.
+  region: US
+- code: E8002
+  message: Customer Declined
+  description: Customer enrollment declined.
+  region: US
+- code: E8003
+  message: Customer Locked
+  description: Customer is locked in system.
+  region: US
+- code: E8004
+  message: Invalid user or password
+  description: Invalid user or password.
+  region: US
+- code: E8005
+  message: Credit Limit Reached
+  description: Max Credit Limit Reached.
+  region: US
+- code: E8006
+  message: Local Opt Out
+  description: Local Opt Out.
+  region: US
+- code: E8007
+  message: Invalid Message
+  description: Invalid Message
+  region: US
+- code: E8008
+  message: Globally Opted Out phone number
+  description: Globally Opted Out phone number
+  region: US
+- code: F8009
+  message: Invalid Email
+  description: Invalid Email
+  region: US
+- code: E8900
+  message: System Error
+  description: System Error.
+  region: US
+- code: E8999
+  message: General Notify Decline.
+  description: General Notify Decline.
+  region: US
+- code: D9000
+  message: Amount Limit Exceeded
+  description: Amount Limit Exceeded for transaction.
+  region: US
+- code: D9001
+  message: Transaction count Limit Exceeded
+  description: Transaction count Limit Exceeded.
+  region: US
+- code: D9002
+  message: Device activity Limit Exceeded
+  description: Device activity Limit Exceeded.
+  region: US
+- code: D9003
+  message: Amount per days Limit Exceeded
+  description: Amount per days Limit Exceeded.
+  region: US
+- code: D9004
+  message: Excluded Customer
+  description: Customer is excluded to perform transaction at this merchant.
+  region: US
+- code: E9005
+  message: Invalid Cashback amount
+  description: Cash back amount provided in request is invalid. Cash back should always be less then transaction amount.
+  region: US
+- code: E9006
+  message: Cashback Amount is not allowed for this type of transaction
+  description: Cashback Amount is not allowed for this type of transaction.
+  region: US
+- code: D9007
+  message: Maximum Line Items Exceeded Maximum Line Items Limit Exceeded
+  region: US
+- code: D9008
+  message: BC limit not set for merchant. BC limit not set for merchant.
+  region: US
+- code: D9009
+  message: BC buffer percent was not set for merchant. BC buffer percent was not set for merchant
+  region: US
+- code: D9010
+  message: Invalid Transaction_Info/Service_Code.
+  description: 'The error occurs in the scenarios as follows: 1-Service code is missing in the request. 2-Service code is invalid. 3-Service code is inadequate for this type of transaction.'
+  region: US
+- code: D9011
+  message: Net Balance is less than zero
+  region: US
+- code: D9012
+  message: Invalid Merchant_Info/Agent_Chain_Number must be 6 bytes
+  region: US
+- code: D9013
+  message: Invalid Transaction type Invalid Transaction type
+  region: US
+- code: D9014
+  message: Merchant Per Transaction Deposit Limit Exceeded Transaction Deposit Limit Exceeded
+  region: US
+- code: D9015
+  message: Head Quarter merchant not found. Head Quarter merchant not found.
+  region: US
+- code: D9018
+  message: No Valid Data Found,Please Generate Token First.
+  region: US
+- code: D9019
+  message: Invalid Token
+  region: US
+- code: D9020
+  message: Invalid Transaction_Info/SubServiceCode
+  description: 'The error occurs in the scenarios as follows: 1- Sub service code is missing in request. 2- Sub service code is invalid. 3- Sub service code is inadequate for this type of transaction.'
+  region: US
+- code: D9021
+  message: Invalid Transaction_Info/Type.
+  description: 'The error occurs in the scenarios as follows: 1-Type is missing in request. 2-Type is invalid. 3-Type is inadequate for this type of transaction.'
+  region: US
+- code: D9022
+  message: Invalid Transaction_Info/Transaction_ID
+  description: Transaction ID is expected in request for this transaction. Re-enter the Transaction ID, and resend the transaction.
+  region: US
+- code: D9030
+  message: Invalid Device_Info/Device_Type
+  description: Device is inadequate to do this type of transaction.
+  region: US
+- code: D9040
+  message: Invalid Processor_Info/Acquirer_Institute must be 6 bytes
+  description: Acquirer_Institute must be 6 bytes.
+  region: US
+- code: D9050
+  message: Invalid Processor_Info/Proc_Merchant_Id must be 12 bytes
+  description: Proc_Merchant_Id must be 12 bytes.
+  region: US
+- code: D9070
+  message: Invalid Processor_Info/Processor_Term must be 4 bytes
+  description: Processor_Term must be 4 bytes.
+  region: US
+- code: D9080
+  message: Invalid Processor_Info/Store_Number must be 4 bytes
+  description: Store_Number must be 4 bytes.
+  region: US
+- code: D9090
+  message: Invalid Merchant_Info/MerchantType
+  description: The merchant name is invalid or is not present.
+  region: US
+- code: D9091
+  message: Invalid Merchant_Info/Name
+  region: US
+- code: D9092
+  message: Invalid Merchant_Info/City
+  region: US
+- code: D9093
+  message: Invalid Merchant_Info/State
+  region: US
+- code: D9094
+  message: Invalid Merchant_Info/TimeZone must be 3 bytes
+  region: US
+- code: D9096
+  message: Invalid Transaction_Info/Time_Stamp must be [MMDDYY HHMMSS]
+  region: US
+- code: D9100
+  message: Fee Configuration Level must be mentioned
+  region: US
+- code: D9101
+  message: Fee not configured
+  region: US
+- code: D9110
+  message: Invalid Merchant_Info/SICCODE must be 4 bytes.
+  region: US
+- code: D9111
+  message: Invalid Processor_Info/Sequence_Number must be 4 bytes
+  region: US
+- code: D9120
+  message: Invalid Card_Info/PIN
+  region: US
+- code: D9130
+  message: Invalid Transaction_Info/Country_Code must be at least 2 bytes.
+  region: US
+- code: D9140
+  message: Invalid Card_Info/Type
+  region: US
+- code: D9210
+  message: Invalid Card_Info/PIN
+  region: US
+- code: D9211
+  message: Invalid Card_Info/Token
+  region: US
+- code: D9212
+  message: Invalid Card_Info/KSN must be at least 16 chars
+  region: US
+- code: D9240
+  message: Invalid Merchant_Info/Agent_Bank_Number must be 6 bytes.
+  region: US
+- code: D9250
+  message: Invalid Merchant_Info/Agent_Chain_Number must be 6 bytes
+  region: US
+- code: D9260
+  message: Invalid Processor_Info/Batch_Number must be 3 bytes
+  region: US
+- code: D9270
+  message: Invalid Merchant_Info/Reimburse_Attr must be 1 byte
+  region: US
+- code: D9280
+  message: Invalid Merchant_Info/ABA_Number must be 9 bytes
+  region: US
+- code: D9282
+  message: Invalid Merchant_Info/Settle_Agent_Number must be 4 bytes
+  region: US
+- code: D9283
+  message: Check Out date can not be less than or equal to Check In date
+  region: US
+- code: D9284
+  message: Transaction amount should not be greater than authorized amount
+  region: US
+- code: D9286
+  message: Invalid CheckoutID
+  description: The checkOutID provided is incorrect. Provide the correct checkOutID.
+  region: US
+- code: D9287
+  message: Duplicate card sequence number
+  region: US
+- code: E9288
+  message: Invalid Wallet Identifier Format
+  region: US
+- code: E9289
+  message: Encoded Data is not allowed with checkoutID
+  region: US
+- code: D9290
+  message: Invalid Transaction_Info/Orig_Purchase_Date must be MMDDHHMM
+  region: US
+- code: E9291
+  message: Keyed Card Data is not allowed with checkoutID
+  region: US
+- code: E9292
+  message: Mandatory Tags are missing
+  region: US
+- code: E9293
+  message: Card Type not supported for requeted service
+  region: US
+- code: E9294
+  message: terminalData \{terminalCapability, terminalOperatingEnvironment, cardholderAuthenticationMethod, terminalAuthenticationCapability, terminalOutputCapability,maxPinLength} group is required
+  region: US
+- code: E9295
+  message: cardholderAuthenticationMethod must be PIN
+  region: US
+- code: D9500
+  message: Encryption services not enabled for the device
+  description: Encryption services are not enabled for the device.
+  region: US
+- code: D9501
+  message: Encryption service requested not enabled for the device
+  description: The device has encryption service but the encryption service requested is not enabled.
+  region: US
+- code: D9502
+  message: Encryption method could not be determined
+  description: The device is configured with more than one encryption service. The request does not indicate which service to use.
+  region: US
+- code: D9503
+  message: Decryption unsuccessful
+  description: The decryption failed.
+  region: US
+- code: D9504
+  message: Invalid Format Id
+  region: US
+- code: D9505
+  message: Product Details is required to perform this action
+  region: US
+- code: D9510
+  message: Invalid Encryption Type
+  description: An invalid encryption type was included in the request.
+  region: US
+- code: D9511
+  message: A unique KSN not generated or not sent in request
+  description: The application was unable to generate or submit the key serial number.
+  region: US
+- code: D9610
+  message: Data Parsing fail
+  description: Data parsing failed.
+  region: US
+- code: D9611
+  message: Encrypted Data not generated or not sent in request
+  description: Encrypted data was not received from the host or the application was unable to include this data in the response.
+  region: US
+- code: F9900
+  message: XSD Format Error
+  description: XSD Format Error
+  region: US
+- code: F9901
+  message: Format Error field details
+  description: Format Error field details
+  region: US
+- code: F9902
+  message: Group encodedCardData is not allowed with cardDataSource value MANUAL
+  region: US
+- code: F9903
+  message: Group encodedCardData is not allowed with cardDataSource value PHONE
+  region: US
+- code: F9904
+  message: Group encodedCardData is not allowed with cardDataSource value EMAIL
+  region: US
+- code: F9905
+  message: Group encodedCardData is not allowed with cardDataSource value INTERNET
+  region: US
+- code: F9906
+  message: Group keyedCardData is not allowed with cardDataSource value SWIPE
+  region: US
+- code: F9907
+  message: Invalid cardDataSource for requested service.
+  region: US
+- code: F9908
+  message: Sum of elements of group additionalCharges should not be greater than transactionAmount.
+  region: US
+- code: F9909
+  message: cashTendered must not be less than transactionAmount
+  region: US
+- code: F9910
+  message: lastChipRead is Mandatory with Fallback Swipe (Icc Terminal Error) transaction
+  region: US
+- code: F9911
+  message: lastchipRead is not Allowed with Fallback Swipe (Empty Candidate List) transaction
+  region: US
+- code: F9912
+  message: Invalid content, one of \{track1Data, track2Data, track3Data} is required
+  region: US
+- code: F9913
+  message: Invalid content, \{encodedCardData, keyedCardData or swipedCardData} is not Allowed with Chip Card
+  region: US
+- code: F9914
+  message: emvFallbackCondition is Mandatory with Fallback Swipe transaction
+  region: US
+- code: F9915
+  message: voidReason is Mandatory for Chip Card transaction
+  region: US
+- code: F9916
+  message: Fallback Swipe allowed with track2Data only
+  region: US
+- code: F9917
+  message: Invalid emvTags, \{9F1F or 9F20 or 57 or 5A}
+  description: Tags 9F1F, 9F20, 57 and 5A are not allowed if encryptionType is VOLTAGE
+  region: US
+- code: F9918
+  message: Invalid content, \{track1Data, track3Data, emulatedTrackData} is not Allowed with Chip Card and encryptionType
+  description: track1Data, track3Data, and emulatedTrackData are not allowed if encryptionType is VOLTAGE
+  region: US
+- code: '-69'
+  message: Transaction has been declined. Invalid 3ds_version parameter.
+  region: EU/UK
+- code: '-68'
+  message: Authentication process timed out. Please try again.
+  region: EU/UK
+- code: '-66'
+  message: Invalid combination of 3ds_initiate and exemption_action values.
+  region: EU/UK
+- code: '-65'
+  message: Gateway MID is not allowed for this exemption.
+  region: EU/UK
+- code: '-64'
+  message: TRA exemption is not allowed for this transaction amount.
+  region: EU/UK
+- code: '-63'
+  message: The requested gateway mid is not enrolled to 3D-secure service.
+  region: EU/UK
+- code: '-50'
+  message: An error occurred during the 3D secure process.
+  region: EU/UK
+- code: '-39'
+  message: You need to be registered with the 3D Adviser service to complete the request.
+  region: EU/UK
+- code: '-38'
+  message: The transaction has been denied by the Gateway because 3D secure Authentication failed.
+  region: EU/UK
+- code: '-37'
+  message: 'Transaction has been denied. Malformed or missing \{} parameter. Originating component: \{}'
+  region: EU/UK
+- code: '-36'
+  message: The selected Processor does not support some of the transaction’s parameters.
+  region: EU/UK
+- code: '-35'
+  message: The selected MID is not registered to your account.
+  region: EU/UK
+- code: '-33'
+  message: You need to be registered with the routing service to complete the routing request.
+  region: EU/UK
+- code: '-32'
+  message: You are not registered with the selected Processor.
+  region: EU/UK
+- code: '-30'
+  message: Transaction Failed due to error in 3D secure process.
+  region: EU/UK
+- code: '-20'
+  message: Processor authentication error. Please contact support.
+  region: EU/UK
+- code: '-17'
+  message: Fraud-protection service is unavailable.
+  region: EU/UK
+- code: '-16'
+  message: Rejected. Overriding the fraud threshold is not allowed.
+  region: EU/UK
+- code: '-15'
+  message: Rejected. Bypassing the fraud service is not allowed.
+  region: EU/UK
+- code: '-13'
+  message: The requested gateway mid is not enrolled in the 3D Secure Adviser service.
+  region: EU/UK
+- code: '-12'
+  message: Transaction has been declined due to security restrictions.
+  region: EU/UK
+- code: '-11'
+  message: Rejected. Format Error.
+  region: EU/UK
+- code: '-10'
+  message: Internal server error. Please contact support.
+  region: EU/UK
+- code: '-9'
+  message: The parameter is malformed.
+  region: EU/UK
+- code: '-8'
+  message: The Package Signature is malformed.
+  region: EU/UK
+- code: '-7'
+  message: Incorrect Gateway Response. Connection is broken.
+  region: EU/UK
+- code: '1'
+  message: The transaction has been denied by the Gateway.
+  region: EU/UK
+- code: '2'
+  message: The transaction has been denied by the Gateway due to its high fraud risk.
+  region: EU/UK
+- code: '03'
+  message: The transaction has been denied by the Gateway due to its high AVS risk.
+  region: EU/UK
+- code: '04'
+  message: The transaction has been denied by the Gateway due to an interchange timeout.
+  region: EU/UK
+- code: '05'
+  message: The transaction has been declined.
+  region: EU/UK
+- code: 05.1A
+  message: Soft Decline. Try again as a 3DS transaction.
+  region: EU/UK
+- code: '06'
+  message: Transaction pending cardholder authentication.
+  region: EU/UK
+- code: '07'
+  message: The transaction was declined by the gateway and will not be processed due to retry optimization policy.
+  region: EU/UK
+- code: '9'
+  message: The transaction has been denied by the Gateway due to a LUHN check failure.
+  region: EU/UK
+- code: '10'
+  message: The transaction has been partially approved.
+  region: EU/UK
+- code: '11'
+  message: The queried transaction is currently being processed. Please try again.
+  region: EU/UK
+- code: '13'
+  message: Rejected. The fraud-protection service is unavailable.
+  region: EU/UK
+- code: '15'
+  message: Rejected. Risk score is above limit.
+  region: EU/UK
+- code: '01'
+  message: Refer to card issuer
+  card_brand: MC, Visa
+  region: CA
+- code: '02'
+  message: Refer to card issuer, special condition
+  card_brand: Visa
+  region: CA
+- code: '03'
+  message: Invalid merchant or service provider
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '04'
+  message: Capture Card
+  card_brand: Discover
+  region: CA
+- code: '04'
+  message: Pick up card
+  card_brand: Visa
+  region: CA
+- code: '05'
+  message: Do not honor
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '06'
+  message: Error
+  card_brand: Visa
+  region: CA
+- code: '07'
+  message: Pick up card, special condition (other than lost/stolen card)
+  card_brand: Discover, Visa
+  region: CA
+- code: '10'
+  message: Partial approval
+  card_brand: Visa
+  region: CA
+- code: '12'
+  message: Invalid transaction
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '13'
+  message: Invalid amount (currency conversion field overflow); or amount exceeds maximum for card program
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '14'
+  message: Invalid card number/Invalid account number (no such number)
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '15'
+  message: Invalid issuer/No such issuer
+  card_brand: MC, Visa
+  region: CA
+- code: '19'
+  message: Re-enter transaction
+  card_brand: Discover, Visa
+  region: CA
+- code: '21'
+  message: No action taken (unable to back out prior transaction)
+  card_brand: Visa
+  region: CA
+- code: '25'
+  message: Unable to locate record in file, or account number is missing from the inquiry
+  card_brand: Visa
+  region: CA
+- code: '28'
+  message: File is temporarily unavailable
+  card_brand: Visa
+  region: CA
+- code: '30'
+  message: Format error
+  card_brand: Discover, MC
+  region: CA
+- code: '31'
+  message: Bank not supported by switch
+  card_brand: Discover
+  region: CA
+- code: '38'
+  message: Allowable PIN tries exceeded
+  card_brand: Discover
+  region: CA
+- code: '39'
+  message: No credit account
+  card_brand: Discover, Visa
+  region: CA
+- code: '40'
+  message: Requested function not supported
+  card_brand: Discover
+  region: CA
+- code: '41'
+  message: Lost Card/Pick up card (lost card)
+  card_brand: Discover, Visa
+  region: CA
+- code: '43'
+  message: Stolen Card/Pick up card (stolen card)
+  card_brand: Discover, Visa
+  region: CA
+- code: '51'
+  message: Insufficient funds/over credit limit
+  card_brand: MC, Visa
+  region: CA
+- code: '51'
+  message: Decline
+  card_brand: Discover
+  region: CA
+- code: '52'
+  message: No checking account
+  card_brand: Visa
+  region: CA
+- code: '53'
+  message: No savings account
+  card_brand: Discover, Visa
+  region: CA
+- code: '54'
+  message: Expired card
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '55'
+  message: Invalid PIN/Incorrect PIN
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '56'
+  message: No Card record
+  card_brand: Discover
+  region: CA
+- code: '57'
+  message: Transaction not permitted to Issuer/cardholder
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '58'
+  message: Transaction not permitted to acquirer/terminal
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '59'
+  message: Suspected fraud
+  card_brand: Discover, Visa
+  region: CA
+- code: '60'
+  message: Card acceptor contact Acquirer
+  card_brand: Discover
+  region: CA
+- code: '61'
+  message: Exceeds withdrawal amount limit/Activity amount limit exceeded
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '62'
+  message: Restricted card
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '63'
+  message: Security violation
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '64'
+  message: Original amount incorrect
+  card_brand: Discover
+  region: CA
+- code: '64'
+  message: Transaction does not fulfill AML requirement
+  card_brand: Visa
+  region: CA
+- code: '65'
+  message: Exceeds withdrawal count limit/Activity count limit exceeded
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '66'
+  message: Card Acceptor call Acquirer’s security dept
+  card_brand: Discover
+  region: CA
+- code: '67'
+  message: Hard capture (requires ATM pick-up)
+  card_brand: Discover
+  region: CA
+- code: '68'
+  message: Response received too late
+  card_brand: Discover
+  region: CA
+- code: '70'
+  message: Contact Card Issuer
+  card_brand: MC
+  region: CA
+- code: '71'
+  message: PIN Not Changed
+  card_brand: MC
+  region: CA
+- code: '75'
+  message: Allowable number of PIN tries exceeded
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '76'
+  message: Invalid/nonexistent “To Account” specified
+  card_brand: Discover, MC
+  region: CA
+- code: '76'
+  message: Unable to locate previous message (no match on retrieval reference number)
+  card_brand: Visa
+  region: CA
+- code: '77'
+  message: Invalid/nonexistent “From Account” specified
+  card_brand: Discover, MC
+  region: CA
+- code: '77'
+  message: Previous message located for a repeat or reversal, but repeat or reversal data inconsistent with original message
+  card_brand: Visa
+  region: CA
+- code: '78'
+  message: Invalid/nonexistent account specified (general)
+  card_brand: Discover, MC
+  region: CA
+- code: '78'
+  message: “Blocked, first used”—Transaction from new cardholder, and card not properly unblocked
+  card_brand: Visa
+  region: CA
+- code: '79'
+  message: Life Cycle
+  card_brand: MC
+  region: CA
+- code: '79'
+  message: Transaction reversed
+  card_brand: Visa
+  region: CA
+- code: '80'
+  message: 'Visa transactions: credit issuer unavailable. Private label: invalid date'
+  card_brand: Visa
+  region: CA
+- code: '81'
+  message: Domestic Debit Transaction Not Allowed (Regional use only)
+  card_brand: MC
+  region: CA
+- code: '81'
+  message: PIN cryptographic error found (error found by VIC security module during PIN decryption)
+  card_brand: Visa
+  region: CA
+- code: '82'
+  message: CVV Validation Error/Negative Online CAM, dCVV, iCVV, or CVV results Or Offline PIN authentication interrupted
+  card_brand: MC, Visa
+  region: CA
+- code: '83'
+  message: Domain Restriction Controls Failure
+  card_brand: Discover
+  region: CA
+- code: '83'
+  message: Fraud/Security (Mastercard use only for 0210 messages)
+  card_brand: MC
+  region: CA
+- code: '84'
+  message: Invalid Authorization Life Cycle
+  card_brand: MC
+  region: CA
+- code: '85'
+  message: No reason to decline request for account number verification, address verification, CVV2 verification, or credit voucher or merchandise return
+  card_brand: Visa
+  region: CA
+- code: '86'
+  message: PIN Validation not possible/Cannot verify PIN
+  card_brand: MC, Visa
+  region: CA
+- code: '87'
+  message: Network unavailable
+  card_brand: Discover
+  region: CA
+- code: '88'
+  message: Cryptographic failure
+  card_brand: MC
+  region: CA
+- code: '89'
+  message: Unacceptable PIN— Transaction Declined—Retry
+  card_brand: MC
+  region: CA
+- code: '91'
+  message: Authorization System or issuer system inoperative
+  card_brand: Discover, MC
+  region: CA
+- code: '92'
+  message: Unable to route transaction/Financial institution or intermediate network facility cannot be found for routing
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '93'
+  message: Transaction cannot be completed; violation of law
+  card_brand: Discover, Visa
+  region: CA
+- code: '94'
+  message: Duplicate transaction. Transaction submitted containing values in tracing data fields that duplicate values in a previous transaction.
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '96'
+  message: System malfunction/System error/System malfunction or certain field error conditions
+  card_brand: Discover, MC, Visa
+  region: CA
+- code: '100'
+  message: Deny
+  card_brand: Amex
+  region: CA
+- code: '101'
+  message: Expired Card / Invalid Expiration Date
+  card_brand: Amex
+  region: CA
+- code: '106'
+  message: Exceeded PIN attempts
+  card_brand: Amex
+  region: CA
+- code: '107'
+  message: Please Call Issuer
+  card_brand: Amex
+  region: CA
+- code: '109'
+  message: Invalid merchant
+  card_brand: Amex
+  region: CA
+- code: '110'
+  message: Invalid amount
+  card_brand: Amex
+  region: CA
+- code: '111'
+  message: Invalid account / Invalid MICR (Travelers Cheque)
+  card_brand: Amex
+  region: CA
+- code: '115'
+  message: Requested function not supported
+  card_brand: Amex
+  region: CA
+- code: '117'
+  message: Invalid PIN
+  card_brand: Amex
+  region: CA
+- code: '119'
+  message: Cardmember not enrolled / not permitted
+  card_brand: Amex
+  region: CA
+- code: '122'
+  message: Invalid card security code (a.k.a., CID, 4DBC, 4CSC)
+  card_brand: Amex
+  region: CA
+- code: '125'
+  message: Invalid effective date
+  card_brand: Amex
+  region: CA
+- code: '181'
+  message: Format error
+  card_brand: Amex
+  region: CA
+- code: '183'
+  message: Invalid currency code
+  card_brand: Amex
+  region: CA
+- code: '187'
+  message: Deny - New card issued
+  card_brand: Amex
+  region: CA
+- code: '189'
+  message: Deny - Canceled or Closed Merchant/SE
+  card_brand: Amex
+  region: CA
+- code: '200'
+  message: Deny - Pick up card
+  card_brand: Amex
+  region: CA
+- code: '900'
+  message: Accepted - ATC Synchronization
+  card_brand: Amex
+  region: CA
+- code: '909'
+  message: System Malfunction (Cryptographic error)
+  card_brand: Amex
+  region: CA
+- code: '912'
+  message: Issuer not available
+  card_brand: Amex
+  region: CA
+- code: B1
+  message: Surcharge amount not permitted on Visa cards (U.S. acquirers only)
+  card_brand: Visa
+  region: CA
+- code: N0
+  message: Force STIP
+  card_brand: Visa
+  region: CA
+- code: N1
+  message: System up
+  card_brand: Discover
+  region: CA
+- code: N2
+  message: Soft down
+  card_brand: Discover
+  region: CA
+- code: N3
+  message: System down
+  card_brand: Discover
+  region: CA
+- code: N3
+  message: Cash service not available
+  card_brand: Visa
+  region: CA
+- code: N4
+  message: Cashback request exceeds issuer limit
+  card_brand: Visa
+  region: CA
+- code: N7
+  message: Decline for AVS or CID mismatch
+  card_brand: Discover
+  region: CA
+- code: N7
+  message: Decline for CVV2 failure
+  card_brand: Visa
+  region: CA
+- code: N8
+  message: Transaction amount exceeds pre-authorized approval amount
+  card_brand: Visa
+  region: CA
+- code: P2
+  message: Invalid biller information
+  card_brand: Visa
+  region: CA
+- code: P5
+  message: PIN Change/Unblock failed/PIN change/unblock request declined
+  card_brand: Discover, Visa
+  region: CA
+- code: P6
+  message: New PIN not accepted
+  card_brand: Discover
+  region: CA
+- code: P6
+  message: Unsafe PIN
+  card_brand: Visa
+  region: CA
+- code: Q1
+  message: Card authentication failed Or Offline PIN authentication interrupted
+  card_brand: Visa
+  region: CA
+- code: R0
+  message: Stop payment order
+  card_brand: Visa
+  region: CA
+- code: R1
+  message: Revocation of authorization order
+  card_brand: Visa
+  region: CA
+- code: R3
+  message: Revocation of all authorizations order
+  card_brand: Visa
+  region: CA
+- code: XA
+  message: Forward to issuer
+  card_brand: Visa
+  region: CA
+- code: XD
+  message: Forward to issuer
+  card_brand: Visa
+  region: CA
+- code: Z3
+  message: Unable to go online; declined
+  card_brand: Visa
+  region: CA
+payout_decline_codes:
+- message: Auth restriction found for given mid or mcc
+  meaning: Supplier's MCC or MID not allowed based on card's assigned Purchase Type or other MID rules.
+  region: ALL
+  surface: payout
+- message: Card already in use
+  meaning: Multiple authorization attempts made against the card simultaneously.
+  region: ALL
+  surface: payout
+- message: Card is in an expired status
+  meaning: Card is in an expired status.
+  region: ALL
+  surface: payout
+- message: Card is not active
+  meaning: Authorization attempted prior to the set activation date for the card.
+  region: ALL
+  surface: payout
+- message: Card suspicious - Expiration mismatch
+  meaning: Expiration date or other data related to the authorization did not match card details.
+  region: ALL
+  surface: payout
+- message: Card terminated
+  meaning: Card is in a terminated status.
+  region: ALL
+  surface: payout
+- message: Card trs no. limit exceeded
+  meaning: No remaining authorizations may be attempted based on the set Usage Limit of the card.
+  region: ALL
+  surface: payout
+- message: Do not honor
+  meaning: A generic code that could mean the card has insufficient funds, an incorrect expiration date was provided, etc.
+  region: ALL
+  surface: payout
+- message: Exceeds withdrawal amount limit
+  meaning: Authorization amount exceeds the available balance of the card.
+  region: ALL
+  surface: payout
+- message: Expired card
+  meaning: Card is in an expired status.
+  region: ALL
+  surface: payout
+- message: Isocountry not allowed
+  meaning: Supplier's location is a country that has been restricted from authorizations.
+  region: ALL
+  surface: payout
+- message: MCC not allowed
+  meaning: Supplier's Merchant Category Code is not allowed based on the program or card configuration.
+  region: ALL
+  surface: payout
+- message: MID Not allowed
+  meaning: Supplier's Merchant ID is not allowed based on the program or card configuration.
+  region: ALL
+  surface: payout
+- message: No sufficient funds
+  meaning: Authorization amount exceeds the available balance for the card.
+  region: ALL
+  surface: payout
+- message: Transaction not supported
+  meaning: Transaction type not allowed by issuing system.
+  region: ALL
+  surface: payout
+- message: Unknown Response Code
+  meaning: A system or application error occurred during the processing of the authorization.
+  region: ALL
+  surface: payout
+- message: Unsupported transaction
+  meaning: Transaction type not allowed by issuing system.
+  region: ALL
+  surface: payout
+- message: Wrong exp.date
+  meaning: Expiration date used in the authorization attempt does not match the expiration date of the card.
+  region: ALL
+  surface: payout
+x-evidence-payout:
+  fetched: '2026-08-09'
+  url: https://docs.connexpay.com/reference/decline-codes-purchases
+  http_status: 200

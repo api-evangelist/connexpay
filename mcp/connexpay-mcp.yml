@@ -1,0 +1,298 @@
+generated: '2026-08-09'
+method: derived
+status: candidate
+published_by_provider: false
+note: 'ConnexPay publishes no MCP server for its payment APIs. An MCP endpoint DOES answer at https://docs.connexpay.com/mcp, but it is the ReadMe documentation platform''s built-in docs MCP (its tool names — search, fetch, list-endpoints, get-endpoint, execute-request, list-specs, search-endpoints, get-server-variables — are ReadMe reserved words), and it is not usable by a third party: both tools/list and initialize return HTTP 401 {"code":-32001,"message":"Authorization required"}, and its RFC 9728 protected-resource document names https://dash.readme.com/oidc as the authorization server — a ReadMe dashboard account, not a ConnexPay API credential. The tools below are therefore a CANDIDATE set derived from the 90 harvested OpenAPI operations, not a published ConnexPay surface.'
+probes:
+- url: https://docs.connexpay.com/mcp
+  method: tools/list
+  http_status: 401
+  response: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/mcp
+  method: initialize
+  http_status: 401
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/.well-known/oauth-protected-resource/mcp
+  http_status: 200
+  authorization_servers:
+  - https://dash.readme.com/oidc
+  fetched: '2026-08-09'
+platform_endpoint:
+  url: https://docs.connexpay.com/mcp
+  provided_by: ReadMe
+  scope: documentation search and endpoint lookup
+  gated: true
+  auth: ReadMe dashboard OIDC
+tool_count: 90
+tools:
+- name: sales_chargebacks_1
+  description: Sales Chargebacks
+  source_operation: openapi/connexpay-chargebacks-openapi.yml#sales-chargebacks-1
+- name: createcheckoutsession
+  description: Create Checkout Session
+  source_operation: openapi/connexpay-checkout-session-openapi.yml#createCheckoutSession
+- name: merchantpayor_createpayor
+  description: Create merchant payor
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_CreatePayor
+- name: merchantpayor_getpayor
+  description: Get Merchant Payor
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_GetPayor
+- name: merchantpayor_updatepayor
+  description: Update Merchant Payor
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_UpdatePayor
+- name: merchantpayor_deletepayor
+  description: Delete Merchant Payor
+  source_operation: openapi/connexpay-merchant-payor-openapi.yml#MerchantPayor_DeletePayor
+- name: createpaymentinstruction
+  description: Submit a Payment Instruction
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#CreatePaymentInstruction
+- name: getfundingstatus
+  description: Get Funding Status
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#GetFundingStatus
+- name: getpaymentstatus
+  description: Get Payment Status
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#GetPaymentStatus
+- name: voidpaymentinstruction
+  description: Void a Payment Instruction
+  source_operation: openapi/connexpay-payment-instruction-openapi.yml#VoidPaymentInstruction
+- name: issuing_token
+  description: Issuing Token
+  source_operation: openapi/connexpay-purchases-openapi.yml#issuing-token
+- name: issuecard
+  description: Issue Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#issuecard
+- name: issue_card_copy
+  description: Issue Card (COPY)
+  source_operation: openapi/connexpay-purchases-openapi.yml#issue-card-copy
+- name: issuelite_1
+  description: Issue Lite
+  source_operation: openapi/connexpay-purchases-openapi.yml#issuelite-1
+- name: issue_lodged_card
+  description: Issue Lodged Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#issue-lodged-card
+- name: updatecard
+  description: Update Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#updatecard
+- name: update_lodged_card
+  description: Update Lodged Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#update-lodged-card
+- name: updatedelayedactivationvc
+  description: Update Delayed Activation VCC (old)
+  source_operation: openapi/connexpay-purchases-openapi.yml#updatedelayedactivationvc
+- name: terminatecard
+  description: Terminate Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#terminatecard
+- name: cancel_card
+  description: Cancel Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#cancel-card
+- name: resendtransmission
+  description: Resend Transmission
+  source_operation: openapi/connexpay-purchases-openapi.yml#resendtransmission
+- name: get_issuecard_detail
+  description: Get Issue Card Detail
+  source_operation: openapi/connexpay-purchases-openapi.yml#get-issuecard-detail
+- name: virtual_card_addendum
+  description: Virtual Card Addendum
+  source_operation: openapi/connexpay-purchases-openapi.yml#virtual-card-addendum
+- name: addendum_remove
+  description: Addendum Remove
+  source_operation: openapi/connexpay-purchases-openapi.yml#addendum-remove
+- name: update_delayed_card
+  description: Update Virtual Card with Delayed Activation
+  source_operation: openapi/connexpay-purchases-openapi.yml#update-delayed-card
+- name: activate_a_virtual_card_with_delayed_activation
+  description: Activate Virtual Card with Delayed Activation
+  source_operation: openapi/connexpay-purchases-openapi.yml#activate-a-virtual-card-with-delayed-activation
+- name: create_user_defined_parameter
+  description: Create User Defined Parameter
+  source_operation: openapi/connexpay-purchases-openapi.yml#create-user-defined-parameter
+- name: update_user_defined_parameter
+  description: Update User Defined Parameter
+  source_operation: openapi/connexpay-purchases-openapi.yml#update-user-defined-parameter
+- name: delete_user_defined_parameter
+  description: Delete User Defined Parameter
+  source_operation: openapi/connexpay-purchases-openapi.yml#delete-user-defined-parameter
+- name: return_active_bin_list
+  description: Return Active BIN List
+  source_operation: openapi/connexpay-purchases-openapi.yml#return-active-bin-list
+- name: issue_physical_card
+  description: Issue Physical Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#issue-physical-card
+- name: issue_ach
+  description: Issue ACH
+  source_operation: openapi/connexpay-purchases-openapi.yml#issue-ach
+- name: issue_ach_lite
+  description: Issue ACH Lite
+  source_operation: openapi/connexpay-purchases-openapi.yml#issue-ach-lite
+- name: ach_purchase_addendum
+  description: ACH Purchase Addendum
+  source_operation: openapi/connexpay-purchases-openapi.yml#ach-purchase-addendum
+- name: merchant_supplier_setting
+  description: Merchant Supplier Setting
+  source_operation: openapi/connexpay-purchases-openapi.yml#merchant-supplier-setting
+- name: search_issued_cards
+  description: Search Issued Cards
+  source_operation: openapi/connexpay-purchases-openapi.yml#search-issued-cards
+- name: search_settlements
+  description: Search Settlements
+  source_operation: openapi/connexpay-purchases-openapi.yml#search-settlements
+- name: search_virtual_card_history
+  description: Search Virtual Card History
+  source_operation: openapi/connexpay-purchases-openapi.yml#search-virtual-card-history
+- name: available_funds
+  description: Available Funds
+  source_operation: openapi/connexpay-purchases-openapi.yml#available-funds
+- name: purchase_event_history
+  description: Purchase Event History (Replay Webhooks)
+  source_operation: openapi/connexpay-purchases-openapi.yml#purchase-event-history
+- name: create_chargeback
+  description: Create Chargeback
+  source_operation: openapi/connexpay-purchases-openapi.yml#create-chargeback
+- name: post_apiv1issuecardphysicalcard_1
+  description: Copy of Issue Physical Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_apiv1IssueCardPhysicalCard-1
+- name: post_apiv1issuecardphysicalcard_1
+  description: Copy of Issue Physical Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_apiv1IssueCardPhysicalCard-1
+- name: post_apiv1issuecardphysicalcard_2
+  description: Copy of Issue Physical Card
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_apiv1IssueCardPhysicalCard-2
+- name: issuelite_1_1
+  description: Issue Lite
+  source_operation: openapi/connexpay-purchases-openapi.yml#issuelite-1-1
+- name: post_api_v1_cardbooking
+  description: Card Booking
+  source_operation: openapi/connexpay-purchases-openapi.yml#post_api-v1-cardbooking
+- name: pushtocard_getpayee
+  description: Get Payee
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayee
+- name: pushtocard_createpayee
+  description: Create Payee
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CreatePayee
+- name: pushtocard_managepayee
+  description: Manage Payee
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_ManagePayee
+- name: pushtocard_updatepayee
+  description: Update Payee
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_UpdatePayee
+- name: pushtocard_createpayout
+  description: Create Payout
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CreatePayout
+- name: pushtocard_cancelpayments
+  description: Cancel Payments
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_CancelPayments
+- name: pushtocard_getpayoutdetails
+  description: Get Payout Details
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetPayoutDetails
+- name: pushtocard_getauthenticationtokenasync
+  description: Get Authentication Token for DropInUI
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_GetAuthenticationTokenAsync
+- name: pushtocard_pushfundstocardasync
+  description: Push Funds to a Card
+  source_operation: openapi/connexpay-push-to-card-openapi.yml#PushToCard_PushFundsToCardAsync
+- name: reporting_token
+  description: Reporting Token
+  source_operation: openapi/connexpay-reporting-authentication-openapi.yml#reporting-token
+- name: getdetail
+  description: Get Daily Accounting Detail
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetDetail
+- name: getsummary
+  description: Get Daily Accounting Summary
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetSummary
+- name: availablecreditreport
+  description: Get Available Credit Report
+  source_operation: openapi/connexpay-reporting-openapi.yml#AvailableCreditReport
+- name: getextendeddata
+  description: Get Enhanced (Level 2 and Level 3) Travel Data
+  source_operation: openapi/connexpay-reporting-openapi.yml#GetExtendedData
+- name: uatptransactions
+  description: Get UATP Transactions
+  source_operation: openapi/connexpay-reporting-openapi.yml#UATPtransactions
+- name: sales_token
+  description: Sales Token
+  source_operation: openapi/connexpay-sales-openapi.yml#sales-token
+- name: void
+  description: Void
+  source_operation: openapi/connexpay-sales-openapi.yml#void
+- name: return
+  description: Return
+  source_operation: openapi/connexpay-sales-openapi.yml#return
+- name: cancel
+  description: Cancel
+  source_operation: openapi/connexpay-sales-openapi.yml#cancel
+- name: auth_only
+  description: Auth Only
+  source_operation: openapi/connexpay-sales-openapi.yml#auth-only
+- name: capture
+  description: Capture
+  source_operation: openapi/connexpay-sales-openapi.yml#capture
+- name: verify
+  description: Verify
+  source_operation: openapi/connexpay-sales-openapi.yml#verify
+- name: 3ds_authentication
+  description: 3DS Authentication
+  source_operation: openapi/connexpay-sales-openapi.yml#3ds-authentication
+- name: get_3ds_status_group
+  description: Get 3DS Status Group
+  source_operation: openapi/connexpay-sales-openapi.yml#get-3ds-status-group
+- name: update_delayed_sale
+  description: Update Delayed Sale
+  source_operation: openapi/connexpay-sales-openapi.yml#update-delayed-sale
+- name: activate_delayed_sale
+  description: Activate Delayed Sale
+  source_operation: openapi/connexpay-sales-openapi.yml#activate-delayed-sale
+- name: create_group_sale
+  description: Create Group
+  source_operation: openapi/connexpay-sales-openapi.yml#create-group-sale
+- name: update_group_sale
+  description: Update Group
+  source_operation: openapi/connexpay-sales-openapi.yml#update-group-sale
+- name: get_group_sale
+  description: Get Group
+  source_operation: openapi/connexpay-sales-openapi.yml#get-group-sale
+- name: search_sales
+  description: Search sales
+  source_operation: openapi/connexpay-sales-openapi.yml#search-sales
+- name: search_voids
+  description: Search voids
+  source_operation: openapi/connexpay-sales-openapi.yml#search-voids
+- name: search_returns
+  description: Search returns
+  source_operation: openapi/connexpay-sales-openapi.yml#search-returns
+- name: search_verify
+  description: Search verify
+  source_operation: openapi/connexpay-sales-openapi.yml#search-verify
+- name: hpp_token_request
+  description: HPP Token Request
+  source_operation: openapi/connexpay-sales-openapi.yml#hpp-token-request
+- name: create_credit
+  description: Create Credit
+  source_operation: openapi/connexpay-sales-openapi.yml#create-credit
+- name: 3ds2_sales
+  description: 3D Secure Sales Authentication
+  source_operation: openapi/connexpay-sales-openapi.yml#3ds2-sales
+- name: sales_event_history
+  description: Sales Event History
+  source_operation: openapi/connexpay-sales-openapi.yml#sales-event-history
+- name: merchantselfservicefunding
+  description: Client Self-Service Funding
+  source_operation: openapi/connexpay-sales-openapi.yml#merchantselfservicefunding
+- name: client_funds_transfer
+  description: Client Funds Transfer
+  source_operation: openapi/connexpay-sales-openapi.yml#client-funds-transfer
+- name: search_purchases
+  description: Search Purchases
+  source_operation: openapi/connexpay-sales-openapi.yml#search-purchases
+- name: post_apiv1verify1
+  description: POST /api/v1/verify1
+  source_operation: openapi/connexpay-sales-openapi.yml#post_apiv1verify1
+- name: getting_started_with_your_api
+  description: Create Sale
+  source_operation: openapi/connexpay-sales-openapi.yml#getting-started-with-your-api
+- name: stoppaymentservice_addcardtoblacklist
+  description: Stop Payment Service
+  source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_AddCardToBlackList
+- name: stoppaymentservice_updateorremoveblacklist
+  description: Update or Remove Stop Payment Service
+  source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_UpdateOrRemoveBlackList

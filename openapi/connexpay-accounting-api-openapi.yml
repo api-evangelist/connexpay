@@ -1,0 +1,571 @@
+openapi: 3.0.1
+info:
+  title: ConnexPay Reporting Accounting API
+  description: REST API for retrieving reporting data. Currently Daily Accounting data only.
+  contact:
+    name: ConnexPay
+    url: https://docs.connexpay.com
+  version: v1
+servers:
+- url: https://reportingapi.connexpay.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Accounting
+paths:
+  /api/v1/Accounting/DailyDetail:
+    get:
+      tags:
+      - Accounting
+      summary: Get Daily Accounting Detail
+      description: 'This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production. '
+      operationId: GetDetail
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: The client identifier for the requested transactions.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: ab0123f5-7648-4e27-8709-ad0f4e162c20
+      - name: releasedDate
+        in: query
+        description: Date on which the requested transactions were released to the client.
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-12-31'
+      - name: pageNumber
+        in: query
+        description: ''
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: ''
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: Successfully retrieved daily accounting detail data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyAccountingDetailPaginatedItems'
+        '204':
+          description: No Content
+        '400':
+          description: The request was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: The request was not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: No data was found for the provided parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/Accounting/DailySummary:
+    get:
+      tags:
+      - Accounting
+      summary: Get Daily Accounting Summary
+      description: This endpoint returns the daily accounting summary of a merchant for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
+      operationId: GetSummary
+      parameters:
+      - name: merchantGuid
+        in: query
+        description: The client identifier for the requested transactions.
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: ab0123f5-7648-4e27-8709-ad0f4e162c20
+      - name: releasedDate
+        in: query
+        description: Date on which the requested transactions were released to the client.
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-12-31'
+      responses:
+        '200':
+          description: Successfully retrieved daily accounting summary data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyAccountingSummary'
+        '204':
+          description: No Content
+        '400':
+          description: The request was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: The request was not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: No data was found for the provided parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    DailyAccountingDetailPaginatedItems:
+      type: object
+      properties:
+        totalItemCount:
+          type: integer
+          description: Count of all items available in the day's accounting detail.
+          format: int32
+        pageCount:
+          type: integer
+          description: Count of pages available in the day's accounting detail.
+          format: int32
+        pageItemCount:
+          type: integer
+          description: Count of items in the current page.
+          format: int32
+        pageNumber:
+          type: integer
+          description: Sequence number of the current page.
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyAccountingDetail'
+          description: Collection of accounting detail items for the current page.
+          nullable: true
+      additionalProperties: false
+    DailyAccountingSummary:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: 'Merchant Guid
+
+
+            Unique identifier assigned to the merchant by ConnexPay.'
+          format: uuid
+        clientName:
+          type: string
+          description: 'Client Name
+
+
+            Unique name assigned to the client by ConnexPay.'
+          nullable: true
+        releasedDate:
+          type: string
+          description: 'Released Date
+
+
+            Date on which the requested transactions were released to the client.'
+          format: date
+        priorDayCashBalance:
+          type: number
+          description: 'Prior Day Cash Balance
+
+
+            The starting cash balance from the previous day.'
+          format: double
+        wireAchToFundCashAmount:
+          type: number
+          description: 'Wire/ACH to Fund Cash Account Amount (Credit) or Withdraw from Cash Account Amount (Debit)
+
+
+            Funds transferred between the client''s bank account and ConnexPay to fund transactions or to return funds to the client.'
+          format: double
+        beginningCashBalance:
+          type: number
+          description: 'Beginning Cash Balance
+
+
+            The funds the client begins the day with.'
+          format: double
+        creditSaleAmount:
+          type: number
+          description: 'Credit Card Sale Amount (Credit)
+
+
+            Total amount of incoming credit card sales added to the client''s cash balance.'
+          format: double
+        achSaleAmount:
+          type: number
+          description: 'ACH Sale Amount (Credit)
+
+
+            Total amount of incoming ACH sales added to the client''s cash balance.'
+          format: double
+        purchaseAchAmount:
+          type: number
+          description: 'ACH Purchase Amount (Debit)
+
+
+            Total amount of ACH purchases decreasing the client''s cash balance.'
+          format: double
+        purchaseCardAmount:
+          type: number
+          description: 'Virtual Card Purchase Amount (Debit)
+
+
+            Total amount of issued virtual credit card purchases subtracting from the client''s cash balance.'
+          format: double
+        purchasePushToCardAmount:
+          type: number
+          description: 'Purchase Push to Card Amount
+
+
+            Total amount of funds paid out through PushToCard subtracting from the client''s cash balance.'
+          format: double
+        creditVoidAmount:
+          type: number
+          description: 'Credit Card Void Amount (Debit)
+
+
+            Total amount of credit card sales voided subtracting from the client''s cash balance.'
+          format: double
+        creditReturnAmount:
+          type: number
+          description: 'Credit Card Return Amount (Debit)
+
+
+            Total amount of credit card sales returned subtracting from the client''s cash balance.'
+          format: double
+        creditChargebackAmount:
+          type: number
+          description: 'Credit Chargeback Amount
+
+
+            Total amount of Chargebacks received on the credit card sales subtracting from the client''s cash balance.'
+          format: double
+        creditAdjustmentAmount:
+          type: number
+          description: 'Credit Adjustment Amount
+
+
+            Total amount of manual credit adjustments created for the client.'
+          format: double
+        achVoidAmount:
+          type: number
+          description: 'ACH Void Amount (Debit)
+
+
+            Total amount of ACH sales voided subtracting from the client''s cash balance.'
+          format: double
+        achReturnAmount:
+          type: number
+          description: 'ACH Return (Debit)
+
+
+            Total amount of ACH sales returned subtracting from the client''s cash balance.'
+          format: double
+        purchaseCardReturnAmount:
+          type: number
+          description: 'Virtual Card Return Amount (Credit)
+
+
+            Total amount returned to issued virtual credit cards adding to the client''s cash balance.'
+          format: double
+        purchaseCardChargebackAmount:
+          type: number
+          description: 'Purchase Card Chargeback Amount
+
+
+            Total amount of Chargebacks received on issued virtual credit cards as part of the dispute process.'
+          format: double
+        purchaseAchReturnAmount:
+          type: number
+          description: 'Purchase - ACH Return Amount (Credit)
+
+
+            Total amount returned to issued ACHs adding to the client''s cash balance.'
+          format: double
+        totalActivity:
+          type: number
+          description: 'Total Activity
+
+
+            The sum of all debits and credits processed on the client''s behalf for the previous day.'
+          format: double
+        newCashBalance:
+          type: number
+          description: 'New Cash Balance
+
+
+            Reflects the day''s beginning cash balance plus or minus the client''s total activity.'
+          format: double
+        netDebitCreditToClient:
+          type: number
+          description: 'Credit/Debit
+
+
+            The amount to be credited to or debited from the client''s bank account. ConnexPay will collaborate with
+
+            the client to determine the percentage that will be returned to the client''s bank account each day.'
+          format: double
+        endingCashBalance:
+          type: number
+          description: 'Ending Cash Balance
+
+
+            The client''s New Cash Balance plus or minus the Credit/Debit amount.'
+          format: double
+        minimumCashBalance:
+          type: number
+          description: 'Minimum Cash Balance (MCB)
+
+
+            Minimum funding balance that should be maintained by the client with ConnexPay.'
+          format: double
+        achDebitRejectAmount:
+          type: number
+          description: 'ACH Debit Reject Amount (Credit)
+
+
+            Total amount of payments that did not clear the supplier''s account. Payments can be rejected for a variety of reasons, including closed accounts, incorrect account numbers, etc.'
+          format: double
+        directSaleAmount:
+          type: number
+          description: 'Sale - Direct Sale (Credit)
+
+
+            Total amount of payments processed between ConnexPay clients through ConnexPay systems using Direct rails, which increases the client''s Sales Allowance for future purchases.'
+          format: double
+        directReturnAmount:
+          type: number
+          description: 'Sale - Direct Return (Debit)
+
+
+            Total amount of funds refunded after a Direct Sale has been processed and needs to be reversed.'
+          format: double
+        directVoidAmount:
+          type: number
+          description: 'Sale - Direct Void (Debit)
+
+
+            Total amount of a Direct Sale transaction that is effectively canceled, with no funds being transferred between the involved parties.'
+          format: double
+        purchaseDirectAmount:
+          type: number
+          description: 'Purchase - Direct Purchase (Debit)
+
+
+            Total amount of payments made between ConnexPay clients through ConnexPay systems using the Direct rails.'
+          format: double
+        purchaseDirectReturnAmount:
+          type: number
+          description: 'Purchase - Direct Return (Credit)
+
+
+            Total amount of funds returned by a payee on a previously completed Direct Sale.'
+          format: double
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    DailyAccountingDetail:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: 'Merchant Guid
+
+
+            Unique identifier assigned to the merchant by ConnexPay.'
+          format: uuid
+        clientName:
+          type: string
+          description: 'Client Name
+
+
+            Unique name assigned to the client by ConnexPay.'
+          nullable: true
+        releasedDate:
+          type: string
+          description: 'Released Date
+
+
+            Date on which the Accounting File for this detail record was released to the client.'
+          format: date
+        description:
+          type: string
+          description: "Description\n\nThe type of transaction being released in this detail record.\n\nPossible Values:\n  ACH Debit Reject\n  Bank A ACH Credit Reject\n  Credit to Client (Withdrawal from Cash Account)\n  Daily Flex Funding\n  Debit from Client (Deposit to Cash Account)\n  Empty\n  Prior Day Cash Balance\n  Purchase - ACH Purchase\n  Purchase - ACH Return\n  Purchase - Push To Card Payout\n  Purchase - Virtual Card Chargeback\n  Purchase - Virtual Card Purchase\n  Purchase - Virtual Card Return\n  Reserve Balance\n  Sale - ACH Return\n  Sale - ACH Sale\n  Sale - ACH Void\n  Sale - Credit Card Adjustment\n  Sale - Credit Card Chargeback\n  Sale - Credit Card Return\n  Sale - Credit Card Sale\n  Sale - Credit Card Void\n  Unspecified"
+          nullable: true
+        orderNumber:
+          type: string
+          description: 'Order Number
+
+
+            Identifier that may be provided by the client during the Create Sale or IssueLite process to identify the order.
+
+            Can be comprised of multiple sales and purchases.'
+          nullable: true
+        name:
+          type: string
+          description: 'Name
+
+
+            The name line 1 and 2 of the virtual credit card.'
+          nullable: true
+        cardLastFour:
+          type: string
+          description: 'Card Last Four
+
+
+            The last four digits of the card number associated with the detail record.'
+          nullable: true
+        incomingTransactionCode:
+          type: string
+          description: 'Incoming Transaction Code (ITC)
+
+
+            A unique ConnexPay generated token that connects an incoming sale transaction to an outbound
+
+            purchase (virtual card or ACH) transaction. An ITC is generated and returned for each successful
+
+            authorization associated with a Sale request and is required for each purchase request.'
+          nullable: true
+        customerId:
+          type: string
+          description: "Customer ID\n\nIdentifier that may be provided by the client during the Create Sale or IssueLite process. Can be comprised \nof multiple sales and purchases. Acts as a secondary identifier in conjunction with OrderNumber."
+          nullable: true
+        amount:
+          type: number
+          description: 'Amount
+
+
+            Amount of the sale or purchase transaction.'
+          format: double
+        merchantName:
+          type: string
+          description: 'Merchant Name
+
+
+            Name of the supplier processing the virtual credit card transaction.'
+          nullable: true
+        ticketNumber:
+          type: string
+          description: 'Ticket Number
+
+
+            Addendum data associated with the transaction that is returned if provided during the virtual credit card or ACH creation'
+          nullable: true
+        entityGuid:
+          type: string
+          description: 'Entity Guid
+
+
+            Entity Guid of the detail record to link them back to the original entity.'
+          format: uuid
+          nullable: true
+        purchaseType:
+          type: string
+          description: 'Purchase Type
+
+
+            Description of the client''s category group. Essentially, the industry where the virtual card will be utilized.
+
+
+            See the Issue Card method in the Purchases API documentation for more details.'
+          nullable: true
+        entityId:
+          type: string
+          description: 'Entity Id
+
+
+            Entity Guid of the detail record to link them back to the original entity.'
+          nullable: true
+        issuedAmount:
+          type: number
+          description: 'Issued Amount
+
+
+            Amount of the virtual credit card issued to the client.'
+          format: double
+        labelName:
+          type: string
+          description: 'Label Name
+
+
+            Comma-separated list of labels associated with the sale.'
+          nullable: true
+        associationId:
+          type: string
+          description: 'Association ID
+
+
+            Used to associate a virtual card to one or more sales.'
+          nullable: true
+        saleGuid:
+          type: string
+          description: "Sale Guid\n\nGuid value returned from the Create Sale method in the Sales API. Associated with \nsale transaction detail records."
+          format: uuid
+          nullable: true
+        cardGuid:
+          type: string
+          description: "Card Guid\n\nGuid value return from the Issue Card method in the Purchases API. Associated with \npurchase and return detail records."
+          format: uuid
+          nullable: true
+        dateTime:
+          type: string
+          description: 'Date Time
+
+
+            For Sale detail records, the date of the sale transaction.
+
+
+            For Purchase and Return detail records, the date of the purchase or return settlement.
+
+
+            Note: This date may not be the same as ReleasedDate because release does not occur on weekends and bank holidays.'
+          format: date-time
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT

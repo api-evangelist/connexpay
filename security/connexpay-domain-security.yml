@@ -1,0 +1,36 @@
+generated: '2026-08-09'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.nasdaqprivatemarket.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 22 07:26:08 2026 GMT
+  hsts: true
+  hsts_max_age: 300
+- host: cmsapi.connexpay.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 25 15:18:39 2026 GMT
+  hsts: false
+- host: sandboxsalesapi.connexpay.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 25 15:18:39 2026 GMT
+  hsts: true
+  hsts_max_age: 2592000
+domains:
+- domain: nasdaqprivatemarket.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: connexpay.com
+  dnssec: false
+  caa:
+  - 0 issuewild "godaddy.com"
+  - 0 issue "godaddy.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

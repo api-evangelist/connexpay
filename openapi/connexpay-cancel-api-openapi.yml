@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: sales-api Cancel API
+  version: '1.0'
+servers:
+- url: https://sandboxsalesapi.connexpay.com
+security:
+- sec0: []
+tags:
+- name: Cancel
+paths:
+  /api/v1/cancel:
+    post:
+      summary: Cancel
+      description: The Cancel route should be used in the event the entire trip/booking (sale & purchase) require cancellation. In this case, the traveler/cardholder would be due a refund from the sale and the Virtual Card would be terminated to prevent the travel supplier from authorizing the Virtual Card.
+      operationId: cancel
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type Header
+        schema:
+          type: string
+          default: '"application/json"'
+      - name: Authorization
+        in: header
+        description: 'Token. Eg: "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."'
+        schema:
+          type: string
+          default: Bearer Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - DeviceGuid
+              - SaleGuid
+              properties:
+                DeviceGuid:
+                  type: string
+                  description: Device's Guid provided by ConnexPay
+                SaleGuid:
+                  type: string
+                  description: Sale transaction Guid
+                SequenceNumber:
+                  type: string
+                  description: 'Transaction sequence number within client environment. Provide a unique SequenceNumber for each new request. If the same value is sent within 30 minutes it will be considered a duplicate request. Note: value is not searchable or reportable in ConnexPay portal.  The maximum length is 100 alpha-numeric characters.'
+                VoidReason:
+                  type: string
+                  description: Indicates the reason the transaction was voided
+            examples:
+              Cancel Request Example:
+                value:
+                  DeviceGuid: 4b5013f7-b275-4929-8e83-0167c6edf639
+                  SaleGuid: c5ac2017-99cb-4b1f-a90e-142cc82b21e5
+                  SequenceNumber: Sample-seq-1
+                  VoidReason: DEVICE_TIMEOUT
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Cancel Response Example:
+                  value: "{\n    \"guid\": \"7a4ef786-8288-404d-9340-e837d06784af\",\n    \"batchStatus\": \"Batch - Open\",\n    \"timeStamp\": \"2017-07-11T11:05:46.31\",\n    \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n    \"saleGuid\": \"bfff1a26-4207-4871-9597-48282e3fcfea\",\n    \"status\": \"Transaction - Approved\",\n    \"voidReason\": \"DEVICE_TIMEOUT\",\n    \"processorStatusCode\": \"A0000\",\n    \"wasProcessed\": true,\n    \"batchGuid\": \"1564cb1b-eddb-4747-9565-61a7d7d225f9\",\n    \"authCode\": \"VTLMC1\",\n    \"refNumber\": \"13283644\",\n    \"invoiceNumber\": \"11518\",\n    \"customerReceipt\": \"CONNEXPAY\\\\n8320 S HARDY DRIVE\\\\nTEMPE AZ 85284\\\\n07/11/2017 07:05:50\\\\n\\\\nCREDIT - VOID\\\\n\\\\nCARD # : **** **** **** 0213\\\\nCARD TYPE :MASTERCARD\\\\nEntry Mode : MANUAL\\\\n\\\\nREF # : 13283644\\\\nInvoice number : 11518\\\\n\\\\nCancel Amount:                    $19.74\\\\n--------------------------------------\\\\n\\\\n\\\\n\\\\nJohn Doe\\\\n\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\nISSUER\\\\nAPPROVED\\\\n\\\\n\\\\n\\\\n\\\\nCustomer Copy\\\\n\",\n    \"sequenceNumber\": \"Sample-seq-1\",\n    \"sale\": {\n        \"guid\": \"bfff1a26-4207-4871-9597-48282e3fcfea\",\n        \"status\": \"Transaction - Approved\",\n        \"batchStatus\": \"Batch - Open\",\n        \"timeStamp\": \"2017-07-11T11:05:24.65\",\n        \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n        \"amount\": 19.74,\n        \"effectiveAmount\": 0,\n        \"orderNumber\": \"11518\",\n        \"orderDate\": \"2017-02-03T00:00:00\",\n        \"batchGuid\": \"1564cb1b-eddb-4747-9565-61a7d7d225f9\",\n        \"processorStatusCode\": \"A0000\",\n        \"processorResponseMessage\": \"Success\",\n        \"wasProcessed\": true,\n        \"authCode\": \"VTLMC1\",\n        \"refNumber\": \"13283644\",\n        \"customerReceipt\": \"CONNEXPAY\\\\n8320 S HARDY DRIVE\\\\nTEMPE AZ 85284\\\\n07/11/2017 07:05:27\\\\n\\\\nCREDIT - SALE\\\\n\\\\nCARD # : **** **** **** 0213\\\\nCARD TYPE :MASTERCARD\\\\nEntry Mode : MANUAL\\\\n\\\\nREF # : 13283644\\\\nInvoice number : 11518\\\\nAUTH CODE : VTLMC1\\\\nSubtotal:                       $19.74\\\\n--------------------------------------\\\\nTotal:                          $19.74\\\\n--------------------------------------\\\\n\\\\n\\\\n\\\\nJohn Doe\\\\n\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\nISSUER\\\\nAPPROVED\\\\n\\\\n\\\\n\\\\n\\\\nCustomer Copy\\\\n\",\n        \"generatedBy\": \"ultralux\",\n        \"card\": {\n            \"first4\": \"5306\",\n            \"last4\": \"0213\",\n            \"cardNumber\": \"1zcGT7J4pkGh0213\",\n            \"cardHolderName\": \"John Doe\",\n            \"expirationDate\": \"2019-07\",\n            \"customer\": {\n                \"guid\": \"d1cf828d-3050-4e4c-b7cf-f4038d114d39\",\n                \"firstName\": \"John\",\n                \"lastName\": \"Doe\",\n                \"phone\": \"9177563007\",\n                \"city\": \"New York\",\n                \"country\": \"US\",\n                \"email\": \"johnd@gmail.com\",        \n            }\n        }\n        \"addressVerificationCode\": \"N\",\n        \"addressVerificationResult\": \"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\"\n        \"cvvVerificationCode\": \"M\",\n        \"cvvVerificationResult\": \"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\"\n    }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Cancel
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

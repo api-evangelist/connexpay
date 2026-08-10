@@ -1,0 +1,32 @@
+generated: '2026-08-09'
+method: searched
+source: https://docs.connexpay.com/changelog
+versioning:
+  scheme: uri-path
+  current: v1 (v2 for Checkout Session / SDK)
+  platform_release: 8.15.00
+  docs: https://docs.connexpay.com/changelog
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: 'ConnexPay publishes no deprecation or sunset policy. No RFC 8594 Sunset/Deprecation header support is documented, no operation in the ten harvested OpenAPI documents carries `deprecated: true`, and the changelog does not flag breaking changes. Retirement of an endpoint would reach integrators only through their implementation contact.'
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA or uptime commitment was found. Service terms are in the client agreement, not published.
+status_page: null
+status_page_note: No public status page was found. status.connexpay.com does not resolve to a working TLS endpoint (SSL handshake failure on 2026-08-09), and neither the docs site nor the developer resources page links to a status or uptime page. Incident communication appears to run through the implementation/support contact and https://support.connexpay.com.
+support:
+  portal: https://support.connexpay.com
+  email: support@connexpay.com
+  contact_page: https://www.connexpay.com/contact-us
+environments_gate: Production access is granted only after Solution Validation in Sandbox — see sandbox/connexpay-sandbox.yml.
+deprecated_operations: []
+x-evidence:
+- url: https://status.connexpay.com/
+  http_status: 0
+  error: SSL handshake failure — host does not serve HTTPS
+  fetched: '2026-08-09'
+- url: https://docs.connexpay.com/changelog
+  http_status: 200
+  fetched: '2026-08-09'

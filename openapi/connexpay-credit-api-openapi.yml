@@ -1,0 +1,195 @@
+openapi: 3.0.1
+info:
+  title: ConnexPay Reporting Credit API
+  description: REST API for retrieving reporting data. Currently Daily Accounting data only.
+  contact:
+    name: ConnexPay
+    url: https://docs.connexpay.com
+  version: v1
+servers:
+- url: https://reportingapi.connexpay.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Credit
+paths:
+  /api/v1/Credit/AvailableCreditReport/{pageNumber}/{pageSize}:
+    post:
+      tags:
+      - Credit
+      summary: Get Available Credit Report
+      operationId: AvailableCreditReport
+      parameters:
+      - name: pageNumber
+        in: path
+        description: ''
+        required: true
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: path
+        description: ''
+        required: true
+        schema:
+          maximum: 25000
+          minimum: 1
+          type: integer
+          format: int32
+          default: 10
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AvailableCreditReportRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableCreditReportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    AvailableCreditReport:
+      type: object
+      properties:
+        client:
+          description: Unique name assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        mid:
+          description: Unique merchant identifier assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        date:
+          description: Date Time.
+          type: string
+          format: date-time
+        type:
+          description: Type of the credit transaction.
+          type: string
+          nullable: true
+        user:
+          description: User that performed the credit transaction.
+          type: string
+          nullable: true
+        amount:
+          description: Amount of the credit transaction.
+          type: number
+          format: double
+        availableCredit:
+          description: Available credit amount as a result of the credit transaction.
+          type: number
+          format: double
+        merchantGatewayGuid:
+          description: Unique merchant Guid assigned to the client by ConnexPay.
+          type: string
+          format: uuid
+      additionalProperties: false
+    AvailableCreditReportResponse:
+      type: object
+      properties:
+        pageCurrent:
+          description: Current Page number.
+          type: integer
+          format: int32
+        pageCurrentResults:
+          description: Current Page results.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        pageTotal:
+          description: Total number of pages available.
+          type: integer
+          format: int32
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        searchResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableCreditReport'
+          nullable: true
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    AvailableCreditReportRequest:
+      type: object
+      properties:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        client:
+          description: Unique name assigned to the client by ConnexPay.
+          type: string
+          nullable: true
+        timeStampFrom:
+          description: Start date for the Report Request.
+          type: string
+          format: date-time
+          nullable: true
+        timeStampTo:
+          description: End date for the Report Request.
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      bearerFormat: JWT
