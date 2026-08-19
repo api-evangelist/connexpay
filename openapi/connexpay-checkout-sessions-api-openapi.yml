@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: ConnexPay Checkout Session Checkout Sessions API
   description: "API for creating secure checkout sessions for payment processing with ConnexPay. Used in conjunection with our SDK 2.0; additional reference documentation is found here: https://docs.connexpay.com/docs/v2-docs.\n\n## Overview\nCheckout sessions serve as a secure bridge between your backend and the ConnexPay SDK, \ncontaining all payment details for a transaction while ensuring sensitive data cannot \nbe tampered with on the client side.\n\n## Security\n- All endpoints require Bearer token authentication\n- Sessions expire after 60 minutes for enhanced security\n- Device authorization is validated for each request\n\n## Base URL\n- Sandbox: `https://sandboxsalesapi.connexpay.com`\n- Production: `https://salesapi.connexpay.com`\n"
@@ -191,60 +191,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    LineItem:
-      type: object
-      required:
-      - Description
-      - UnitCost
-      - Quantity
-      - TotalAmount
-      properties:
-        Description:
-          type: string
-          description: Item description
-          example: Premium Widget
-        ProductCode:
-          type: string
-          description: Product code
-          example: WIDGET_001
-        CommodityCode:
-          type: string
-          description: Commodity code
-          example: '1234567890'
-        UnitOfMeasure:
-          type: string
-          description: Unit of measure
-          example: EA
-        UnitCost:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Cost per unit
-          example: 115.46
-        Quantity:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Quantity
-          example: 1
-        TotalAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Total amount for line item
-          example: 115.46
-        TaxAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Tax amount for line item
-          example: 10.04
-        DiscountAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Discount amount for line item
-          example: 0
     CheckoutSessionResponse:
       type: object
       properties:
@@ -314,31 +260,6 @@ components:
           example: Credit,GooglePay,ApplePay
         Sale:
           $ref: '#/components/schemas/SaleData'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-          example: Validation Error
-        message:
-          type: string
-          description: Error message
-          example: Invalid request data
-        details:
-          type: array
-          description: Detailed error information
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field name that caused the error
-                example: Sale.Amount
-              message:
-                type: string
-                description: Field-specific error message
-                example: Amount must be greater than 0
     Customer:
       type: object
       properties:
@@ -422,54 +343,60 @@ components:
           type: string
           description: Custom customer identifier
           example: CUST_12345
-    EnhancedData:
+    LineItem:
       type: object
+      required:
+      - Description
+      - UnitCost
+      - Quantity
+      - TotalAmount
       properties:
-        CustomerCode:
+        Description:
           type: string
-          description: Customer code
-          example: CUST_001
-        SalesTax:
+          description: Item description
+          example: Premium Widget
+        ProductCode:
+          type: string
+          description: Product code
+          example: WIDGET_001
+        CommodityCode:
+          type: string
+          description: Commodity code
+          example: '1234567890'
+        UnitOfMeasure:
+          type: string
+          description: Unit of measure
+          example: EA
+        UnitCost:
           type: number
           format: decimal
           minimum: 0
-          description: Sales tax amount
+          description: Cost per unit
+          example: 115.46
+        Quantity:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Quantity
+          example: 1
+        TotalAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total amount for line item
+          example: 115.46
+        TaxAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Tax amount for line item
           example: 10.04
-        FreightAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Freight/shipping amount
-          example: 5.99
-        DutyAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Duty amount
-          example: 2.5
-        DestinationPostalCode:
-          type: string
-          description: Destination postal code
-          example: '90210'
-        DestinationCountryCode:
-          type: string
-          description: Destination country code
-          example: US
-        ShipFromPostalCode:
-          type: string
-          description: Ship from postal code
-          example: '12345'
         DiscountAmount:
           type: number
           format: decimal
           minimum: 0
-          description: Total discount amount
-          example: 5
-        LineItems:
-          type: array
-          description: Transaction line items
-          items:
-            $ref: '#/components/schemas/LineItem'
+          description: Discount amount for line item
+          example: 0
     SaleData:
       type: object
       required:
@@ -642,6 +569,79 @@ components:
           format: date-time
           description: Purchase activation date
           example: '2024-11-04T14:30:00Z'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: Validation Error
+        message:
+          type: string
+          description: Error message
+          example: Invalid request data
+        details:
+          type: array
+          description: Detailed error information
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name that caused the error
+                example: Sale.Amount
+              message:
+                type: string
+                description: Field-specific error message
+                example: Amount must be greater than 0
+    EnhancedData:
+      type: object
+      properties:
+        CustomerCode:
+          type: string
+          description: Customer code
+          example: CUST_001
+        SalesTax:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Sales tax amount
+          example: 10.04
+        FreightAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Freight/shipping amount
+          example: 5.99
+        DutyAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Duty amount
+          example: 2.5
+        DestinationPostalCode:
+          type: string
+          description: Destination postal code
+          example: '90210'
+        DestinationCountryCode:
+          type: string
+          description: Destination country code
+          example: US
+        ShipFromPostalCode:
+          type: string
+          description: Ship from postal code
+          example: '12345'
+        DiscountAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total discount amount
+          example: 5
+        LineItems:
+          type: array
+          description: Transaction line items
+          items:
+            $ref: '#/components/schemas/LineItem'
   securitySchemes:
     BearerAuth:
       type: http

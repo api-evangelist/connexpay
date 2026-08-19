@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "73b14edd-7335-4f29-ab49-3b29bdeba158",
+      "name": "TerminateCard",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a01f803a-46c1-4810-8c08-440c1bc02474",
+          "name": "Terminate Card",
+          "request": {
+            "name": "Terminate Card",
+            "description": {
+              "content": "The TerminateDate (YYYY-MM-DD format) is the date the Virtual Credit Card will be terminated by ConnexPay. TerminateDate is different than ExpirationDate in that TerminateDate indicates the actual date the card will no longer be active.  ExpirationDate is the month and year that will be applied to the actual VCC. Note, Returns can still be processed on terminated VCCs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "TerminateCard",
+                "<guid>"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guid",
+                  "description": "(Required) Global Unique Identifier of the Physical or Virtual Card to be terminated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a77f3d99-262b-4705-8f6c-551c597322f5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "TerminateCard",
+                    "<guid>"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guid",
+                      "description": "(Required) Global Unique Identifier of the Physical or Virtual Card to be terminated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cardGuid\\\": \\\"d66d7435-fe07-46be-97d4-7699c2bcf841\\\",\\n    \\\"amountLimit\\\": 25.00,\\n    \\\"usageLimit\\\": 2,\\n    \\\"limitWindow\\\": \\\"LIFETIME\\\",\\n    \\\"expirationDate\\\": \\\"2023-05-31T00:00:00-04:00\\\",\\n    \\\"expiration\\\": \\\"0623\\\",\\n    \\\"terminateDate\\\": \\\"2023-06-18T23:59:59\\\",\\n    \\\"currencyCode\\\": \\\"USD\\\",\\n    \\\"firstSix\\\": \\\"111111\\\",\\n    \\\"lastFour\\\": \\\"9999\\\",\\n    \\\"nameLine1\\\": \\\"CardName1\\\",\\n    \\\"nameLine2\\\": \\\"CardName2\\\",\\n    \\\"status\\\": \\\"Card - Deactivated\\\",\\n    \\\"customerServicePhoneNumber\\\": \\\"1-612-789-9999\\\",\\n    \\\"sequenceNumber\\\": \\\"Termination Sample\\\",\\n    \\\"cardType\\\": \\\"Visa\\\",\\n    \\\"gatewayMerchantGuid\\\": \\\"9994975d-4eb8-45a1-a9b5-ce1b596dbc99\\\",\\n    \\\"availableBalance\\\": 0.0,\\n    \\\"isPhysical\\\": false,\\n    \\\"isLodged\\\": false,\\n    \\\"fingerprint\\\": \\\"994A1895A50182BC080EE761B571E5EE\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47819c0d-ebab-4eea-883b-8407417ebd60",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "TerminateCard",
+                    "<guid>"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guid",
+                      "description": "(Required) Global Unique Identifier of the Physical or Virtual Card to be terminated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\\"message\\\": \\\"The request is invalid.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4b6f889a-d9d1-41d6-9a45-6f64e98a2317",
+    "name": "purchases-api Terminate Card API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

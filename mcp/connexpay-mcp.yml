@@ -2,7 +2,13 @@ generated: '2026-08-09'
 method: derived
 status: candidate
 published_by_provider: false
-note: 'ConnexPay publishes no MCP server for its payment APIs. An MCP endpoint DOES answer at https://docs.connexpay.com/mcp, but it is the ReadMe documentation platform''s built-in docs MCP (its tool names — search, fetch, list-endpoints, get-endpoint, execute-request, list-specs, search-endpoints, get-server-variables — are ReadMe reserved words), and it is not usable by a third party: both tools/list and initialize return HTTP 401 {"code":-32001,"message":"Authorization required"}, and its RFC 9728 protected-resource document names https://dash.readme.com/oidc as the authorization server — a ReadMe dashboard account, not a ConnexPay API credential. The tools below are therefore a CANDIDATE set derived from the 90 harvested OpenAPI operations, not a published ConnexPay surface.'
+note: 'ConnexPay publishes no MCP server for its payment APIs. An MCP endpoint DOES answer at https://docs.connexpay.com/mcp,
+  but it is the ReadMe documentation platform''s built-in docs MCP (its tool names — search, fetch, list-endpoints,
+  get-endpoint, execute-request, list-specs, search-endpoints, get-server-variables — are ReadMe reserved
+  words), and it is not usable by a third party: both tools/list and initialize return HTTP 401 {"code":-32001,"message":"Authorization
+  required"}, and its RFC 9728 protected-resource document names https://dash.readme.com/oidc as the authorization
+  server — a ReadMe dashboard account, not a ConnexPay API credential. The tools below are therefore a
+  CANDIDATE set derived from the 90 harvested OpenAPI operations, not a published ConnexPay surface.'
 probes:
 - url: https://docs.connexpay.com/mcp
   method: tools/list
@@ -296,3 +302,9 @@ tools:
 - name: stoppaymentservice_updateorremoveblacklist
   description: Update or Remove Stop Payment Service
   source_operation: openapi/connexpay-stop-payment-service-openapi.yml#StopPaymentService_UpdateOrRemoveBlackList
+deployment:
+  mode: none
+  verified: derived
+  tools: 90
+  checked: '2026-08-12'
+  source: catalog MCP census

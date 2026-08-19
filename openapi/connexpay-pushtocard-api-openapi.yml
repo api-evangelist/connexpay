@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: v1
   title: Purchases Push To Card API
@@ -413,6 +413,74 @@ paths:
           description: Valid values for ridGuid and cardId must be provided
 components:
   schemas:
+    PayeeDto:
+      required:
+      - merchantGuid
+      - firstName
+      - lastName
+      - email
+      - phone
+      type: object
+      properties:
+        payeeGuid:
+          format: uuid
+          description: Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        merchantGuid:
+          format: uuid
+          description: Merchant guid for the Payee to be created.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        firstName:
+          description: First name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        lastName:
+          description: Last name for the Payee to be created.
+          maxLength: 50
+          minLength: 0
+          type: string
+        email:
+          description: Email address for the Payee.
+          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
+          type: string
+        address1:
+          description: Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        address2:
+          description: Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.
+          maxLength: 100
+          minLength: 0
+          type: string
+        city:
+          description: Postal address city for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        state:
+          description: Postal address state for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        zipCode:
+          description: Postal code for the Payee.
+          maxLength: 30
+          minLength: 0
+          type: string
+        phone:
+          description: Phone number for the Payee, up to 10-character string.
+          pattern: ^\+1\d{10}$
+          type: string
+        status:
+          description: Status for the Payee.
+          type: string
+        cardId:
+          description: Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.
+          type: string
     DtoPayments:
       type: object
       properties:
@@ -539,44 +607,11 @@ components:
           maxLength: 50
           minLength: 0
           type: string
-    DtoPayout:
+    PayoutAuthResponse:
       type: object
       properties:
-        payoutGuid:
-          format: uuid
-          description: Unique identifier assigned to the Payout.
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        payoutReferenceToken:
-          description: The Payout identifier that will be needed by our support teams to research issues.
-          type: string
-        memo:
-          description: A brief description highlighting the reason for this Payout.
-          type: string
-        orderNumber:
-          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
-          type: string
-        associationId:
-          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
-          type: string
-        customerId:
-          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        createdBy:
-          type: string
-        labelIds:
-          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
-          type: array
-          items:
-            format: int32
-            type: integer
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/DtoPayments'
+        AuthenticationResult:
+          $ref: '#/components/schemas/AuthenticationResult'
     UpdatePayeeDto:
       type: object
       properties:
@@ -626,25 +661,44 @@ components:
         status:
           description: Status for the Payee to be updated.
           type: string
-    AuthenticationResult:
+    DtoPayout:
       type: object
       properties:
-        AccessToken:
+        payoutGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payout.
           type: string
-        ExpiresIn:
-          format: int32
-          type: integer
-        TokenType:
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by our support teams to research issues.
           type: string
-        RefreshToken:
+        memo:
+          description: A brief description highlighting the reason for this Payout.
           type: string
-        IdToken:
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
           type: string
-    PayoutAuthResponse:
-      type: object
-      properties:
-        AuthenticationResult:
-          $ref: '#/components/schemas/AuthenticationResult'
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtoPayments'
     CancelPaymentsDto:
       required:
       - merchantGuid
@@ -663,74 +717,6 @@ components:
             format: uuid
             type: string
             example: 00000000-0000-0000-0000-000000000000
-    PayeeDto:
-      required:
-      - merchantGuid
-      - firstName
-      - lastName
-      - email
-      - phone
-      type: object
-      properties:
-        payeeGuid:
-          format: uuid
-          description: Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        merchantGuid:
-          format: uuid
-          description: Merchant guid for the Payee to be created.
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        firstName:
-          description: First name for the Payee to be created.
-          maxLength: 50
-          minLength: 0
-          type: string
-        lastName:
-          description: Last name for the Payee to be created.
-          maxLength: 50
-          minLength: 0
-          type: string
-        email:
-          description: Email address for the Payee.
-          pattern: ^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
-          type: string
-        address1:
-          description: Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.
-          maxLength: 100
-          minLength: 0
-          type: string
-        address2:
-          description: Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.
-          maxLength: 100
-          minLength: 0
-          type: string
-        city:
-          description: Postal address city for the Payee.
-          maxLength: 30
-          minLength: 0
-          type: string
-        state:
-          description: Postal address state for the Payee.
-          maxLength: 30
-          minLength: 0
-          type: string
-        zipCode:
-          description: Postal code for the Payee.
-          maxLength: 30
-          minLength: 0
-          type: string
-        phone:
-          description: Phone number for the Payee, up to 10-character string.
-          pattern: ^\+1\d{10}$
-          type: string
-        status:
-          description: Status for the Payee.
-          type: string
-        cardId:
-          description: Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.
-          type: string
     PayoutDto:
       required:
       - merchantGuid
@@ -780,6 +766,20 @@ components:
           items:
             format: int32
             type: integer
+    AuthenticationResult:
+      type: object
+      properties:
+        AccessToken:
+          type: string
+        ExpiresIn:
+          format: int32
+          type: integer
+        TokenType:
+          type: string
+        RefreshToken:
+          type: string
+        IdToken:
+          type: string
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

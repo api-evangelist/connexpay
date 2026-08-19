@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Connexpay Chargeback API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chargeback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sales Chargebacks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cmsapi.connexpay.com/api/chargeback/GetByUser",
+            "params": [
+              {
+                "name": "/GetByUser?startDate=2016-12-01",
+                "value": "",
+                "type": "path",
+                "description": "Return all chargebacks for the authenticated user with a start date"
+              },
+              {
+                "name": "/GetByUser?startDate=2016-12-01&endDate=2016-12-01",
+                "value": "",
+                "type": "path",
+                "description": "Return all chargebacks for the authenticated user with a start and end date"
+              },
+              {
+                "name": "/GetByResolvedDate?startDate=2019-09-20&endDate=2019-10-21",
+                "value": "",
+                "type": "path",
+                "description": "Return all chargebacks for the authenticated user with a start and end date based on resolved date"
+              }
+            ]
+          },
+          "docs": "Sales Chargebacks"
+        },
+        {
+          "info": {
+            "name": "Create Chargeback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cmsapi.connexpay.com/api/v1/chargeback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a virtual card chargeback. \n\nWhat is behind this API?\n- When a user calls this API, we will create a new case/dispute to Marqeta\n- When case/dispute creation success, the API will transmit the case for Marqeta review\n- When the review passes, the API will transmit the case to the Card Network for Chargeback"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

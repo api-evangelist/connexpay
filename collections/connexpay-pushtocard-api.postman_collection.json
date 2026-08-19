@@ -1,0 +1,3139 @@
+{
+  "item": [
+    {
+      "id": "9d01283d-457e-4231-8cb9-5ab566997f6f",
+      "name": "PushToCard",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f9f1b6a-e498-4181-97a9-d09107b72947",
+          "name": "Get Payee",
+          "request": {
+            "name": "Get Payee",
+            "description": {
+              "content": "Use this endpoint to retrieve a Payee for a specific Payee guid. One or both 'payeeGuid' or 'payeeEmailAddress' must be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "payeeGuid",
+                  "value": "<string>",
+                  "description": "Globally Unique Identifier for the Payee being retrieved"
+                },
+                {
+                  "disabled": false,
+                  "key": "payeeEmailAddress",
+                  "value": "<string>",
+                  "description": "Email address of the Payee being retrieved"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08e62f81-8ae3-479b-88c7-22676c31d31a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"email\": \"LclZou@[003.216.7.Df]\",\n  \"phone\": \"+10126302003\",\n  \"payeeGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"address1\": \"string\",\n  \"address2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"zipCode\": \"string\",\n  \"status\": \"string\",\n  \"cardId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0621d831-e54c-48b9-88a8-bf06d2e0c1f6",
+              "name": "The Payee's guid or email address must be provided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5881a4ab-c5f2-4c2d-8257-42bf0a165866",
+              "name": "User doesn't have access to this merchant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9278ef03-f9aa-4d06-8731-605892778546",
+              "name": "Payee doesn't exist or doesn't belong to the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c57eaef-d72a-4b12-9590-86779f3ee289",
+          "name": "Create Payee",
+          "request": {
+            "name": "Create Payee",
+            "description": {
+              "content": "Use this endpoint to create a new Payee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) Merchant guid for the Payee to be created."
+                },
+                {
+                  "disabled": false,
+                  "key": "firstName",
+                  "value": "<string>",
+                  "description": "(Required) First name for the Payee to be created."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastName",
+                  "value": "<string>",
+                  "description": "(Required) Last name for the Payee to be created."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) Email address for the Payee."
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "(Required) Phone number for the Payee, up to 10-character string."
+                },
+                {
+                  "disabled": false,
+                  "key": "payeeGuid",
+                  "value": "<uuid>",
+                  "description": "Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request."
+                },
+                {
+                  "disabled": false,
+                  "key": "address1",
+                  "value": "<string>",
+                  "description": "Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed."
+                },
+                {
+                  "disabled": false,
+                  "key": "address2",
+                  "value": "<string>",
+                  "description": "Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed."
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Postal address city for the Payee."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Postal address state for the Payee."
+                },
+                {
+                  "disabled": false,
+                  "key": "zipCode",
+                  "value": "<string>",
+                  "description": "Postal code for the Payee."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status for the Payee."
+                },
+                {
+                  "disabled": false,
+                  "key": "cardId",
+                  "value": "<string>",
+                  "description": "Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ce97c8f2-ae2d-4b57-a0b0-d05c8fb7bcf4",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Merchant guid for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) First name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Last name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Phone number for the Payee, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.",
+                        "type": "text/plain"
+                      },
+                      "key": "payeeGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"payeeGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zipCode\": \"<string>\",\n  \"status\": \"<string>\",\n  \"cardId\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb6c293d-944c-4b5d-b02c-2d42d89744e7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Merchant guid for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) First name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Last name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Phone number for the Payee, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.",
+                        "type": "text/plain"
+                      },
+                      "key": "payeeGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1417cd4d-4299-48f8-a710-4eb5e28e25a1",
+              "name": "A Payee with the provided email address already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Merchant guid for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) First name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Last name for the Payee to be created.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Email address for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Phone number for the Payee, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Guid for the created Payee that is returned by ConnexPay upon creation of a Payee. Ignored if provided in a Payee creation request.",
+                        "type": "text/plain"
+                      },
+                      "key": "payeeGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Unique identifier that refers to the card saved for a Payee when using the Payment Widget. It will be null when a Payee is created but will have a value once stored for the Payee using the Payment Widget.",
+                        "type": "text/plain"
+                      },
+                      "key": "cardId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca2253f6-1a5d-45bc-a322-528b76ea44dd",
+          "name": "Manage Payee",
+          "request": {
+            "name": "Manage Payee",
+            "description": {
+              "content": "Use this endpoint to enable or disable a Payee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payees",
+                ":payeeGuid",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payeeGuid",
+                  "description": "(Required) Globally Unique Identifier for the Payee that will be changed"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) Must be 'enable' or 'disable'"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "943514a3-d1c6-4a80-b49c-a50291c3b618",
+              "name": "Payee status changed to the requested state --OR-- Payee is already in the requested state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for the Payee that will be changed"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Must be 'enable' or 'disable'"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a09be3-facc-4fc1-bbdb-8cece763d687",
+              "name": "Status must be 'enable' or 'disable'",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for the Payee that will be changed"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Must be 'enable' or 'disable'"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f2f6e0a-6a36-4788-adc8-41ee093b2ac3",
+              "name": "User doesn't have access to this merchant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for the Payee that will be changed"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Must be 'enable' or 'disable'"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95f663af-d775-482f-8f56-016c22cd2fd1",
+              "name": "Payee doesn't exist or doesn't belong to the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for the Payee that will be changed"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) Must be 'enable' or 'disable'"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2295aad-cd40-45db-8e87-c68156534d15",
+          "name": "Update Payee",
+          "request": {
+            "name": "Update Payee",
+            "description": {
+              "content": "Use this endpoint to update data for a Payee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payees",
+                ":payeeGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payeeGuid",
+                  "description": "(Required) Globally Unique Identifier for a the Payee that will be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "firstName",
+                  "value": "<string>",
+                  "description": "First name for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "lastName",
+                  "value": "<string>",
+                  "description": "Last name for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Email address for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "address1",
+                  "value": "<string>",
+                  "description": "Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed."
+                },
+                {
+                  "disabled": false,
+                  "key": "address2",
+                  "value": "<string>",
+                  "description": "Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed."
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Postal address city for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Postal address state for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "zipCode",
+                  "value": "<string>",
+                  "description": "Postal code for the Payee to be updated."
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Phone number for the Payee to be updated, up to 10-character string."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status for the Payee to be updated."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad85bd7b-dc98-4f44-8000-c5938cd58a93",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payee that will be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "First name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Email address for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Phone number for the Payee to be updated, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c95d85b0-e0bf-4df4-ab76-dd9239605319",
+              "name": "payeeGuid must be a valid guid value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payee that will be updated"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "First name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Email address for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Phone number for the Payee to be updated, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d8078ad-8c44-48b3-814e-4985d68fb918",
+              "name": "User doesn't have access to this merchant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payee that will be updated"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "First name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Email address for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Phone number for the Payee to be updated, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd2794f8-d8b9-4bc7-a81c-91b2742906c7",
+              "name": "Payee doesn't exist or doesn't belong to the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payees",
+                    ":payeeGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payeeGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payee that will be updated"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "First name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last name for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Email address for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 1 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address line 2 for the Payee to be updated. Alphanumerics and [,.-'] are allowed.",
+                        "type": "text/plain"
+                      },
+                      "key": "address2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address city for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal address state for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Postal code for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Phone number for the Payee to be updated, up to 10-character string.",
+                        "type": "text/plain"
+                      },
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status for the Payee to be updated.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08750d9d-fd42-48dd-acfc-7f773258f7c7",
+          "name": "Create Payout",
+          "request": {
+            "name": "Create Payout",
+            "description": {
+              "content": "Use this endpoint to create a new Payout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>",
+                  "description": "(Required) A brief description highlighting the reason for this Payout."
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "{\"payeeGuid\":\"<uuid>\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"<uuid>\",\"ridGuid\":\"<uuid>\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "{\"payeeGuid\":\"<uuid>\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"<uuid>\",\"ridGuid\":\"<uuid>\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payoutGuid",
+                  "value": "<uuid>",
+                  "description": "Guid assigned to the Payout by ConnexPay upon creation of a Payout."
+                },
+                {
+                  "disabled": false,
+                  "key": "payoutReferenceToken",
+                  "value": "<string>",
+                  "description": "The Payout identifier that will be needed by ConnexPay support teams to research issues."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status of the Payout."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderNumber",
+                  "value": "<string>",
+                  "description": "The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - )."
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric."
+                },
+                {
+                  "disabled": false,
+                  "key": "associationId",
+                  "value": "<string>",
+                  "description": "Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting."
+                },
+                {
+                  "disabled": false,
+                  "key": "labelIds",
+                  "value": "<integer>",
+                  "description": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use."
+                },
+                {
+                  "disabled": false,
+                  "key": "labelIds",
+                  "value": "<integer>",
+                  "description": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c1cc58ab-8d87-407a-af84-12389d8c6214",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A brief description highlighting the reason for this Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "{\"payeeGuid\":\"00000000-0000-0000-0000-000000000000\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"00000000-0000-0000-0000-000000000000\",\"ridGuid\":\"00000000-0000-0000-0000-000000000000\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "{\"payeeGuid\":\"00000000-0000-0000-0000-000000000000\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"00000000-0000-0000-0000-000000000000\",\"ridGuid\":\"00000000-0000-0000-0000-000000000000\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Guid assigned to the Payout by ConnexPay upon creation of a Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "payoutGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Payout identifier that will be needed by ConnexPay support teams to research issues.",
+                        "type": "text/plain"
+                      },
+                      "key": "payoutReferenceToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status of the Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).",
+                        "type": "text/plain"
+                      },
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.",
+                        "type": "text/plain"
+                      },
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.",
+                        "type": "text/plain"
+                      },
+                      "key": "associationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.",
+                        "type": "text/plain"
+                      },
+                      "key": "labelIds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.",
+                        "type": "text/plain"
+                      },
+                      "key": "labelIds",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"memo\": \"<string>\",\n  \"payments\": [\n    {\n      \"payeeGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"value\": \"<double>\",\n      \"payeeReferenceToken\": \"<string>\",\n      \"ridReferenceToken\": \"<string>\",\n      \"paymentGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"ridGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"memo\": \"<string>\",\n      \"field2\": \"<string>\",\n      \"field3\": \"<string>\",\n      \"field4\": \"<string>\",\n      \"field5\": \"<string>\"\n    },\n    {\n      \"payeeGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"value\": \"<double>\",\n      \"payeeReferenceToken\": \"<string>\",\n      \"ridReferenceToken\": \"<string>\",\n      \"paymentGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"ridGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"memo\": \"<string>\",\n      \"field2\": \"<string>\",\n      \"field3\": \"<string>\",\n      \"field4\": \"<string>\",\n      \"field5\": \"<string>\"\n    }\n  ],\n  \"payoutGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"payoutReferenceToken\": \"<string>\",\n  \"status\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"associationId\": \"<string>\",\n  \"labelIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8196b07d-8b98-4480-9413-c5cc684ddf8c",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A brief description highlighting the reason for this Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "{\"payeeGuid\":\"00000000-0000-0000-0000-000000000000\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"00000000-0000-0000-0000-000000000000\",\"ridGuid\":\"00000000-0000-0000-0000-000000000000\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "{\"payeeGuid\":\"00000000-0000-0000-0000-000000000000\",\"value\":\"<double>\",\"payeeReferenceToken\":\"<string>\",\"ridReferenceToken\":\"<string>\",\"paymentGuid\":\"00000000-0000-0000-0000-000000000000\",\"ridGuid\":\"00000000-0000-0000-0000-000000000000\",\"memo\":\"<string>\",\"field2\":\"<string>\",\"field3\":\"<string>\",\"field4\":\"<string>\",\"field5\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Guid assigned to the Payout by ConnexPay upon creation of a Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "payoutGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The Payout identifier that will be needed by ConnexPay support teams to research issues.",
+                        "type": "text/plain"
+                      },
+                      "key": "payoutReferenceToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Status of the Payout.",
+                        "type": "text/plain"
+                      },
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).",
+                        "type": "text/plain"
+                      },
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.",
+                        "type": "text/plain"
+                      },
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.",
+                        "type": "text/plain"
+                      },
+                      "key": "associationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.",
+                        "type": "text/plain"
+                      },
+                      "key": "labelIds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.",
+                        "type": "text/plain"
+                      },
+                      "key": "labelIds",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ec44ab3-0283-4f18-823f-13443cee31bc",
+          "name": "Cancel Payments",
+          "request": {
+            "name": "Cancel Payments",
+            "description": {
+              "content": "Use this endpoint to cancel payments within a Payout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payouts",
+                ":payoutGuid",
+                "Cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payoutGuid",
+                  "description": "(Required) Globally Unique Identifier for a the Payout that will be changed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "<uuid>",
+                  "description": "(Required) The Payment Guid returned in the Create Payout response."
+                },
+                {
+                  "disabled": false,
+                  "key": "payments",
+                  "value": "<uuid>",
+                  "description": "(Required) The Payment Guid returned in the Create Payout response."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4184714f-c675-4acc-9cc5-16b78a06966d",
+              "name": "Payment has been canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid",
+                    "Cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be changed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9537686-7128-4248-bbd6-a66f6a21e304",
+              "name": "Payment list must not be empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid",
+                    "Cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be changed"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23fb1996-f0fd-4074-9767-7e85badc5fd8",
+              "name": "Payout doesn't exist or doesn't belong to the user --OR-- Payment doesn't exist or doesn't belong to payout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid",
+                    "Cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be changed"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "022fdedf-4be1-470d-bf21-643e6f38f98c",
+              "name": "Payout is in 'Rejected' State --OR-- All Payments must be in 'Approved' state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid",
+                    "Cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be changed"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application-level value that indicates a Payout is being requested for client's account. Value provided by ConnexPay.",
+                        "type": "text/plain"
+                      },
+                      "key": "merchantGuid",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The Payment Guid returned in the Create Payout response.",
+                        "type": "text/plain"
+                      },
+                      "key": "payments",
+                      "value": "00000000-0000-0000-0000-000000000000"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4de84376-fd2c-4f4d-93c7-eed014d230be",
+          "name": "Get Payout Details",
+          "request": {
+            "name": "Get Payout Details",
+            "description": {
+              "content": "Use this endpoint to retrieve the details for a Payout for a specific Payout guid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payouts",
+                ":payoutGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payoutGuid",
+                  "description": "(Required) Globally Unique Identifier for a the Payout that will be retrieved"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "951d916d-f7e7-4383-9701-e3b34c73ce9c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be retrieved"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payoutGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"payoutReferenceToken\": \"string\",\n  \"memo\": \"string\",\n  \"orderNumber\": \"string\",\n  \"associationId\": \"string\",\n  \"customerId\": \"string\",\n  \"createdDate\": \"2020-07-12T21:31:59.994Z\",\n  \"createdBy\": \"string\",\n  \"labelIds\": [\n    1029,\n    6330\n  ],\n  \"payments\": [\n    {\n      \"paymentGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"paymentReferenceToken\": \"string\",\n      \"payeeReferenceToken\": \"string\",\n      \"ridReferenceToken\": \"string\",\n      \"memo\": \"string\",\n      \"value\": 5899.79918883113,\n      \"status\": \"string\",\n      \"field2\": \"string\",\n      \"field3\": \"string\",\n      \"field4\": \"string\",\n      \"field5\": \"string\",\n      \"terminationDate\": \"string\",\n      \"payeeName\": \"string\",\n      \"email\": \"string\",\n      \"lastFour\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipCode\": \"string\",\n      \"country\": \"string\",\n      \"createdBy\": \"string\"\n    },\n    {\n      \"paymentGuid\": \"00000000-0000-0000-0000-000000000000\",\n      \"paymentReferenceToken\": \"string\",\n      \"payeeReferenceToken\": \"string\",\n      \"ridReferenceToken\": \"string\",\n      \"memo\": \"string\",\n      \"value\": 3630.0104902841335,\n      \"status\": \"string\",\n      \"field2\": \"string\",\n      \"field3\": \"string\",\n      \"field4\": \"string\",\n      \"field5\": \"string\",\n      \"terminationDate\": \"string\",\n      \"payeeName\": \"string\",\n      \"email\": \"string\",\n      \"lastFour\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zipCode\": \"string\",\n      \"country\": \"string\",\n      \"createdBy\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a957860-efb9-46d0-8ee2-d79a2d7acacb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be retrieved"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74e68f59-ae7c-49fd-8c95-85a3884ce546",
+              "name": "User doesn't have access to this merchant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be retrieved"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98b1c682-4c83-47c9-9d15-2a4209863e07",
+              "name": "Payout doesn't exist or doesn't belong to the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payouts",
+                    ":payoutGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payoutGuid",
+                      "description": "(Required) Globally Unique Identifier for a the Payout that will be retrieved"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5de86461-214c-4c87-af88-0cec908a9fa8",
+          "name": "Get Authentication Token for DropInUI",
+          "request": {
+            "name": "Get Authentication Token for DropInUI",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "AuthenticatePaymentWidget"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "payeeGuid",
+                  "value": "<string>",
+                  "description": "Globally Unique Identifier for the Payee being authenticated."
+                },
+                {
+                  "disabled": false,
+                  "key": "payeeEmailAddress",
+                  "value": "<string>",
+                  "description": "Email address of the Payee being retrieved"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f3a0a3e-a84a-4360-a062-ca8dbf4b8381",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "AuthenticatePaymentWidget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"AuthenticationResult\": {\n    \"AccessToken\": \"string\",\n    \"ExpiresIn\": 9045,\n    \"TokenType\": \"string\",\n    \"RefreshToken\": \"string\",\n    \"IdToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7be1144b-c18b-4d70-ae8d-74e2874ef1c8",
+              "name": "A valid Payee guid or email address must be provided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "AuthenticatePaymentWidget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "759b09db-8d89-4ac3-b98e-c017c15a7378",
+              "name": "User doesn't have access to this merchant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "AuthenticatePaymentWidget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d79f813b-5a36-4221-a9ae-b6a0ac092a9b",
+              "name": "Payee doesn't exist or doesn't belong to the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "AuthenticatePaymentWidget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "payeeGuid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payeeEmailAddress",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "019f3732-9303-4702-b4d8-98870d6c019e",
+          "name": "Push Funds to a Card",
+          "request": {
+            "name": "Push Funds to a Card",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PushToCard",
+                "Payments",
+                ":ridGuid",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ridGuid",
+                  "description": "(Required) For Payment Widget clients. A ridGuid will will be returned upon creation of a Payout. That must be saved and passed here to complete the process."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) For Payment Widget clients. The cardId is retrieved by calling the Get Payee endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32f79f63-337d-4884-b5cf-5ce2dbec3a7a",
+              "name": "Successfully pushed funds to card",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payments",
+                    ":ridGuid",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ridGuid",
+                      "description": "(Required) For Payment Widget clients. A ridGuid will will be returned upon creation of a Payout. That must be saved and passed here to complete the process."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) For Payment Widget clients. The cardId is retrieved by calling the Get Payee endpoint."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13b16788-1d7c-4645-af07-b73576126367",
+              "name": "Valid values for ridGuid and cardId must be provided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PushToCard",
+                    "Payments",
+                    ":ridGuid",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ridGuid",
+                      "description": "(Required) For Payment Widget clients. A ridGuid will will be returned upon creation of a Payout. That must be saved and passed here to complete the process."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) For Payment Widget clients. The cardId is retrieved by calling the Get Payee endpoint."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b6cb0127-16cb-405c-b166-1e4352459e9e",
+    "name": "Purchases Push To Card API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

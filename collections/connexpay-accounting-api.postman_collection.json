@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "df359044-cec8-48c3-9678-3afdedc5fa76",
+      "name": "Accounting",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1cfd1796-5f7a-4c69-a838-110082122e9c",
+          "name": "Get Daily Accounting Detail",
+          "request": {
+            "name": "Get Daily Accounting Detail",
+            "description": {
+              "content": "This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production. ",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Accounting",
+                "DailyDetail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) The client identifier for the requested transactions."
+                },
+                {
+                  "disabled": false,
+                  "key": "releasedDate",
+                  "value": "<date>",
+                  "description": "(Required) Date on which the requested transactions were released to the client."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62a7ea5b-5dd8-4d77-9dcc-c39eec15b4fc",
+              "name": "Successfully retrieved daily accounting detail data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailyDetail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalItemCount\": 9391,\n  \"pageCount\": 7808,\n  \"pageItemCount\": 9584,\n  \"pageNumber\": 1324,\n  \"items\": [\n    \"\",\n    \"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "051cccd4-3db6-435c-b87b-a525849f759b",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailyDetail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55687e13-a277-469f-aa38-2d522f243d98",
+              "name": "The request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailyDetail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "729514d7-d6d0-46c7-9425-f203fcc3639a",
+              "name": "The request was not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailyDetail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1141dd2-4b2a-44bb-986a-0fef8ef07601",
+              "name": "No data was found for the provided parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailyDetail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d514a360-4699-49fd-a577-145d2a22c678",
+          "name": "Get Daily Accounting Summary",
+          "request": {
+            "name": "Get Daily Accounting Summary",
+            "description": {
+              "content": "This endpoint returns the daily accounting summary of a merchant for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Accounting",
+                "DailySummary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) The client identifier for the requested transactions."
+                },
+                {
+                  "disabled": false,
+                  "key": "releasedDate",
+                  "value": "<date>",
+                  "description": "(Required) Date on which the requested transactions were released to the client."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fafe351-c78e-4ae6-bd7c-671ac6c77b87",
+              "name": "Successfully retrieved daily accounting summary data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailySummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantGuid\": \"3827b224-8680-451c-62ba-3f4d4bf6807e\",\n  \"clientName\": null,\n  \"releasedDate\": \"1953-10-07\",\n  \"priorDayCashBalance\": 5774.065334668773,\n  \"wireAchToFundCashAmount\": 8037.008240219668,\n  \"beginningCashBalance\": 5662.380725199454,\n  \"creditSaleAmount\": 3055.4072712782486,\n  \"achSaleAmount\": 8981.413497397281,\n  \"purchaseAchAmount\": 167.2816314319292,\n  \"purchaseCardAmount\": 3673.941634170136,\n  \"purchasePushToCardAmount\": 3098.0582029205007,\n  \"creditVoidAmount\": 8394.600384695266,\n  \"creditReturnAmount\": 4557.173776662886,\n  \"creditChargebackAmount\": 3247.991345689587,\n  \"creditAdjustmentAmount\": 6454.131419151825,\n  \"achVoidAmount\": 6523.871151203471,\n  \"achReturnAmount\": 9164.76526121104,\n  \"purchaseCardReturnAmount\": 7040.119528911894,\n  \"purchaseCardChargebackAmount\": 421.16229329559053,\n  \"purchaseAchReturnAmount\": 6670.344875577428,\n  \"totalActivity\": 3429.676893020596,\n  \"newCashBalance\": 6930.774502371939,\n  \"netDebitCreditToClient\": 9603.782522225734,\n  \"endingCashBalance\": 4346.865041520983,\n  \"minimumCashBalance\": 9244.508196847215,\n  \"achDebitRejectAmount\": 8416.452642917717,\n  \"directSaleAmount\": 6781.717047678811,\n  \"directReturnAmount\": 5361.062671224806,\n  \"directVoidAmount\": 8737.329892842627,\n  \"purchaseDirectAmount\": 6860.125124460291,\n  \"purchaseDirectReturnAmount\": 7031.770182388022\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d72f347b-de30-49b2-b267-f4dcb0b564e8",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailySummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e360fdea-96e9-4d77-84cb-68e8299f02d7",
+              "name": "The request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailySummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f025fab-ea6a-4288-af78-d5b2b09d3876",
+              "name": "The request was not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailySummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bef54c8a-585f-4994-962b-5dae2b2ad5d3",
+              "name": "No data was found for the provided parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Accounting",
+                    "DailySummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20"
+                    },
+                    {
+                      "key": "releasedDate",
+                      "value": "2022-12-31"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://reportingapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2664f086-3168-4755-a077-efa196c34744",
+    "name": "ConnexPay Reporting Accounting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving reporting data. Currently Daily Accounting data only.\n\nContact Support:\n Name: ConnexPay",
+      "type": "text/plain"
+    }
+  }
+}

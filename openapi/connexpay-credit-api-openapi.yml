@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: ConnexPay Reporting Credit API
   description: REST API for retrieving reporting data. Currently Daily Accounting data only.
@@ -80,42 +80,31 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    AvailableCreditReport:
+    ProblemDetails:
       type: object
       properties:
-        client:
-          description: Unique name assigned to the client by ConnexPay.
-          type: string
-          nullable: true
-        mid:
-          description: Unique merchant identifier assigned to the client by ConnexPay.
-          type: string
-          nullable: true
-        date:
-          description: Date Time.
-          type: string
-          format: date-time
         type:
-          description: Type of the credit transaction.
-          type: string
-          nullable: true
-        user:
-          description: User that performed the credit transaction.
-          type: string
-          nullable: true
-        amount:
-          description: Amount of the credit transaction.
-          type: number
-          format: double
-        availableCredit:
-          description: Available credit amount as a result of the credit transaction.
-          type: number
-          format: double
-        merchantGatewayGuid:
-          description: Unique merchant Guid assigned to the client by ConnexPay.
-          type: string
-          format: uuid
-      additionalProperties: false
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
     AvailableCreditReportResponse:
       type: object
       properties:
@@ -140,31 +129,12 @@ components:
           type: integer
           format: int32
         searchResults:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/AvailableCreditReport'
-          nullable: true
       additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-      additionalProperties: {}
     AvailableCreditReportRequest:
       type: object
       properties:
@@ -174,18 +144,61 @@ components:
           format: uuid
         client:
           description: Unique name assigned to the client by ConnexPay.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         timeStampFrom:
           description: Start date for the Report Request.
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         timeStampTo:
           description: End date for the Report Request.
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    AvailableCreditReport:
+      type: object
+      properties:
+        client:
+          description: Unique name assigned to the client by ConnexPay.
+          type:
+          - string
+          - 'null'
+        mid:
+          description: Unique merchant identifier assigned to the client by ConnexPay.
+          type:
+          - string
+          - 'null'
+        date:
+          description: Date Time.
           type: string
           format: date-time
-          nullable: true
+        type:
+          description: Type of the credit transaction.
+          type:
+          - string
+          - 'null'
+        user:
+          description: User that performed the credit transaction.
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Amount of the credit transaction.
+          type: number
+          format: double
+        availableCredit:
+          description: Available credit amount as a result of the credit transaction.
+          type: number
+          format: double
+        merchantGatewayGuid:
+          description: Unique merchant Guid assigned to the client by ConnexPay.
+          type: string
+          format: uuid
       additionalProperties: false
   securitySchemes:
     bearerAuth:

@@ -1,0 +1,1731 @@
+{
+  "item": [
+    {
+      "id": "e77f01c6-7e72-4496-94bb-6da017a9408b",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30091f66-a0ba-4d81-bb43-be9156bd51ec",
+          "name": "Search Issued Cards",
+          "request": {
+            "name": "Search Issued Cards",
+            "description": {
+              "content": "This endpoint searches for Issued Virtual Cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "IssuedCards",
+                ""
+              ],
+              "host": [
+                "{{api-v1-Search-IssuedCards--Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "PageNumber",
+                  "description": "(Required) Number of page of the results. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "PageSize",
+                  "description": "(Required) Size of each page of the results. Default is 1000."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"TimeStampFrom\": \"<date>\",\n  \"TimeStampTo\": \"<date>\",\n  \"IssuedAmountFrom\": \"<float>\",\n  \"IssuedAmountTo\": \"<float>\",\n  \"OutgoingTransactionCode\": \"<string>\",\n  \"SettledAmountFrom\": \"<long>\",\n  \"SettledAmountTo\": \"<long>\",\n  \"ReturnedAmountFrom\": \"<long>\",\n  \"ReturnedAmountTo\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3da6c638-da00-4648-ae2c-e269a645e9b5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "IssuedCards",
+                    ""
+                  ],
+                  "host": [
+                    "{{api-v1-Search-IssuedCards--Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageNumber",
+                      "description": "(Required) Number of page of the results. Default is 1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageSize",
+                      "description": "(Required) Size of each page of the results. Default is 1000."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"TimeStampFrom\": \"<date>\",\n  \"TimeStampTo\": \"<date>\",\n  \"IssuedAmountFrom\": \"<float>\",\n  \"IssuedAmountTo\": \"<float>\",\n  \"OutgoingTransactionCode\": \"<string>\",\n  \"SettledAmountFrom\": \"<long>\",\n  \"SettledAmountTo\": \"<long>\",\n  \"ReturnedAmountFrom\": \"<long>\",\n  \"ReturnedAmountTo\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n   \\\"pageCurrent\\\":1,\\n   \\\"pageCurrentResults\\\":2,\\n   \\\"pageTotal\\\":1,\\n   \\\"pageSize\\\":5,\\n   \\\"totalResults\\\":2,\\n   \\\"cardSummary\\\":null,\\n   \\\"searchResultDTO\\\":[\\n      {\\n         \\\"customerName\\\":\\\"John Smith\\\",\\n         \\\"merchantId\\\":\\\"b19d3b78-627b-4b7e-b60f-3b842a64a213\\\",\\n         \\\"incomingTransactionCodeCreationDate\\\":\\\"2020-02-18T17:40:43.66\\\",\\n         \\\"outgoingTransactionCodeCreationDate\\\":\\\"2020-02-18T17:40:54.63\\\",\\n         \\\"issuedAmount\\\":150.00,\\n         \\\"currencyCode\\\":\\\"USD\\\",\\n         \\\"cardType\\\":\\\"Other\\\",\\n         \\\"lastFour\\\":\\\"9766\\\",\\n         \\\"bin\\\":\\\"5ed416a2-a2da-41fc-957a-a9ee366f86b3\\\",\\n         \\\"incomingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000\\\",\\n         \\\"outgoingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000USD01ZZZ00015000\\\",\\n         \\\"outgoingTransactionCodeDetail\\\":{\\n            \\\"incomingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000\\\",\\n            \\\"incomingTransactionCodeDetail\\\":{\\n               \\\"expectedOutgoingTransactionCount\\\":3,\\n               \\\"filler\\\":\\\"AGC\\\",\\n               \\\"authorizationResponseCode\\\":\\\"W7D9ZW\\\",\\n               \\\"authorizationDate\\\":\\\"2020-02-18T17:40:43.66\\\",\\n               \\\"authorizedAmount\\\":300.0\\n            },\\n            \\\"currencyCode\\\":\\\"USD\\\",\\n            \\\"purchaseType\\\":\\\"01\\\",\\n            \\\"filler\\\":\\\"ZZZ\\\",\\n            \\\"paymentAmount\\\":150.0\\n         },\\n         \\\"timeStamp\\\":\\\"2020-02-18T17:40:54.63\\\",\\n         \\\"guid\\\":\\\"179c7243-6b43-4d47-b77c-3f5bb0fc37f5\\\",\\n         \\\"cardStatus\\\":\\\"Card - Active\\\",\\n         \\\"toleranceAmount\\\":30.00,\\n         \\\"terminateDate\\\": \\\"2020-11-26T18:59:59\\\"\\n        },\\n      },\\n      {\\n         \\\"customerName\\\":\\\"John Smith\\\",\\n         \\\"merchantId\\\":\\\"b19d3b78-627b-4b7e-b60f-3b842a64a213\\\",\\n         \\\"incomingTransactionCodeCreationDate\\\":\\\"2020-02-18T17:40:43.66\\\",\\n         \\\"outgoingTransactionCodeCreationDate\\\":\\\"2020-02-18T17:41:03.81\\\",\\n         \\\"issuedAmount\\\":100.00,\\n         \\\"currencyCode\\\":\\\"USD\\\",\\n         \\\"cardType\\\":\\\"Other\\\",\\n         \\\"lastFour\\\":\\\"8493\\\",\\n         \\\"bin\\\":\\\"5ed416a2-a2da-41fc-957a-a9ee366f86b3\\\",\\n         \\\"incomingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000\\\",\\n         \\\"outgoingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000USD01ZZZ00005000\\\",\\n         \\\"outgoingTransactionCodeDetail\\\":{\\n            \\\"incomingTransactionCode\\\":\\\"03AGCW7D9ZW8KHC3300030000\\\",\\n            \\\"incomingTransactionCodeDetail\\\":{\\n               \\\"expectedOutgoingTransactionCount\\\":3,\\n               \\\"filler\\\":\\\"AGC\\\",\\n               \\\"authorizationResponseCode\\\":\\\"W7D9ZW\\\",\\n               \\\"authorizationDate\\\":\\\"2020-02-18T17:40:43.66\\\",\\n               \\\"authorizedAmount\\\":300.0\\n            },\\n            \\\"currencyCode\\\":\\\"USD\\\",\\n            \\\"purchaseType\\\":\\\"01\\\",\\n            \\\"filler\\\":\\\"ZZZ\\\",\\n            \\\"paymentAmount\\\":50.0\\n         },\\n         \\\"timeStamp\\\":\\\"2020-02-18T17:41:03.81\\\",\\n         \\\"guid\\\":\\\"7638a84e-40cb-4db7-b9b8-a401a906b310\\\",\\n         \\\"cardStatus\\\":\\\"Card - Active\\\",\\n         \\\"orderNumber\\\": \\\"Test-Search\\\",\\n         \\\"customerID\\\": \\\"Test Search\\\"\\n      }\\n   ],\\n   \\\"allowedToCreateVC\\\":false\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59e4b9cd-c7c8-48ab-906a-b5dcf6a5480e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "IssuedCards",
+                    ""
+                  ],
+                  "host": [
+                    "{{api-v1-Search-IssuedCards--Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageNumber",
+                      "description": "(Required) Number of page of the results. Default is 1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageSize",
+                      "description": "(Required) Size of each page of the results. Default is 1000."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"TimeStampFrom\": \"<date>\",\n  \"TimeStampTo\": \"<date>\",\n  \"IssuedAmountFrom\": \"<float>\",\n  \"IssuedAmountTo\": \"<float>\",\n  \"OutgoingTransactionCode\": \"<string>\",\n  \"SettledAmountFrom\": \"<long>\",\n  \"SettledAmountTo\": \"<long>\",\n  \"ReturnedAmountFrom\": \"<long>\",\n  \"ReturnedAmountTo\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12122bbe-ca2e-4f4e-ac9f-44d86f3db17c",
+          "name": "Search Settlements",
+          "request": {
+            "name": "Search Settlements",
+            "description": {
+              "content": "This endpoint searches for Virtual Card Settlements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "Settlements",
+                ""
+              ],
+              "host": [
+                "{{api-v1-Search-Settlements--Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "PageNumber",
+                  "description": "(Required) Number of pages of results to return. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "PageSize",
+                  "description": "(Required) Size of each page of results. Default is 1000."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"DateFrom\": \"<date>\",\n  \"DateTo\": \"<date>\",\n  \"PostedDateFrom\": \"<date>\",\n  \"PostedDateTo\": \"<date>\",\n  \"OrderNumber\": \"<string>\",\n  \"IssuedAmountFrom\": \"<long>\",\n  \"IssuedAmountTo\": \"<long>\",\n  \"IssuedCardLastFour\": \"<string>\",\n  \"PostedAmountFrom\": \"<float>\",\n  \"PostedAmountTo\": \"<float>\",\n  \"ExpirationDateFrom\": \"<date>\",\n  \"ExpirationDateTo\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1cefadbe-56c3-4b2d-902f-a452b0dcdab4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Settlements",
+                    ""
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Settlements--Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageNumber",
+                      "description": "(Required) Number of pages of results to return. Default is 1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageSize",
+                      "description": "(Required) Size of each page of results. Default is 1000."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"568f7853-6e3d-4b3b-80f5-058763318fcb\",\n  \"dateFrom\": \"2019-11-01T00:00:00.0000000\",\n  \"dateTo\": \"2019-11-30T00:00:00.0000000\",\n  \"orderNumber\": \"Dan-TV9J6VJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"activeCards\\\": {\\n        \\\"total\\\": 62,\\n        \\\"availableBalance\\\": null\\n    },\\n    \\\"deactivateCards\\\": {\\n        \\\"total\\\": 25,\\n        \\\"availableBalance\\\": null\\n    },\\n    \\\"unactiveCards\\\": {\\n        \\\"total\\\": null,\\n        \\\"availableBalance\\\": null\\n    },\\n    \\\"pageCurrent\\\": 1,\\n    \\\"pageCurrentResults\\\": 10,\\n    \\\"pageTotal\\\": 9,\\n    \\\"pageSize\\\": 10,\\n    \\\"totalResults\\\": 88,\\n    \\\"cardSummary\\\": null,\\n    \\\"searchResultDTO\\\": [\\n        {\\n            \\\"customerName\\\": \\\"Card Name\\\",\\n            \\\"merchantId\\\": \\\"e454dc78-e8b9-4b7f-8568-8bf6246d94a9\\\",\\n            \\\"incomingTransactionCodeCreationDate\\\": \\\"2025-03-04T18:25:10.82\\\",\\n            \\\"outgoingTransactionCodeCreationDate\\\": \\\"2025-03-04T18:25:10.74\\\",\\n            \\\"issuedAmount\\\": 7.00,\\n            \\\"currencyCode\\\": \\\"USD\\\",\\n            \\\"cardType\\\": \\\"Visa\\\",\\n            \\\"lastFour\\\": \\\"1234\\\",\\n            \\\"bin\\\": \\\"VISACOMMPRE999999\\\",\\n            \\\"incomingTransactionCode\\\": \\\"5D3F372638767095088335123\\\",\\n            \\\"outgoingTransactionCode\\\": \\\"5D3F3726387670950883351234A65802F28EE4423\\\",\\n            \\\"outgoingTransactionCodeDetail\\\": {\\n                \\\"incomingTransactionCode\\\": \\\"5D3F372638767095088335123\\\",\\n                \\\"incomingTransactionCodeDetail\\\": {\\n                    \\\"expectedOutgoingTransactionCount\\\": 1,\\n                    \\\"filler\\\": \\\"ZZZ\\\",\\n                    \\\"authorizationResponseCode\\\": \\\"726555\\\",\\n                    \\\"authorizationDate\\\": \\\"2025-03-04T18:25:10.82\\\",\\n                    \\\"authorizedAmount\\\": 7.0\\n                },\\n                \\\"currencyCode\\\": \\\"USD\\\",\\n                \\\"purchaseType\\\": \\\"06\\\",\\n                \\\"filler\\\": \\\"ZZZ\\\",\\n                \\\"paymentAmount\\\": 0.0\\n            },\\n            \\\"timeStamp\\\": \\\"2025-03-04T18:25:10.74\\\",\\n            \\\"timeStampOffset\\\": \\\"2025-03-04T18:25:10.74+00:00\\\",\\n            \\\"guid\\\": \\\"50816dd3-d5b1-4524-b36e-331f3ee6f678\\\",\\n            \\\"cardStatus\\\": \\\"Device - Active\\\",\\n            \\\"terminateDate\\\": \\\"2026-08-30T19:59:59\\\",\\n            \\\"orderNumber\\\": \\\"123456\\\"\\n        },\\n        {\\n            \\\"customerName\\\": \\\"Name Cardholder\\\",\\n            \\\"merchantId\\\": \\\"e454dc78-e8b9-4b7f-8568-8bf6246d94a9\\\",\\n            \\\"incomingTransactionCodeCreationDate\\\": \\\"2025-03-04T17:36:34.95\\\",\\n            \\\"outgoingTransactionCodeCreationDate\\\": \\\"2025-03-04T17:36:34.9\\\",\\n            \\\"issuedAmount\\\": 10.00,\\n            \\\"currencyCode\\\": \\\"USD\\\",\\n            \\\"cardType\\\": \\\"Visa\\\",\\n            \\\"lastFour\\\": \\\"1111\\\",\\n            \\\"bin\\\": \\\"MVBVSPRECOMM123456\\\",\\n            \\\"incomingTransactionCode\\\": \\\"A76C770638766883969272789\\\",\\n            \\\"outgoingTransactionCode\\\": \\\"A76C7706387668839692727896154773A225B4F22\\\",\\n            \\\"outgoingTransactionCodeDetail\\\": {\\n                \\\"incomingTransactionCode\\\": \\\"A76C770638766883969272432\\\",\\n                \\\"incomingTransactionCodeDetail\\\": {\\n                    \\\"expectedOutgoingTransactionCount\\\": 1,\\n                    \\\"filler\\\": \\\"ZZZ\\\",\\n                    \\\"authorizationResponseCode\\\": \\\"706444\\\",\\n                    \\\"authorizationDate\\\": \\\"2025-03-04T17:36:34.95\\\",\\n                    \\\"authorizedAmount\\\": 13.0\\n                },\\n                \\\"currencyCode\\\": \\\"USD\\\",\\n                \\\"purchaseType\\\": \\\"06\\\",\\n                \\\"filler\\\": \\\"ZZZ\\\",\\n                \\\"paymentAmount\\\": 3.0\\n            },\\n            \\\"timeStamp\\\": \\\"2025-03-04T17:36:34.9\\\",\\n            \\\"timeStampOffset\\\": \\\"2025-03-04T17:36:34.9+00:00\\\",\\n            \\\"guid\\\": \\\"a967e303-253c-415e-8889-47b91e38a260\\\",\\n            \\\"cardStatus\\\": \\\"Device - Active\\\",\\n            \\\"terminateDate\\\": \\\"2025-12-08T18:59:59\\\",\\n            \\\"orderNumber\\\": \\\"Hotel\\\"\\n        },\\n        {\\n            \\\"customerName\\\": \\\"Test Cardmember\\\",\\n            \\\"merchantId\\\": \\\"e454dc78-e8b9-4b7f-8568-8bf6246d94a9\\\",\\n            \\\"incomingTransactionCodeCreationDate\\\": \\\"2025-03-04T17:24:22.94\\\",\\n            \\\"outgoingTransactionCodeCreationDate\\\": \\\"2025-03-04T17:24:22.86\\\",\\n            \\\"issuedAmount\\\": 7.00,\\n            \\\"currencyCode\\\": \\\"USD\\\",\\n            \\\"cardType\\\": \\\"Visa\\\",\\n            \\\"lastFour\\\": \\\"7777\\\",\\n            \\\"bin\\\": \\\"MVBVSPRECOMM123456\\\",\\n            \\\"incomingTransactionCode\\\": \\\"2835E52638767058610951456\\\",\\n            \\\"outgoingTransactionCode\\\": \\\"2835E526387670586109514562D1BF590926E46F7\\\",\\n            \\\"outgoingTransactionCodeDetail\\\": {\\n                \\\"incomingTransactionCode\\\": \\\"2835E52638767058610951789\\\",\\n                \\\"incomingTransactionCodeDetail\\\": {\\n                    \\\"expectedOutgoingTransactionCount\\\": 1,\\n                    \\\"filler\\\": \\\"ZZZ\\\",\\n                    \\\"authorizationResponseCode\\\": \\\"526333\\\",\\n                    \\\"authorizationDate\\\": \\\"2025-03-04T17:24:22.94\\\",\\n                    \\\"authorizedAmount\\\": 7.0\\n                },\\n                \\\"currencyCode\\\": \\\"USD\\\",\\n                \\\"purchaseType\\\": \\\"06\\\",\\n                \\\"filler\\\": \\\"ZZZ\\\",\\n                \\\"paymentAmount\\\": 0.0\\n            },\\n            \\\"timeStamp\\\": \\\"2025-03-04T17:24:22.86\\\",\\n            \\\"timeStampOffset\\\": \\\"2025-03-04T17:24:22.86+00:00\\\",\\n            \\\"guid\\\": \\\"801e20c1-41e9-420c-b5ea-73aa9a94af00\\\",\\n            \\\"cardStatus\\\": \\\"Device - Active\\\",\\n            \\\"terminateDate\\\": \\\"2026-08-30T19:59:59\\\",\\n            \\\"orderNumber\\\": \\\"903456\\\"\\n        },\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68d15f1c-84c6-4dde-b7f9-f59ae0db784c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Settlements",
+                    ""
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Settlements--Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageNumber",
+                      "description": "(Required) Number of pages of results to return. Default is 1."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "PageSize",
+                      "description": "(Required) Size of each page of results. Default is 1000."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"568f7853-6e3d-4b3b-80f5-058763318fcb\",\n  \"dateFrom\": \"2019-11-01T00:00:00.0000000\",\n  \"dateTo\": \"2019-11-30T00:00:00.0000000\",\n  \"orderNumber\": \"Dan-TV9J6VJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28079908-c2be-464d-861d-a16d13b9ebcc",
+          "name": "Available Funds",
+          "request": {
+            "name": "Available Funds",
+            "description": {
+              "content": "Use this endpoint to pull details regarding your Available Funds like cash balance, Available to Authorize (ATA) or Available to Issue (ATI), and the details that make up the final number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "AvailableFunds",
+                ":merchantGuid"
+              ],
+              "host": [
+                "{{api-v1-Search-AvailableFunds-merchantGuid-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "MerchantGuid",
+                  "description": "(Required) Merchant's Guid assigned by ConnexPay"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59c59a05-6f27-4996-9215-e2e226547748",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "AvailableFunds",
+                    ":merchantGuid"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-AvailableFunds-merchantGuid-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "MerchantGuid",
+                      "description": "(Required) Merchant's Guid assigned by ConnexPay"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cashBalance\\\": 305405.45,\\n    \\\"minimumCashBalance\\\": 10.00,\\n    \\\"reserveDeposit\\\": 25.50,\\n    \\\"salesAllowance\\\": 38100231.43,\\n    \\\"overage\\\": 0.00,\\n    \\\"outstandingAuthorization\\\": 29.00,\\n    \\\"outstandingLiability\\\": 0.00,\\n    \\\"totalATA\\\": 38405607.88\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4b98801-f8c1-416d-abf2-e10e715d12a5",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "AvailableFunds",
+                    ":merchantGuid"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-AvailableFunds-merchantGuid-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "MerchantGuid",
+                      "description": "(Required) Merchant's Guid assigned by ConnexPay"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd558ab0-436b-483c-bba0-ff87adac259a",
+          "name": "Search sales",
+          "request": {
+            "name": "Search sales",
+            "description": {
+              "content": "This endpoint searches sales.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "Sales",
+                ":exportable",
+                ":pageNumber",
+                ":pageSize"
+              ],
+              "host": [
+                "{{api-v1-Search-Sales-exportable-pageNumber-pageSize-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Mandatory",
+                  "key": "Exportable",
+                  "description": "(Required) True or False. It means if you want results exportable to CSV."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "PageNumber",
+                  "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Optional",
+                  "key": "PageSize",
+                  "description": "(Required) Int. Size of each page of the results. Default is 500."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"Mandatory\",\n  \"AmountFrom\": null,\n  \"AmountTo\": null,\n  \"CardHolderName\": \"Optional\",\n  \"CardLastFour\": \"Optional\",\n  \"CardType\": \"Optional\",\n  \"InvoiceNumber\": null,\n  \"OrderNumber\": \"Optional\",\n  \"OrderDateFrom\": \"Optional\",\n  \"OrderDateTo\": \"Optional\",\n  \"TimeStampFrom\": \"Optional\",\n  \"TimeStampTo\": \"Optional\",\n  \"Status\": \"Optional\",\n  \"MerchantCustomerId\": \"Optional\",\n  \"Activated\": false,\n  \"ActivationDateFrom\": \"Optional\",\n  \"ActivationDateTo\": \"Optional\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0df180d4-9bbb-4c07-9eb8-00315ee46595",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Sales",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Sales-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"pageCurrent\\\": 1,\\n    \\\"pageCurrentResults\\\": 1,\\n    \\\"pageTotal\\\": 1,\\n    \\\"pageSize\\\": 1,\\n    \\\"totalResults\\\": 1,\\n    \\\"cardSummary\\\": null,\\n    \\\"searchResultDTO\\\": [\\n        {\\n            \\\"status\\\": \\\"Transaction - Approved\\\",\\n            \\\"amount\\\": 1,\\n            \\\"card\\\": {\\n                \\\"cardHolderName\\\": null,\\n                \\\"cardType\\\": \\\"Visa\\\",\\n                \\\"last4\\\": \\\"0473\\\"\\n            },\\n            \\\"orderNumber\\\": null,\\n            \\\"orderDate\\\": null,\\n            \\\"timeStamp\\\": \\\"2018-11-23T14:57:43.78-03:00\\\",\\n            \\\"customerID\\\": null,\\n            \\\"processorResponseMessage\\\": null,\\n            \\\"effectiveAmount\\\": 0,\\n            \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n            \\\"relatedVoid\\\": null,\\n            \\\"relatedReturns\\\": null,\\n            \\\"guid\\\": \\\"d38a9133-6643-4a0a-9675-3cd820a8b5ff\\\",\\n            \\\"deviceGuid\\\": \\\"8ec1c40b-0c00-4a57-a9c7-7800bd52c308\\\",\\n            \\\"captureGuid\\\": null,\\n            \\\"customData\\\": null,\\n            \\\"generatedByCapture\\\": false,\\n            \\\"partiallyApprovedAmount\\\": null,\\n            \\\"type\\\": \\\"Credit\\\",\\n            \\\"surcharge\\\": null,\\n            \\\"surchargeType\\\": null,\\n            \\\"serviceFee\\\": null,\\n            \\\"tipAmount\\\": null,\\n            \\\"cardDataSource\\\": \\\"INTERNET\\\",\\n            \\\"allowCardEmv\\\": true,\\n            \\\"incomingTransactionCode\\\": \\\"09ZZZTAS37411231800000100\\\",\\n            \\\"activationDate\\\": \\\"2021-10-10T00:00:00\\\"\\n        }\\n    ]\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d112d75-afcf-4c79-bee7-10209470dbc6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Sales",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Sales-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6df43e17-5dcb-418e-86b2-d6ff21cdcc20",
+          "name": "Search voids",
+          "request": {
+            "name": "Search voids",
+            "description": {
+              "content": "This endpoint searches sales voids.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "Voids",
+                ":exportable",
+                ":pageNumber",
+                ":pageSize"
+              ],
+              "host": [
+                "{{api-v1-Search-Voids-exportable-pageNumber-pageSize-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Mandatory",
+                  "key": "Exportable",
+                  "description": "(Required) True or False. It means if you want results exportable to CSV."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "PageNumber",
+                  "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Optional",
+                  "key": "PageSize",
+                  "description": "(Required) Int. Size of each page of the results. Default is 500."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"Mandatory\",\n  \"VoidReason\": \"Optional\",\n  \"Status\": \"Optional\",\n  \"TimeStampFrom\": \"Optional\",\n  \"TimeStampTo\": \"Optional\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0159f09b-ded1-4945-b389-2aa2d8b52330",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Voids",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Voids-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"pageCurrent\\\": 1,\\n    \\\"pageCurrentResults\\\": 1,\\n    \\\"pageTotal\\\": 1,\\n    \\\"pageSize\\\": 1,\\n    \\\"totalResults\\\": 1,\\n    \\\"cardSummary\\\": null,\\n    \\\"searchResultDTO\\\": [\\n        {\\n            \\\"status\\\": \\\"Transaction - Approved\\\",\\n            \\\"sale\\\": {\\n                \\\"amount\\\": 10,\\n                \\\"card\\\": {\\n                    \\\"cardHolderName\\\": null,\\n                    \\\"cardType\\\": \\\"Visa\\\",\\n                    \\\"last4\\\": \\\"0445\\\"\\n                }\\n            },\\n            \\\"authOnly\\\": null,\\n            \\\"debitSale\\\": null,\\n            \\\"debitReturn\\\": null,\\n            \\\"ebtFoodStampPurchase\\\": null,\\n            \\\"ebtElectronicVoucher\\\": null,\\n            \\\"ebtReturn\\\": null,\\n            \\\"ebtCashBenefitPurchase\\\": null,\\n            \\\"return\\\": null,\\n            \\\"voidReason\\\": null,\\n            \\\"timeStamp\\\": \\\"2018-11-22T16:57:41.74\\\",\\n            \\\"processorStatusCode\\\": \\\"A0000\\\",\\n            \\\"batchStatus\\\": \\\"Batch - Closed\\\",\\n            \\\"guid\\\": \\\"211c7e9e-f0ce-45e1-be79-ff0333c81478\\\",\\n            \\\"allowCardEmv\\\": true\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "223c549d-3609-4963-8be3-2a20420313ee",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Voids",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Voids-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2846400d-9269-43ae-b1c1-0202a070196a",
+          "name": "Search returns",
+          "request": {
+            "name": "Search returns",
+            "description": {
+              "content": "This endpoint searches sale returns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "Returns",
+                ":exportable",
+                ":pageNumber",
+                ":pageSize"
+              ],
+              "host": [
+                "{{api-v1-Search-Returns-exportable-pageNumber-pageSize-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Mandatory",
+                  "key": "Exportable",
+                  "description": "(Required) True or False. It means if you want results exportable to CSV."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "PageNumber",
+                  "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Optional",
+                  "key": "PageSize",
+                  "description": "(Required) Int. Size of each page of the results. Default is 500."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"Mandatory\",\n  \"AmountFrom\": null,\n  \"AmountTo\": null,\n  \"CardHolderName\": \"Optional\",\n  \"Status\": \"Optional\",\n  \"TimeStampFrom\": \"Optional\",\n  \"TimeStampTo\": \"Optional\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a6c0d1e-cea4-4159-8f9c-67ca569b39ce",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Returns",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Returns-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"pageCurrent\\\": 1,\\n    \\\"pageCurrentResults\\\": 1,\\n    \\\"pageTotal\\\": 1,\\n    \\\"pageSize\\\": 1,\\n    \\\"totalResults\\\": 1,\\n    \\\"cardSummary\\\": null,\\n    \\\"searchResultDTO\\\": [\\n        {\\n            \\\"status\\\": \\\"Transaction - Approved\\\",\\n            \\\"amount\\\": 150,\\n            \\\"card\\\": {\\n                \\\"cardHolderName\\\": null,\\n                \\\"cardType\\\": \\\"Visa\\\",\\n                \\\"last4\\\": \\\"0267\\\"\\n            },\\n            \\\"timeStamp\\\": \\\"2018-11-14T09:26:58.42\\\",\\n            \\\"processorStatusCode\\\": \\\"A0000\\\",\\n            \\\"batchStatus\\\": \\\"Batch - Closed\\\",\\n            \\\"guid\\\": \\\"451dd720-18e6-48b2-a8fa-b9ae4579c3fc\\\",\\n            \\\"relatedVoid\\\": null,\\n            \\\"deviceGuid\\\": \\\"8ec1c40b-0c00-4a57-a9c7-7800bd52c308\\\",\\n            \\\"type\\\": \\\"CreditReturn\\\",\\n            \\\"cardDataSource\\\": \\\"\\\",\\n            \\\"allowCardEmv\\\": true\\n        }\\n    ]\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aedc1819-eaf8-4732-84e8-ae48acdb06c7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Returns",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Returns-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aac43f5a-e054-4a03-87ae-48f730caf118",
+          "name": "Search verify",
+          "request": {
+            "name": "Search verify",
+            "description": {
+              "content": "This endpoint search a verify.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Search",
+                "Verify",
+                ":exportable",
+                ":pageNumber",
+                ":pageSize"
+              ],
+              "host": [
+                "{{api-v1-Search-Verify-exportable-pageNumber-pageSize-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Mandatory",
+                  "key": "Exportable",
+                  "description": "(Required) True or False. It means if you want results exportable to CSV."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "PageNumber",
+                  "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "Optional",
+                  "key": "PageSize",
+                  "description": "(Required) Int. Size of each page of the results. Default is 500."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"Mandatory\",\n  \"CardLastFour\": \"Optional\",\n  \"CardHolderName\": \"Optional\",\n  \"CardType\": \"Optional\",\n  \"TimeStampFrom\": \"Optional\",\n  \"TimeStampTo\": \"Optional\",\n  \"Status\": \"Optional\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2916799f-fe97-41ae-9346-3e1ba067e48b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Verify",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Verify-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"pageCurrent\\\": 1,\\n    \\\"pageCurrentResults\\\": 1,\\n    \\\"pageTotal\\\": 1,\\n    \\\"pageSize\\\": 1,\\n    \\\"totalResults\\\": 1,\\n    \\\"cardSummary\\\": null,\\n    \\\"searchResultDTO\\\": [\\n        {\\n            \\\"status\\\": \\\"Transaction - Approved\\\",\\n            \\\"card\\\": {\\n                \\\"cardHolderName\\\": null,\\n                \\\"cardType\\\": \\\"Mastercard\\\",\\n                \\\"last4\\\": \\\"0759\\\"\\n            },\\n            \\\"timeStamp\\\": \\\"2018-11-09T15:34:49.91\\\",\\n            \\\"processorStatusCode\\\": \\\"A0000\\\"\\n        }\\n    ]\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c38a0a3-82f9-45e1-97e7-f7304ecf0d3e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Search",
+                    "Verify",
+                    ":exportable",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{api-v1-Search-Verify-exportable-pageNumber-pageSize-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Mandatory",
+                      "key": "Exportable",
+                      "description": "(Required) True or False. It means if you want results exportable to CSV."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "PageNumber",
+                      "description": "(Required) Int. Number of page of the results. Default is 1 (Page size default is 500)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "Optional",
+                      "key": "PageSize",
+                      "description": "(Required) Int. Size of each page of the results. Default is 500."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Authorization",
+                    "value": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"19344275-985e-4dff-81ee-cb84b8ad356c\",\n  \"status\": \"Transaction - Approved\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "api-v1-Search-IssuedCards--Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "api-v1-Search-Settlements--Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "api-v1-Search-AvailableFunds-merchantGuid-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "api-v1-Search-Sales-exportable-pageNumber-pageSize-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "api-v1-Search-Voids-exportable-pageNumber-pageSize-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "api-v1-Search-Returns-exportable-pageNumber-pageSize-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "api-v1-Search-Verify-exportable-pageNumber-pageSize-Url"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e9cc6834-714d-4b79-be12-aadcc6ba6131",
+    "name": "Connexpay Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Search across 2 of this provider's published API definitions: connexpay-purchases-openapi.yml, connexpay-sales-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

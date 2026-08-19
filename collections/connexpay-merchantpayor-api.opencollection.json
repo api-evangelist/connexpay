@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Purchases Merchant Payor API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MerchantPayor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create merchant payor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/Payors",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payor for a merchant"
+        },
+        {
+          "info": {
+            "name": "Get Merchant Payor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/Payors/:payorGuid",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              },
+              {
+                "name": "payorGuid",
+                "value": "",
+                "type": "path",
+                "description": "The guid of the merchant payor to be retrieved."
+              }
+            ]
+          },
+          "docs": "Get a merchant payor by guid."
+        },
+        {
+          "info": {
+            "name": "Update Merchant Payor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/Payors/:payorGuid",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              },
+              {
+                "name": "payorGuid",
+                "value": "",
+                "type": "path",
+                "description": "The guid of the merchant payor to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a merchant payor by guid."
+        },
+        {
+          "info": {
+            "name": "Delete Merchant Payor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/Payors/:payorGuid",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              },
+              {
+                "name": "payorGuid",
+                "value": "",
+                "type": "path",
+                "description": "The guid of the merchant payor to be deleted."
+              }
+            ]
+          },
+          "docs": "Delete a merchant payor by guid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

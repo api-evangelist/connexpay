@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api IssueCard (COPY) IssueCard (COPY) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IssueCard (COPY)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Card (COPY)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard (COPY)",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to issue virtual cards associated with a credit or ACH sale. Do not use this endpoint if you fund your virtual cards from cash and therefor don't have an associated sale. If you aren't sure which Issuance API to use, please contact your client support representative."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

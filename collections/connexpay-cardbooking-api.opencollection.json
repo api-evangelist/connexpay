@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Card Booking API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CardBooking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Card Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/CardBooking",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the Card Booking endpoint to send booking details for existing virtual cards that were issued without them. This supports workflows where a travel management company issues the card before the booking details are finalized. Booking details cannot be updated once successfully submitted. The Sertifi platform is used to automate the hotel booking authorization through this request. Contact your ConnexPay representative before use as fees will be applied and configuration is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

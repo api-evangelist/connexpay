@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Merchantsupplier API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchantsupplier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Merchant Supplier Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/merchantsupplier/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create and tokenize a suppliers bank account information without actually making the Issue ACH call. That tokenized bank account can then be used in future Issue ACH or Issue ACH Lite API requests so you don't have to store the actual bank account information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

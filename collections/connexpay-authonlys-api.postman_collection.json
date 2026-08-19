@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "4c2f5202-de4c-4950-8eb5-3847553664f8",
+      "name": "Authonlys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b845fd9-a5eb-47e2-b45b-e72ff5653d8a",
+          "name": "Auth Only",
+          "request": {
+            "name": "Auth Only",
+            "description": {
+              "content": "The Auth Only Endpoint is applicable to acquiring clients.  Call Auth Only when you want to process an Authorization only, which will not settle until it's Captured.  We do not allow you to Capture an Authorization after 5 business days have passed.Calling this endpoint will authorize the card, however, it will not be settled until the [Capture endpoint](https://docs.connexpay.com/reference/capture) is called. Authorizations expire after 5 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "authonlys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"RiskData\": {\n    \"SessionId\": \"<string>\",\n    \"Name\": \"<string>\",\n    \"Gender\": \"<string>\",\n    \"DateOfBirth\": \"<string>\",\n    \"BillingPhoneNumber\": \"<string>\",\n    \"BillingAddress1\": \"<string>\",\n    \"BillingAddress2\": \"<string>\",\n    \"BillingCity\": \"<string>\",\n    \"BillingState\": \"<string>\",\n    \"BillingPostalCode\": \"<string>\",\n    \"BillingCountryCode\": \"<string>\",\n    \"Email\": \"<string>\",\n    \"ProductType\": \"<string>\",\n    \"ProductDescription\": \"<string>\",\n    \"ProductItem\": \"<string>\",\n    \"ProductQuantity\": \"<integer>\",\n    \"ProductPrice\": \"<integer>\",\n    \"OrderNumber\": \"<string>\",\n    \"SellerId\": \"<string>\",\n    \"FlightData\": {\n      \"Airline\": \"AA\",\n      \"DepartureAirport\": \"NY\",\n      \"DepartureDate\": \"06/20/1993\",\n      \"DestinationAirport\": \"CA\",\n      \"HoursToDeparture\": \"5\",\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"NY, CA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"2020-06-20\",\n        \"Id\": \"JXY123\",\n        \"Name\": \"John Doe\"\n      },\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"2020-06-20\",\n        \"Id\": \"JXY123\",\n        \"Name\": \"John Doe\"\n      }\n    ],\n    \"CustomParameters\": {}\n  },\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"SendReceipt\": \"<boolean>\",\n  \"StatementDescription\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"BankAccount\": {\n    \"AccountType\": \"<string>\",\n    \"RoutingNumber\": \"<string>\",\n    \"AccountNumber\": \"<string>\",\n    \"NameOnAccount\": \"<string>\",\n    \"AccountAndRoutingNumberToken\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    }\n  },\n  \"Customer\": {\n    \"FirstName\": \"<string>\",\n    \"LastName\": \"<string>\",\n    \"Phone\": \"<string>\",\n    \"City\": \"<string>\",\n    \"State\": \"<string>\",\n    \"Country\": \"<string>\",\n    \"Email\": \"<string>\",\n    \"Address1\": \"<string>\",\n    \"Address2\": \"<string>\",\n    \"Zip\": \"<string>\",\n    \"DateOfBirth\": \"<date>\",\n    \"DriversLicenseNumber\": \"<integer>\",\n    \"DriversLicenseState\": \"<string>\",\n    \"SSN4\": \"<integer>\"\n  },\n  \"EnhancedData\": {\n    \"SaleTax\": \"<string>\"\n  },\n  \"AssociationID\": \"<string>\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91f1d8ab-09c0-4d12-a15a-d57e1fdafa5c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "authonlys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": 280,\n  \"SequenceNumber\": \"849741\",\n  \"OrderNumber\": \"1598742342342432342342432432\",\n  \"SendReceipt\": true,\n  \"StatementDescription\": \"Agent Booking 123\",\n  \"CustomerID\": \"xt147\",\n  \"RiskData\": {\n    \"Name\": \"John Doe\",\n    \"Gender\": \"M\",\n    \"DateOfBirth\": \"1993-03-18\",\n    \"BillingPhoneNumber\": \"9177563046\",\n    \"BillingAddress1\": \"151 E 33rd St\",\n    \"BillingAddress2\": \"Second Floor\",\n    \"BillingCity\": \"New York\",\n    \"BillingState\": \"NY\",\n    \"BillingPostalCode\": \"10016\",\n    \"BillingCountryCode\": \"US\",\n    \"Email\": \"someone@connexpay.com\",\n    \"ProductType\": \"Flight\",\n    \"ProductDesc\": \"Flight from London to New York\",\n    \"ProductItem\": \"784GTWJFK856\",\n    \"ProductQuantity\": 4,\n    \"ProductPrice\": \"42400\",\n    \"OrderNumber\": \"857B2\",\n    \"SellerId\": \"AG75597\",\n    \"FlightData\": {\n      \"Airline\": \"American Airlines\",\n      \"DepartureAirport\": \"Gatwick\",\n      \"DepartureDate\": \"2020-06-30\",\n      \"DestinationAirport\": \"JFK\",\n      \"HoursToDeparture\": 5,\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"UK, USA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"1990-12-07\",\n        \"Id\": \"89456489\",\n        \"Name\": \"Adam Smith\"\n      },\n      {\n        \"Country\": \"ARG\",\n        \"DateOfBirth\": \"1995-05-05\",\n        \"Id\": \"74566\",\n        \"Name\": \"John Lock\"\n      }\n    ],\n    \"CustomParameters\": [\n      {\n        \"Name\": \"ClientSpecific1\",\n        \"Value\": \"Traveling\"\n      },\n      {\n        \"Name\": \"ClientSpecific2\",\n        \"Value\": \"wounderful\"\n      }\n    ]\n  },\n  \"Card\": {\n    \"CardNumber\": \"5413330089604111\",\n    \"CardHolderName\": \"John Doe\",\n    \"Cvv2\": \"998\",\n    \"ExpirationDate\": \"1912\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"9177563007\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"Email\": \"johnd@gmail.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  },\n  \"EnhancedData\": {\n    \"SaleTax\": \"5\",\n    \"AdditionalTaxDetailTaxCategory\": \"tex\",\n    \"AdditionalTaxDetailTaxType\": \"regional\",\n    \"AdditionalTaxDetailTaxAmount\": \"3\",\n    \"AdditionalTaxDetailTaxRate\": \"2.50\",\n    \"PurchaseOrder\": \"PURCHSEORDER1\",\n    \"OrderDate\": \"07/20/2018\",\n    \"ShippingCharges\": \"20\",\n    \"DutyCharges\": \"17.59\",\n    \"CustomerVATNumber\": \"75010101\",\n    \"VATInvoice\": \"231465214\",\n    \"SummaryCommodityCode\": \"Aa94\",\n    \"ShipToZip\": \"50001\",\n    \"ShipFromZip\": \"55100\",\n    \"DestinationCountryCode\": \"ARG\",\n    \"SupplierReferenceNumber\": \"123\",\n    \"CustomerRefID\": \"123\",\n    \"ChargeDescriptor\": \"Sample Charge\",\n    \"AdditionalAmount\": \"2.50\",\n    \"AdditionalAmountType\": \"GIFT_SHOP\",\n    \"ProductName\": \"Product 01\",\n    \"ProductCode\": \"P1\",\n    \"Price\": \"5.00\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"6d75f588-711e-4481-92ed-1d078b507832\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2020-07-09T23:45:58.12+06:00\\\",\\n    \\\"amount\\\": 280.00,\\n    \\\"effectiveAmount\\\": 280.00,\\n    \\\"orderNumber\\\": \\\"1598742342342432342342432432\\\",\\n    \\\"deviceGuid\\\": \\\"0b7a9536-9fcd-4074-a841-d47eef77b81b\\\",\\n    \\\"cardDataSource\\\": \\\"INTERNET\\\",\\n    \\\"customerID\\\": \\\"xt147\\\",\\n    \\\"batchGuid\\\": \\\"89133895-142f-4c70-98c7-5194d91bb500\\\",\\n    \\\"sendReceipt\\\": true,\\n    \\\"allowCardEmv\\\": false,\\n    \\\"processorStatusCode\\\": \\\"A0000\\\",\\n    \\\"processorResponseMessage\\\": \\\"Success\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"authCode\\\": \\\"VTLMC1\\\",\\n    \\\"refNumber\\\": \\\"23159362\\\",\\n    \\\"invoiceNumber\\\": \\\"15987423423424323423424\\\",\\n    \\\"customerReceipt\\\": \\\"Agent Booking 123\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/09/2020 04:46:01\\\\\\\\n\\\\\\\\nCREDIT - AUTH ONLY\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 4111\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nTRANSACTION ID : 23159362\\\\\\\\nInvoice number : 15987423423424323423424\\\\\\\\nAUTH CODE : VTLMC1\\\\\\\\n--------------------------------------\\\\\\\\nCode         Name\\\\\\\\nQty                Price\\\\\\\\n--------------------------------------\\\\\\\\nP1           Product 01\\\\\\\\n1                  $5.00\\\\\\\\n--------------------------------------\\\\\\\\nSubtotal:                      $234.41\\\\\\\\n--------------------------------------\\\\\\\\nTaxes\\\\\\\\n--------------------------------------\\\\\\\\n[1] Sales Tax                   $05.00\\\\\\\\n[2] regional Tax                $03.00\\\\\\\\n--------------------------------------\\\\\\\\nTotal Taxes:                    $08.00\\\\\\\\n--------------------------------------\\\\\\\\nFees\\\\\\\\n--------------------------------------\\\\\\\\nFee:                            $37.59\\\\\\\\n--------------------------------------\\\\\\\\nTotal Fees:                     $37.59\\\\\\\\n--------------------------------------\\\\\\\\nTotal:                         $280.00\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n    \\\"statementDescription\\\": \\\"Agent Booking 123\\\",\\n    \\\"enhancedData\\\": {\\n        \\\"saleTax\\\": 5.00,\\n        \\\"purchaseOrder\\\": \\\"PURCHSEORDER1\\\",\\n        \\\"additionalTaxDetailTaxCategory\\\": \\\"tex\\\",\\n        \\\"additionalTaxDetailTaxType\\\": \\\"regional\\\",\\n        \\\"additionalTaxDetailTaxAmount\\\": 3.00,\\n        \\\"additionalTaxDetailTaxRate\\\": 2.50,\\n        \\\"shippingCharges\\\": 20.00,\\n        \\\"dutyCharges\\\": 17.59,\\n        \\\"shipToZip\\\": \\\"50001\\\",\\n        \\\"shipFromZip\\\": \\\"55100\\\",\\n        \\\"destinationCountryCode\\\": \\\"ARG\\\",\\n        \\\"customerVATNumber\\\": \\\"75010101\\\",\\n        \\\"summaryCommodityCode\\\": \\\"Aa94\\\",\\n        \\\"vatInvoice\\\": \\\"231465214\\\",\\n        \\\"orderDate\\\": \\\"07/20/2018\\\",\\n        \\\"supplierReferenceNumber\\\": \\\"123\\\",\\n        \\\"customerRefID\\\": \\\"123\\\",\\n        \\\"chargeDescriptor\\\": \\\"Sample Charge\\\",\\n        \\\"productName\\\": \\\"Product 01\\\",\\n        \\\"productCode\\\": \\\"P1\\\",\\n        \\\"price\\\": 5.00,\\n        \\\"additionalAmount\\\": 2.50,\\n        \\\"additionalAmountType\\\": \\\"GIFT_SHOP\\\"\\n    },\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"541333\\\",\\n        \\\"first4\\\": \\\"5413\\\",\\n        \\\"last4\\\": \\\"4111\\\",\\n        \\\"cardHolderName\\\": \\\"John Doe\\\",\\n        \\\"cardType\\\": \\\"Mastercard\\\",\\n        \\\"expirationDate\\\": \\\"2019-12\\\",\\n        \\\"customer\\\": {\\n            \\\"guid\\\": \\\"5dd6ed47-3e5b-4123-bc0e-81b32663e8ee\\\",\\n            \\\"firstName\\\": \\\"John\\\",\\n            \\\"lastName\\\": \\\"Doe\\\",\\n            \\\"dateOfBirth\\\": \\\"1990-12-07T00:00:00\\\",\\n            \\\"address1\\\": \\\"107 7th Av.\\\",\\n            \\\"address2\\\": \\\"\\\",\\n            \\\"zip\\\": \\\"10007\\\",\\n            \\\"city\\\": \\\"New York\\\",\\n            \\\"state\\\": \\\"NY\\\",\\n            \\\"country\\\": \\\"US\\\",\\n            \\\"phone\\\": \\\"9177563007\\\",\\n            \\\"email\\\": \\\"johnd@gmail.com\\\",\\n            \\\"ssN4\\\": \\\"1210\\\",\\n            \\\"driverLicenseNumber\\\": \\\"12345678\\\",\\n            \\\"driverLicenseState\\\": \\\"TX\\\"\\n        },\\n        \\\"guid\\\": \\\"b34bec7f-6ef0-42d8-8811-1bea8d2260fe\\\"\\n    },\\n    \\\"addressVerificationCode\\\": \\\"N\\\",\\n    \\\"addressVerificationResult\\\": \\\"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\\\",\\n    \\\"cvvVerificationCode\\\": \\\"M\\\",\\n    \\\"cvvVerificationResult\\\": \\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\",\\n    \\\"riskResponse\\\": {\\n        \\\"transactionId\\\": \\\"DGJK0BBRH2NH\\\",\\n        \\\"response\\\": \\\"Approved\\\",\\n        \\\"reason\\\": \\\"\\\",\\n        \\\"score\\\": \\\"34\\\"\\n    },\\n    \\\"type\\\": \\\"Default\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68924bfc-47fc-498b-ab8e-7a6c2ca9fcd0",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "authonlys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": 280,\n  \"SequenceNumber\": \"849741\",\n  \"OrderNumber\": \"1598742342342432342342432432\",\n  \"SendReceipt\": true,\n  \"StatementDescription\": \"Agent Booking 123\",\n  \"CustomerID\": \"xt147\",\n  \"RiskData\": {\n    \"Name\": \"John Doe\",\n    \"Gender\": \"M\",\n    \"DateOfBirth\": \"1993-03-18\",\n    \"BillingPhoneNumber\": \"9177563046\",\n    \"BillingAddress1\": \"151 E 33rd St\",\n    \"BillingAddress2\": \"Second Floor\",\n    \"BillingCity\": \"New York\",\n    \"BillingState\": \"NY\",\n    \"BillingPostalCode\": \"10016\",\n    \"BillingCountryCode\": \"US\",\n    \"Email\": \"someone@connexpay.com\",\n    \"ProductType\": \"Flight\",\n    \"ProductDesc\": \"Flight from London to New York\",\n    \"ProductItem\": \"784GTWJFK856\",\n    \"ProductQuantity\": 4,\n    \"ProductPrice\": \"42400\",\n    \"OrderNumber\": \"857B2\",\n    \"SellerId\": \"AG75597\",\n    \"FlightData\": {\n      \"Airline\": \"American Airlines\",\n      \"DepartureAirport\": \"Gatwick\",\n      \"DepartureDate\": \"2020-06-30\",\n      \"DestinationAirport\": \"JFK\",\n      \"HoursToDeparture\": 5,\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"UK, USA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"1990-12-07\",\n        \"Id\": \"89456489\",\n        \"Name\": \"Adam Smith\"\n      },\n      {\n        \"Country\": \"ARG\",\n        \"DateOfBirth\": \"1995-05-05\",\n        \"Id\": \"74566\",\n        \"Name\": \"John Lock\"\n      }\n    ],\n    \"CustomParameters\": [\n      {\n        \"Name\": \"ClientSpecific1\",\n        \"Value\": \"Traveling\"\n      },\n      {\n        \"Name\": \"ClientSpecific2\",\n        \"Value\": \"wounderful\"\n      }\n    ]\n  },\n  \"Card\": {\n    \"CardNumber\": \"5413330089604111\",\n    \"CardHolderName\": \"John Doe\",\n    \"Cvv2\": \"998\",\n    \"ExpirationDate\": \"1912\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"9177563007\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"Email\": \"johnd@gmail.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  },\n  \"EnhancedData\": {\n    \"SaleTax\": \"5\",\n    \"AdditionalTaxDetailTaxCategory\": \"tex\",\n    \"AdditionalTaxDetailTaxType\": \"regional\",\n    \"AdditionalTaxDetailTaxAmount\": \"3\",\n    \"AdditionalTaxDetailTaxRate\": \"2.50\",\n    \"PurchaseOrder\": \"PURCHSEORDER1\",\n    \"OrderDate\": \"07/20/2018\",\n    \"ShippingCharges\": \"20\",\n    \"DutyCharges\": \"17.59\",\n    \"CustomerVATNumber\": \"75010101\",\n    \"VATInvoice\": \"231465214\",\n    \"SummaryCommodityCode\": \"Aa94\",\n    \"ShipToZip\": \"50001\",\n    \"ShipFromZip\": \"55100\",\n    \"DestinationCountryCode\": \"ARG\",\n    \"SupplierReferenceNumber\": \"123\",\n    \"CustomerRefID\": \"123\",\n    \"ChargeDescriptor\": \"Sample Charge\",\n    \"AdditionalAmount\": \"2.50\",\n    \"AdditionalAmountType\": \"GIFT_SHOP\",\n    \"ProductName\": \"Product 01\",\n    \"ProductCode\": \"P1\",\n    \"Price\": \"5.00\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"92bcd4df-5576-48be-b4a6-8c142669a8b6\\\",\\n    \\\"status\\\": \\\"3DS - Pending Fingerprint\\\",\\n    \\\"timeStamp\\\": \\\"2022-11-28T19:49:13.7902906Z\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 1.0,\\n    \\\"redirectUrl\\\": \\\"https://x3d-sim.credorax.net/acs/3ds-method\\\",\\n    \\\"redirectUrlRequestPayload\\\": \\\"threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImI5M2MzODkyLTFiMjItNDFlOS1iZmE3LTdkNTMzNzYzMTExMiJ9\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0010\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"704f6c0b-1da4-4687-9a43-fdd4c46bb69b\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "5144cdf9-256c-4dfb-b2e5-732b1b98077e",
+    "name": "sales-api Authonlys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

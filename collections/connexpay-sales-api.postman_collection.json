@@ -1,0 +1,1183 @@
+{
+  "item": [
+    {
+      "id": "c5309fdf-064c-4a08-9821-ff3f8618124d",
+      "name": "Sales",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a7c5c63-2c81-4c13-a741-4b319a2e2033",
+          "name": "Update Delayed Sale",
+          "request": {
+            "name": "Update Delayed Sale",
+            "description": {
+              "content": "Updates the sale amount or activation date on a delayed activation sale.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales",
+                "UpdateFutureSale"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"ActivationDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54f9ec8c-565d-4aa5-b1b3-937bfd480ef3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "UpdateFutureSale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"ActivationDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n       \\\"guid\\\":\\\"965a67b0-cd0e-4020-973b-5e0d1b4bd6e2\\\",\\n       \\\"status\\\":\\\"Transaction - Approved\\\",\\n       \\\"type\\\":\\\"Default\\\",\\n       \\\"batchStatus\\\":\\\"Batch - Open\\\",\\n       \\\"timeStamp\\\":\\\"2019-11-20T05:37:13.22-05:00\\\",\\n       \\\"deviceGuid\\\":\\\"f758a448-7780-4b50-93a1-28329e37f94f\\\",\\n       \\\"amount\\\":280.0,\\n       \\\"activationDate\\\":\\\"2020-10-12T00:00:00\\\",\\n       \\\"activated\\\":false,       \\n       \\\"tenderType\\\":\\\"Credit\\\",\\n       \\\"effectiveAmount\\\":280.0,\\n       \\\"orderNumber\\\":\\\"159874\\\",\\n       \\\"cardDataSource\\\":\\\"INTERNET\\\",\\n       \\\"customerID\\\":\\\"xt147\\\",\\n       \\\"batchGuid\\\":\\\"c71d0ee6-b595-4792-b1ee-1156d28be132\\\",\\n       \\\"riskProcessingOnly\\\":false,\\n       \\\"processorStatusCode\\\":\\\"A0000\\\",\\n       \\\"processorResponseMessage\\\":\\\"Success\\\",\\n       \\\"wasProcessed\\\":true,\\n       \\\"generatedBy\\\":\\\"tcformal1\\\",\\n       \\\"card\\\":{\\n          \\\"first4\\\":\\\"4716\\\",\\n          \\\"last4\\\":\\\"0473\\\",\\n          \\\"cardNumber\\\":\\\"CARD NOT TOKENIZED\\\",\\n          \\\"cardHolderName\\\":\\\"John Doe\\\",\\n          \\\"cardType\\\":\\\"Visa\\\",\\n          \\\"expirationDate\\\":\\\"2019-12\\\",\\n       },\\n       \\\"sequenceNumber\\\":\\\"849741\\\",\\n       \\\"addressVerificationResult\\\":\\\"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\\\",\\n       \\\"cvvVerificationCode\\\":\\\"M\\\",\\n       \\\"cvvVerificationResult\\\":\\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\"\\n       \\\"incomingTransactionCode\\\":\\\"09ASECYE48S9KHBQL00028000\\\"\\n    }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff32327b-cd10-4431-b391-7d1e7922107b",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "UpdateFutureSale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"ActivationDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1577c95e-3b89-4e8a-92bc-cf666850cc2e",
+          "name": "Activate Delayed Sale",
+          "request": {
+            "name": "Activate Delayed Sale",
+            "description": {
+              "content": "Activate a delayed activation sale independent of the activation date for which the sale was created.\n\nA client can \"Activate\" a delayed activation sale this way at any time before ConnexPay will automatically activate it during the early hours of the supplied future date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales",
+                "Activate",
+                ":SaleGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "SaleGuid",
+                  "description": "(Required) The sale guid returned upon initial creation of the delayed activation sale."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8c21dc4-f51f-4ff5-94b0-ab1ab2ec7079",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "Activate",
+                    ":SaleGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SaleGuid",
+                      "description": "(Required) The sale guid returned upon initial creation of the delayed activation sale."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ffea307-3034-4ee2-a3d7-c428ea5e1e6f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "Activate",
+                    ":SaleGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "SaleGuid",
+                      "description": "(Required) The sale guid returned upon initial creation of the delayed activation sale."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eeeafa8-3384-48bf-bd37-90841f379eeb",
+          "name": "Create Group",
+          "request": {
+            "name": "Create Group",
+            "description": {
+              "content": "This endpoint creates a Sale Group. This is the first step to create group sales. To add any Sale to this newly created group, the response GroupGuid needs to be used with the Sale request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales",
+                "group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"GroupId\": \"<string>\",\n  \"ExpectedNumberOfCards\": \"<integer>\",\n  \"GroupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1955d7ee-0d45-4c56-b47f-22a3c7355cb1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"0b7a9536-9fcd-4074-a841-d47eef77b81b\",\n  \"GroupId\": \"Test-Sale-Group-1\",\n  \"ExpectedNumberOfCards\": 3,\n  \"GroupName\": \"Test Sale Group\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"deviceGuid\\\": \\\"0b7a9536-9fcd-4074-a841-d47eef77b81b\\\",\\n    \\\"guid\\\": \\\"727374dd-f4dc-43ab-b49f-bc5deb1c4bcd\\\",\\n    \\\"groupId\\\": \\\"Test-Sale-Group-1\\\",\\n    \\\"status\\\": \\\"Open\\\",\\n    \\\"balance\\\": 0.00,\\n    \\\"groupName\\\": \\\"Test Sale Group\\\",\\n    \\\"incomingTransactionCode\\\": \\\"03MRDILHU3LV0EOQQ00000GRP\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9df322bb-3854-4689-b782-b00f2991b6d2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"0b7a9536-9fcd-4074-a841-d47eef77b81b\",\n  \"GroupId\": \"Test-Sale-Group-1\",\n  \"ExpectedNumberOfCards\": 3,\n  \"GroupName\": \"Test Sale Group\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9100b7ff-adf7-46d0-a5a6-1de79ee96185",
+          "name": "Update Group",
+          "request": {
+            "name": "Update Group",
+            "description": {
+              "content": "This endpoint allows to update an existing sale group by setting the group status as Closed or changing the GroupName.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales",
+                "group",
+                ":GroupGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "GroupGuid",
+                  "description": "(Required) Sale Group Guid (required)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"Status\": \"<string>\",\n  \"GroupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e902cff-4eeb-484c-971c-ebf7b4818f15",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group",
+                    ":GroupGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "GroupGuid",
+                      "description": "(Required) Sale Group Guid (required)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"0b7a9536-9fcd-4074-a841-d47eef77b81b\",\n  \"Status\": 1301,\n  \"GroupName\": \"Test Sale Group\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"deviceGuid\\\": \\\"f758a448-7780-4b50-93a1-28329e37f94f\\\",\\n    \\\"guid\\\": \\\"48b9520c-803e-467e-bb95-38925d6f4766\\\",\\n    \\\"groupId\\\": \\\"saiful-group-1\\\",\\n    \\\"status\\\": \\\"Closed\\\",\\n    \\\"idStatus\\\": 1301,\\n    \\\"balance\\\": 200.00,\\n    \\\"groupName\\\": \\\"Test Sale Group\\\",\\n    \\\"incomingTransactionCode\\\": \\\"03MRDILHU3LV0EOQQ00000GRP\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "822f7e4d-0085-4953-9372-695d1469d9da",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group",
+                    ":GroupGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "GroupGuid",
+                      "description": "(Required) Sale Group Guid (required)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"0b7a9536-9fcd-4074-a841-d47eef77b81b\",\n  \"Status\": 1301,\n  \"GroupName\": \"Test Sale Group\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "181fb4c3-56a3-4409-b5a8-3392ad99a222",
+          "name": "Get Group",
+          "request": {
+            "name": "Get Group",
+            "description": {
+              "content": "This endpoint returns group sale info, including Status and Group Balance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales",
+                "group",
+                ":guid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guid",
+                  "description": "(Required) Group’s guid to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac547311-13c2-4193-b522-3de27c0802d0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group",
+                    ":guid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guid",
+                      "description": "(Required) Group’s guid to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"deviceGuid\\\": \\\"f758a448-7780-4b50-93a1-28329e37f94f\\\",\\n    \\\"guid\\\": \\\"9c018683-05f9-47d3-b4c1-4d1ccae4a91e\\\",\\n    \\\"groupId\\\": \\\"saiful-group-8\\\",\\n    \\\"expectedNumberOfCards\\\": 1,\\n    \\\"status\\\": \\\"Closed\\\",\\n    \\\"idStatus\\\": 1301,\\n    \\\"balance\\\": 100.00,\\n    \\\"groupName\\\": \\\"SG-8\\\",\\n    \\\"incomingTransactionCode\\\": \\\"01QR5AZA7D454PQCD00000GRP\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cd6d91f-dfba-4de2-9eb6-905184c026b7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales",
+                    "group",
+                    ":guid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guid",
+                      "description": "(Required) Group’s guid to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90767b30-7bf5-43e1-9f39-9ba7f885d222",
+          "name": "Create Sale",
+          "request": {
+            "name": "Create Sale",
+            "description": {
+              "content": "The Create Sale Endpoint is used by acquiring clients. The Sale transaction is used to create a sale for your consumer. You can create a credit sale or an ACH sale (ACH sales apply to US Clients only). A credit sale will charge a consumer's credit card. The consumer's credit card will be authorized immediately when the Sales request is received and will automatically settle/batch that same night. In other words, this one Sale request is just like running an AuthOnly and a Capture in one request.You can postpone charging the consumer's credit card by providing a date in the 'ActivationDate' of your request. Doing so will delay the authorization and charge to the consumer's credit card until that future date.An ACH sale will create an ACH transaction that will debit the consumer's bank account. ACH sales received prior to 3:00 PM EST will process overnight. ACH Sales received after 3:00 PM EST will process the following night.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": null,\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": \"<integer>\"\n  },\n  \"RiskData\": {\n    \"SessionId\": \"<string>\",\n    \"Name\": \"<string>\",\n    \"Gender\": \"<string>\",\n    \"DateOfBirth\": \"<string>\",\n    \"BillingPhoneNumber\": \"<string>\",\n    \"BillingAddress1\": \"<string>\",\n    \"BillingAddress2\": \"<string>\",\n    \"BillingCity\": \"<string>\",\n    \"BillingState\": \"<string>\",\n    \"BillingPostalCode\": \"<string>\",\n    \"BillingCountryCode\": \"<string>\",\n    \"Email\": \"<string>\",\n    \"ProductType\": \"<string>\",\n    \"ProductDescription\": \"<string>\",\n    \"ProductItem\": \"<string>\",\n    \"ProductQuantity\": \"<integer>\",\n    \"ProductPrice\": \"<integer>\",\n    \"OrderNumber\": \"<string>\",\n    \"SellerId\": \"<string>\",\n    \"FlightData\": {\n      \"Airline\": \"AA\",\n      \"DepartureAirport\": \"NY\",\n      \"DepartureDate\": \"06/20/1993\",\n      \"DestinationAirport\": \"CA\",\n      \"HoursToDeparture\": \"5\",\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"NY, CA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"2020-06-20\",\n        \"Id\": \"JXY123\",\n        \"Name\": \"John Doe\"\n      },\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"2020-06-20\",\n        \"Id\": \"JXY123\",\n        \"Name\": \"John Doe\"\n      }\n    ],\n    \"CustomParameters\": {}\n  },\n  \"TenderType\": \"credit\",\n  \"SequenceNumber\": \"{{SequenceNumber}}\",\n  \"OrderNumber\": \"{{OrderNumber}}\",\n  \"SendReceipt\": \"<boolean>\",\n  \"RiskProcessingOnly\": \"<boolean>\",\n  \"StatementDescription\": \"{{StatementDescription}}\",\n  \"CustomerID\": \"<string>\",\n  \"ActivationDate\": \"<date>\",\n  \"RequestIp\": \"<string>\",\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"BankAccount\": {\n    \"AccountType\": \"<string>\",\n    \"RoutingNumber\": \"<string>\",\n    \"AccountNumber\": \"<string>\",\n    \"NameOnAccount\": \"<string>\",\n    \"AccountAndRoutingNumberToken\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    }\n  },\n  \"Customer\": {\n    \"FirstName\": \"<string>\",\n    \"LastName\": \"<string>\",\n    \"Phone\": \"<string>\",\n    \"City\": \"<string>\",\n    \"State\": \"<string>\",\n    \"Country\": \"<string>\",\n    \"Email\": \"<string>\",\n    \"Address1\": \"<string>\",\n    \"Address2\": \"<string>\",\n    \"Zip\": \"<string>\",\n    \"DateOfBirth\": \"<date>\",\n    \"DriversLicenseNumber\": \"<integer>\",\n    \"DriversLicenseState\": \"<string>\",\n    \"SSN4\": \"<integer>\"\n  },\n  \"EnhancedData\": {\n    \"SaleTax\": \"<string>\"\n  },\n  \"AssociationId\": \"<string>\",\n  \"CustomParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"CheckRiskScore\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4beb413b-7029-45f0-8127-349e74d07532",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": 280,\n  \"TenderType\": \"Credit\",\n  \"SequenceNumber\": \"849741\",\n  \"OrderNumber\": \"159874\",\n  \"SendReceipt\": true,\n  \"RiskProcessingOnly\": false,\n  \"StatementDescription\": \"Agent Booking 123\",\n  \"CustomerId\": \"xt147\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": 9\n  },\n  \"RiskData\": {\n    \"Name\": \"John Doe\",\n    \"Gender\": \"M\",\n    \"DateOfBirth\": \"1993-03-18\",\n    \"BillingPhoneNumber\": \"9177563046\",\n    \"BillingAddress1\": \"151 E 33rd St\",\n    \"BillingAddress2\": \"Second Floor\",\n    \"BillingCity\": \"New York\",\n    \"BillingState\": \"NY\",\n    \"BillingPostalCode\": \"10016\",\n    \"BillingCountryCode\": \"US\",\n    \"Email\": \"johnd@gmail.com\",\n    \"ProductType\": \"Flight\",\n    \"ProductDesc\": \"Flight from London to New York\",\n    \"ProductItem\": \"784GTWJFK856\",\n    \"ProductQuantity\": 4,\n    \"ProductPrice\": \"42400\",\n    \"OrderNumber\": \"857B2\",\n    \"SellerId\": \"AG75597\",\n    \"FlightData\": {\n      \"Airline\": \"American Airlines\",\n      \"DepartureAirport\": \"Gatwick\",\n      \"DepartureDate\": \"2020-06-30\",\n      \"DestinationAirport\": \"JFK\",\n      \"HoursToDeparture\": 5,\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"UK, USA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"1990-12-07\",\n        \"Id\": \"89456489\",\n        \"Name\": \"Adam Smith\"\n      },\n      {\n        \"Country\": \"ARG\",\n        \"DateOfBirth\": \"1995-05-05\",\n        \"Id\": \"74566\",\n        \"Name\": \"John Lock\"\n      }\n    ],\n    \"CustomParameters\": [\n      {\n        \"Name\": \"ClientSpecific1\",\n        \"Value\": \"Traveling\"\n      },\n      {\n        \"Name\": \"ClientSpecific2\",\n        \"Value\": \"wonderful\"\n      }\n    ]\n  },\n  \"Card\": {\n    \"CardNumber\": \"4716317307520473\",\n    \"CardHolderName\": \"John Doe\",\n    \"Cvv2\": \"999\",\n    \"ExpirationDate\": \"1912\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"9177563007\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"Email\": \"johnd@gmail.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  },\n  \"EnhancedData\": {\n    \"cardLevel\": \"2\",\n    \"SaleTax\": 5,\n    \"AdditionalTaxDetailTaxCategory\": \"tex\",\n    \"AdditionalTaxDetailTaxType\": \"regional\",\n    \"AdditionalTaxDetailTaxAmount\": 3,\n    \"AdditionalTaxDetailTaxRate\": 2.5,\n    \"PurchaseOrder\": \"PURCHSEORDER1\",\n    \"OrderDate\": \"07/20/2018\",\n    \"ShippingCharges\": \"20\",\n    \"DutyCharges\": 17.59,\n    \"CustomerVATNumber\": \"75010101\",\n    \"VATInvoice\": 231465214,\n    \"SummaryCommodityCode\": \"Aa94\",\n    \"ShipToZip\": \"50001\",\n    \"ShipFromZip\": \"55100\",\n    \"DestinationCountryCode\": \"ARG\",\n    \"SupplierReferenceNumber\": \"123\",\n    \"CustomerRefID\": \"123\",\n    \"ChargeDescriptor\": \"Sample Charge\",\n    \"AdditionalAmount\": 2.5,\n    \"AdditionalAmountType\": \"GIFT_SHOP\",\n    \"ProductName\": \"Product 01\",\n    \"ProductCode\": \"P1\",\n    \"Price\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n   \\\"guid\\\":\\\"965a67b0-cd0e-4020-973b-5e0d1b4bd6e2\\\",\\n   \\\"status\\\":\\\"Transaction - Approved\\\",\\n   \\\"type\\\":\\\"Default\\\",\\n   \\\"batchStatus\\\":\\\"Batch - Open\\\",\\n   \\\"timeStamp\\\":\\\"2019-11-20T05:37:13.22-05:00\\\",\\n   \\\"deviceGuid\\\":\\\"f758a448-7780-4b50-93a1-28329e37f94f\\\",\\n   \\\"amount\\\":280.0,\\n   \\\"activated\\\": true,\\n   \\\"tenderType\\\":\\\"Credit\\\",\\n   \\\"effectiveAmount\\\":280.0,\\n   \\\"riskResponse\\\":{\\n      \\\"transactionId\\\":\\\"73PK0DN43KSZ\\\",\\n      \\\"response\\\":\\\"Approved\\\",\\n      \\\"reason\\\":\\\"\\\",\\n      \\\"score\\\":\\\"\\\",\\n      \\\"omniscore\\\": \\\"63.5\\\"\\n   },\\n   \\\"orderNumber\\\":\\\"159874\\\",\\n   \\\"cardDataSource\\\":\\\"INTERNET\\\",\\n   \\\"customerID\\\":\\\"xt147\\\",\\n   \\\"batchGuid\\\":\\\"c71d0ee6-b595-4792-b1ee-1156d28be132\\\",\\n   \\\"connexPayTransaction\\\":{\\n      \\\"guid\\\":\\\"d6c7e3c3-1cdd-47a1-89b9-368059b85c2c\\\",\\n      \\\"expectedPayments\\\":9,\\n      \\\"filler\\\":\\\"ZZZ\\\",\\n      \\\"incomingTransCode\\\":\\\"09ASECYE48S9KHBQL00028000\\\"\\n   },\\n   \\\"riskProcessingOnly\\\":false,\\n   \\\"processorStatusCode\\\":\\\"A0000\\\",\\n   \\\"processorResponseMessage\\\":\\\"Success\\\",\\n   \\\"wasProcessed\\\":true,\\n   \\\"authCode\\\":\\\"TAS698\\\",\\n   \\\"refNumber\\\":\\\"21313220\\\",\\n   \\\"customerReceipt\\\":\\\"CONNEXPAY\\\\\\\\n8320 S HARDY DRIVE...\\\\\\\\n\\\",\\n   \\\"statementDescription\\\":\\\"Agent Booking 123\\\",\\n   \\\"generatedBy\\\":\\\"tcformal1\\\",\\n   \\\"enhancedData\\\":{\\n     \\t\\\"cardLevel\\\":\\\"2\\\",\\n      \\\"saleTax\\\":5.0,\\n      \\\"purchaseOrder\\\":\\\"PURCHSEORDER1\\\",\\n      \\\"additionalTaxDetailTaxCategory\\\":\\\"tex\\\",\\n      \\\"additionalTaxDetailTaxType\\\":\\\"regional\\\",\\n      \\\"additionalTaxDetailTaxAmount\\\":3.0,\\n      \\\"additionalTaxDetailTaxRate\\\":2.5,\\n      \\\"shippingCharges\\\":20.0,\\n      \\\"dutyCharges\\\":17.59,\\n      \\\"shipToZip\\\":\\\"50001\\\",\\n      \\\"shipFromZip\\\":\\\"55100\\\",\\n      \\\"destinationCountryCode\\\":\\\"ARG\\\",\\n      \\\"customerVATNumber\\\":\\\"75010101\\\",\\n      \\\"summaryCommodityCode\\\":\\\"Aa94\\\",\\n      \\\"vatInvoice\\\":\\\"231465214\\\",\\n      \\\"orderDate\\\":\\\"07/20/2018\\\",\\n      \\\"supplierReferenceNumber\\\":\\\"123\\\",\\n      \\\"customerRefID\\\":\\\"123\\\",\\n      \\\"chargeDescriptor\\\":\\\"Sample Charge\\\",\\n      \\\"productName\\\":\\\"Product 01\\\",\\n      \\\"productCode\\\":\\\"P1\\\",\\n      \\\"price\\\":5.0,\\n      \\\"additionalAmount\\\":2.5,\\n      \\\"additionalAmountType\\\":\\\"GIFT_SHOP\\\"\\n   },\\n   \\\"card\\\":{\\n      \\\"first4\\\":\\\"4716\\\",\\n      \\\"last4\\\":\\\"0473\\\",\\n      \\\"cardNumber\\\":\\\"CARD NOT TOKENIZED\\\",\\n      \\\"cardHolderName\\\":\\\"John Doe\\\",\\n      \\\"cardType\\\":\\\"Visa\\\",\\n      \\\"expirationDate\\\":\\\"2019-12\\\",\\n      \\\"guid\\\":\\\"b9b2fcd3-6b35-40a6-a560-6e434ae01068\\\",\\n      \\\"customer\\\":{\\n         \\\"guid\\\":\\\"3bd93697-005a-4723-a7f8-f892577ee2bf\\\",\\n         \\\"firstName\\\":\\\"John\\\",\\n         \\\"lastName\\\":\\\"Doe\\\",\\n         \\\"dateOfBirth\\\":\\\"1990-12-07T00:00:00\\\",\\n         \\\"address1\\\":\\\"107 7th Av.\\\",\\n         \\\"address2\\\":\\\"\\\",\\n         \\\"zip\\\":\\\"10007\\\",\\n         \\\"city\\\":\\\"New York\\\",\\n         \\\"state\\\":\\\"NY\\\",\\n         \\\"country\\\":\\\"US\\\",\\n         \\\"phone\\\":\\\"9177563007\\\",\\n         \\\"email\\\":\\\"johnd@gmail.com\\\",\\n         \\\"ssN4\\\":\\\"1210\\\",\\n         \\\"driverLicenseNumber\\\":\\\"12345678\\\",\\n         \\\"driverLicenseState\\\":\\\"TX\\\"\\n      }\\n   },\\n   \\\"sequenceNumber\\\":\\\"849741\\\",\\n   \\\"addressVerificationCode\\\":\\\"N\\\",\\n   \\\"addressVerificationResult\\\":\\\"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\\\",\\n   \\\"cvvVerificationCode\\\":\\\"M\\\",\\n   \\\"cvvVerificationResult\\\":\\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\",\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebca8fbb-f8db-4443-9cb4-0c507e39bf55",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": 280,\n  \"TenderType\": \"Credit\",\n  \"SequenceNumber\": \"849741\",\n  \"OrderNumber\": \"159874\",\n  \"SendReceipt\": true,\n  \"RiskProcessingOnly\": false,\n  \"StatementDescription\": \"Agent Booking 123\",\n  \"CustomerId\": \"xt147\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": 9\n  },\n  \"RiskData\": {\n    \"Name\": \"John Doe\",\n    \"Gender\": \"M\",\n    \"DateOfBirth\": \"1993-03-18\",\n    \"BillingPhoneNumber\": \"9177563046\",\n    \"BillingAddress1\": \"151 E 33rd St\",\n    \"BillingAddress2\": \"Second Floor\",\n    \"BillingCity\": \"New York\",\n    \"BillingState\": \"NY\",\n    \"BillingPostalCode\": \"10016\",\n    \"BillingCountryCode\": \"US\",\n    \"Email\": \"johnd@gmail.com\",\n    \"ProductType\": \"Flight\",\n    \"ProductDesc\": \"Flight from London to New York\",\n    \"ProductItem\": \"784GTWJFK856\",\n    \"ProductQuantity\": 4,\n    \"ProductPrice\": \"42400\",\n    \"OrderNumber\": \"857B2\",\n    \"SellerId\": \"AG75597\",\n    \"FlightData\": {\n      \"Airline\": \"American Airlines\",\n      \"DepartureAirport\": \"Gatwick\",\n      \"DepartureDate\": \"2020-06-30\",\n      \"DestinationAirport\": \"JFK\",\n      \"HoursToDeparture\": 5,\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"UK, USA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"1990-12-07\",\n        \"Id\": \"89456489\",\n        \"Name\": \"Adam Smith\"\n      },\n      {\n        \"Country\": \"ARG\",\n        \"DateOfBirth\": \"1995-05-05\",\n        \"Id\": \"74566\",\n        \"Name\": \"John Lock\"\n      }\n    ],\n    \"CustomParameters\": [\n      {\n        \"Name\": \"ClientSpecific1\",\n        \"Value\": \"Traveling\"\n      },\n      {\n        \"Name\": \"ClientSpecific2\",\n        \"Value\": \"wonderful\"\n      }\n    ]\n  },\n  \"Card\": {\n    \"CardNumber\": \"4716317307520473\",\n    \"CardHolderName\": \"John Doe\",\n    \"Cvv2\": \"999\",\n    \"ExpirationDate\": \"1912\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"9177563007\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"Email\": \"johnd@gmail.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  },\n  \"EnhancedData\": {\n    \"cardLevel\": \"2\",\n    \"SaleTax\": 5,\n    \"AdditionalTaxDetailTaxCategory\": \"tex\",\n    \"AdditionalTaxDetailTaxType\": \"regional\",\n    \"AdditionalTaxDetailTaxAmount\": 3,\n    \"AdditionalTaxDetailTaxRate\": 2.5,\n    \"PurchaseOrder\": \"PURCHSEORDER1\",\n    \"OrderDate\": \"07/20/2018\",\n    \"ShippingCharges\": \"20\",\n    \"DutyCharges\": 17.59,\n    \"CustomerVATNumber\": \"75010101\",\n    \"VATInvoice\": 231465214,\n    \"SummaryCommodityCode\": \"Aa94\",\n    \"ShipToZip\": \"50001\",\n    \"ShipFromZip\": \"55100\",\n    \"DestinationCountryCode\": \"ARG\",\n    \"SupplierReferenceNumber\": \"123\",\n    \"CustomerRefID\": \"123\",\n    \"ChargeDescriptor\": \"Sample Charge\",\n    \"AdditionalAmount\": 2.5,\n    \"AdditionalAmountType\": \"GIFT_SHOP\",\n    \"ProductName\": \"Product 01\",\n    \"ProductCode\": \"P1\",\n    \"Price\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"965a67b0-cd0e-4020-973b-5e0d1b4bd6e2\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"type\\\": \\\"Default\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2023-05-09T15:33:12.25-04:00\\\",\\n    \\\"deviceGuid\\\": \\\"f758a448-7780-4b50-93a1-28329e37f94f\\\",\\n    \\\"amount\\\": 1.17,\\n    \\\"activated\\\": true,\\n    \\\"tenderType\\\": \\\"ACH\\\",\\n    \\\"effectiveAmount\\\": 1.17,\\n    \\\"purchaseActivationDate\\\": \\\"2023-05-09T00:00:00-04:00\\\",\\n    \\\"orderNumber\\\": \\\"ACH Sale Example\\\",\\n    \\\"cardDataSource\\\": \\\"INTERNET\\\",\\n    \\\"customerID\\\": \\\"CustomerID\\\",\\n    \\\"batchGuid\\\": \\\"c71d0ee6-b595-4792-b1ee-1156d28be132\\\",\\n    \\\"connexPayTransaction\\\": {\\n        \\\"guid\\\": \\\"d6c7e3c3-1cdd-47a1-89b9-368059b85c2c\\\",\\n        \\\"expectedPayments\\\": 1,\\n        \\\"incomingTransCode\\\": \\\"23D5797638192431927631987\\\"\\n    },\\n    \\\"riskProcessingOnly\\\": false,\\n    \\\"processorStatusCode\\\": \\\"A0000\\\",\\n    \\\"processorResponseMessage\\\": \\\"NotYetProcessed\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"refNumber\\\": \\\"LC40FTVWZH\\\",\\n    \\\"customerReceipt\\\": \\\"Test\\\\\\\\nTest Minnesota 55111\\\\\\\\n5/9/2023 12:00:00 AM\\\\\\\\n\\\\\\\\nACH - Sale\\\\\\\\n\\\\\\\\nACCT NBR last four # : **** **** **** **** 1111\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nTRANSACTION ID : 63819243192747\\\\\\\\nInvoice number : Sales Test \\\\\\\\nSubtotal:                      $1.17\\\\\\\\n--------------------------------------\\\\\\\\nTotal:                         $1.17\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n    \\\"statementDescription\\\": \\\"Test\\\",\\n    \\\"generatedBy\\\": \\\"Test\\\",\\n    \\\"bankAccount\\\": {\\n        \\\"guid\\\": \\\"b9b2fcd3-6b35-40a6-a560-6e434ae01068\\\",\\n        \\\"accountType\\\": \\\"Checking\\\",\\n        \\\"accountNumberLastFour\\\": \\\"1111\\\",\\n        \\\"nameOnAccount\\\": \\\"TestName\\\",\\n        \\\"customer\\\": {\\n            \\\"guid\\\": \\\"3bd93697-005a-4723-a7f8-f892577ee2bf\\\",\\n            \\\"firstName\\\": \\\"First Name\\\",\\n            \\\"lastName\\\": \\\"Last Name\\\",\\n            \\\"dateOfBirth\\\": \\\"2002-05-30T00:00:00\\\",\\n            \\\"address1\\\": \\\"1 Main St\\\",\\n            \\\"address2\\\": \\\"Apt 1A\\\",\\n            \\\"zip\\\": \\\"12345\\\",\\n            \\\"city\\\": \\\"Test\\\",\\n            \\\"country\\\": \\\"US\\\",\\n            \\\"phone\\\": \\\"9998887777\\\",\\n            \\\"email\\\": \\\"test@test.com\\\",\\n            \\\"ssN4\\\": \\\"1111\\\"\\n        }\\n    },\\n    \\\"sequenceNumber\\\": \\\"123\\\",\\n    \\\"addressVerificationResult\\\": \\\"Unavailable\\\",\\n    \\\"cvvVerificationResult\\\": \\\"Unavailable\\\",\\n    \\\"walletProvider\\\": 0,\\n    \\\"includeRiskAnalysis\\\": false,\\n    \\\"isFromIssueLite\\\": false,\\n    \\\"remainingAmount\\\": 1.17\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e31d64c-1533-462e-a07d-a8257e1e3e86",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": 280,\n  \"TenderType\": \"Credit\",\n  \"SequenceNumber\": \"849741\",\n  \"OrderNumber\": \"159874\",\n  \"SendReceipt\": true,\n  \"RiskProcessingOnly\": false,\n  \"StatementDescription\": \"Agent Booking 123\",\n  \"CustomerId\": \"xt147\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": 9\n  },\n  \"RiskData\": {\n    \"Name\": \"John Doe\",\n    \"Gender\": \"M\",\n    \"DateOfBirth\": \"1993-03-18\",\n    \"BillingPhoneNumber\": \"9177563046\",\n    \"BillingAddress1\": \"151 E 33rd St\",\n    \"BillingAddress2\": \"Second Floor\",\n    \"BillingCity\": \"New York\",\n    \"BillingState\": \"NY\",\n    \"BillingPostalCode\": \"10016\",\n    \"BillingCountryCode\": \"US\",\n    \"Email\": \"johnd@gmail.com\",\n    \"ProductType\": \"Flight\",\n    \"ProductDesc\": \"Flight from London to New York\",\n    \"ProductItem\": \"784GTWJFK856\",\n    \"ProductQuantity\": 4,\n    \"ProductPrice\": \"42400\",\n    \"OrderNumber\": \"857B2\",\n    \"SellerId\": \"AG75597\",\n    \"FlightData\": {\n      \"Airline\": \"American Airlines\",\n      \"DepartureAirport\": \"Gatwick\",\n      \"DepartureDate\": \"2020-06-30\",\n      \"DestinationAirport\": \"JFK\",\n      \"HoursToDeparture\": 5,\n      \"JourneyType\": \"Day\",\n      \"Route\": \"Direct\",\n      \"RouteByCountry\": \"UK, USA\"\n    },\n    \"FlightPassengers\": [\n      {\n        \"Country\": \"USA\",\n        \"DateOfBirth\": \"1990-12-07\",\n        \"Id\": \"89456489\",\n        \"Name\": \"Adam Smith\"\n      },\n      {\n        \"Country\": \"ARG\",\n        \"DateOfBirth\": \"1995-05-05\",\n        \"Id\": \"74566\",\n        \"Name\": \"John Lock\"\n      }\n    ],\n    \"CustomParameters\": [\n      {\n        \"Name\": \"ClientSpecific1\",\n        \"Value\": \"Traveling\"\n      },\n      {\n        \"Name\": \"ClientSpecific2\",\n        \"Value\": \"wonderful\"\n      }\n    ]\n  },\n  \"Card\": {\n    \"CardNumber\": \"4716317307520473\",\n    \"CardHolderName\": \"John Doe\",\n    \"Cvv2\": \"999\",\n    \"ExpirationDate\": \"1912\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"9177563007\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"Email\": \"johnd@gmail.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  },\n  \"EnhancedData\": {\n    \"cardLevel\": \"2\",\n    \"SaleTax\": 5,\n    \"AdditionalTaxDetailTaxCategory\": \"tex\",\n    \"AdditionalTaxDetailTaxType\": \"regional\",\n    \"AdditionalTaxDetailTaxAmount\": 3,\n    \"AdditionalTaxDetailTaxRate\": 2.5,\n    \"PurchaseOrder\": \"PURCHSEORDER1\",\n    \"OrderDate\": \"07/20/2018\",\n    \"ShippingCharges\": \"20\",\n    \"DutyCharges\": 17.59,\n    \"CustomerVATNumber\": \"75010101\",\n    \"VATInvoice\": 231465214,\n    \"SummaryCommodityCode\": \"Aa94\",\n    \"ShipToZip\": \"50001\",\n    \"ShipFromZip\": \"55100\",\n    \"DestinationCountryCode\": \"ARG\",\n    \"SupplierReferenceNumber\": \"123\",\n    \"CustomerRefID\": \"123\",\n    \"ChargeDescriptor\": \"Sample Charge\",\n    \"AdditionalAmount\": 2.5,\n    \"AdditionalAmountType\": \"GIFT_SHOP\",\n    \"ProductName\": \"Product 01\",\n    \"ProductCode\": \"P1\",\n    \"Price\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"3a0d533f-588b-4ce4-920f-7bc4641ea8f7\\\",\\n    \\\"status\\\": \\\"3DS - Pending Fingerprint\\\",\\n    \\\"timeStamp\\\": \\\"2023-08-16T16:44:40.9866697Z\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 1.34,\\n    \\\"version\\\": \\\"2.1.0\\\",\\n    \\\"redirectUrl\\\": \\\"https://x3d-sim.credorax.net/acs/3ds-method\\\",\\n    \\\"redirectUrlRequestPayload\\\": \\\"threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImU2YmNjM2RiLTAwZjQtNDdiZi05OTgwLTljZjE2MTUxOGM5NyJ9\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0010\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"c6b816a3-f107-40d5-9dc3-bcefc576c8bc\\\"\\n    },\\n    \\\"exemptThreeDSRequest\\\": false,\\n    \\\"exemptThreeDSPayment\\\": false\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "058eddd1-c2b9-4786-afbd-c4f120721da6",
+    "name": "api Sales API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

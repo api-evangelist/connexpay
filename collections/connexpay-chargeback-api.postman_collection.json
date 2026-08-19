@@ -1,0 +1,404 @@
+{
+  "item": [
+    {
+      "id": "dda4599f-a80d-4163-a81d-4929e994a52e",
+      "name": "Chargeback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8d61d5b-5600-4203-b212-3c97eef24b82",
+          "name": "Sales Chargebacks",
+          "request": {
+            "name": "Sales Chargebacks",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "chargeback",
+                "GetByUser"
+              ],
+              "host": [
+                "{{api-chargeback-GetByUser-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "/GetByUser?startDate=2016-12-01",
+                  "description": "(Required) Return all chargebacks for the authenticated user with a start date"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "/GetByUser?startDate=2016-12-01&endDate=2016-12-01",
+                  "description": "(Required) Return all chargebacks for the authenticated user with a start and end date"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "/GetByResolvedDate?startDate=2019-09-20&endDate=2019-10-21",
+                  "description": "(Required) Return all chargebacks for the authenticated user with a start and end date based on resolved date"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5a267ab-2e8b-4459-b2b6-14c2e8a5ce37",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "chargeback",
+                    "GetByUser"
+                  ],
+                  "host": [
+                    "{{api-chargeback-GetByUser-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByUser?startDate=2016-12-01",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start date"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByUser?startDate=2016-12-01&endDate=2016-12-01",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start and end date"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByResolvedDate?startDate=2019-09-20&endDate=2019-10-21",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start and end date based on resolved date"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    {\\n        \\\"ID\\\": 00001,\\n        \\\"UUID\\\": \\\"abc123 \\\",\\n        \\\"FileId\\\": 00001,\\n        \\\"MerchantId\\\": 001,\\n        \\\"Arn\\\": \\\"12312312312312312312312\\\",\\n        \\\"CaseNumber\\\": \\\"0000000000001\\\",\\n        \\\"Amount\\\": 298.00,\\n        \\\"RecordType\\\": \\\" \\\",\\n        \\\"CaseType\\\": \\\"25\\\",\\n        \\\"ReasonCode\\\": \\\"4837\\\",\\n        \\\"ReasonDescription\\\": \\\"No Cardholder Authorization                       \\\",\\n        \\\"CardBrand\\\": 2,\\n        \\\"TransactionCode\\\": \\\"05\\\",\\n        \\\"ResolutionTo\\\": \\\"M\\\",\\n        \\\"TransactionDate\\\": \\\"2020-12-08T00:00:00\\\",\\n        \\\"LoadDate\\\": \\\"2021-02-12T00:00:00\\\",\\n        \\\"PostDate\\\": \\\"2020-12-08T00:00:00\\\",\\n        \\\"ResolvedDate\\\": \\\"2021-03-02T00:00:00\\\",\\n        \\\"FamilyId\\\": 00000001,\\n        \\\"HasImage\\\": false,\\n        \\\"HasResponse\\\": false,\\n        \\\"ImageFileUrl\\\": \\\"\\\",\\n        \\\"Created\\\": \\\"2021-03-02T23:01:00\\\",\\n        \\\"OrderNumber\\\": \\\"23447161\\\",\\n        \\\"DueDate\\\": \\\"2021-02-24T00:00:00\\\",\\n        \\\"IsSurrendered\\\": false,\\n        \\\"IdSale\\\": 0000001,\\n        \\\"IncomingTransactionCode\\\": \\\"1231231231231231231231231\\\",\\n        \\\"SaleGuid\\\": \\\"1238aff0-18b3-46ce-b123-1ede8ff09123\\\",\\n        \\\"SaleFirstFour\\\": \\\"1234\\\",\\n        \\\"SaleLastFour\\\": \\\"1234\\\",\\n        \\\"AuthCode\\\": \\\"12312Z\\\",\\n        \\\"NetPosition\\\": -298.0000,\\n        \\\"WinLoss\\\": \\\"Loss (Pending)\\\"\\n    },\\n    {\\n        \\\"ID\\\": 00002,\\n        \\\"UUID\\\": \\\"abc456 \\\",\\n        \\\"FileId\\\": 00001,\\n        \\\"MerchantId\\\": 115,\\n        \\\"Arn\\\": \\\"45645645645645645645645\\\",\\n        \\\"CaseNumber\\\": \\\"0000000000002\\\",\\n        \\\"Amount\\\": 61.39,\\n        \\\"RecordType\\\": \\\" \\\",\\n        \\\"CaseType\\\": \\\"21\\\",\\n        \\\"ReasonCode\\\": \\\"13.1\\\",\\n        \\\"ReasonDescription\\\": \\\"Merchandise/Services Not Received                 \\\",\\n        \\\"CardBrand\\\": 1,\\n        \\\"TransactionCode\\\": \\\"05\\\",\\n        \\\"ResolutionTo\\\": \\\"M\\\",\\n        \\\"TransactionDate\\\": \\\"2021-02-04T00:00:00\\\",\\n        \\\"LoadDate\\\": \\\"2021-02-16T00:00:00\\\",\\n        \\\"PostDate\\\": \\\"2021-02-04T00:00:00\\\",\\n        \\\"ResolvedDate\\\": \\\"2021-02-16T00:00:00\\\",\\n        \\\"FamilyId\\\": 00000002,\\n        \\\"HasImage\\\": false,\\n        \\\"HasResponse\\\": false,\\n        \\\"ImageFileUrl\\\": \\\"\\\",\\n        \\\"Created\\\": \\\"2021-02-16T23:02:00\\\",\\n        \\\"OrderNumber\\\": \\\"45121742\\\",\\n        \\\"DueDate\\\": \\\"2021-02-28T00:00:00\\\",\\n        \\\"IsSurrendered\\\": false,\\n        \\\"IdSale\\\": 0000002,\\n        \\\"IncomingTransactionCode\\\": \\\"456DF6263745611632034566\\\",\\n        \\\"SaleGuid\\\": \\\"456f41ef-4564-456e-85dc-d1a0545684d8\\\",\\n        \\\"SaleFirstFour\\\": \\\"4567\\\",\\n        \\\"SaleLastFour\\\": \\\"4567\\\",\\n        \\\"AuthCode\\\": \\\"45645A\\\",\\n        \\\"NetPosition\\\": 0.0000,\\n        \\\"WinLoss\\\": \\\"Win\\\"\\n    }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b543b82-ae0e-4bca-add4-05fe616d3b3f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "chargeback",
+                    "GetByUser"
+                  ],
+                  "host": [
+                    "{{api-chargeback-GetByUser-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByUser?startDate=2016-12-01",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start date"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByUser?startDate=2016-12-01&endDate=2016-12-01",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start and end date"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "/GetByResolvedDate?startDate=2019-09-20&endDate=2019-10-21",
+                      "description": "(Required) Return all chargebacks for the authenticated user with a start and end date based on resolved date"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7dac544c-b86d-41f5-a08d-f0496c42d4e5",
+          "name": "Create Chargeback",
+          "request": {
+            "name": "Create Chargeback",
+            "description": {
+              "content": "Use this endpoint to create a virtual card chargeback. \n\nWhat is behind this API?\n- When a user calls this API, we will create a new case/dispute to Marqeta\n- When case/dispute creation success, the API will transmit the case for Marqeta review\n- When the review passes, the API will transmit the case to the Card Network for Chargeback",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "chargeback"
+              ],
+              "host": [
+                "{{api-v1-chargeback-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"CardGuid\": \"<string>\",\n  \"TransactionGuid\": \"<string>\",\n  \"ChargebackReason\": \"<string>\",\n  \"Memo\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3adc5b3d-ac5c-4302-b44c-1b865e1ac1db",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "chargeback"
+                  ],
+                  "host": [
+                    "{{api-v1-chargeback-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"76A40912-5863-4928-AFB4-93E22D5A36A5\",\n  \"CardGuid\": \"39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6\",\n  \"TransactionGuid\": \"40951746-7cab-4b29-974b-3b2c2a20b57c\",\n  \"Memo\": \"Test 09\",\n  \"ChargebackReason\": \"SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"merchantGuid\\\": \\\"76a40912-5863-4928-afb4-93e22d5a36a5\\\",\\n    \\\"cardGuid\\\": \\\"39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6\\\",\\n    \\\"transactionGuid\\\": \\\"40951746-7cab-4b29-974b-3b2c2a20b57c\\\",\\n    \\\"chargebackReason\\\": \\\"SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED\\\",\\n    \\\"chargebackGuid\\\": \\\"b894da6b-47f1-45fd-9bad-78bd0b2e0df0\\\",\\n    \\\"status\\\": \\\"Initiated\\\",\\n    \\\"statusReason\\\": \\\"Chargeback with no Credit\\\",\\n    \\\"chargebackAmount\\\": 10.90,\\n    \\\"memo\\\": \\\"Test 09\\\",\\n    \\\"createdDateTime\\\": \\\"2021-12-09T20:09:28.7900736Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3180e566-ab47-4356-856e-6a7c2f8507a0",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "chargeback"
+                  ],
+                  "host": [
+                    "{{api-v1-chargeback-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"76A40912-5863-4928-AFB4-93E22D5A36A5\",\n  \"CardGuid\": \"39be38a4-d1b8-40aa-bfad-6cfcebdcbcb6\",\n  \"TransactionGuid\": \"40951746-7cab-4b29-974b-3b2c2a20b57c\",\n  \"Memo\": \"Test 09\",\n  \"ChargebackReason\": \"SERVICE_NOT_PROVIDED_MERCHANDISE_NOT_RECEIVED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cmsapi.connexpay.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://cmsapi.connexpay.com",
+      "key": "api-chargeback-GetByUser-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "api-v1-chargeback-Url"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ac7d009-c59f-41ae-8800-e10b8639e898",
+    "name": "Connexpay Chargeback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Chargeback across 2 of this provider's published API definitions: connexpay-chargebacks-openapi.yml, connexpay-purchases-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

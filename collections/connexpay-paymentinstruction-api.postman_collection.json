@@ -1,0 +1,1417 @@
+{
+  "item": [
+    {
+      "id": "61d5e79c-6390-4edf-9959-f6318a5bbc41",
+      "name": "PaymentInstruction",
+      "description": {
+        "content": "Controller for handling Payment Instructions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "974774aa-8f70-4565-884b-2aa765cb8388",
+          "name": "Submit a Payment Instruction",
+          "request": {
+            "name": "Submit a Payment Instruction",
+            "description": {
+              "content": "Used to create a new payment instruction. The request must include all required fields such as clientId, clientPaymentId, payee details, payment amount, and currency code. Optional fields like paymentDueDate and user-defined fields may also be included.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruction",
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "clientId",
+                  "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<integer>\",\n  \"clientPaymentId\": \"<string>\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"careOf\": \"<string,null>\",\n      \"addressLine2\": \"<string,null>\",\n      \"stateOrProvince\": \"<string,null>\"\n    },\n    \"payeeName\": \"<string>\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"<string,null>\",\n    \"clientPayeeIdentifier\": \"<string,null>\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"title\": \"<string>\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": \"<double>\",\n  \"paymentCurrencyCode\": \"<string>\",\n  \"payorId\": \"<integer>\",\n  \"paymentDueDate\": \"<string,null-date-time>\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": \"<string,null>\",\n  \"userDefinedField2\": \"<string,null>\",\n  \"userDefinedField3\": \"<string,null>\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": \"<double>\",\n      \"itemId\": \"<string>\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": \"<double>\",\n      \"itemId\": \"<string>\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "812d960c-86e7-4042-957a-2d9d5b6ef934",
+              "name": "Payment instruction created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": false,\n  \"statusCodeResult\": {\n    \"statusCode\": 6748\n  },\n  \"message\": null,\n  \"value\": {\n    \"clientPaymentId\": null,\n    \"generatedPaymentId\": null,\n    \"status\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc26708e-3193-4d41-b77c-70aa86017230",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": \"string\",\n  \"errors\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9391170-6450-4b6f-8147-64be93bac61d",
+              "name": "Client ID from request does not match authenticated client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b540514c-30eb-4334-b183-50d2ef54db91",
+              "name": "ClientPaymentId already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d233ecee-ba9a-4ace-aedd-9c82027bcf6a",
+              "name": "Unsupported media type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb98f2d6-ff7d-4ee8-81a2-a422ddecf22a",
+              "name": "Valid request format but contains business rule violations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7289fbe-c27d-4246-b649-0272fd7d521a",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": 12345,\n  \"clientPaymentId\": \"100012\",\n  \"payee\": {\n    \"payeeAddress\": {\n      \"addressLine1\": \"789 Main Street\",\n      \"city\": \"Austin\",\n      \"countryCode\": \"USA\",\n      \"postalCode\": \"78746\",\n      \"careOf\": \"Accounts Payable\",\n      \"addressLine2\": \"Suite 12\",\n      \"stateOrProvince\": \"TX\"\n    },\n    \"payeeName\": \"ExampleCo\",\n    \"payeeType\": \"<string>\",\n    \"payeeTaxId\": \"111222333\",\n    \"clientPayeeIdentifier\": \"1431243123\",\n    \"payeeContactInfo\": {\n      \"emailAddress\": \"Manager@email.com\",\n      \"name\": \"M. Smith\",\n      \"phoneNumber\": \"+10000000000\",\n      \"title\": \"Manager\",\n      \"faxNumber\": \"<string,null>\",\n      \"preferredContactMethod\": \"<string>\",\n      \"preferredDistributionMethod\": \"<string>\"\n    }\n  },\n  \"paymentAmount\": 123.45,\n  \"paymentCurrencyCode\": \"USD\",\n  \"payorId\": 2,\n  \"paymentDueDate\": \"2025-12-26T00:00:00.0000000\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<array,null>\"\n  },\n  \"userDefinedField1\": 9182374,\n  \"userDefinedField2\": \"Ref123\",\n  \"userDefinedField3\": \"Payment Valet\",\n  \"clientDocuments\": \"<array,null>\",\n  \"paymentItems\": [\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    },\n    {\n      \"amount\": 123.45,\n      \"itemId\": \"12341234\",\n      \"itemType\": \"<string>\"\n    }\n  ],\n  \"paymentAddenda\": \"Release Payment for PO# 123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c87e2b2b-f80a-4fed-b846-b45202e1d0ef",
+          "name": "Get Funding Status",
+          "request": {
+            "name": "Get Funding Status",
+            "description": {
+              "content": "This endpoint retrieves the funding status updates for a payment request identified by the client ID and client payment ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruction",
+                "client",
+                ":clientId",
+                "clientPaymentId",
+                ":clientPaymentId",
+                "fundingStatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "clientId",
+                  "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientPaymentId",
+                  "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c318408e-f09f-4a21-9145-ce26ab6779d1",
+              "name": "Returns the funding status updates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "fundingStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"DecisioningCompleted\",\n    \"statusType\": \"Funding\",\n    \"createdDate\": \"1946-11-09T22:46:52.639Z\"\n  },\n  {\n    \"status\": \"DecisioningCompleted\",\n    \"statusType\": \"Payment\",\n    \"createdDate\": \"1957-01-09T01:25:30.560Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d86cd4a-44e7-4a9b-b083-b9ead806da38",
+              "name": "Invalid clientPaymentId provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "fundingStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": \"string\",\n  \"errors\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3cbc2da-6f38-484f-82ec-114c919e6a7e",
+              "name": "Client ID from request does not match authenticated client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "fundingStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "896c0aac-e867-4ebf-bd3c-f3145d582cf8",
+              "name": "No funding status found for the specified payment request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "fundingStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c312bf3-ccdc-4196-8ce2-85a2d096f52e",
+          "name": "Get Payment Status",
+          "request": {
+            "name": "Get Payment Status",
+            "description": {
+              "content": "This endpoint retrieves the payment status updates for a payment request identified by the client ID and client payment ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruction",
+                "client",
+                ":clientId",
+                "clientPaymentId",
+                ":clientPaymentId",
+                "paymentStatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "clientId",
+                  "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientPaymentId",
+                  "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaa0ab5c-abf9-4ccd-a062-856382b483b5",
+              "name": "Returns the funding status updates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "paymentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27b1231a-1e75-4108-a4a7-18e3f0c5681f",
+              "name": "Invalid clientPaymentId provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "paymentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": \"string\",\n  \"errors\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4fce9be-eb6f-488a-82fd-4d840b11a3a3",
+              "name": "Client ID from request does not match authenticated client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "paymentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a1f290c-5fc6-4b11-83f9-b8be1f809308",
+              "name": "No funding status found for the specified payment request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "paymentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isSuccess\": true,\n  \"statusCodeResult\": {\n    \"statusCode\": 6573\n  },\n  \"message\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c55c25ab-2cdf-423e-91b9-52ba64c9267e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "paymentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier assigned to the payment instruction by the client. Required in the path."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afb95995-69c7-41cf-85cc-8411aed87201",
+          "name": "Void a Payment Instruction",
+          "request": {
+            "name": "Void a Payment Instruction",
+            "description": {
+              "content": "This endpoint voids a payment instruction identified by the client ID and client payment ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instruction",
+                "client",
+                ":clientId",
+                "clientPaymentId",
+                ":clientPaymentId",
+                "void"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "clientId",
+                  "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientPaymentId",
+                  "description": "(Required) Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ReasonCode\": \"<string>\",\n  \"reissue\": \"<boolean>\",\n  \"reissueClientPaymentId\": \"<string>\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f4b0a6c-9668-4f41-a514-f5d62caa91d1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ReasonCode\": \"<string>\",\n  \"reissue\": \"<boolean>\",\n  \"reissueClientPaymentId\": \"<string>\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e14c16e0-a79f-40fd-9ff1-05ca488b085f",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instruction",
+                    "client",
+                    ":clientId",
+                    "clientPaymentId",
+                    ":clientPaymentId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "clientId",
+                      "description": "(Required) Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientPaymentId",
+                      "description": "(Required) Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ReasonCode\": \"<string>\",\n  \"reissue\": \"<boolean>\",\n  \"reissueClientPaymentId\": \"<string>\",\n  \"paymentRestrictions\": {\n    \"forcedModality\": \"<string>\",\n    \"excludedModalities\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.api.connexpay.com/valet/payment/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d013e4b-7ff9-4722-a108-2162b88285ab",
+    "name": "v1 Payment Instruction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for submitting and managing Payment Instructions.\n\nContact Support:\n Name: Payment Valet",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: ConnexPay Reporting Accounting API
   description: REST API for retrieving reporting data. Currently Daily Accounting data only.
@@ -156,11 +156,12 @@ components:
           description: Sequence number of the current page.
           format: int32
         items:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/DailyAccountingDetail'
           description: Collection of accounting detail items for the current page.
-          nullable: true
       additionalProperties: false
     DailyAccountingSummary:
       type: object
@@ -173,12 +174,13 @@ components:
             Unique identifier assigned to the merchant by ConnexPay.'
           format: uuid
         clientName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Client Name
 
 
             Unique name assigned to the client by ConnexPay.'
-          nullable: true
         releasedDate:
           type: string
           description: 'Released Date
@@ -389,21 +391,26 @@ components:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: {}
     DailyAccountingDetail:
       type: object
@@ -416,12 +423,13 @@ components:
             Unique identifier assigned to the merchant by ConnexPay.'
           format: uuid
         clientName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Client Name
 
 
             Unique name assigned to the client by ConnexPay.'
-          nullable: true
         releasedDate:
           type: string
           description: 'Released Date
@@ -430,34 +438,40 @@ components:
             Date on which the Accounting File for this detail record was released to the client.'
           format: date
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "Description\n\nThe type of transaction being released in this detail record.\n\nPossible Values:\n  ACH Debit Reject\n  Bank A ACH Credit Reject\n  Credit to Client (Withdrawal from Cash Account)\n  Daily Flex Funding\n  Debit from Client (Deposit to Cash Account)\n  Empty\n  Prior Day Cash Balance\n  Purchase - ACH Purchase\n  Purchase - ACH Return\n  Purchase - Push To Card Payout\n  Purchase - Virtual Card Chargeback\n  Purchase - Virtual Card Purchase\n  Purchase - Virtual Card Return\n  Reserve Balance\n  Sale - ACH Return\n  Sale - ACH Sale\n  Sale - ACH Void\n  Sale - Credit Card Adjustment\n  Sale - Credit Card Chargeback\n  Sale - Credit Card Return\n  Sale - Credit Card Sale\n  Sale - Credit Card Void\n  Unspecified"
-          nullable: true
         orderNumber:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Order Number
 
 
             Identifier that may be provided by the client during the Create Sale or IssueLite process to identify the order.
 
             Can be comprised of multiple sales and purchases.'
-          nullable: true
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Name
 
 
             The name line 1 and 2 of the virtual credit card.'
-          nullable: true
         cardLastFour:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Card Last Four
 
 
             The last four digits of the card number associated with the detail record.'
-          nullable: true
         incomingTransactionCode:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Incoming Transaction Code (ITC)
 
 
@@ -466,11 +480,11 @@ components:
             purchase (virtual card or ACH) transaction. An ITC is generated and returned for each successful
 
             authorization associated with a Sale request and is required for each purchase request.'
-          nullable: true
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "Customer ID\n\nIdentifier that may be provided by the client during the Create Sale or IssueLite process. Can be comprised \nof multiple sales and purchases. Acts as a secondary identifier in conjunction with OrderNumber."
-          nullable: true
         amount:
           type: number
           description: 'Amount
@@ -479,29 +493,34 @@ components:
             Amount of the sale or purchase transaction.'
           format: double
         merchantName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Merchant Name
 
 
             Name of the supplier processing the virtual credit card transaction.'
-          nullable: true
         ticketNumber:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Ticket Number
 
 
             Addendum data associated with the transaction that is returned if provided during the virtual credit card or ACH creation'
-          nullable: true
         entityGuid:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Entity Guid
 
 
             Entity Guid of the detail record to link them back to the original entity.'
           format: uuid
-          nullable: true
         purchaseType:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Purchase Type
 
 
@@ -509,14 +528,14 @@ components:
 
 
             See the Issue Card method in the Purchases API documentation for more details.'
-          nullable: true
         entityId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Entity Id
 
 
             Entity Guid of the detail record to link them back to the original entity.'
-          nullable: true
         issuedAmount:
           type: number
           description: 'Issued Amount
@@ -525,31 +544,37 @@ components:
             Amount of the virtual credit card issued to the client.'
           format: double
         labelName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Label Name
 
 
             Comma-separated list of labels associated with the sale.'
-          nullable: true
         associationId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Association ID
 
 
             Used to associate a virtual card to one or more sales.'
-          nullable: true
         saleGuid:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "Sale Guid\n\nGuid value returned from the Create Sale method in the Sales API. Associated with \nsale transaction detail records."
           format: uuid
-          nullable: true
         cardGuid:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "Card Guid\n\nGuid value return from the Issue Card method in the Purchases API. Associated with \npurchase and return detail records."
           format: uuid
-          nullable: true
         dateTime:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Date Time
 
 
@@ -561,7 +586,6 @@ components:
 
             Note: This date may not be the same as ReleasedDate because release does not occur on weekends and bank holidays.'
           format: date-time
-          nullable: true
       additionalProperties: false
   securitySchemes:
     bearerAuth:

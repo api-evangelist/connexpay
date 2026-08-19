@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api Verify1 API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verify1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "post_apiv1verify1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/verify1",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

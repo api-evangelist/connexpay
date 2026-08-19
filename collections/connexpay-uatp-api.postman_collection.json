@@ -1,0 +1,422 @@
+{
+  "item": [
+    {
+      "id": "ee65997c-0967-4d75-9f7a-facbfa602f6d",
+      "name": "UATP",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebcb4881-4f0f-4255-9a4c-ab051f7b20ef",
+          "name": "Get UATP Transactions",
+          "request": {
+            "name": "Get UATP Transactions",
+            "description": {
+              "content": "Either postDateFrom and postDateTo OR settledDateFrom and settledDateTo must be provided. (Note: Records will only be returned by the postDateFrom/To range if the transaction has settled.) For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "UATP",
+                "Transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchantGuid",
+                  "value": "<uuid>",
+                  "description": "(Required) Unique identifier assigned to the client by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "key": "postDateFrom",
+                  "value": "<date>",
+                  "description": "Starting ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+                },
+                {
+                  "disabled": false,
+                  "key": "postDateTo",
+                  "value": "<date>",
+                  "description": "Ending ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+                },
+                {
+                  "disabled": false,
+                  "key": "settledDateFrom",
+                  "value": "<date>",
+                  "description": "Starting settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+                },
+                {
+                  "disabled": false,
+                  "key": "settledDateTo",
+                  "value": "<date>",
+                  "description": "Ending settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required. "
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "The page number for the transactions to retrieve in this call."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10",
+                  "description": "The number of transactions to retrieve in this call."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e41ed61-5acb-40d3-9c76-b0474c2a1a92",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "UATP",
+                    "Transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "postDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "postDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 5954,\n  \"totalPageCount\": 3947,\n  \"pageSize\": 1121,\n  \"currentPage\": 2293,\n  \"searchResults\": [\n    \"\",\n    \"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85076ced-ea88-4912-b5d3-96c2ff5d9187",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "UATP",
+                    "Transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "postDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "postDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": 2055,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2168b801-bee3-47f7-88fe-ab5259c6fc3c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "UATP",
+                    "Transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "postDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "postDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": 2055,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf6ddada-1fa3-4fc1-9c33-d758be22098d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "UATP",
+                    "Transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchantGuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "postDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "postDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateFrom",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "settledDateTo",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": 2055,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://reportingapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7c81a392-4dd7-4e14-beb3-0ca1e4caa754",
+    "name": "ConnexPay Reporting UATP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving reporting data. Currently Daily Accounting data only.\n\nContact Support:\n Name: ConnexPay",
+      "type": "text/plain"
+    }
+  }
+}

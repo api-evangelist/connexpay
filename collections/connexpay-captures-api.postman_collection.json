@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "e7c4f336-7231-4d4a-9bf1-51b0cd5c1174",
+      "name": "Captures",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b03b458-e796-4948-9dd8-2dbffc1ac528",
+          "name": "Capture",
+          "request": {
+            "name": "Capture",
+            "description": {
+              "content": "Call this endpoint to Capture an Authorization so that it settles",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Captures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"AuthOnlyGuid\": \"<string>\",\n  \"SequenceNumber\": \"<string>\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": \"<integer>\"\n  },\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61241e92-b2e5-463b-9535-2ffaa4ce273c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Captures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"AuthOnlyGuid\": \"{{AuthOnlyGuid}}\",\n  \"OrderNumber\": \"A1234\",\n  \"CustomerID\": \"R2D2-C3PO\",\n  \"SequenceNumber\": \"capture5\",\n  \"ConnexpayTransaction\": {\n    \"ExpectedPayments\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"5669a85c-d1a4-43ac-b799-8bc7f4ffb509\\\",\\n    \\\"sale\\\": {\\n        \\\"guid\\\": \\\"52785a8e-9616-4e1c-b01d-365a99b256b0\\\",\\n        \\\"status\\\": \\\"Transaction - Approved\\\",\\n        \\\"type\\\": \\\"Default\\\",\\n        \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n        \\\"timeStamp\\\": \\\"2020-07-12T21:58:00.15+06:00\\\",\\n        \\\"deviceGuid\\\": \\\"0b7a9536-9fcd-4074-a841-d47eef77b81b\\\",\\n        \\\"amount\\\": 10.00,\\n        \\\"activated\\\": true,\\n        \\\"tenderType\\\": \\\"Credit\\\",\\n        \\\"effectiveAmount\\\": 10.00,\\n        \\\"riskResponse\\\": {\\n            \\\"transactionId\\\": \\\"DGG80N33TZTR\\\",\\n            \\\"response\\\": \\\"Approved\\\",\\n            \\\"reason\\\": \\\"\\\",\\n            \\\"score\\\": \\\"34\\\"\\n        },\\n        \\\"orderNumber\\\": \\\"159874\\\",\\n        \\\"cardDataSource\\\": \\\"INTERNET\\\",\\n        \\\"customerID\\\": \\\"xt147\\\",\\n        \\\"batchGuid\\\": \\\"5a80016c-d96f-4339-8e84-47aaf7aff2fd\\\",\\n        \\\"connexPayTransaction\\\": {\\n            \\\"guid\\\": \\\"9eb92a4c-2cd2-4ffa-9959-498aae8a7279\\\",\\n            \\\"expectedPayments\\\": 5,\\n            \\\"incomingTransCode\\\": \\\"B549C92637301662802350529\\\"\\n        },\\n        \\\"processorStatusCode\\\": \\\"A0000\\\",\\n        \\\"processorResponseMessage\\\": \\\"Success\\\",\\n        \\\"wasProcessed\\\": true,\\n        \\\"authCode\\\": \\\"VTLMC1\\\",\\n        \\\"refNumber\\\": \\\"23181066\\\",\\n        \\\"customerReceipt\\\": \\\"Agent Booking 123\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/12/2020 02:57:57\\\\\\\\n\\\\\\\\nCREDIT - SALE\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 4111\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nTRANSACTION ID : 23181066\\\\\\\\nInvoice number : 159874\\\\\\\\nAUTH CODE : VTLMC1\\\\\\\\nSubtotal:                       $10.00\\\\\\\\n--------------------------------------\\\\\\\\nTotal:                          $10.00\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER'S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n        \\\"statementDescription\\\": \\\"Agent Booking 123\\\",\\n        \\\"generatedBy\\\": \\\"rrmerchant\\\",\\n        \\\"card\\\": {\\n            \\\"first6\\\": \\\"541333\\\",\\n            \\\"first4\\\": \\\"5413\\\",\\n            \\\"last4\\\": \\\"4111\\\",\\n            \\\"cardHolderName\\\": \\\"John Doe\\\",\\n            \\\"cardType\\\": \\\"Mastercard\\\",\\n            \\\"expirationDate\\\": \\\"2019-12\\\",\\n            \\\"customer\\\": {\\n                \\\"guid\\\": \\\"20fbe746-21c5-4325-b307-c46765061efe\\\",\\n                \\\"firstName\\\": \\\"John\\\",\\n                \\\"lastName\\\": \\\"Doe\\\",\\n                \\\"dateOfBirth\\\": \\\"1990-12-07T00:00:00\\\",\\n                \\\"address1\\\": \\\"107 7th Av.\\\",\\n                \\\"address2\\\": \\\"\\\",\\n                \\\"zip\\\": \\\"10007\\\",\\n                \\\"city\\\": \\\"New York\\\",\\n                \\\"state\\\": \\\"NY\\\",\\n                \\\"country\\\": \\\"US\\\",\\n                \\\"phone\\\": \\\"9177563007\\\",\\n                \\\"email\\\": \\\"johnd@gmail.com\\\",\\n                \\\"ssN4\\\": \\\"1210\\\",\\n                \\\"driverLicenseNumber\\\": \\\"12345678\\\",\\n                \\\"driverLicenseState\\\": \\\"TX\\\"\\n            },\\n            \\\"guid\\\": \\\"fb0377b7-d6d2-4e61-b30a-f590f39b2ea8\\\"\\n        },\\n        \\\"addressVerificationCode\\\": \\\"N\\\",\\n        \\\"addressVerificationResult\\\": \\\"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\\\",\\n        \\\"cvvVerificationCode\\\": \\\"M\\\",\\n        \\\"cvvVerificationResult\\\": \\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1fc9128-e7df-4efb-80c4-6922f1d624f6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Captures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"AuthOnlyGuid\": \"{{AuthOnlyGuid}}\",\n  \"OrderNumber\": \"A1234\",\n  \"CustomerID\": \"R2D2-C3PO\",\n  \"SequenceNumber\": \"capture5\",\n  \"ConnexpayTransaction\": {\n    \"ExpectedPayments\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "efb56fa1-abcb-49c3-b0ed-599d9b848514",
+    "name": "sales-api Captures API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1039 @@
+{
+  "item": [
+    {
+      "id": "01781386-91af-4b42-b0f9-fe3b3e926069",
+      "name": "MerchantPayor",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c092ab00-ac3c-4892-abee-7901e536f036",
+          "name": "Create merchant payor",
+          "request": {
+            "name": "Create merchant payor",
+            "description": {
+              "content": "Create a payor for a merchant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Merchants",
+                ":merchantGuid",
+                "Payors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantGuid",
+                  "description": "(Required) The client identifier assigned by ConnexPay."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "payorId",
+                  "value": "<string>",
+                  "description": "(Required) The ID value to be assigned to the created Payor."
+                },
+                {
+                  "disabled": false,
+                  "key": "payorName",
+                  "value": "<string>",
+                  "description": "(Required) The Name to be assigned to the created Payor."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountType",
+                  "value": "<string>",
+                  "description": "(Required) '1' for Checking or '2' for Savings account."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountName",
+                  "value": "<string>",
+                  "description": "(Required) Name that appears on the bank account."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>",
+                  "description": "(Required) Numeric bank account number."
+                },
+                {
+                  "disabled": false,
+                  "key": "routingNumber",
+                  "value": "<string>",
+                  "description": "(Required) 9 digit numeric bank routing number."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ca033bdb-55d0-4ab4-8421-85e4d1274e68",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payorId\": \"S   2cf0efM   4l\",\n  \"payorName\": \"string\",\n  \"accountName\": \"string\",\n  \"accountType\": \"string\",\n  \"accountNumberLastFour\": \"string\",\n  \"routingNumberLastFour\": \"string\",\n  \"idMerchantPayor\": 9482,\n  \"guid\": \"00000000-0000-0000-0000-000000000000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65edb93d-408d-4be9-b705-3d47ddc8737d",
+              "name": "Invalid ModelState",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2611f29d-c0a8-491f-8347-d488eed085bd",
+              "name": "User does not have access to merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42403559-dfa9-4b7a-87aa-b4e3a230589e",
+              "name": "A payor with this payorID already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0598d6d-c1e0-4c64-997d-1a1ed49ae2cb",
+          "name": "Get Merchant Payor",
+          "request": {
+            "name": "Get Merchant Payor",
+            "description": {
+              "content": "Get a merchant payor by guid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Merchants",
+                ":merchantGuid",
+                "Payors",
+                ":payorGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantGuid",
+                  "description": "(Required) The client identifier assigned by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payorGuid",
+                  "description": "(Required) The guid of the merchant payor to be retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0abfec41-da07-4e9b-a3d3-d35e68f42796",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payorId\": \"S   2cf0efM   4l\",\n  \"payorName\": \"string\",\n  \"accountName\": \"string\",\n  \"accountType\": \"string\",\n  \"accountNumberLastFour\": \"string\",\n  \"routingNumberLastFour\": \"string\",\n  \"idMerchantPayor\": 9482,\n  \"guid\": \"00000000-0000-0000-0000-000000000000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53289402-9937-4748-b0aa-76590d8b8f8f",
+              "name": "No MerchantPayor found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be retrieved."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "151844a8-d92d-4b78-a7b2-74ceae54228d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be retrieved."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4c65286-36dd-45d3-ab24-6bbaae1d8978",
+              "name": "User does not have access to merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be retrieved."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20208f8a-e24f-49f0-bdc0-a70e0cc0a23d",
+          "name": "Update Merchant Payor",
+          "request": {
+            "name": "Update Merchant Payor",
+            "description": {
+              "content": "Update a merchant payor by guid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Merchants",
+                ":merchantGuid",
+                "Payors",
+                ":payorGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantGuid",
+                  "description": "(Required) The client identifier assigned by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payorGuid",
+                  "description": "(Required) The guid of the merchant payor to be updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "payorId",
+                  "value": "<string>",
+                  "description": "(Required) The ID value to be assigned to the created Payor."
+                },
+                {
+                  "disabled": false,
+                  "key": "payorName",
+                  "value": "<string>",
+                  "description": "(Required) The Name to be assigned to the created Payor."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountType",
+                  "value": "<string>",
+                  "description": "(Required) '1' for Checking or '2' for Savings account."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountName",
+                  "value": "<string>",
+                  "description": "(Required) Name that appears on the bank account."
+                },
+                {
+                  "disabled": false,
+                  "key": "accountNumber",
+                  "value": "<string>",
+                  "description": "(Required) Numeric bank account number."
+                },
+                {
+                  "disabled": false,
+                  "key": "routingNumber",
+                  "value": "<string>",
+                  "description": "(Required) 9 digit numeric bank routing number."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1aef6fbd-8749-491e-814b-0948a0d7f77e",
+              "name": "NoContent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be updated."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f674a9b3-0ff6-4153-a366-3039a97885a3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be updated."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45b893bd-9f6b-420f-aecc-cae425b762ed",
+              "name": "User does not have access to merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be updated."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6e17966-1e1d-46be-9fc3-1e9a0b1ca90a",
+              "name": "A payor with this payorID already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be updated."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93542496-8c1c-425e-b8d8-7e3e562ab86f",
+          "name": "Delete Merchant Payor",
+          "request": {
+            "name": "Delete Merchant Payor",
+            "description": {
+              "content": "Delete a merchant payor by guid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Merchants",
+                ":merchantGuid",
+                "Payors",
+                ":payorGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "merchantGuid",
+                  "description": "(Required) The client identifier assigned by ConnexPay."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payorGuid",
+                  "description": "(Required) The guid of the merchant payor to be deleted."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "158d853a-93d4-4cce-9bc1-1dfb19803117",
+              "name": "No Merchant Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be deleted."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90208ead-80f9-4a7e-ba66-67274d52f969",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be deleted."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18283d40-5f7a-4254-9e8f-3e75808826b0",
+              "name": "User does not have access to merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Merchants",
+                    ":merchantGuid",
+                    "Payors",
+                    ":payorGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "merchantGuid",
+                      "description": "(Required) The client identifier assigned by ConnexPay."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payorGuid",
+                      "description": "(Required) The guid of the merchant payor to be deleted."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2d474fba-aeb4-4de8-aed7-81ae77d4fad4",
+    "name": "Purchases Merchant Payor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

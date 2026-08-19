@@ -1,0 +1,408 @@
+{
+  "item": [
+    {
+      "id": "2b66ca5f-3be5-47bc-9e65-4822d33538d1",
+      "name": "IssueACH",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7115e0a6-7124-421e-897d-fa1a36e8d55a",
+          "name": "Issue ACH",
+          "request": {
+            "name": "Issue ACH",
+            "description": {
+              "content": "This endpoint creates an ACH Credit payment. May be used by USD merchant accounts only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueACH"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"PayeeName\": \"<string>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"AccountHolder\": {\n    \"FirstName\": \"<string>\",\n    \"LastName\": \"<string>\",\n    \"MiddleName\": \"<string>\",\n    \"BusinessName\": \"Default\",\n    \"Email\": \"<string>\",\n    \"Phone\": \"<string>\",\n    \"Address\": {\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"ZipCode\": \"<string>\"\n    },\n    \"BankAccount\": {\n      \"RoutingNumber\": \"<string>\",\n      \"AccountNumber\": \"<string>\",\n      \"AccountType\": \"<string>\",\n      \"AccountHolderName\": \"<string>\"\n    }\n  },\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"StatementCompanyName\": \"Merchant Alias\",\n  \"Description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f384997c-eca8-4235-8945-7914c1d583fd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueACH"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"{{Merchant}}\",\n  \"amount\": 100,\n  \"payeeName\": \"Ultra Merchant LLC\",\n  \"description\": \"ACH Test\",\n  \"incomingTransactionCode\": \"{{IncomingTransactionCode}}\",\n  \"accountHolder\": {\n    \"firstName\": \"January\",\n    \"lastName\": \"Test\",\n    \"businessName\": \"Ultra Merchant LLC - Test ACH Payment 0209_02\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"111222\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"Test\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"merchantId\\\": \\\"1818a55e-8541-4bfe-a288-bad870afbe1d\\\",\\n    \\\"incomingTransactionCode\\\": \\\"511C171637487375170935405\\\",\\n    \\\"paymentId\\\": \\\"6bd251b4-8dfd-4478-9e2e-41390a59687f\\\",\\n    \\\"isCredit\\\": true,\\n    \\\"amount\\\": 100.0,\\n    \\\"payeeName\\\": \\\"Ultra Merchant LLC\\\",\\n    \\\"description\\\": \\\"ACH Test\\\",\\n    \\\"paymentStatus\\\": \\\"NotYetProcessed\\\",\\n    \\\"scheduleDate\\\": \\\"2021-02-12T00:00:00\\\",\\n    \\\"receiptDate\\\": \\\"2021-02-12T00:00:00\\\",\\n    \\\"processingDate\\\": null\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96067dd2-231b-4e2f-9549-c1a840ac74c9",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueACH"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"{{Merchant}}\",\n  \"amount\": 100,\n  \"payeeName\": \"Ultra Merchant LLC\",\n  \"description\": \"ACH Test\",\n  \"incomingTransactionCode\": \"{{IncomingTransactionCode}}\",\n  \"accountHolder\": {\n    \"firstName\": \"January\",\n    \"lastName\": \"Test\",\n    \"businessName\": \"Ultra Merchant LLC - Test ACH Payment 0209_02\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"111222\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"Test\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2238aabb-652f-41b5-a31b-ec5394954ebb",
+          "name": "Issue ACH Lite",
+          "request": {
+            "name": "Issue ACH Lite",
+            "description": {
+              "content": "This endpoint creates an ACH Credit payment that does not have an associated sale. This allows ConnexPay Lite clients to submit the issue payment call only. May be used by USD merchant accounts only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueACH",
+                "IssueLite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"PayeeName\": \"<string>\",\n  \"AccountHolder\": {\n    \"FirstName\": \"<string>\",\n    \"LastName\": \"<string>\",\n    \"MiddleName\": \"<string>\",\n    \"BusinessName\": \"Default\",\n    \"Email\": \"<string>\",\n    \"Phone\": \"<string>\",\n    \"Address\": {\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"ZipCode\": \"<string>\"\n    },\n    \"BankAccount\": {\n      \"RoutingNumber\": \"<string>\",\n      \"AccountNumber\": \"<string>\",\n      \"AccountType\": \"<string>\",\n      \"AccountHolderName\": \"<string>\"\n    }\n  },\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"StatementCompanyName\": \"Merchant Alias\",\n  \"Description\": \"<string>\",\n  \"OrderNumber\": \"7H2345\",\n  \"SequenceNumber\": \"<string>\",\n  \"AssociationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61863fe4-2c02-49c0-850b-2c74ee44941b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueACH",
+                    "IssueLite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"{{Merchant}}\",\n  \"amount\": 100,\n  \"payeeName\": \"Ultra Merchant LLC\",\n  \"description\": \"ACH Test\",\n  \"accountHolder\": {\n    \"firstName\": \"January\",\n    \"lastName\": \"Test\",\n    \"businessName\": \"Ultra Merchant LLC - Test ACH Payment 0209_02\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"111222\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"Test\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"merchantId\\\": \\\"1818a55e-8541-4bfe-a288-bad870afbe1d\\\",\\n    \\\"incomingTransactionCode\\\": \\\"511C171637487375170935405\\\",\\n    \\\"paymentId\\\": \\\"6bd251b4-8dfd-4478-9e2e-41390a59687f\\\",\\n    \\\"isCredit\\\": true,\\n    \\\"amount\\\": 100.0,\\n    \\\"payeeName\\\": \\\"Ultra Merchant LLC\\\",\\n    \\\"description\\\": \\\"ACH Test\\\",\\n    \\\"paymentStatus\\\": \\\"NotYetProcessed\\\",\\n    \\\"scheduleDate\\\": \\\"2021-02-12T00:00:00\\\",\\n    \\\"receiptDate\\\": \\\"2021-02-12T00:00:00\\\",\\n    \\\"processingDate\\\": null\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbaeed87-000f-4073-958d-883978d48043",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueACH",
+                    "IssueLite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"{{Merchant}}\",\n  \"amount\": 100,\n  \"payeeName\": \"Ultra Merchant LLC\",\n  \"description\": \"ACH Test\",\n  \"accountHolder\": {\n    \"firstName\": \"January\",\n    \"lastName\": \"Test\",\n    \"businessName\": \"Ultra Merchant LLC - Test ACH Payment 0209_02\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"111222\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"Test\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56123368-bcd5-4eab-913f-6eb56862e0d1",
+    "name": "purchases-api Issue ACH API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

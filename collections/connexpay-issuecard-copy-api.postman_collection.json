@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "ad7a9857-c772-43ed-b7b3-edb5a2ca8fe5",
+      "name": "IssueCard (COPY)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3bcd5720-c513-4a39-a2af-614dd39b68cd",
+          "name": "Issue Card (COPY)",
+          "request": {
+            "name": "Issue Card (COPY)",
+            "description": {
+              "content": "Use this endpoint to issue virtual cards associated with a credit or ACH sale. Do not use this endpoint if you fund your virtual cards from cash and therefor don't have an associated sale. If you aren't sure which Issuance API to use, please contact your client support representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard (COPY)"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"PurchaseType\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"currencyCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"{{OrderNumber}}\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationId\": \"<string>\",\n  \"CustomParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bca7ccc-9dbc-44e3-aedc-2bc1fdf324f4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard (COPY)"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"Payee\": \"Delta\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180.55,\n  \"ExpirationDate\": \"2024-12-30\",\n  \"TerminateDate\": \"2024-12-30\",\n  \"CurrencyCode\": \"USD\",\n  \"Region\": \"US\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"IncomingTransactionCode\": \"035U9MGQ5KF3XQAZQ00050000\",\n  \"SupplierID\": \"AA\",\n  \"NonDomesticSupplier\": true,\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n   \\\"cardHolder\\\":{\\n      \\\"cardHolderGuid\\\":\\\"a2b25172-c863-4325-b3b9-7e33cff2f8d1\\\",\\n      \\\"firstName\\\":\\\"Adam\\\",\\n      \\\"lastName\\\":\\\"Smith\\\",\\n      \\\"phone\\\":\\\"7411237489\\\",\\n      \\\"address1\\\":\\\"345 Main Road\\\",\\n      \\\"address2\\\":\\\"\\\",\\n      \\\"city\\\":\\\"Miami Beach\\\",\\n      \\\"state\\\":\\\"MI\\\",\\n      \\\"zipcode\\\":\\\"33109\\\",\\n      \\\"country\\\":\\\"MX\\\"\\n   },\\n   \\\"card\\\":{\\n      \\\"cardGuid\\\":\\\"ae17f687-8ba7-4502-b627-24fdf5e6f218\\\",\\n      \\\"accountNumber\\\":\\\"1111118971563394\\\",\\n      \\\"securityCode\\\":\\\"617\\\",\\n      \\\"amountLimit\\\":180.55,\\n      \\\"usageLimit\\\":10,\\n      \\\"expirationDate\\\":\\\"2024-12-30T18:59:59\\\",\\n      \\\"expiration\\\":\\\"1219\\\",\\n      \\\"terminateDate\\\": \\\"2024-12-30T23:59:59\\\",\\n      \\\"currencyCode\\\":\\\"USD\\\",\\n      \\\"firstSix\\\":\\\"111111\\\",\\n      \\\"lastFour\\\":\\\"3394\\\",\\n      \\\"nameLine1\\\":\\\"Adam\\\",\\n      \\\"nameLine2\\\":\\\"Smith\\\",\\n      \\\"status\\\":\\\"Card - Active\\\",\\n      \\\"sequenceNumber\\\": \\\"Sample-seq-1\\\",\\n      \\\"labelIds\\\": [\\n            889,\\n            992\\n        ],  \\n   },\\n   \\\"cardBrand\\\":\\\"MasterCard\\\",\\n   \\\"cardClass\\\":\\\"Commercial\\\",\\n   \\\"saleGuid\\\": \\\"d49e4881-34e5-461f-9d43-0efb0d94039d\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edb5e44a-5555-481d-9095-772d996d45b7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard (COPY)"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"Payee\": \"Delta\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180.55,\n  \"ExpirationDate\": \"2024-12-30\",\n  \"TerminateDate\": \"2024-12-30\",\n  \"CurrencyCode\": \"USD\",\n  \"Region\": \"US\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"IncomingTransactionCode\": \"035U9MGQ5KF3XQAZQ00050000\",\n  \"SupplierID\": \"AA\",\n  \"NonDomesticSupplier\": true,\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27c0428e-7ec3-4f3d-ac35-934dcada3df4",
+    "name": "purchases-api IssueCard (COPY) IssueCard (COPY) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

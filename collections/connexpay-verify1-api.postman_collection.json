@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "23937b5e-43c0-4e9e-a52c-5fba713960f5",
+      "name": "Verify1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4df5ddd7-c186-425d-b035-c6e15535d4a2",
+          "name": "post apiv1verify1",
+          "request": {
+            "name": "post apiv1verify1",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "verify1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Card\": {\n    \"CardNumber\": \"\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<string>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": \"false\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionId\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"BankAccount\": {\n    \"AccountType\": \"<string>\",\n    \"RoutingNumber\": \"<string>\",\n    \"AccountNumber\": \"<string>\",\n    \"NameOnAccount\": \"<string>\",\n    \"AccountAndRoutingNumberToken\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"DriversLicenseNumber\": \"<string>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed77160d-30f9-4604-aeee-329fe71b4e66",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "verify1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Card\": {\n    \"CardNumber\": \"\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<string>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": \"false\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionId\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"BankAccount\": {\n    \"AccountType\": \"<string>\",\n    \"RoutingNumber\": \"<string>\",\n    \"AccountNumber\": \"<string>\",\n    \"NameOnAccount\": \"<string>\",\n    \"AccountAndRoutingNumberToken\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"DriversLicenseNumber\": \"<string>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ee6b424-3d3e-47f1-b9be-60db1bf53f8c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "verify1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Card\": {\n    \"CardNumber\": \"\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<string>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": \"false\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionId\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"BankAccount\": {\n    \"AccountType\": \"<string>\",\n    \"RoutingNumber\": \"<string>\",\n    \"AccountNumber\": \"<string>\",\n    \"NameOnAccount\": \"<string>\",\n    \"AccountAndRoutingNumberToken\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"DriversLicenseNumber\": \"<string>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"9a72c29f-cc89-495c-a2b7-e25faeb850ac\",\n  \"status\": \"Transaction - Approved\",\n  \"timeStamp\": \"2022-10-26T09:56:43.07-05:00\",\n  \"deviceGuid\": \"0b7a9536-9fcd-4074-a841-d47eef77b81b\",\n  \"card\": {\n    \"first6\": \"411111\",\n    \"first4\": \"4111\",\n    \"last4\": \"1111\",\n    \"cardHolderName\": \"John Verify\",\n    \"cardType\": \"Visa\",\n    \"expirationDate\": \"2022-12\",\n    \"guid\": \"0ca56348-fa53-4ef0-87b0-3b3a096a629b\",\n    \"customer\": {\n      \"guid\": \"c5bf2c6f-3da9-4199-ba84-44208d61efad\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Verify\",\n      \"dateOfBirth\": \"1991-11-11T00:00:00\",\n      \"address1\": \"111 11th Av.\",\n      \"address2\": \"\",\n      \"zip\": \"10011\",\n      \"city\": \"New York\",\n      \"country\": \"US\",\n      \"phone\": \"9177563051\",\n      \"email\": \"JohnVerify@test.com\",\n      \"ssN4\": \"1210\",\n      \"driverLicenseNumber\": \"12345678\"\n    }\n  },\n  \"addressVerificationCode\": \"N\",\n  \"cvvVerificationCode\": \"M\",\n  \"processorStatusCode\": \"A0000\",\n  \"wasProcessed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "954604ac-d1a2-4054-8485-7506d29228df",
+    "name": "sales-api Verify1 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

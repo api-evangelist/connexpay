@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Purchases Stop Payment Service API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StopPaymentService",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stop Payment Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/StopPayment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a card to the black list. Need to provide the card guid and other mandatory fields applicable for VISA or MasterCard."
+        },
+        {
+          "info": {
+            "name": "Update or Remove Stop Payment Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/StopPayment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates or removes a card from the black list. Need to provide the card guid, internalStatus, and other mandatory fields applicable for VISA or MasterCard."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

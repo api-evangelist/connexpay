@@ -1,0 +1,302 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Connexpay Search API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Issued Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/IssuedCards/",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Number of page of the results. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Size of each page of the results. Default is 1000."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint searches for Issued Virtual Cards."
+        },
+        {
+          "info": {
+            "name": "Search Settlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/Settlements/",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Number of pages of results to return. Default is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Size of each page of results. Default is 1000."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint searches for Virtual Card Settlements."
+        },
+        {
+          "info": {
+            "name": "Available Funds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/AvailableFunds/:merchantGuid",
+            "params": [
+              {
+                "name": "MerchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "Merchant's Guid assigned by ConnexPay"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to pull details regarding your Available Funds like cash balance, Available to Authorize (ATA) or Available to Issue (ATI), and the details that make up the final number."
+        },
+        {
+          "info": {
+            "name": "Search sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/Sales/:exportable/:pageNumber/:pageSize",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "Exportable",
+                "value": "",
+                "type": "path",
+                "description": "True or False. It means if you want results exportable to CSV."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Int. Number of page of the results. Default is 1 (Page size default is 500)."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Int. Size of each page of the results. Default is 500."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint searches sales."
+        },
+        {
+          "info": {
+            "name": "Search voids",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/Voids/:exportable/:pageNumber/:pageSize",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "Exportable",
+                "value": "",
+                "type": "path",
+                "description": "True or False. It means if you want results exportable to CSV."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Int. Number of page of the results. Default is 1 (Page size default is 500)."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Int. Size of each page of the results. Default is 500."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint searches sales voids."
+        },
+        {
+          "info": {
+            "name": "Search returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/Returns/:exportable/:pageNumber/:pageSize",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "Exportable",
+                "value": "",
+                "type": "path",
+                "description": "True or False. It means if you want results exportable to CSV."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Int. Number of page of the results. Default is 1 (Page size default is 500)."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Int. Size of each page of the results. Default is 500."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint searches sale returns."
+        },
+        {
+          "info": {
+            "name": "Search verify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Search/Verify/:exportable/:pageNumber/:pageSize",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "Exportable",
+                "value": "",
+                "type": "path",
+                "description": "True or False. It means if you want results exportable to CSV."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Int. Number of page of the results. Default is 1 (Page size default is 500)."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "path",
+                "description": "Int. Size of each page of the results. Default is 500."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint search a verify."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

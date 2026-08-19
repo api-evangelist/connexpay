@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api 3 D Secure API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "3DSecure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "3D Secure Sales Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/3DSecure",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The 3D Secure 2.0 authentication process is initiated using the BrowserData parameter if you have interfaced with ConnexPay's solution. The transaction will be directed to Smart Adviser, which allows utilizes 3D secure rules for optimal performance.  Smart Advisor may allow the merchant to skip completing 3D authentication, which means the customer is less likely to abandon a transaction.  Exemptions to 3D secure authentication exist for transactions under a certain threshold, MOTO transactions "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

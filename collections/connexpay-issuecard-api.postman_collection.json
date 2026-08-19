@@ -1,0 +1,2915 @@
+{
+  "item": [
+    {
+      "id": "d7e91f95-c2a5-4c9c-91c9-96e48f108f24",
+      "name": "IssueCard",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "831c791e-74bc-4a48-99eb-e55e353c856b",
+          "name": "Issue Card",
+          "request": {
+            "name": "Issue Card",
+            "description": {
+              "content": "Use this endpoint to issue virtual cards associated with a credit or ACH sale. Do not use this endpoint if you fund your virtual cards from cash and therefore don't have an associated sale. If you aren't sure which Issuance API to use, please contact your client support representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"PurchaseType\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"<date>\",\n    \"PaymentInstruction\": \"<string>\",\n    \"ReferenceNumber\": \"<string>\",\n    \"Traveler\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\"\n    },\n    \"Company\": {\n      \"Name\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    },\n    \"Contact\": {\n      \"EmailAddress\": \"<string>\",\n      \"PhoneNumber\": \"<string>\",\n      \"InvoiceEmailAddress\": \"<string>\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    }\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationId\": \"<string>\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"EnableExactMatch\": \"false\",\n  \"WhitelistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"BlacklistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"avsCheck\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70887b44-b43a-4457-b2bf-c6e13fba3b39",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"M\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"5551234567\",\n  \"Address1\": \"123 Main Street\",\n  \"Address2\": \"Suite 100\",\n  \"City\": \"New York\",\n  \"State\": \"NY\",\n  \"Zipcode\": \"10001\",\n  \"Country\": \"US\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2026-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"IncomingTransactionCode\": \"035U9MGQ5KF3XQAZQ00050000\",\n  \"NonDomesticSupplier\": false,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"PayeeId\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"m.smith@example.com\",\n    \"MerchantPhoneNumber\": \"5551234567\",\n    \"EmailFrom\": \"noreply@example.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+15551234567\",\n    \"FaxFrom\": \"Example Corporation\"\n  },\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34a93b2c-8d51-417b-850b-476afc16ce84",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"M\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"5551234567\",\n  \"Address1\": \"123 Main Street\",\n  \"Address2\": \"Suite 100\",\n  \"City\": \"New York\",\n  \"State\": \"NY\",\n  \"Zipcode\": \"10001\",\n  \"Country\": \"US\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2026-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"IncomingTransactionCode\": \"035U9MGQ5KF3XQAZQ00050000\",\n  \"NonDomesticSupplier\": false,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"PayeeId\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"m.smith@example.com\",\n    \"MerchantPhoneNumber\": \"5551234567\",\n    \"EmailFrom\": \"noreply@example.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+15551234567\",\n    \"FaxFrom\": \"Example Corporation\"\n  },\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"a2b25172-c863-4325-b3b9-7e33cff2f8d1\",\n    \"firstName\": \"Adam\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"7411237489\",\n    \"address1\": \"345 Main Road\",\n    \"address2\": \"\",\n    \"city\": \"Miami Beach\",\n    \"state\": \"MI\",\n    \"zipcode\": \"33109\",\n    \"country\": \"MX\",\n    \"createNewCard\": false,\n    \"reissuePhysicalCard\": false\n  },\n  \"card\": {\n    \"cardGuid\": \"ae17f687-8ba7-4502-b627-24fdf5e6f218\",\n    \"accountNumber\": \"1111118971563394\",\n    \"securityCode\": \"617\",\n    \"amountLimit\": 1,\n    \"usageLimit\": 12,\n    \"limitWindow\": \"LIFETIME\",\n    \"expirationDate\": \"2026-12-30T18:59:59\",\n    \"expiration\": \"1219\",\n    \"terminateDate\": \"2026-12-30T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"111111\",\n    \"lastFour\": \"3394\",\n    \"nameLine1\": \"Adam\",\n    \"nameLine2\": \"Smith\",\n    \"status\": \"Card - Active\",\n    \"customerServicePhoneNumber\": \"1-612-601-0914\",\n    \"sequenceNumber\": \"Sample-seq-1\",\n    \"midWhitelist\": [],\n    \"midBlacklist\": [],\n    \"associationId\": \"null\",\n    \"gatewayMerchantGuid\": \"3b47973a-b0c1-4bcd-ba34-1514526d99cd\",\n    \"availableBalance\": 1,\n    \"isPhysical\": false,\n    \"isLodged\": false,\n    \"fingerprint\": \"941A49226BB191C7B623268B22C94300\",\n    \"customerId\": null,\n    \"supplierId\": \"AA\",\n    \"issuerId\": 3,\n    \"country\": \"\",\n    \"cardBin\": \"44325235\",\n    \"cardClass\": \"CommercialPrepaid\",\n    \"toleranceAmount\": null,\n    \"isGLobal\": false,\n    \"hasBooking\": false,\n    \"cardHolder\": null,\n    \"outgoingTransactionCode\": null,\n    \"createdBy\": null,\n    \"isMaestro\": false,\n    \"whitelistCountries\": null,\n    \"blacklistCountries\": null,\n    \"enableExactMatch\": false,\n    \"avsCheck\": false,\n    \"cardImageKey\": null,\n    \"labelIds\": [\n      889,\n      992\n    ]\n  },\n  \"cardBrand\": \"MasterCard\",\n  \"cardClass\": \"Commercial\",\n  \"saleGuid\": \"d49e4881-34e5-461f-9d43-0efb0d94039d\",\n  \"incomingTransactionCode\": \"6560027639095375972800239\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85ca14bf-e2b6-41c6-a53b-21f1804b811a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"M\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"5551234567\",\n  \"Address1\": \"123 Main Street\",\n  \"Address2\": \"Suite 100\",\n  \"City\": \"New York\",\n  \"State\": \"NY\",\n  \"Zipcode\": \"10001\",\n  \"Country\": \"US\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2026-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"IncomingTransactionCode\": \"035U9MGQ5KF3XQAZQ00050000\",\n  \"NonDomesticSupplier\": false,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"PayeeId\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"m.smith@example.com\",\n    \"MerchantPhoneNumber\": \"5551234567\",\n    \"EmailFrom\": \"noreply@example.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+15551234567\",\n    \"FaxFrom\": \"Example Corporation\"\n  },\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ce3b001-4253-4fff-8a45-cceb607f52ec",
+          "name": "Issue Lite",
+          "request": {
+            "name": "Issue Lite",
+            "description": {
+              "content": "For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "IssueLite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"MerchantGuid\",\n  \"FirstName\": \"Jane\",\n  \"LastName\": \"Doe\",\n  \"AmountLimit\": 100,\n  \"PurchaseType\": \"01\",\n  \"Phone\": \"1234567890\",\n  \"Address1\": \"123 Test Street\",\n  \"Address2\": \"Suite 185\",\n  \"City\": \"Alpharetta\",\n  \"State\": \"GA\",\n  \"ZipCode\": \"30004\",\n  \"Country\": \"US\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"987654321\",\n  \"PayeeId\": \"DL\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"OrderNumber\": \"1234A\",\n  \"CustomerID\": \"<string>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"ActivationDate\": \"<date>\",\n  \"AssociationId\": \"1234\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"EnableExactMatch\": \"false\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cee3e5b5-b48c-4d7c-bc2b-0eb8ae8ce366",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "IssueLite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"Payee\": \"Delta\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2024-12-30\",\n  \"TerminateDate\": \"2023-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"NonDomesticSupplier\": true,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"SupplierID\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"a2b25172-c863-4325-b3b9-7e33cff2f8d1\",\n    \"firstName\": \"Adam\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"7411237489\",\n    \"address1\": \"345 Main Road\",\n    \"address2\": \"\",\n    \"city\": \"Miami Beach\",\n    \"state\": \"MI\",\n    \"zipcode\": \"33109\",\n    \"country\": \"MX\"\n  },\n  \"card\": {\n    \"cardGuid\": \"ae17f687-8ba7-4502-b627-24fdf5e6f218\",\n    \"accountNumber\": \"1111118971563394\",\n    \"securityCode\": \"617\",\n    \"amountLimit\": 180,\n    \"usageLimit\": 10,\n    \"expirationDate\": \"2024-12-30T18:59:59\",\n    \"expiration\": \"1219\",\n    \"terminateDate\": \"2023-12-30T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"111111\",\n    \"lastFour\": \"3394\",\n    \"nameLine1\": \"Adam\",\n    \"nameLine2\": \"Smith\",\n    \"status\": \"Card - Active\",\n    \"sequenceNumber\": \"Sample-seq-1\",\n    \"labelIds\": [\n      889,\n      992\n    ],\n    \"enableExactMatch\": false\n  },\n  \"cardBrand\": \"MasterCard\",\n  \"cardClass\": \"Commercial\",\n  \"orderNumber\": \"OrderNumber-1\",\n  \"customerID\": \"CustomerID-1\",\n  \"saleGuid\": \"d49e4881-34e5-461f-9d43-0efb0d94039d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12a7bd1b-ca49-4521-bd28-56e14b807e02",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "IssueLite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"Payee\": \"Delta\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2024-12-30\",\n  \"TerminateDate\": \"2023-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"NonDomesticSupplier\": true,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"SupplierID\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab6ad1c3-a6b6-4e26-be84-e31c24c4a0f6",
+          "name": "Issue Lodged Card",
+          "request": {
+            "name": "Issue Lodged Card",
+            "description": {
+              "content": "Use this endpoint to create a Lodged Card",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "LodgedCard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"LimitWindow\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationId\": \"<string>\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"WhitelistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"BlacklistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"avsCheck\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f0ed5cb-e248-43fe-b152-8ac9e5345e1f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "LodgedCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"LimitWindow\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationId\": \"<string>\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"WhitelistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"BlacklistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"avsCheck\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cardHolder\\\": {\\n        \\\"cardHolderGuid\\\": \\\"b6557b9b-d0c5-49fd-a080-2be59a36ddf2\\\",\\n        \\\"firstName\\\": \\\"Ping\\\",\\n        \\\"lastName\\\": \\\"Test\\\",\\n        \\\"phone\\\": \\\"5162532222\\\",\\n        \\\"address1\\\": \\\"107 Techlogy Park\\\",\\n        \\\"address2\\\": \\\"\\\",\\n        \\\"city\\\": \\\"PT Corners\\\",\\n        \\\"state\\\": \\\"NY\\\",\\n        \\\"zipcode\\\": \\\"30092\\\",\\n        \\\"country\\\": \\\"US\\\"\\n    },\\n    \\\"card\\\": {\\n        \\\"cardGuid\\\": \\\"c67514a0-3110-4731-98b0-38858f282ade\\\",\\n        \\\"accountNumber\\\": \\\"1111117027148580\\\",\\n        \\\"securityCode\\\": \\\"818\\\",\\n        \\\"amountLimit\\\": 3.22,\\n        \\\"usageLimit\\\": 1,\\n        \\\"limitWindow\\\": \\\"DAY\\\", /* Day, Week, Month, Lifetime*/\\n        \\\"expirationDate\\\": \\\"2024-12-30T23:59:59\\\",\\n        \\\"expiration\\\": \\\"0624\\\",\\n        \\\"currencyCode\\\": \\\"USD\\\",\\n        \\\"firstSix\\\": \\\"111111\\\",\\n        \\\"lastFour\\\": \\\"8580\\\",\\n        \\\"nameLine1\\\": \\\"Ping\\\",\\n        \\\"nameLine2\\\": \\\"Test\\\",\\n        \\\"status\\\": \\\"Card - Active\\\",\\n        \\\"midWhitelist\\\": [\\n            \\\"111\\\",\\n            \\\"222\\\",\\n            \\\"333\\\"\\n        ],\\n        \\\"midBlacklist\\\": [\\n            \\\"777\\\"\\n        ]\\n    },\\n    \\\"cardBrand\\\": \\\"Visa\\\",\\n    \\\"cardClass\\\": \\\"Commercial\\\",\\n    \\\"saleGuid\\\": \\\"d49e4881-34e5-461f-9d43-0efb0d94039d\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a39c8cdf-6c65-4504-8252-fea91a898407",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "LodgedCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"LimitWindow\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"Phone\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"CustomerID\": \"<string>\",\n  \"AssociationId\": \"<string>\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"WhitelistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"BlacklistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"avsCheck\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dace830c-629b-4eb0-9a28-54ed62cc25fd",
+          "name": "Update Card",
+          "request": {
+            "name": "Update Card",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identififer for the Card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"PurchaseType\": \"<string>\",\n  \"UsageLimit\": \"<integer>\",\n  \"Activated\": \"<boolean>\",\n  \"AssociationId\": \"<string>\",\n  \"TerminateDate\": \"<date>\",\n  \"AmountLimit\": \"<float>\",\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"CustomerId\": \"<string>\",\n  \"avsCheck\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38ade998-0d72-41a3-872a-74510328313c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identififer for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"PurchaseType\": \"01\",\n  \"UsageLimit\": 10,\n  \"AssociationId\": \"Test 1\",\n  \"TerminateDate\": \"2027-12-30\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"card\": {\n    \"cardGuid\": \"22724a6c-bf3e-409b-9593-c74648506aa7\",\n    \"amountLimit\": 13,\n    \"usageLimit\": 22,\n    \"limitWindow\": \"LIFETIME\",\n    \"expirationDate\": \"2026-12-19T00:00:00\",\n    \"expiration\": \"1222\",\n    \"firstSix\": \"499999\",\n    \"lastFour\": \"7354\",\n    \"nameLine1\": \"Jim\",\n    \"nameLine2\": \"Rayeek\",\n    \"status\": \"Card - Active\",\n    \"cardType\": \"Visa\",\n    \"associationId\": \"Test\",\n    \"clientProgram\": \"31\"\n  },\n  \"mccGroupName\": \"Hotels and Resorts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b332de55-df4e-4bc3-86b2-4bc9a818e038",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identififer for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"PurchaseType\": \"01\",\n  \"UsageLimit\": 10,\n  \"AssociationId\": \"Test 1\",\n  \"TerminateDate\": \"2027-12-30\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac5c15fe-8d31-4aa6-9e2d-0f3b62f9f657",
+          "name": "Update Lodged Card",
+          "request": {
+            "name": "Update Lodged Card",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "LodgedCard",
+                ":CardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identifier for the Card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"UsageLimit\": \"<long>\",\n  \"AmountLimit\": \"<float>\",\n  \"LimitWindow\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"Activated\": \"<boolean>\",\n  \"AssociationId\": \"<string>\",\n  \"TerminateDate\": \"<date>\",\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"avsCheck\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5834b5c2-ad33-4769-8764-fac63ea90fee",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "LodgedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"UsageLimit\": 100,\n  \"AmountLimit\": 1004,\n  \"LimitWindow\": \"MONTH\",\n  \"PurchaseType\": \"01\",\n  \"MIDWhiteList\": [\n    \"1210000163087898\",\n    \"1210000163083578\"\n  ],\n  \"MIDBlackList\": [\n    \"1210000163083918\"\n  ],\n  \"Activated\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"card\\\": {\\n        \\\"cardGuid\\\": \\\"0de2e407-5509-40c0-8b59-44e1b2b81f23\\\",\\n        \\\"amountLimit\\\": 1004.0,\\n        \\\"usageLimit\\\": -1,\\n        \\\"limitWindow\\\": \\\"MONTH\\\",\\n        \\\"expirationDate\\\": \\\"2021-12-30T23:59:59\\\",\\n        \\\"expiration\\\": \\\"1221\\\",\\n        \\\"firstSix\\\": \\\"111111\\\",\\n        \\\"lastFour\\\": \\\"0033\\\",\\n        \\\"nameLine1\\\": \\\"Monim\\\",\\n        \\\"nameLine2\\\": \\\"Lodged\\\",\\n        \\\"status\\\": \\\"Card - Active\\\",\\n        \\\"cardType\\\": \\\"Other\\\",\\n        \\\"midWhitelist\\\": [\\n            \\\"1210000163087898\\\",\\n            \\\"1210000163083578\\\"\\n        ],\\n        \\\"midBlacklist\\\": [\\n            \\\"1210000163083918\\\"\\n        ]\\n    },\\n    \\\"mccGroupName\\\": \\\"Airline\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a883570-d7fd-47ad-96a9-46bb48f6d2c7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "LodgedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"UsageLimit\": 100,\n  \"AmountLimit\": 1004,\n  \"LimitWindow\": \"MONTH\",\n  \"PurchaseType\": \"01\",\n  \"MIDWhiteList\": [\n    \"1210000163087898\",\n    \"1210000163083578\"\n  ],\n  \"MIDBlackList\": [\n    \"1210000163083918\"\n  ],\n  \"Activated\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd94114f-84f1-4fcb-8344-709b3eb619ba",
+          "name": "Update Delayed Activation VCC (old)",
+          "request": {
+            "name": "Update Delayed Activation VCC (old)",
+            "description": {
+              "content": "Use this endpoint to update the amount limit on a virtual card associated with a delayed activation sale. If there is not a delayed activation sale, use the \"UpdateDelayedCard\" endpoint found here: https://docs.connexpay.com/reference/update-delayed-card",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "UpdateDelayedActivationVc",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identifier for the Card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ReloadAmount\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9698f82f-e637-47ec-841e-c4a67dec12fa",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "UpdateDelayedActivationVc",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ReloadAmount\": 198\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n        \\\"card\\\": {\\n            \\\"cardGuid\\\": \\\"4fee6de1-ec49-4b4a-8bf5-d1d13b580965\\\",\\n            \\\"amountLimit\\\": 198.00,\\n            \\\"expirationDate\\\": \\\"2019-12-30T18:59:59\\\",\\n            \\\"expiration\\\": \\\"1219\\\",\\n            \\\"firstSix\\\": \\\"111111\\\",\\n            \\\"lastFour\\\": \\\"3647\\\",\\n            \\\"nameLine1\\\": \\\"Adam\\\",\\n            \\\"nameLine2\\\": \\\"Smith\\\",\\n            \\\"status\\\": \\\"Card - Active, but delayed Activation Auth Limit of $1.0 applied.\\\"\\n            \\\"activationDate\\\": \\\"9/2/2020\\\",                \\n        },\\n        \\\"mccGroupName\\\": \\\"Airline\\\"\\n    }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e8ac3f4-9c3b-4fd1-86bc-5e54d365a401",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "UpdateDelayedActivationVc",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ReloadAmount\": 198\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21e9c420-36f6-48c2-b5a8-6ea1513b4fbe",
+          "name": "Cancel Card",
+          "request": {
+            "name": "Cancel Card",
+            "description": {
+              "content": "This endpoint should be called when you want to completely cancel a virtual card you created using the IssueLite endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "Cancel",
+                ":CardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75918494-5573-440d-a1fd-6a591aba7299",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "Cancel",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cardHolder\\\": {\\n        \\\"cardHolderGuid\\\": \\\"2eda6839-4e8a-49eb-9079-18f829585e50\\\",\\n        \\\"firstName\\\": \\\"Ping\\\",\\n        \\\"lastName\\\": \\\"Lite6\\\",\\n        \\\"phone\\\": \\\"1231231234\\\",\\n        \\\"address1\\\": \\\"107 Techlogy Park\\\",\\n        \\\"address2\\\": \\\"\\\",\\n        \\\"city\\\": \\\"PT Corners\\\",\\n        \\\"zipcode\\\": \\\"30092\\\"\\n    },\\n    \\\"card\\\": {\\n        \\\"cardGuid\\\": \\\"2cf4bdbf-48c1-4e23-9ae3-4d5236a8b917\\\",\\n        \\\"amountLimit\\\": 12.07,\\n        \\\"usageLimit\\\": 2,\\n        \\\"limitWindow\\\": \\\"LIFETIME\\\",\\n        \\\"expirationDate\\\": \\\"2021-11-04T00:00:00\\\",\\n        \\\"expiration\\\": \\\"1222\\\",\\n        \\\"firstSix\\\": \\\"111111\\\",\\n        \\\"lastFour\\\": \\\"3349\\\",\\n        \\\"nameLine1\\\": \\\"Ping\\\",\\n        \\\"nameLine2\\\": \\\"Lite6\\\",\\n        \\\"status\\\": \\\"Card - Deactivated\\\",\\n        \\\"cardType\\\": \\\"Other\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b34ee25-339f-4a1c-b759-b81f77e801ec",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "Cancel",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3a34289-2088-47af-9d49-38d600496e05",
+          "name": "Resend Transmission",
+          "request": {
+            "name": "Resend Transmission",
+            "description": {
+              "content": "This endpoint resends payment information to recipient. Or returns a URL you can use within your application to direct a user to a visual representation of the virtual card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "SendPaymentInfo",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identififer for the Card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"TransmissionMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"EmailRecipient\": \"<string>\",\n  \"MerchantPhoneNumber\": \"<string>\",\n  \"EmailFrom\": \"<string>\",\n  \"RecipientName\": \"<string>\",\n  \"Subject\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"DaysToExpire\": \"<integer>\",\n  \"EmailTemplateName\": \"<string>\",\n  \"FaxFrom\": \"<string>\",\n  \"FaxRecipient\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe244ffb-22a0-4955-b0fe-0f002132d878",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "SendPaymentInfo",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identififer for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"TransmissionMethods\": [\n    \"Email\"\n  ],\n  \"EmailRecipient\": \"emailTo@gmail.com\",\n  \"MerchantPhoneNumber\": \"+7411237489\",\n  \"EmailFrom\": \"emailFrom@gmail.com\",\n  \"RecipientName\": \"Smith\",\n  \"Subject\": \"Card Information\",\n  \"Message\": \"here is your card information...\",\n  \"DaysToExpire\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"linkToCard\\\": \\\"https://sandboxpurchasesapi.connexpay.com//cards?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJDYXJkR3VpZCI6IjBmZTI4M2MwLTc2MjYtNGVhNS1iMWUwLTc1MTNkMjk3MTY1YiIsIk1lcmNoYW50UGhvbmUiOiI1MTYyNTMyMjIyIiwibmJmIjoxNjE5NjA2NzY0LCJleHAiOjE2MTk2OTMxNjQsImlhdCI6MTYxOTYwNjc2NCwiaXNzIjoiaHR0cHM6Ly9QdXJjaGFzZXMuY29ubmV4cGF5LmNvbS8iLCJhdWQiOiJNZXJjaGFudHMifQ.QKoqNWksbvq4VUzArS0dCeG67rFOPZb8k8Yvj11eF2c\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c620c497-b9ae-424f-a75b-ac4b8cefb911",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "SendPaymentInfo",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identififer for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"TransmissionMethods\": [\n    \"Email\"\n  ],\n  \"EmailRecipient\": \"emailTo@gmail.com\",\n  \"MerchantPhoneNumber\": \"+7411237489\",\n  \"EmailFrom\": \"emailFrom@gmail.com\",\n  \"RecipientName\": \"Smith\",\n  \"Subject\": \"Card Information\",\n  \"Message\": \"here is your card information...\",\n  \"DaysToExpire\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4df783c-7542-45d4-8cfb-67960ad98abd",
+          "name": "Update Virtual Card with Delayed Activation",
+          "request": {
+            "name": "Update Virtual Card with Delayed Activation",
+            "description": {
+              "content": "Request this endpoint to update the activation date or card limit of a virtual card with a future activation date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "UpdateDelayedCard",
+                ":CardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identifier for the Card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"ActivationDate\": \"<date>\",\n  \"AmountLimit\": \"<float>\",\n  \"TerminateDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "605b3118-f5f4-4011-abbc-14ea89365ed8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "UpdateDelayedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"ActivationDate\": \"<date>\",\n  \"AmountLimit\": \"<float>\",\n  \"TerminateDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cardHolder\\\": {\\n        \\\"cardHolderGuid\\\": \\\"f1bcad52-4507-4333-a74e-dbc5367982ab\\\",\\n        \\\"firstName\\\": \\\"Ping\\\",\\n        \\\"lastName\\\": \\\"Lite\\\",\\n        \\\"phone\\\": \\\"1231231234\\\",\\n        \\\"address1\\\": \\\"107 Techlogy Park\\\",\\n        \\\"address2\\\": \\\"\\\",\\n        \\\"city\\\": \\\"PT Corners\\\",\\n        \\\"zipcode\\\": \\\"30092\\\"\\n    },\\n    \\\"card\\\": {\\n        \\\"cardGuid\\\": \\\"1c2a5ec3-67fe-4f2d-984b-fa8acb66a2f3\\\",\\n        \\\"amountLimit\\\": 22,\\n        \\\"usageLimit\\\": 2,\\n        \\\"limitWindow\\\": \\\"LIFETIME\\\",\\n        \\\"expirationDate\\\": \\\"2022-12-24T23:59:59\\\",\\n        \\\"expiration\\\": \\\"1222\\\",\\n        \\\"firstSix\\\": \\\"111111\\\",\\n        \\\"lastFour\\\": \\\"0717\\\",\\n        \\\"nameLine1\\\": \\\"Ping\\\",\\n        \\\"nameLine2\\\": \\\"Lite\\\",\\n        \\\"status\\\": \\\"Card - Active, but delayed Activation Auth Limit of $1.0 applied.\\\",\\n        \\\"activationDate\\\": \\\"12/3/2021\\\",\\n        \\\"cardType\\\": \\\"Other\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93259e28-0bf5-4d7c-b536-950d6f531b79",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "UpdateDelayedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"ActivationDate\": \"<date>\",\n  \"AmountLimit\": \"<float>\",\n  \"TerminateDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "babc82ec-50ce-4417-80be-cad2b791b7f0",
+          "name": "Activate Virtual Card with Delayed Activation",
+          "request": {
+            "name": "Activate Virtual Card with Delayed Activation",
+            "description": {
+              "content": "Use this API to immediately activate a Virtual Card with a delayed activation date",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "ActivateDelayedCard",
+                ":CardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36621df8-9c3a-4f47-91e6-c029eb24b5b0",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "ActivateDelayedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"cardHolder\\\": {\\n        \\\"cardHolderGuid\\\": \\\"f1bcad52-4507-4333-a74e-dbc5367982ab\\\",\\n        \\\"firstName\\\": \\\"Ping\\\",\\n        \\\"lastName\\\": \\\"Lite\\\",\\n        \\\"phone\\\": \\\"1231231234\\\",\\n        \\\"address1\\\": \\\"107 Techlogy Park\\\",\\n        \\\"address2\\\": \\\"\\\",\\n        \\\"city\\\": \\\"PT Corners\\\",\\n        \\\"zipcode\\\": \\\"30092\\\"\\n    },\\n    \\\"card\\\": {\\n        \\\"cardGuid\\\": \\\"1c2a5ec3-67fe-4f2d-984b-fa8acb66a2f3\\\",\\n        \\\"amountLimit\\\": 22,\\n        \\\"usageLimit\\\": 2,\\n        \\\"limitWindow\\\": \\\"LIFETIME\\\",\\n        \\\"expirationDate\\\": \\\"2022-12-24T23:59:59\\\",\\n        \\\"expiration\\\": \\\"1222\\\",\\n        \\\"firstSix\\\": \\\"111111\\\",\\n        \\\"lastFour\\\": \\\"0717\\\",\\n        \\\"nameLine1\\\": \\\"Ping\\\",\\n        \\\"nameLine2\\\": \\\"Lite\\\",\\n        \\\"status\\\": \\\"Card - Active\\\",\\n        \\\"cardType\\\": \\\"Other\\\"\\n    }\\n}\\n\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25537c31-19ae-468b-9c8a-bf5a074e286c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "ActivateDelayedCard",
+                    ":CardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30233d9f-c98b-4ecb-90cd-1b8626813b45",
+          "name": "Return Active BIN List",
+          "request": {
+            "name": "Return Active BIN List",
+            "description": {
+              "content": "This endpoint returns a list of all active BINs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "GetActiveBins",
+                ":MerchantGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f746f939-5faf-4481-8c16-dd7f6651c7f3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "GetActiveBins",
+                    ":MerchantGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"bankId\": 4,\n    \"cardBin\": \"411111\",\n    \"cardClass\": \"Commercial\",\n    \"currency\": \"USD\",\n    \"maxSpend\": 500000,\n    \"isGlobal\": false,\n    \"globalLimitWindow\": \"UNKNOWN\",\n    \"c3DSEnabled\": true,\n    \"isLodgedCardBin\": false,\n    \"isPrepaid\": \"Credit\"\n  },\n  {\n    \"bankId\": 4,\n    \"cardBin\": \"554866\",\n    \"cardClass\": \"Commercial\",\n    \"currency\": \"CAD\",\n    \"maxSpend\": 50000,\n    \"isGlobal\": true,\n    \"globalLimitWindow\": \"UNKNOWN\",\n    \"c3DSEnabled\": true,\n    \"isLodgedCardBin\": true,\n    \"isPrepaid\": \"Prepaid\"\n  },\n  {\n    \"bankId\": 4,\n    \"cardBin\": \"499999\",\n    \"cardClass\": \"Commercial\",\n    \"currency\": \"USD\",\n    \"maxSpend\": 10000,\n    \"isGlobal\": false,\n    \"globalLimitWindow\": \"UNKNOWN\",\n    \"c3DSEnabled\": true,\n    \"isLodgedCardBin\": true,\n    \"isPrepaid\": \"Credit\"\n  },\n  {\n    \"bankId\": 4,\n    \"cardBin\": \"554866\",\n    \"cardClass\": \"Consumer\",\n    \"currency\": \"USD\",\n    \"maxSpend\": 10000,\n    \"isGlobal\": false,\n    \"globalLimitWindow\": \"UNKNOWN\",\n    \"c3DSEnabled\": true,\n    \"isLodgedCardBin\": true,\n    \"isPrepaid\": \"Credit\"\n  },\n  {\n    \"bankId\": 4,\n    \"cardBin\": \"554866\",\n    \"cardClass\": \"Commercial\",\n    \"currency\": \"CAD\",\n    \"maxSpend\": 10000,\n    \"isGlobal\": false,\n    \"globalLimitWindow\": \"UNKNOWN\",\n    \"c3DSEnabled\": true,\n    \"isLodgedCardBin\": true,\n    \"isPrepaid\": \"Credit\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f564b126-d3da-4934-933d-c9cca8403d5a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "GetActiveBins",
+                    ":MerchantGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df089d5b-2a2c-41c3-a42d-d293c8149f94",
+          "name": "Issue Physical Card",
+          "request": {
+            "name": "Issue Physical Card",
+            "description": {
+              "content": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "PhysicalCard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"AmountLimit\": \"<float>\",\n  \"PhysicalCardFulfillment\": {\n    \"PhysicalCardShipping\": {\n      \"Zipcode\": \"<string>\",\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Phone\": \"<string>\"\n    },\n    \"ShippingMethod\": \"<string>\"\n  },\n  \"MerchantGuid\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"DateOfBirth\": \"<date>\",\n  \"LimitWindow\": \"<string>\",\n  \"Phone\": \"<integer>\",\n  \"Address2\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"OutcomingTransactionCode\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"SequenceNumber\": \"<string>\",\n  \"AvsCheck\": \"<boolean>\",\n  \"TerminateDate\": \"<dateTime>\",\n  \"ActivationDate\": \"<dateTime>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"MidWhitelist\": \"<string>\",\n  \"MidBlacklist\": \"<string>\",\n  \"LabelIds\": \"<integer>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cfe86fe-817f-4262-b8be-296a67f8e2aa",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "PhysicalCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"fad4b188-75f5-4e9c-9398-4c4ab5798e38\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"phone\": \"3121231234\",\n    \"address1\": \"1st Street\",\n    \"address2\": \"Unit 29\",\n    \"city\": \"Alpharetta\",\n    \"state\": \"GA\",\n    \"zipcode\": \"30022\",\n    \"country\": \"US\"\n  },\n  \"card\": {\n    \"cardGuid\": \"792e5678-1d2d-4841-b0c4-6a052fc0c012\",\n    \"accountNumber\": \"44111101122112222\",\n    \"amountLimit\": 5.03,\n    \"usageLimit\": 2,\n    \"limitWindow\": \"DAY\",\n    \"expirationDate\": \"2028-11-30T23:59:59Z\",\n    \"expiration\": \"1128\",\n    \"terminateDate\": \"2027-10-26T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"441111\",\n    \"lastFour\": \"2222\",\n    \"nameLine1\": \"Test\",\n    \"nameLine2\": \"User\",\n    \"status\": \"Card - Unactivated\",\n    \"customerServicePhoneNumber\": \"1-612-601-0914\",\n    \"midWhitelist\": [\n      \"675957401524052\"\n    ],\n    \"midBlacklist\": [\n      \"670414901524053\"\n    ],\n    \"labelIds\": [\n      124996\n    ],\n    \"gatewayMerchantGuid\": \"340fc848-4495-4682-aaee-920c4339526b\",\n    \"availableBalance\": 5.03,\n    \"isPhysical\": true,\n    \"isLodged\": false,\n    \"fingerprint\": \"0C77AA9C0E1E67E0B1B1A09E2C478F10\",\n    \"customerId\": null,\n    \"supplierId\": null,\n    \"issuerId\": 3,\n    \"country\": \"\",\n    \"cardBin\": \"550000\",\n    \"cardClass\": \"CommercialCredit\",\n    \"toleranceAmount\": null,\n    \"isGlobal\": false,\n    \"physicalCardFulfillment\": {\n      \"nameLine1\": \"Shawn\",\n      \"nameLine2\": \"Test\",\n      \"physicalCardShipping\": {\n        \"address1\": \"1st Street\",\n        \"address2\": \"Apt S\",\n        \"city\": \"Abville\",\n        \"state\": \"GA\",\n        \"country\": \"US\",\n        \"zipcode\": \"12345\",\n        \"firstName\": \"Pat\",\n        \"lastName\": \"Card\"\n      },\n      \"shippingMethod\": \"USPSPri\"\n    },\n    \"cardHolder\": null,\n    \"outgoingTransactionCode\": null,\n    \"createdBy\": null,\n    \"isMaestro\": false,\n    \"whitelistCountries\": null,\n    \"blacklistCountries\": null,\n    \"enableExactMatch\": false,\n    \"avsCheck\": false,\n    \"cardImageKey\": null\n  },\n  \"cardBrand\": \"Visa\",\n  \"cardClass\": \"CommercialCredit\",\n  \"orderNumber\": \"Test-Physical-Card\",\n  \"saleGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"incomingTransactionCode\": \"532FE4B638983186015474907\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "051d662d-74c7-4386-ac6e-9ac8ea24aa16",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "PhysicalCard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44f2a00b-979c-4d44-8752-fefad107b139",
+          "name": "Copy of Issue Physical Card",
+          "request": {
+            "name": "Copy of Issue Physical Card",
+            "description": {
+              "content": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "ActivatePhysicalCard",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardGuid",
+                  "description": "(Required) Global Unique Identifier of the Physical Card to be activated. "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc63e078-be0d-4cf2-94ee-024bf4fa69cd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "ActivatePhysicalCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardGuid",
+                      "description": "(Required) Global Unique Identifier of the Physical Card to be activated. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Card activated successfully.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a02dec7d-86fb-4df0-8b7c-34d80a61578d",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "ActivatePhysicalCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardGuid",
+                      "description": "(Required) Global Unique Identifier of the Physical Card to be activated. "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Card fb4f44d4-ed7d-4e89-9467-67fb6670f9de is already active.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c14245f0-81a8-43d0-9506-8ce4ffeb1323",
+          "name": "Copy of Issue Physical Card",
+          "request": {
+            "name": "Copy of Issue Physical Card",
+            "description": {
+              "content": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "PhysicalCard-1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"AmountLimit\": \"<float>\",\n  \"PhysicalCardFulfillment\": {\n    \"PhysicalCardShipping\": {\n      \"Zipcode\": \"<string>\",\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Phone\": \"<string>\"\n    },\n    \"ShippingMethod\": \"<string>\"\n  },\n  \"MerchantGuid\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"DateOfBirth\": \"<date>\",\n  \"LimitWindow\": \"<string>\",\n  \"Phone\": \"<integer>\",\n  \"Address2\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"Mcc\": \"<string>\",\n  \"IncomingTransactionCode\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"OutcomingTransactionCode\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"PayeeId\": \"<string>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"SequenceNumber\": \"<string>\",\n  \"AvsCheck\": \"<boolean>\",\n  \"TerminateDate\": \"<dateTime>\",\n  \"ActivationDate\": \"<dateTime>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"MidWhitelist\": \"<string>\",\n  \"MidBlacklist\": \"<string>\",\n  \"LabelIds\": \"<integer>\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1411553c-648c-459e-bc5d-24abcaaccf84",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "PhysicalCard-1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"fad4b188-75f5-4e9c-9398-4c4ab5798e38\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"phone\": \"3121231234\",\n    \"address1\": \"1st Street\",\n    \"address2\": \"Unit 29\",\n    \"city\": \"Alpharetta\",\n    \"state\": \"GA\",\n    \"zipcode\": \"30022\",\n    \"country\": \"US\"\n  },\n  \"card\": {\n    \"cardGuid\": \"792e5678-1d2d-4841-b0c4-6a052fc0c012\",\n    \"accountNumber\": \"44111101122112222\",\n    \"amountLimit\": 5.03,\n    \"usageLimit\": 2,\n    \"limitWindow\": \"DAY\",\n    \"expirationDate\": \"2028-11-30T23:59:59Z\",\n    \"expiration\": \"1128\",\n    \"terminateDate\": \"2027-10-26T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"441111\",\n    \"lastFour\": \"2222\",\n    \"nameLine1\": \"Test\",\n    \"nameLine2\": \"User\",\n    \"status\": \"Card - Unactivated\",\n    \"customerServicePhoneNumber\": \"1-612-601-0914\",\n    \"midWhitelist\": [\n      \"675957401524052\"\n    ],\n    \"midBlacklist\": [\n      \"670414901524053\"\n    ],\n    \"labelIds\": [\n      124996\n    ],\n    \"gatewayMerchantGuid\": \"340fc848-4495-4682-aaee-920c4339526b\",\n    \"availableBalance\": 5.03,\n    \"isPhysical\": true,\n    \"isLodged\": false,\n    \"fingerprint\": \"0C77AA9C0E1E67E0B1B1A09E2C478F10\",\n    \"customerId\": null,\n    \"supplierId\": null,\n    \"issuerId\": 3,\n    \"country\": \"\",\n    \"cardBin\": \"550000\",\n    \"cardClass\": \"CommercialCredit\",\n    \"toleranceAmount\": null,\n    \"isGlobal\": false,\n    \"physicalCardFulfillment\": {\n      \"nameLine1\": \"Shawn\",\n      \"nameLine2\": \"Test\",\n      \"physicalCardShipping\": {\n        \"address1\": \"1st Street\",\n        \"address2\": \"Apt S\",\n        \"city\": \"Abville\",\n        \"state\": \"GA\",\n        \"country\": \"US\",\n        \"zipcode\": \"12345\",\n        \"firstName\": \"Pat\",\n        \"lastName\": \"Card\"\n      },\n      \"shippingMethod\": \"USPSPri\"\n    },\n    \"cardHolder\": null,\n    \"outgoingTransactionCode\": null,\n    \"createdBy\": null,\n    \"isMaestro\": false,\n    \"whitelistCountries\": null,\n    \"blacklistCountries\": null,\n    \"enableExactMatch\": false,\n    \"avsCheck\": false,\n    \"cardImageKey\": null\n  },\n  \"cardBrand\": \"Visa\",\n  \"cardClass\": \"CommercialCredit\",\n  \"orderNumber\": \"Test-Physical-Card\",\n  \"saleGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"incomingTransactionCode\": \"532FE4B638983186015474907\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d09d73a-db5f-4a75-a4a6-3a96a18fbe6f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "PhysicalCard-1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d0cb002-c0f9-4ef1-bf31-d1169cfb5228",
+          "name": "Issue Lite",
+          "request": {
+            "name": "Issue Lite",
+            "description": {
+              "content": "For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "IssueCard",
+                "IssueLite-1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"\",\n  \"FirstName\": \"\",\n  \"AmountLimit\": \"\",\n  \"PurchaseType\": \"\",\n  \"LastName\": \"\",\n  \"Phone\": \"\",\n  \"Address1\": \"\",\n  \"Address2\": \"\",\n  \"City\": \"\",\n  \"State\": \"\",\n  \"ZipCode\": \"\",\n  \"Country\": \"\",\n  \"CurrencyCode\": \"<string>\",\n  \"Region\": \"<string>\",\n  \"UsageLimit\": \"<long>\",\n  \"ExpirationDate\": \"<date>\",\n  \"TerminateDate\": \"<date>\",\n  \"SequenceNumber\": \"\",\n  \"PayeeId\": \"\",\n  \"PayorId\": \"<string>\",\n  \"NonDomesticSupplier\": \"<boolean>\",\n  \"OrderNumber\": \"\",\n  \"CustomerID\": \"<string>\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"EmailRecipient\": \"<string>\",\n    \"MerchantPhoneNumber\": \"<string>\",\n    \"EmailFrom\": \"<string>\",\n    \"RecipientName\": \"<string>\",\n    \"Subject\": \"<string>\",\n    \"Message\": \"<string>\",\n    \"DaysToExpire\": \"<string>\",\n    \"EmailTemplateName\": \"<string>\",\n    \"FaxFrom\": \"<string>\",\n    \"FaxRecipient\": \"<string>\"\n  },\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"<date>\",\n    \"PaymentInstruction\": \"<string>\",\n    \"ReferenceNumber\": \"<string>\",\n    \"Traveler\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\"\n    },\n    \"Company\": {\n      \"Name\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    },\n    \"Contact\": {\n      \"EmailAddress\": \"<string>\",\n      \"PhoneNumber\": \"<string>\",\n      \"InvoiceEmailAddress\": \"<string>\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    }\n  },\n  \"ReturnCardData\": \"<boolean>\",\n  \"ActivationDate\": \"<date>\",\n  \"AssociationId\": \"\",\n  \"LabelIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"UserDefinedParameters\": [\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    },\n    {\n      \"Name\": \"<string>\",\n      \"Value\": \"<string>\"\n    }\n  ],\n  \"EnableExactMatch\": \"false\",\n  \"WhitelistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"BlacklistCountries\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"avsCheck\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fee4dd8e-2d2a-4945-84d4-55593109029f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "IssueLite-1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2027-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"NonDomesticSupplier\": true,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"SupplierID\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51d1b8c2-7dcb-4921-8e00-51819b9f3537",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "IssueLite-1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2027-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"NonDomesticSupplier\": true,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"SupplierID\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"a2b25172-c863-4325-b3b9-7e33cff2f8d1\",\n    \"firstName\": \"Adam\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"7411237489\",\n    \"address1\": \"345 Main Road\",\n    \"address2\": \"\",\n    \"city\": \"Miami Beach\",\n    \"state\": \"MI\",\n    \"zipcode\": \"33109\",\n    \"dateOfBirth\": null,\n    \"country\": \"U\",\n    \"createNewCard\": false,\n    \"reissuePhysicalCard\": false\n  },\n  \"card\": {\n    \"cardGuid\": \"ae17f687-8ba7-4502-b627-24fdf5e6f218\",\n    \"accountNumber\": \"1111118971563394\",\n    \"securityCode\": \"617\",\n    \"amountLimit\": 180,\n    \"usageLimit\": 10,\n    \"limitWindow\": \"LIFETIME\",\n    \"expirationDate\": \"2026-12-30T18:59:59\",\n    \"expiration\": \"1224\",\n    \"terminateDate\": \"2026-12-30T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"111111\",\n    \"lastFour\": \"3394\",\n    \"nameLine1\": \"Adam\",\n    \"nameLine2\": \"Smith\",\n    \"status\": \"Card - Active\",\n    \"customerServicePhoneNumber\": \"1-612-601-0914\",\n    \"sequenceNumber\": \"Sample-seq-1\",\n    \"midWhitelist\": [],\n    \"midBlacklist\": [],\n    \"gatewayMerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n    \"availableBalance\": 180,\n    \"isPhysical\": false,\n    \"isLodged\": false,\n    \"fingerprint\": \"23C69076A2C917DDA5ED1B83A1629626\",\n    \"customerId\": null,\n    \"supplierId\": null,\n    \"issuerId\": 3,\n    \"country\": \"\",\n    \"cardBin\": \"433451\",\n    \"toleranceAmount\": null,\n    \"isGLobal\": false,\n    \"hasBooking\": false,\n    \"cardHolder\": null,\n    \"outgoingTransactionCode\": null,\n    \"createdBy\": null,\n    \"isMaestro\": false,\n    \"whitelistCountries\": null,\n    \"blacklistCountries\": null,\n    \"labelIds\": [\n      889,\n      992\n    ],\n    \"enableExactMatch\": false,\n    \"avsCheck\": false,\n    \"cardImageKey\": null\n  },\n  \"cardBrand\": \"MasterCard\",\n  \"cardClass\": \"Commercial\",\n  \"orderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"saleGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"incomingTransactionCode\": \"6676D1C639072191679998310\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9f26b57-51e8-496a-ae1a-8382c86da4d6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "IssueCard",
+                    "IssueLite-1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"2b586234-7f14-432e-b0f4-a2935f783f38\",\n  \"FirstName\": \"Adam\",\n  \"LastName\": \"Smith\",\n  \"Phone\": \"7411237489\",\n  \"Address1\": \"345 Main Road\",\n  \"Address2\": \"\",\n  \"City\": \"Miami Beach\",\n  \"State\": \"MI\",\n  \"Zipcode\": \"33109\",\n  \"Country\": \"MX\",\n  \"UsageLimit\": 10,\n  \"AmountLimit\": 180,\n  \"ExpirationDate\": \"2027-12-30\",\n  \"TerminateDate\": \"2026-12-30\",\n  \"PurchaseType\": \"01\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"NonDomesticSupplier\": true,\n  \"OrderNumber\": \"OrderNumber-1\",\n  \"CustomerID\": \"CustomerID-1\",\n  \"SupplierID\": \"AA\",\n  \"Transmission\": {\n    \"TransmissionMethods\": [\n      \"Email\",\n      \"Fax\"\n    ],\n    \"EmailRecipient\": \"emailTo@gmail.com\",\n    \"MerchantPhoneNumber\": \"7411237489\",\n    \"EmailFrom\": \"emailFrom@gmail.com\",\n    \"RecipientName\": \"Smith\",\n    \"Subject\": \"Card Information\",\n    \"Message\": \"here is your card information...\",\n    \"DaysToExpire\": 1,\n    \"FaxRecipient\": \"+55555555555\",\n    \"FaxFrom\": \"Merchant Alias\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8809cb13-9f47-463b-b38e-eda68ed1f554",
+    "name": "purchases-api Issue Card API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

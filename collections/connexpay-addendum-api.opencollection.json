@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Addendum API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addendum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Virtual Card Addendum",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Addendum/VirtualCard",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Virtual Card Addendum"
+        },
+        {
+          "info": {
+            "name": "Addendum Remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/v1/Addendum/Remove/<guid>",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "Guid",
+                "value": "",
+                "type": "path",
+                "description": "The Addendum guid to terminate."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an Addendum information item from an object."
+        },
+        {
+          "info": {
+            "name": "ACH Purchase Addendum",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Addendum/ACH",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ACH Purchase Addendum"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

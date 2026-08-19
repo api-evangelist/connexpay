@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "v1 Payment Instruction API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Api-Key",
+      "value": "{{Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PaymentInstruction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a Payment Instruction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.connexpay.com/valet/payment/v1/instruction/client/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Used to create a new payment instruction. The request must include all required fields such as clientId, clientPaymentId, payee details, payment amount, and currency code. Optional fields like paymentDueDate and user-defined fields may also be included."
+        },
+        {
+          "info": {
+            "name": "Get Funding Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.connexpay.com/valet/payment/v1/instruction/client/:clientId/clientPaymentId/:clientPaymentId/fundingStatus",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+              },
+              {
+                "name": "clientPaymentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the payment instruction by the client. Required in the path."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves the funding status updates for a payment request identified by the client ID and client payment ID."
+        },
+        {
+          "info": {
+            "name": "Get Payment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.api.connexpay.com/valet/payment/v1/instruction/client/:clientId/clientPaymentId/:clientPaymentId/paymentStatus",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+              },
+              {
+                "name": "clientPaymentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the payment instruction by the client. Required in the path."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves the payment status updates for a payment request identified by the client ID and client payment ID."
+        },
+        {
+          "info": {
+            "name": "Void a Payment Instruction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.api.connexpay.com/valet/payment/v1/instruction/client/:clientId/clientPaymentId/:clientPaymentId/void",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier assigned to the client organization by Payment Valet. Required in the path."
+              },
+              {
+                "name": "clientPaymentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint voids a payment instruction identified by the client ID and client payment ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

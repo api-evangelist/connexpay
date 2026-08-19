@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "c827d274-56b4-40d0-8e5f-2d672bcf1e82",
+      "name": "Merchantsupplier",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8505847a-4384-4d63-a452-f1921a990704",
+          "name": "Merchant Supplier Setting",
+          "request": {
+            "name": "Merchant Supplier Setting",
+            "description": {
+              "content": "This endpoint allows you to create and tokenize a suppliers bank account information without actually making the Issue ACH call. That tokenized bank account can then be used in future Issue ACH or Issue ACH Lite API requests so you don't have to store the actual bank account information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchantsupplier",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantGuid\": \"<string>\",\n  \"SupplierName\": \"<string>\",\n  \"AccountHolder\": {\n    \"FirstName\": \"<string>\",\n    \"LastName\": \"<string>\",\n    \"MiddleName\": \"<string>\",\n    \"BusinessName\": \"Default\",\n    \"Email\": \"<string>\",\n    \"Phone\": \"<string>\",\n    \"Address\": {\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"ZipCode\": \"<string>\"\n    },\n    \"BankAccount\": {\n      \"RoutingNumber\": \"<string>\",\n      \"AccountNumber\": \"<string>\",\n      \"AccountType\": \"<string>\",\n      \"AccountHolderName\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f75a42d-c74d-4e58-ad15-951d9c10e910",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchantsupplier",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"SupplierName\": \"Joe Supplier\",\n  \"accountHolder\": {\n    \"firstName\": \"Test\",\n    \"lastName\": \"Supplier3\",\n    \"middleName\": \"M\",\n    \"businessName\": \"\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"222333\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"PR123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"merchantGuid\\\": \\\"1818a55e-8541-4bfe-a288-bad870afbe1d\\\",\\n    \\\"supplierName\\\": \\\"Joe Supplier\\\",\\n    \\\"timeStamp\\\": \\\"2021-10-15T20:13:42.3444476Z\\\",\\n    \\\"idUser\\\": 114,\\n    \\\"idMerchantSupplierSettings\\\": 13,\\n    \\\"accountHolder\\\": {\\n        \\\"accountHolderGuid\\\": \\\"8b1f13fb-6085-4e6f-b4fb-eb8fb7f1ea1e\\\",\\n        \\\"firstName\\\": \\\"Test\\\",\\n        \\\"lastName\\\": \\\"Supplier3\\\",\\n        \\\"_businessName\\\": \\\"\\\",\\n        \\\"email\\\": \\\"test@connexpay.com\\\",\\n        \\\"phone\\\": \\\"3121111111\\\",\\n        \\\"address\\\": {\\n            \\\"address1\\\": \\\"123 stree1\\\",\\n            \\\"city\\\": \\\"Minneapolis\\\",\\n            \\\"state\\\": \\\"MN\\\",\\n            \\\"country\\\": \\\"US\\\",\\n            \\\"zipcode\\\": \\\"55123\\\"\\n        },\\n        \\\"bankAccount\\\": {\\n            \\\"bankAccountGuid\\\": \\\"9da122a8-7e13-490c-b10d-fa3309178354\\\",\\n            \\\"accountType\\\": \\\"Checking\\\",\\n            \\\"accountHolderName\\\": \\\"PR123\\\",\\n            \\\"last4Digits\\\": \\\"2333\\\"\\n        }\\n    },\\n    \\\"userName\\\": \\\"test-user\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d446be2-8df5-4f85-934f-9823535c218b",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchantsupplier",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"SupplierName\": \"Joe Supplier\",\n  \"accountHolder\": {\n    \"firstName\": \"Test\",\n    \"lastName\": \"Supplier3\",\n    \"middleName\": \"M\",\n    \"businessName\": \"\",\n    \"email\": \"test@connexpay.com\",\n    \"phone\": \"3121111111\",\n    \"address\": {\n      \"address1\": \"123 stree1\",\n      \"address2\": null,\n      \"city\": \"Minneapolis\",\n      \"state\": \"MN\",\n      \"country\": \"US\",\n      \"zipcode\": \"55123\"\n    },\n    \"bankAccount\": {\n      \"routingNumber\": \"042000314\",\n      \"accountNumber\": \"222333\",\n      \"accountType\": \"checking\",\n      \"accountHolderName\": \"PR123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6b6e221-9076-4b49-99eb-f8dd62a0852d",
+    "name": "purchases-api Merchantsupplier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

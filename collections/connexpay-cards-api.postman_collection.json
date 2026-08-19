@@ -1,0 +1,354 @@
+{
+  "item": [
+    {
+      "id": "1ac630ec-67cd-47e4-99a6-1735838fea59",
+      "name": "Cards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0910637f-7cfc-49bf-aecc-e84aba720b80",
+          "name": "Get Issue Card Detail",
+          "request": {
+            "name": "Get Issue Card Detail",
+            "description": {
+              "content": "This Endpoint returns Virtual Credit Card details for a specific card guid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Cards",
+                ":CardGuid",
+                ":ShowFullPan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identifier for the VCC."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<boolean>",
+                  "key": "ShowFullPan",
+                  "description": "(Required) Set to True to indicate whether the response should include the full account number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90119832-08ac-418c-928f-994a71ec5d98",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Cards",
+                    ":CardGuid",
+                    ":ShowFullPan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the VCC."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<boolean>",
+                      "key": "ShowFullPan",
+                      "description": "(Required) Set to True to indicate whether the response should include the full account number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardGuid\": \"290d31b4-1179-0f97-97ff-1019dd29507c\",\n  \"amountLimit\": 3,\n  \"usageLimit\": 3,\n  \"limitWindow\": \"LIFETIME\",\n  \"expirationDate\": \"2027-09-02T00:00:00\",\n  \"expiration\": 927,\n  \"terminateDate\": \"2026-08-30T23:59:59\",\n  \"currencyCode\": \"USD\",\n  \"firstSix\": \"111111\",\n  \"lastFour\": \"1111\",\n  \"cardHolderGuid\": \"4d3c9425-fafd-4fcc-a8d0-99c817d8f949\",\n  \"nameLine1\": \"Test Name 1\",\n  \"nameLine2\": \"Test Name 2\",\n  \"status\": \"Card - Active\",\n  \"bank\": 7,\n  \"luBank\": {\n    \"idBank\": 7,\n    \"bankName\": null,\n    \"reportingBankName\": \"MVB\",\n    \"countryCode\": null,\n    \"idIssuer\": 0,\n    \"binControl\": [],\n    \"lU_Issuer\": null,\n    \"card\": []\n  },\n  \"customerServicePhoneNumber\": \"1-612-601-0914\",\n  \"sequenceNumber\": \"Sample-seq-1\",\n  \"issuedAmount\": 3,\n  \"cardType\": \"Visa\",\n  \"purchaseType\": \"22\",\n  \"midWhitelist\": [],\n  \"midBlacklist\": [],\n  \"gatewayMerchantGuid\": \"9f47973a-b7c1-5bdd-ba34-1514526d99cd\",\n  \"availableBalance\": 3,\n  \"requestedCardAddendum\": {\n    \"MerchantGuid\": \"9f47973a-b7c1-5bdd-ba34-1514526d99cd\",\n    \"CustomerId\": \"CXP test\",\n    \"Payee\": \"Delta\",\n    \"FirstName\": \"Te\",\n    \"LastName\": \"Test\",\n    \"Phone\": \"7411237489\",\n    \"Address1\": \"345 Main Road\",\n    \"Address2\": \"\",\n    \"City\": \"Miami Beach\",\n    \"State\": \"MI\",\n    \"Zipcode\": \"33109\",\n    \"Country\": \"MX\",\n    \"UsageLimit\": 3,\n    \"AmountLimit\": 3,\n    \"ExpirationDate\": \"2027-09-02\",\n    \"TerminateDate\": \"2026-08-30\",\n    \"PurchaseType\": \"22\",\n    \"SequenceNumber\": \"Sample-seq-1\",\n    \"OrderNumber\": \"CXP Test\",\n    \"NonDomesticSupplier\": false\n  },\n  \"isPhysical\": false,\n  \"isLodged\": false,\n  \"fingerprint\": \"E1002518E3B5719A228C70BCBD231DDB\",\n  \"fingerprintV2\": \"0ecdcaad6f46799a23df0bc5d053a68a19938bc9a336b90a4402eef508f1679b\",\n  \"customerId\": \"CXP test\",\n  \"supplierId\": null,\n  \"issuerId\": 3,\n  \"country\": \"\",\n  \"cardBin\": \"42460511\",\n  \"cardClass\": \"CommercialCredit\",\n  \"toleranceAmount\": 0,\n  \"isGLobal\": false,\n  \"hasBooking\": false,\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"4d3c9425-fafd-4fcc-a8d0-99c817d8f949\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"Test\",\n    \"phone\": \"7411237489\",\n    \"address1\": \"345 Main Road\",\n    \"address2\": \"\",\n    \"city\": \"Miami Beach\",\n    \"state\": \"MI\",\n    \"zipcode\": \"33109\",\n    \"dateOfBirth\": null,\n    \"country\": \"MX\",\n    \"createNewCard\": false,\n    \"reissuePhysicalCard\": false\n  },\n  \"outgoingTransactionCode\": \"91F4B08639162727415646990E9B6145A6B6F4CDE\",\n  \"createdBy\": \" \",\n  \"isMaestro\": false,\n  \"whitelistCountries\": null,\n  \"blacklistCountries\": null,\n  \"enableExactMatch\": false,\n  \"avsCheck\": false,\n  \"cardImageKey\": null,\n  \"orderNumber\": \"CXP Test\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e877ea1-91b8-4ce8-8400-195cc42f45be",
+          "name": "Search Virtual Card History",
+          "request": {
+            "name": "Search Virtual Card History",
+            "description": {
+              "content": "This API allows you to pull back history of the Virtual Card. This is the same API (and data) that is used when clicking the “Transactions” button on the Virtual Card in the Portal to display the transaction history. The API will return the merchant name where the Virtual Card was used, the date and time, transaction type (auth, settlement, refund, void, etc.), the response/memo which correlates to the transaction type and the amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "Cards",
+                "Transactions",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "CardGuid",
+                  "description": "(Required) Global Unique Identifier for the Card. Required parameter."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b25f638c-b3a5-42e6-97de-7345124e51f2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Cards",
+                    "Transactions",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card. Required parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"   {\\n    \\t\\\"transactions\\\": [\\n    \\t{\\n    \\t\\t\\\"error\\\": \\\"Failed to retrieve transaction 3a1ab440-6b29-4bcb-aa21-546a6913f8fe\\\"\\n    \\t},\\n    \\t{\\n    \\t\\t\\\"type\\\": \\\"authorization\\\",\\n    \\t\\t\\\"amount\\\": 115.5,\\n    \\t\\t\\\"status\\\": \\\"DECLINED\\\",\\n    \\t\\t\\\"description\\\": \\\"Auth restriction found for given mid or mcc\\\",\\n    \\t\\t\\\"merchantName\\\": \\\"Marqeta Storefront\\\",\\n    \\t\\t\\\"timestamp\\\": \\\"2019-12-12T17:38:56Z\\\",\\n    \\t\\t\\\"transactionGuid\\\": \\\"7bc38c88-c3b8-4ec9-97fc-354fa689c50a\\\",\\n    \\t\\t\\\"cardGuid\\\": \\\"c3ac11ef-062f-4fd3-a309-0079d2d4b2fd\\\"\\n    \\t},\\n    \\t{\\n    \\t\\t\\\"type\\\": \\\"authorization\\\",\\n    \\t\\t\\\"amount\\\": 115.5,\\n    \\t\\t\\\"status\\\": \\\"DECLINED\\\",\\n    \\t\\t\\\"description\\\": \\\"Auth restriction found for given mid or mcc\\\",\\n    \\t\\t\\\"merchantName\\\": \\\"Marqeta Storefront\\\",\\n    \\t\\t\\\"timestamp\\\": \\\"2019-12-12T17:44:43Z\\\",\\n    \\t\\t\\\"transactionGuid\\\": \\\"7ea1ee78-2f7c-4482-bb1f-8d0db4b54762\\\",\\n    \\t\\t\\\"cardGuid\\\": \\\"c3ac11ef-062f-4fd3-a309-0079d2d4b2fd\\\"\\n    \\t}\\n    \\t]\\n    }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64e45b8-d416-4bf4-aeec-ee5f222ebdd8",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "Cards",
+                    "Transactions",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "CardGuid",
+                      "description": "(Required) Global Unique Identifier for the Card. Required parameter."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ecff07a-d98a-4bec-9310-d50a641a9be8",
+    "name": "purchases-api Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Physical Card API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PhysicalCard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Copy of Issue Physical Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PhysicalCard/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier of the Physical Card to be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

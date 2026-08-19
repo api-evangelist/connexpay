@@ -1,0 +1,388 @@
+{
+  "item": [
+    {
+      "id": "3f6d5ee3-4293-49f2-b9fc-11f7f6e46041",
+      "name": "ExtendedData",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c26eeb76-aa0b-4aa5-b919-7a057854565c",
+          "name": "Get Enhanced (Level 2 and Level 3) Travel Data",
+          "request": {
+            "name": "Get Enhanced (Level 2 and Level 3) Travel Data",
+            "description": {
+              "content": "Retrieves enhanced data for travel-related transactions. This includes airline and hotel details, such as passenger names, flight numbers, hotel charges, etc. The data is paginated and can be filtered by various parameters. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "ExtendedData",
+                ":pageNumber",
+                ":pageSize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "1",
+                  "key": "pageNumber",
+                  "description": "(Required) Page number (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "10",
+                  "key": "pageSize",
+                  "description": "(Required) Number of items per page"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantGuid\": \"<uuid>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"presetTimeFrame\": \"<string,null>\",\n  \"accountNumbers\": \"<array,null>\",\n  \"customerName\": \"<string,null>\",\n  \"cardholderName\": \"<string,null>\",\n  \"orderNumber\": \"<string,null>\",\n  \"cardGuid\": \"<string,null-uuid>\",\n  \"firstSix\": \"<string,null>\",\n  \"lastFour\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"sortOrder\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "282a4c84-c073-4a5b-b6e7-999b8d9e3d02",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "ExtendedData",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "pageNumber",
+                      "description": "(Required) Page number (1-based)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "pageSize",
+                      "description": "(Required) Number of items per page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"<uuid>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"presetTimeFrame\": \"<string,null>\",\n  \"accountNumbers\": \"<array,null>\",\n  \"customerName\": \"<string,null>\",\n  \"cardholderName\": \"<string,null>\",\n  \"orderNumber\": \"<string,null>\",\n  \"cardGuid\": \"<string,null-uuid>\",\n  \"firstSix\": \"<string,null>\",\n  \"lastFour\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"sortOrder\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalItemCount\": 3103,\n  \"pageCount\": 8099,\n  \"pageItemCount\": 8666,\n  \"pageNumber\": 1561,\n  \"items\": [\n    \"\",\n    \"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c28ed20-c5e2-4ff5-a1f2-f845911f85a9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "ExtendedData",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "pageNumber",
+                      "description": "(Required) Page number (1-based)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "pageSize",
+                      "description": "(Required) Number of items per page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"<uuid>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"presetTimeFrame\": \"<string,null>\",\n  \"accountNumbers\": \"<array,null>\",\n  \"customerName\": \"<string,null>\",\n  \"cardholderName\": \"<string,null>\",\n  \"orderNumber\": \"<string,null>\",\n  \"cardGuid\": \"<string,null-uuid>\",\n  \"firstSix\": \"<string,null>\",\n  \"lastFour\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"sortOrder\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c1f44f9-4ec1-424b-aa63-2c328a01dd79",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "ExtendedData",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "pageNumber",
+                      "description": "(Required) Page number (1-based)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "pageSize",
+                      "description": "(Required) Number of items per page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"<uuid>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"presetTimeFrame\": \"<string,null>\",\n  \"accountNumbers\": \"<array,null>\",\n  \"customerName\": \"<string,null>\",\n  \"cardholderName\": \"<string,null>\",\n  \"orderNumber\": \"<string,null>\",\n  \"cardGuid\": \"<string,null-uuid>\",\n  \"firstSix\": \"<string,null>\",\n  \"lastFour\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"sortOrder\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4a5ed24-8ffa-4bf9-9aed-fd219abd4351",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "ExtendedData",
+                    ":pageNumber",
+                    ":pageSize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "1",
+                      "key": "pageNumber",
+                      "description": "(Required) Page number (1-based)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "pageSize",
+                      "description": "(Required) Number of items per page"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGuid\": \"<uuid>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"presetTimeFrame\": \"<string,null>\",\n  \"accountNumbers\": \"<array,null>\",\n  \"customerName\": \"<string,null>\",\n  \"cardholderName\": \"<string,null>\",\n  \"orderNumber\": \"<string,null>\",\n  \"cardGuid\": \"<string,null-uuid>\",\n  \"firstSix\": \"<string,null>\",\n  \"lastFour\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"sortOrder\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": null,\n  \"status\": null,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://reportingapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f97f1db6-94fd-4b26-ac8f-a4ec076344d8",
+    "name": "ConnexPay Reporting Extended Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving reporting data. Currently Daily Accounting data only.\n\nContact Support:\n Name: ConnexPay",
+      "type": "text/plain"
+    }
+  }
+}

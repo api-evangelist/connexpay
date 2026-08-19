@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "95731b9f-318d-4e82-807d-a80dba0e82a4",
+      "name": "Cancel",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfa6806b-fa4c-4d01-9435-67d5d3f73f3d",
+          "name": "Cancel",
+          "request": {
+            "name": "Cancel",
+            "description": {
+              "content": "The Cancel route should be used in the event the entire trip/booking (sale & purchase) require cancellation. In this case, the traveler/cardholder would be due a refund from the sale and the Virtual Card would be terminated to prevent the travel supplier from authorizing the Virtual Card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"SaleGuid\": \"<string>\",\n  \"SequenceNumber\": \"<string>\",\n  \"VoidReason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eea6d49f-501f-4576-89af-dc9104d9f1ab",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"4b5013f7-b275-4929-8e83-0167c6edf639\",\n  \"SaleGuid\": \"c5ac2017-99cb-4b1f-a90e-142cc82b21e5\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"VoidReason\": \"DEVICE_TIMEOUT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"7a4ef786-8288-404d-9340-e837d06784af\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2017-07-11T11:05:46.31\\\",\\n    \\\"deviceGuid\\\": \\\"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\\\",\\n    \\\"saleGuid\\\": \\\"bfff1a26-4207-4871-9597-48282e3fcfea\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"voidReason\\\": \\\"DEVICE_TIMEOUT\\\",\\n    \\\"processorStatusCode\\\": \\\"A0000\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"batchGuid\\\": \\\"1564cb1b-eddb-4747-9565-61a7d7d225f9\\\",\\n    \\\"authCode\\\": \\\"VTLMC1\\\",\\n    \\\"refNumber\\\": \\\"13283644\\\",\\n    \\\"invoiceNumber\\\": \\\"11518\\\",\\n    \\\"customerReceipt\\\": \\\"CONNEXPAY\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/11/2017 07:05:50\\\\\\\\n\\\\\\\\nCREDIT - VOID\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 0213\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nREF # : 13283644\\\\\\\\nInvoice number : 11518\\\\\\\\n\\\\\\\\nCancel Amount:                    $19.74\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n    \\\"sequenceNumber\\\": \\\"Sample-seq-1\\\",\\n    \\\"sale\\\": {\\n        \\\"guid\\\": \\\"bfff1a26-4207-4871-9597-48282e3fcfea\\\",\\n        \\\"status\\\": \\\"Transaction - Approved\\\",\\n        \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n        \\\"timeStamp\\\": \\\"2017-07-11T11:05:24.65\\\",\\n        \\\"deviceGuid\\\": \\\"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\\\",\\n        \\\"amount\\\": 19.74,\\n        \\\"effectiveAmount\\\": 0,\\n        \\\"orderNumber\\\": \\\"11518\\\",\\n        \\\"orderDate\\\": \\\"2017-02-03T00:00:00\\\",\\n        \\\"batchGuid\\\": \\\"1564cb1b-eddb-4747-9565-61a7d7d225f9\\\",\\n        \\\"processorStatusCode\\\": \\\"A0000\\\",\\n        \\\"processorResponseMessage\\\": \\\"Success\\\",\\n        \\\"wasProcessed\\\": true,\\n        \\\"authCode\\\": \\\"VTLMC1\\\",\\n        \\\"refNumber\\\": \\\"13283644\\\",\\n        \\\"customerReceipt\\\": \\\"CONNEXPAY\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/11/2017 07:05:27\\\\\\\\n\\\\\\\\nCREDIT - SALE\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 0213\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nREF # : 13283644\\\\\\\\nInvoice number : 11518\\\\\\\\nAUTH CODE : VTLMC1\\\\\\\\nSubtotal:                       $19.74\\\\\\\\n--------------------------------------\\\\\\\\nTotal:                          $19.74\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n        \\\"generatedBy\\\": \\\"ultralux\\\",\\n        \\\"card\\\": {\\n            \\\"first4\\\": \\\"5306\\\",\\n            \\\"last4\\\": \\\"0213\\\",\\n            \\\"cardNumber\\\": \\\"1zcGT7J4pkGh0213\\\",\\n            \\\"cardHolderName\\\": \\\"John Doe\\\",\\n            \\\"expirationDate\\\": \\\"2019-07\\\",\\n            \\\"customer\\\": {\\n                \\\"guid\\\": \\\"d1cf828d-3050-4e4c-b7cf-f4038d114d39\\\",\\n                \\\"firstName\\\": \\\"John\\\",\\n                \\\"lastName\\\": \\\"Doe\\\",\\n                \\\"phone\\\": \\\"9177563007\\\",\\n                \\\"city\\\": \\\"New York\\\",\\n                \\\"country\\\": \\\"US\\\",\\n                \\\"email\\\": \\\"johnd@gmail.com\\\",        \\n            }\\n        }\\n        \\\"addressVerificationCode\\\": \\\"N\\\",\\n        \\\"addressVerificationResult\\\": \\\"No match. Acquirer sent postal/ZIP code only, or street address only, or both postal/ZIP and street address.\\\"\\n        \\\"cvvVerificationCode\\\": \\\"M\\\",\\n        \\\"cvvVerificationResult\\\": \\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4a5bc05-752f-4fa2-955f-79ff69656a3c",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"4b5013f7-b275-4929-8e83-0167c6edf639\",\n  \"SaleGuid\": \"c5ac2017-99cb-4b1f-a90e-142cc82b21e5\",\n  \"SequenceNumber\": \"Sample-seq-1\",\n  \"VoidReason\": \"DEVICE_TIMEOUT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "c6a43487-9de3-45bd-9a97-b8c79fffa681",
+    "name": "sales-api Cancel API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

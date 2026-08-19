@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api Authonlys API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authonlys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auth Only",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/authonlys",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Auth Only Endpoint is applicable to acquiring clients.  Call Auth Only when you want to process an Authorization only, which will not settle until it's Captured.  We do not allow you to Capture an Authorization after 5 business days have passed.Calling this endpoint will authorize the card, however, it will not be settled until the [Capture endpoint](https://docs.connexpay.com/reference/capture) is called. Authorizations expire after 5 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConnexPay Checkout Session Checkout Sessions API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checkout Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Checkout Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v2/Checkout/checkout-session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new secure checkout session for payment processing.\n\nThe session contains all payment details for a transaction and expires after 60 minutes for security.\nReturns a checkout session ID that can be used with the ConnexPay SDK for frontend payment processing.\n\n## Key Features\n- Secure session management with 60-minute expiration\n- Support for multiple tender types (Credit, ACH, GooglePay, ApplePay)\n- Comprehensive customer and transaction data support\n- Device authorization validation\n- "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

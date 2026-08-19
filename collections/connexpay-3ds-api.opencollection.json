@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api 3ds API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "3ds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "3DS Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/3ds",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used for obtaining 3D Secure Authentication separate from the Create Sale or Auth-Only calls.  This is recommended for our US and CA clients."
+        },
+        {
+          "info": {
+            "name": "Get 3DS Status Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/3ds/:GUID",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "guid",
+                "value": "",
+                "type": "path",
+                "description": "Replace the original guid value with the guid that was returned with the status response indicating a device fingerprint or cardholder challenge is required to complete 3DS authentication.."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the 3D Secure status of an authentication when a device fingerprint and/or cardholder challenge are required for 3D Secure Authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

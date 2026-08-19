@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "api Sales API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sales",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Delayed Sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales/UpdateFutureSale",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the sale amount or activation date on a delayed activation sale."
+        },
+        {
+          "info": {
+            "name": "Activate Delayed Sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales/Activate/:SaleGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "SaleGuid",
+                "value": "",
+                "type": "path",
+                "description": "The sale guid returned upon initial creation of the delayed activation sale."
+              }
+            ]
+          },
+          "docs": "Activate a delayed activation sale independent of the activation date for which the sale was created.\n\nA client can \"Activate\" a delayed activation sale this way at any time before ConnexPay will automatically activate it during the early hours of the supplied future date."
+        },
+        {
+          "info": {
+            "name": "Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales/group",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a Sale Group. This is the first step to create group sales. To add any Sale to this newly created group, the response GroupGuid needs to be used with the Sale request."
+        },
+        {
+          "info": {
+            "name": "Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales/group/:GroupGuid",
+            "params": [
+              {
+                "name": "GroupGuid",
+                "value": "",
+                "type": "path",
+                "description": "Sale Group Guid (required)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows to update an existing sale group by setting the group status as Closed or changing the GroupName."
+        },
+        {
+          "info": {
+            "name": "Get Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales/group/:guid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "guid",
+                "value": "",
+                "type": "path",
+                "description": "Group’s guid to get."
+              }
+            ]
+          },
+          "docs": "This endpoint returns group sale info, including Status and Group Balance"
+        },
+        {
+          "info": {
+            "name": "Create Sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/sales",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Create Sale Endpoint is used by acquiring clients. The Sale transaction is used to create a sale for your consumer. You can create a credit sale or an ACH sale (ACH sales apply to US Clients only). A credit sale will charge a consumer's credit card. The consumer's credit card will be authorized immediately when the Sales request is received and will automatically settle/batch that same night. In other words, this one Sale request is just like running an AuthOnly and a Capture in one request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

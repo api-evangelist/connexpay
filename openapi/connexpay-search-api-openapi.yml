@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Connexpay Search API
   version: '1.0'
@@ -12,6 +12,8 @@ tags:
 - name: Search
 paths:
   /api/v1/Search/IssuedCards/:
+    servers:
+    - url: https://sandboxpurchasesapi.connexpay.com
     post:
       summary: Search Issued Cards
       description: This endpoint searches for Issued Virtual Cards.
@@ -120,9 +122,9 @@ paths:
       deprecated: false
       tags:
       - Search
+  /api/v1/Search/Settlements/:
     servers:
     - url: https://sandboxpurchasesapi.connexpay.com
-  /api/v1/Search/Settlements/:
     post:
       summary: Search Settlements
       description: This endpoint searches for Virtual Card Settlements.
@@ -242,9 +244,9 @@ paths:
       deprecated: false
       tags:
       - Search
+  /api/v1/Search/AvailableFunds/{merchantGuid}:
     servers:
     - url: https://sandboxpurchasesapi.connexpay.com
-  /api/v1/Search/AvailableFunds/{merchantGuid}:
     get:
       summary: Available Funds
       description: Use this endpoint to pull details regarding your Available Funds like cash balance, Available to Authorize (ATA) or Available to Issue (ATI), and the details that make up the final number.
@@ -315,9 +317,9 @@ paths:
       deprecated: false
       tags:
       - Search
-    servers:
-    - url: https://sandboxpurchasesapi.connexpay.com
   /api/v1/Search/Sales/{exportable}/{pageNumber}/{pageSize}:
+    servers:
+    - url: https://sandboxsalesapi.connexpay.com
     post:
       summary: Search sales
       description: This endpoint searches sales.
@@ -559,9 +561,9 @@ paths:
       deprecated: false
       tags:
       - Search
+  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
     servers:
     - url: https://sandboxsalesapi.connexpay.com
-  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
     post:
       summary: Search voids
       description: This endpoint searches sales voids.
@@ -727,9 +729,9 @@ paths:
       deprecated: false
       tags:
       - Search
+  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
     servers:
     - url: https://sandboxsalesapi.connexpay.com
-  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
     post:
       summary: Search returns
       description: This endpoint searches sale returns.
@@ -903,9 +905,9 @@ paths:
       deprecated: false
       tags:
       - Search
+  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
     servers:
     - url: https://sandboxsalesapi.connexpay.com
-  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
     post:
       summary: Search verify
       description: This endpoint search a verify.
@@ -1053,8 +1055,6 @@ paths:
       deprecated: false
       tags:
       - Search
-    servers:
-    - url: https://sandboxsalesapi.connexpay.com
 components:
   securitySchemes:
     sec0:

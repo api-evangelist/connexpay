@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api Sale Event History API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SaleEventHistory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sales Event History",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxsalesapi.connexpay.com/api/v1/SaleEventHistory/Resend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call this endpoint to retrieve Credit Card or ACH Sales Events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

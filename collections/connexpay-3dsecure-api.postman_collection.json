@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "2967ce47-b47c-4f1f-acc0-33608937848d",
+      "name": "3DSecure",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ca93876-5c85-46c4-bc28-3c49150f3424",
+          "name": "3D Secure Sales Authentication",
+          "request": {
+            "name": "3D Secure Sales Authentication",
+            "description": {
+              "content": "The 3D Secure 2.0 authentication process is initiated using the BrowserData parameter if you have interfaced with ConnexPay's solution. The transaction will be directed to Smart Adviser, which allows utilizes 3D secure rules for optimal performance.  Smart Advisor may allow the merchant to skip completing 3D authentication, which means the customer is less likely to abandon a transaction.  Exemptions to 3D secure authentication exist for transactions under a certain threshold, MOTO transactions and lodged card transactions.  For more information about exemptions, click here: https://www.visa.co.uk/dam/VCOM/regional/ve/unitedkingdom/PDF/sca/Visa-psd2-sca-scp-exemption-guide.pdf.\n\nIf Smart Adviser determines 3D secure authentication is required for the Sale or Auth, it will automatically route the transaction for 3D secure authentication.\nComing soon - additional info about 3DS Smart Adviser.  \n\nIf the Merchant has integrated to ConnexPay's solution, the Create Sale or Auth Only endpoints must be combined with the BrowserData field to initiate 3D secure authentication.  \n\nIn the event that the transaction requires a 3D secure device fingerprint, 3D secure cardholder challenge, or both, the Create Sale or Auth Only request must be resubmitted once the 3DS status is complete by using the specified parameters on the GET 3DS Status API endpoint for authentication.\n\nIf a device fingerprint is required, secure authentication occurs behind the scenes so that the cardholder is not impacted. To successfully complete the device fingerprint, the webpage being used for payment must be configured to use an embedded iFrame.  The iFrame is needed to complete the required redirection to the issuer's site.  Use the redirectUrl and redirectUrlRequetPayload provided in the response to complete authentication.  The response must occur within 10 seconds. \n\nIf a cardholder challenge is required, the secure authentication must be completed by the cardholder.  To successfully complete the challenge, the webpage being used for payment must be configured to use an embedded iFrame.   This will be used to complete the required redirection to the issuer's site.  Use the redirectUrl provided in the response to initiate the cardholder challenge. \n\nOnce a response is received, our callback API will be updated to show 3DS as complete.  Once the status is complete, the merchant will need to call a new API route to receive the secureData.  The secureData must be used to call the Sale or Auth route to complete the transaction.\n\nThe new route to GET 3ds status once the auth has occurred, as well as next steps, is located here: https://docs.connexpay.com/reference/get-3ds-status-group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "3DSecure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"3ds_initiate\": null,\n  \"Amount\": null,\n  \"CardNumber\": \"<string>\",\n  \"ExpirationDate\": \"<date>\",\n  \"CardHolderName\": \"<string>\",\n  \"Email\": \"<string>\",\n  \"Address1\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"Zip\": \"<integer>\",\n  \"RequestIP\": \"<string>\",\n  \"ProductDescription\": \"<string>\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"StatementDescription\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b135b9e1-f88c-4d13-92f0-7120f6d9f561",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3DSecure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardDataSource\": \"EMV2\",\n  \"Amount\": 1,\n  \"OrderNumber\": \"\",\n  \"CustomerId\": \"\",\n  \"SendReceipt\": false,\n  \"isDelaySaleActivation\": false,\n  \"activationDate\": \"\",\n  \"LabelIds\": [\n    987654638\n  ],\n  \"StatementDescription\": \"\",\n  \"AssociationId\": \"\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": 0\n  },\n  \"RiskData\": {\n    \"ProductType\": \"test\",\n    \"ProductItem\": \"test\",\n    \"OrderNumber\": \"\",\n    \"SellerId\": \"\",\n    \"Email\": \"\",\n    \"Gender\": \"\",\n    \"DateOfBirth\": \"\",\n    \"ProductDesc\": \"\",\n    \"BillingPhoneNumber\": \"\",\n    \"BillingAddress1\": \"\",\n    \"BillingAddress2\": \"\",\n    \"BillingState\": \"\",\n    \"BillingCity\": \"\",\n    \"BillingPostalCode\": \"\",\n    \"FlightData\": {\n      \"Airline\": \"\",\n      \"DepartureAirport\": \"\",\n      \"DepartureDate\": \"\",\n      \"DestinationAirport\": \"\",\n      \"HoursToDeparture\": \"\",\n      \"JourneyType\": \"\",\n      \"Route\": \"\",\n      \"RouteByCountry\": \"\"\n    },\n    \"FlightPassenger\": []\n  },\n  \"Card\": {\n    \"CardNumber\": \"4018810001010010\",\n    \"CardHolderName\": \"Jason Harmon\",\n    \"Cvv2\": \"999\",\n    \"ExpirationDate\": \"2312\",\n    \"Customer\": {\n      \"FirstName\": \"Jason\",\n      \"LastName\": \"Harmon\",\n      \"Email\": \"\",\n      \"Address1\": \"\",\n      \"Address2\": \"\",\n      \"State\": \"\",\n      \"City\": \"\",\n      \"Country\": \"\",\n      \"Zip\": \"\",\n      \"Phone\": \"\",\n      \"SSN4\": \"\"\n    }\n  },\n  \"DeviceGuid\": \"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\",\n  \"TenderType\": \"Credit\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\",\n    \"ColorDepth\": 32,\n    \"JavaEnabled\": true,\n    \"ScreenHeight\": 1000,\n    \"ScreenWidth\": 1000,\n    \"TimeZoneOffset\": 0,\n    \"Language\": \"en-GB\",\n    \"RedirectUrl\": \"https://salesapi.connexpaydev.com/\",\n    \"UserAgentHeader\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"2d78c80e-59c3-44ae-a770-c70dfa550768\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"type\\\": \\\"3D Secure\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2022-11-29T06:47:52.53-05:00\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 1.00,\\n    \\\"activated\\\": true,\\n    \\\"tenderType\\\": \\\"Credit\\\",\\n    \\\"effectiveAmount\\\": 1.00,\\n    \\\"riskResponse\\\": {\\n        \\\"transactionId\\\": null,\\n        \\\"response\\\": \\\"Fraud Check Skipped for Finaro Request.\\\",\\n        \\\"reason\\\": null,\\n        \\\"score\\\": null\\n    },\\n    \\\"orderNumber\\\": \\\"\\\",\\n    \\\"cardDataSource\\\": \\\"INTERNET\\\",\\n    \\\"customerID\\\": \\\"\\\",\\n    \\\"batchGuid\\\": \\\"c4513dc8-1f49-47c2-b384-6b0897c3734e\\\",\\n    \\\"connexPayTransaction\\\": {\\n        \\\"guid\\\": \\\"76d224b7-1abc-4fdb-9d0a-9a4b44cebbca\\\",\\n        \\\"expectedPayments\\\": 0,\\n        \\\"incomingTransCode\\\": \\\"7C9A573638053372540845316\\\"\\n    },\\n    \\\"associationId\\\": \\\"\\\",\\n    \\\"processorStatusCode\\\": \\\"0\\\",\\n    \\\"processorResponseMessage\\\": \\\"Transaction has been executed successfully.\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"authCode\\\": \\\"697949\\\",\\n    \\\"refNumber\\\": \\\"XZZ01c19f5570e6bDAFUP3DOWVUR5FSB\\\",\\n    \\\"customerReceipt\\\": \\\"Not Available\\\",\\n    \\\"statementDescription\\\": \\\"\\\",\\n    \\\"generatedBy\\\": \\\"jharmonfinaro\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0036\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"ff7777a8-d91b-43d7-a0e7-f02029d1b64f\\\",\\n        \\\"customer\\\": {\\n            \\\"guid\\\": \\\"3bea4ab2-b14c-416e-ba0a-e07d1b2ca317\\\",\\n            \\\"firstName\\\": \\\"Jason\\\",\\n            \\\"lastName\\\": \\\"Harmon\\\",\\n            \\\"address1\\\": \\\"\\\",\\n            \\\"address2\\\": \\\"\\\",\\n            \\\"zip\\\": \\\"\\\",\\n            \\\"city\\\": \\\"\\\",\\n            \\\"country\\\": \\\"\\\",\\n            \\\"phone\\\": \\\"\\\",\\n            \\\"email\\\": \\\"\\\",\\n            \\\"ssN4\\\": \\\"\\\"\\n        }\\n    },\\n    \\\"addressVerificationResult\\\": \\\"Unavailable\\\",\\n    \\\"cvvVerificationCode\\\": \\\"M\\\",\\n    \\\"cvvVerificationResult\\\": \\\"CVV2 Match. Indicates that the Funds Transfer API or the issuer was able to verify the CVV2 value provided by the merchant.\\\",\\n    \\\"cavvResponseCode\\\": \\\"2\\\",\\n    \\\"walletProvider\\\": 0,\\n    \\\"isFromIssueLite\\\": false,\\n    \\\"labelIds\\\": [\\n        987654638\\n    ],\\n    \\\"remainingAmount\\\": 1.00\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d35bef1a-74b4-4954-a462-89293c9e6f6a",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3DSecure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardDataSource\": \"EMV2\",\n  \"Amount\": 1,\n  \"OrderNumber\": \"\",\n  \"CustomerId\": \"\",\n  \"SendReceipt\": false,\n  \"isDelaySaleActivation\": false,\n  \"activationDate\": \"\",\n  \"LabelIds\": [\n    987654638\n  ],\n  \"StatementDescription\": \"\",\n  \"AssociationId\": \"\",\n  \"ConnexPayTransaction\": {\n    \"ExpectedPayments\": 0\n  },\n  \"RiskData\": {\n    \"ProductType\": \"test\",\n    \"ProductItem\": \"test\",\n    \"OrderNumber\": \"\",\n    \"SellerId\": \"\",\n    \"Email\": \"\",\n    \"Gender\": \"\",\n    \"DateOfBirth\": \"\",\n    \"ProductDesc\": \"\",\n    \"BillingPhoneNumber\": \"\",\n    \"BillingAddress1\": \"\",\n    \"BillingAddress2\": \"\",\n    \"BillingState\": \"\",\n    \"BillingCity\": \"\",\n    \"BillingPostalCode\": \"\",\n    \"FlightData\": {\n      \"Airline\": \"\",\n      \"DepartureAirport\": \"\",\n      \"DepartureDate\": \"\",\n      \"DestinationAirport\": \"\",\n      \"HoursToDeparture\": \"\",\n      \"JourneyType\": \"\",\n      \"Route\": \"\",\n      \"RouteByCountry\": \"\"\n    },\n    \"FlightPassenger\": []\n  },\n  \"Card\": {\n    \"CardNumber\": \"4018810001010010\",\n    \"CardHolderName\": \"Jason Harmon\",\n    \"Cvv2\": \"999\",\n    \"ExpirationDate\": \"2312\",\n    \"Customer\": {\n      \"FirstName\": \"Jason\",\n      \"LastName\": \"Harmon\",\n      \"Email\": \"\",\n      \"Address1\": \"\",\n      \"Address2\": \"\",\n      \"State\": \"\",\n      \"City\": \"\",\n      \"Country\": \"\",\n      \"Zip\": \"\",\n      \"Phone\": \"\",\n      \"SSN4\": \"\"\n    }\n  },\n  \"DeviceGuid\": \"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\",\n  \"TenderType\": \"Credit\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\",\n    \"ColorDepth\": 32,\n    \"JavaEnabled\": true,\n    \"ScreenHeight\": 1000,\n    \"ScreenWidth\": 1000,\n    \"TimeZoneOffset\": 0,\n    \"Language\": \"en-GB\",\n    \"RedirectUrl\": \"https://salesapi.connexpaydev.com/\",\n    \"UserAgentHeader\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"92bcd4df-5576-48be-b4a6-8c142669a8b6\\\",\\n    \\\"status\\\": \\\"3DS - Pending Fingerprint\\\",\\n    \\\"timeStamp\\\": \\\"2022-11-28T19:49:13.7902906Z\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 1.0,\\n    \\\"redirectUrl\\\": \\\"https://x3d-sim.credorax.net/acs/3ds-method\\\",\\n    \\\"redirectUrlRequestPayload\\\": \\\"threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImI5M2MzODkyLTFiMjItNDFlOS1iZmE3LTdkNTMzNzYzMTExMiJ9\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0010\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"704f6c0b-1da4-4687-9a43-fdd4c46bb69b\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "07c31328-5dfe-4a12-94a0-584826c7576c",
+    "name": "sales-api 3 D Secure API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

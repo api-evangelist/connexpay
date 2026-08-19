@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConnexPay Reporting Accounting API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Daily Accounting Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reportingapi.connexpay.com/api/v1/Accounting/DailyDetail",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20",
+                "type": "query",
+                "description": "The client identifier for the requested transactions."
+              },
+              {
+                "name": "releasedDate",
+                "value": "2022-12-31",
+                "type": "query",
+                "description": "Date on which the requested transactions were released to the client."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production. "
+        },
+        {
+          "info": {
+            "name": "Get Daily Accounting Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reportingapi.connexpay.com/api/v1/Accounting/DailySummary",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "ab0123f5-7648-4e27-8709-ad0f4e162c20",
+                "type": "query",
+                "description": "The client identifier for the requested transactions."
+              },
+              {
+                "name": "releasedDate",
+                "value": "2022-12-31",
+                "type": "query",
+                "description": "Date on which the requested transactions were released to the client."
+              }
+            ]
+          },
+          "docs": "This endpoint returns the daily accounting summary of a merchant for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Merchants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create User Defined Parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/UserDefinedParameterDefinition",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create User Defined Parameters to associate with your PayOuts."
+        },
+        {
+          "info": {
+            "name": "Update User Defined Parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/UserDefinedParameterDefinition/:userDefinedParameterDefinitionGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              },
+              {
+                "name": "userDefinedParameterDefinitionGuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the User Defined Parameter to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to update a previously created User Defined Parameter. Only the name and maximum length may be updated."
+        },
+        {
+          "info": {
+            "name": "Delete User Defined Parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Merchants/:merchantGuid/UserDefinedParameterDefinition/:userDefinedParameterDefinitionGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "path",
+                "description": "The client identifier assigned by ConnexPay."
+              },
+              {
+                "name": "userDefinedParameterDefinitionGuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the User Defined Parameter to be deleted."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to delete a created User Defined Parameters. Once a User Defined Parameter has been used with a PayOut or EmailTemplate, it may not be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

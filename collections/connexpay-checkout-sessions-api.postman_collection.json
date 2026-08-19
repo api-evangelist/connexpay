@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "fb360a48-c862-4e69-ac37-3cfd992ae275",
+      "name": "Checkout Sessions",
+      "description": {
+        "content": "Operations for creating and managing checkout sessions.\n\nCheckout sessions are secure server-side objects that contain all payment details\nfor a transaction. They serve as a bridge between your backend and the ConnexPay SDK,\nensuring that sensitive transaction data cannot be tampered with on the client side.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "011b0a10-b9db-44ea-89e5-5bd4a50e16f8",
+          "name": "Create Checkout Session",
+          "request": {
+            "name": "Create Checkout Session",
+            "description": {
+              "content": "Creates a new secure checkout session for payment processing.\n\nThe session contains all payment details for a transaction and expires after 60 minutes for security.\nReturns a checkout session ID that can be used with the ConnexPay SDK for frontend payment processing.\n\n## Key Features\n- Secure session management with 60-minute expiration\n- Support for multiple tender types (Credit, ACH, GooglePay, ApplePay)\n- Comprehensive customer and transaction data support\n- Device authorization validation\n- Risk analysis and fraud prevention integration\n\n## Usage Flow\n1. Create checkout session on your backend\n2. Pass the returned `checkoutSessionId` to your frontend\n3. Use the session ID with ConnexPay SDK to render payment form\n4. Process payments through the SDK using the session\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "Checkout",
+                "checkout-session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ClientId\": \"<string>\",\n  \"TenderTypeOptions\": \"<string>\",\n  \"Sale\": {\n    \"DeviceGuid\": \"<uuid>\",\n    \"Amount\": \"<decimal>\",\n    \"TenderType\": \"<string>\",\n    \"Currency\": \"USD\",\n    \"OrderNumber\": \"<string>\",\n    \"OrderDate\": \"<dateTime>\",\n    \"InvoiceNumber\": \"<string>\",\n    \"CustomerID\": \"<string>\",\n    \"BusinessName\": \"<string>\",\n    \"CustomerLabel\": \"<string>\",\n    \"TipAmount\": \"<decimal>\",\n    \"ServiceFee\": \"<decimal>\",\n    \"Discount\": \"<decimal>\",\n    \"GrossAmount\": \"<decimal>\",\n    \"EffectiveAmount\": \"<decimal>\",\n    \"Surcharge\": \"<decimal>\",\n    \"SurchargeLabel\": \"<string>\",\n    \"SurchargeType\": \"<string>\",\n    \"CardDataSource\": \"<string>\",\n    \"RequestIp\": \"<ipv4>\",\n    \"StatementDescription\": \"<string>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Email\": \"<email>\",\n      \"Phone\": \"<string>\",\n      \"BusinessName\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"SSN4\": \"<string>\",\n      \"DriverLicenseNumber\": \"<string>\",\n      \"DriverLicenseState\": \"<string>\",\n      \"customerId\": \"<string>\"\n    },\n    \"IncludeRiskAnalysis\": \"<boolean>\",\n    \"RiskProcessingOnly\": \"<boolean>\",\n    \"CheckRiskScore\": \"<boolean>\",\n    \"EnhancedData\": {\n      \"CustomerCode\": \"<string>\",\n      \"SalesTax\": \"<decimal>\",\n      \"FreightAmount\": \"<decimal>\",\n      \"DutyAmount\": \"<decimal>\",\n      \"DestinationPostalCode\": \"<string>\",\n      \"DestinationCountryCode\": \"<string>\",\n      \"ShipFromPostalCode\": \"<string>\",\n      \"DiscountAmount\": \"<decimal>\",\n      \"LineItems\": [\n        {\n          \"Description\": \"<string>\",\n          \"UnitCost\": \"<decimal>\",\n          \"Quantity\": \"<decimal>\",\n          \"TotalAmount\": \"<decimal>\",\n          \"ProductCode\": \"<string>\",\n          \"CommodityCode\": \"<string>\",\n          \"UnitOfMeasure\": \"<string>\",\n          \"TaxAmount\": \"<decimal>\",\n          \"DiscountAmount\": \"<decimal>\"\n        },\n        {\n          \"Description\": \"<string>\",\n          \"UnitCost\": \"<decimal>\",\n          \"Quantity\": \"<decimal>\",\n          \"TotalAmount\": \"<decimal>\",\n          \"ProductCode\": \"<string>\",\n          \"CommodityCode\": \"<string>\",\n          \"UnitOfMeasure\": \"<string>\",\n          \"TaxAmount\": \"<decimal>\",\n          \"DiscountAmount\": \"<decimal>\"\n        }\n      ]\n    },\n    \"CustomData\": \"<string>\",\n    \"SendReceipt\": \"<boolean>\",\n    \"CardholderEmail\": \"<email>\",\n    \"AssociateCustomerCard\": \"<boolean>\",\n    \"ActivationDate\": \"<dateTime>\",\n    \"PurchaseActivationDate\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53497c04-1985-4a75-b53e-e9f7fc70443b",
+              "name": "Successfully created checkout session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "Checkout",
+                    "checkout-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ClientId\": \"your_client_id\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"Sale\": {\n    \"DeviceGuid\": \"12345678-1234-1234-1234-123456789012\",\n    \"Amount\": 125.5,\n    \"OrderNumber\": \"ORD-2024-001\",\n    \"InvoiceNumber\": \"INV-2024-001\",\n    \"StatementDescription\": \"Online Purchase\",\n    \"Customer\": {\n      \"FirstName\": \"Sarah\",\n      \"LastName\": \"Johnson\",\n      \"Email\": \"sarah@example.com\",\n      \"Phone\": \"15550123456\",\n      \"Address1\": \"123 Main St\",\n      \"City\": \"Anytown\",\n      \"State\": \"CA\",\n      \"Zip\": \"12345\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"CheckoutSessionIdValue\": \"cs_1a2b3c4d5e6f7g8h9i0j\",\n  \"Amount\": 125.5,\n  \"Expiration\": \"2024-11-04T15:30:00Z\",\n  \"TimeStamp\": \"2024-11-04T14:30:00Z\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"ClientId\": \"your_client_id\",\n  \"Expired\": false,\n  \"DisplayCreditCard\": true,\n  \"Completed\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e076ea3c-4ea4-41c2-9f9c-bacdfbfb4a30",
+              "name": "Invalid request data or validation errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "Checkout",
+                    "checkout-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ClientId\": \"your_client_id\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"Sale\": {\n    \"DeviceGuid\": \"12345678-1234-1234-1234-123456789012\",\n    \"Amount\": 125.5,\n    \"OrderNumber\": \"ORD-2024-001\",\n    \"InvoiceNumber\": \"INV-2024-001\",\n    \"StatementDescription\": \"Online Purchase\",\n    \"Customer\": {\n      \"FirstName\": \"Sarah\",\n      \"LastName\": \"Johnson\",\n      \"Email\": \"sarah@example.com\",\n      \"Phone\": \"15550123456\",\n      \"Address1\": \"123 Main St\",\n      \"City\": \"Anytown\",\n      \"State\": \"CA\",\n      \"Zip\": \"12345\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Validation failed\",\n  \"message\": \"Invalid request data\",\n  \"details\": [\n    {\n      \"field\": \"Sale.Amount\",\n      \"message\": \"Amount must be greater than 0\"\n    },\n    {\n      \"field\": \"Sale.DeviceGuid\",\n      \"message\": \"DeviceGuid is required\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f923008-2a53-4375-883f-413eb4f56977",
+              "name": "Unauthorized - invalid or missing authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "Checkout",
+                    "checkout-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ClientId\": \"your_client_id\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"Sale\": {\n    \"DeviceGuid\": \"12345678-1234-1234-1234-123456789012\",\n    \"Amount\": 125.5,\n    \"OrderNumber\": \"ORD-2024-001\",\n    \"InvoiceNumber\": \"INV-2024-001\",\n    \"StatementDescription\": \"Online Purchase\",\n    \"Customer\": {\n      \"FirstName\": \"Sarah\",\n      \"LastName\": \"Johnson\",\n      \"Email\": \"sarah@example.com\",\n      \"Phone\": \"15550123456\",\n      \"Address1\": \"123 Main St\",\n      \"City\": \"Anytown\",\n      \"State\": \"CA\",\n      \"Zip\": \"12345\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Invalid or missing authentication token\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ababa134-dbd0-4459-aacc-df775f11097f",
+              "name": "Business logic error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "Checkout",
+                    "checkout-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ClientId\": \"your_client_id\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"Sale\": {\n    \"DeviceGuid\": \"12345678-1234-1234-1234-123456789012\",\n    \"Amount\": 125.5,\n    \"OrderNumber\": \"ORD-2024-001\",\n    \"InvoiceNumber\": \"INV-2024-001\",\n    \"StatementDescription\": \"Online Purchase\",\n    \"Customer\": {\n      \"FirstName\": \"Sarah\",\n      \"LastName\": \"Johnson\",\n      \"Email\": \"sarah@example.com\",\n      \"Phone\": \"15550123456\",\n      \"Address1\": \"123 Main St\",\n      \"City\": \"Anytown\",\n      \"State\": \"CA\",\n      \"Zip\": \"12345\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Business Error\",\n  \"message\": \"Invalid Device GUID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "636d97db-8ab5-45b6-b065-7b3fee07b2d8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "Checkout",
+                    "checkout-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ClientId\": \"your_client_id\",\n  \"TenderTypeOptions\": \"Credit,GooglePay,ApplePay\",\n  \"Sale\": {\n    \"DeviceGuid\": \"12345678-1234-1234-1234-123456789012\",\n    \"Amount\": 125.5,\n    \"OrderNumber\": \"ORD-2024-001\",\n    \"InvoiceNumber\": \"INV-2024-001\",\n    \"StatementDescription\": \"Online Purchase\",\n    \"Customer\": {\n      \"FirstName\": \"Sarah\",\n      \"LastName\": \"Johnson\",\n      \"Email\": \"sarah@example.com\",\n      \"Phone\": \"15550123456\",\n      \"Address1\": \"123 Main St\",\n      \"City\": \"Anytown\",\n      \"State\": \"CA\",\n      \"Zip\": \"12345\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Validation Error\",\n  \"message\": \"Invalid request data\",\n  \"details\": [\n    {\n      \"field\": \"Sale.Amount\",\n      \"message\": \"Amount must be greater than 0\"\n    },\n    {\n      \"field\": \"Sale.Amount\",\n      \"message\": \"Amount must be greater than 0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6c40d72-e3de-445c-80a7-dafdedce9c06",
+    "name": "ConnexPay Checkout Session Checkout Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating secure checkout sessions for payment processing with ConnexPay. Used in conjunection with our SDK 2.0; additional reference documentation is found here: https://docs.connexpay.com/docs/v2-docs.\n\n## Overview\nCheckout sessions serve as a secure bridge between your backend and the ConnexPay SDK, \ncontaining all payment details for a transaction while ensuring sensitive data cannot \nbe tampered with on the client side.\n\n## Security\n- All endpoints require Bearer token authentication\n- Sessions expire after 60 minutes for enhanced security\n- Device authorization is validated for each request\n\n## Base URL\n- Sandbox: `https://sandboxsalesapi.connexpay.com`\n- Production: `https://salesapi.connexpay.com`\n",
+      "type": "text/plain"
+    }
+  }
+}

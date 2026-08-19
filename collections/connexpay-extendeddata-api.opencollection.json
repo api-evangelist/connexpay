@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConnexPay Reporting Extended Data API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExtendedData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Enhanced (Level 2 and Level 3) Travel Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://reportingapi.connexpay.com/api/v1/ExtendedData/:pageNumber/:pageSize",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "path",
+                "description": "Page number (1-based)"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "path",
+                "description": "Number of items per page"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves enhanced data for travel-related transactions. This includes airline and hotel details, such as passenger names, flight numbers, hotel charges, etc. The data is paginated and can be filtered by various parameters. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

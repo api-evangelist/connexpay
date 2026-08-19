@@ -1,0 +1,218 @@
+{
+  "item": [
+    {
+      "id": "365be121-44d0-4e09-a41f-9b697adb7aae",
+      "name": "Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4155d86-7710-4e73-a82b-4c6b7e6ba8b1",
+          "name": "Issuing Token",
+          "request": {
+            "name": "Issuing Token",
+            "description": {
+              "content": "API requests require a combination of assigned user name, password, and successfully generated authentication token. The received token is valid for 24 hours from issuance and may be used for all requests during its lifespan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "token"
+              ],
+              "host": [
+                "{{api-v1-token-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e06fe828-d259-4f27-be3e-f6b29817548b",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{api-v1-token-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "\"application/x-www-form-urlencoded\""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"access_token\\\": \\\"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA1L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnJzYW5kYm94dGVzdCIsInJvbGUiOiJ1c2VyIiwiZ2F0ZXdheU1lcmNoYW50R3VpZHMiOiI0MTc0OTc1ZC00ZWI4LTQ1YTEtYTliNS1jZTFiNTk2ZGJjMzUiLCJnYXRld2F5TWVyY2hhbnRHdWlkc0FuZENoaWxkcmVuIjoiNDE3NDk3NWQtNGViOC00NWExLWE5YjUtY2UxYjU5NmRiYzM1IiwiZ2F0ZXdheURldmljZUd1aWRzIjoiNzQ1YmE5YTEtN2YxYi00NzI4LThlM2EtZTRkZmM4NTI2ZGZhIiwibmJmIjoxNjg1OTg2NTkyLCJleHAiOjE2ODYwNzI5OTIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTMwOTciLCJhdWQiOiJHNW9JTmZuVGlLWGRkS0RDR2twMlFCb0FxOFYxS0QyZiJ9.cnA1aljvC1n6_DLis18pNgF-lzzfyIk30CKqlm1lX3k\\\",\\n    \\\"token_type\\\": \\\"bearer\\\",\\n    \\\"expires_in\\\": 86399\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9b11518-0ad5-4eb2-8b98-6c47a773acf1",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{api-v1-token-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "\"application/x-www-form-urlencoded\""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "api-v1-token-Url"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "457cc93e-4f56-4416-b936-252b4f99eb54",
+    "name": "Connexpay Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Token across 2 of this provider's published API definitions: connexpay-purchases-openapi.yml, connexpay-sales-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

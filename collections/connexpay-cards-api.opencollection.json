@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Cards API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Issue Card Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Cards/:CardGuid/:ShowFullPan",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier for the VCC."
+              },
+              {
+                "name": "ShowFullPan",
+                "value": "",
+                "type": "path",
+                "description": "Set to True to indicate whether the response should include the full account number."
+              }
+            ]
+          },
+          "docs": "This Endpoint returns Virtual Credit Card details for a specific card guid."
+        },
+        {
+          "info": {
+            "name": "Search Virtual Card History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/Cards/Transactions/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier for the Card. Required parameter."
+              }
+            ]
+          },
+          "docs": "This API allows you to pull back history of the Virtual Card. This is the same API (and data) that is used when clicking the “Transactions” button on the Virtual Card in the Portal to display the transaction history. The API will return the merchant name where the Virtual Card was used, the date and time, transaction type (auth, settlement, refund, void, etc.), the response/memo which correlates to the transaction type and the amount."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

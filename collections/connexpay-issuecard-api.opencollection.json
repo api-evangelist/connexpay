@@ -1,0 +1,402 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "purchases-api Issue Card API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IssueCard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to issue virtual cards associated with a credit or ACH sale. Do not use this endpoint if you fund your virtual cards from cash and therefore don't have an associated sale. If you aren't sure which Issuance API to use, please contact your client support representative."
+        },
+        {
+          "info": {
+            "name": "Issue Lite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/IssueLite",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative."
+        },
+        {
+          "info": {
+            "name": "Issue Lodged Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/LodgedCard",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a Lodged Card"
+        },
+        {
+          "info": {
+            "name": "Update Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identififer for the Card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Card"
+        },
+        {
+          "info": {
+            "name": "Update Lodged Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/LodgedCard/:CardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier for the Card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Lodged Card"
+        },
+        {
+          "info": {
+            "name": "Update Delayed Activation VCC (old)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/UpdateDelayedActivationVc/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier for the Card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to update the amount limit on a virtual card associated with a delayed activation sale. If there is not a delayed activation sale, use the \"UpdateDelayedCard\" endpoint found here: https://docs.connexpay.com/reference/update-delayed-card"
+        },
+        {
+          "info": {
+            "name": "Cancel Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/Cancel/:{CardGuid}"
+          },
+          "docs": "This endpoint should be called when you want to completely cancel a virtual card you created using the IssueLite endpoint."
+        },
+        {
+          "info": {
+            "name": "Resend Transmission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/SendPaymentInfo/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identififer for the Card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint resends payment information to recipient. Or returns a URL you can use within your application to direct a user to a visual representation of the virtual card."
+        },
+        {
+          "info": {
+            "name": "Update Virtual Card with Delayed Activation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/UpdateDelayedCard/:{CardGuid}",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "CardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier for the Card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request this endpoint to update the activation date or card limit of a virtual card with a future activation date."
+        },
+        {
+          "info": {
+            "name": "Activate Virtual Card with Delayed Activation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/ActivateDelayedCard/:{CardGuid}"
+          },
+          "docs": "Use this API to immediately activate a Virtual Card with a delayed activation date"
+        },
+        {
+          "info": {
+            "name": "Return Active BIN List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/GetActiveBins/:MerchantGuid"
+          },
+          "docs": "This endpoint returns a list of all active BINs."
+        },
+        {
+          "info": {
+            "name": "Issue Physical Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/PhysicalCard",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more."
+        },
+        {
+          "info": {
+            "name": "Copy of Issue Physical Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/ActivatePhysicalCard/:cardGuid",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cardGuid",
+                "value": "",
+                "type": "path",
+                "description": "Global Unique Identifier of the Physical Card to be activated. "
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more."
+        },
+        {
+          "info": {
+            "name": "Copy of Issue Physical Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/PhysicalCard-1",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more."
+        },
+        {
+          "info": {
+            "name": "Issue Lite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/IssueCard/IssueLite-1",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

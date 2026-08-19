@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "feb1ea8f-bcf4-499e-a325-f88b5d241381",
+      "name": "HostedPaymentPageRequests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ee9a334-bd77-4064-99aa-82d88f95c6dd",
+          "name": "HPP Token Request",
+          "request": {
+            "name": "HPP Token Request",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "HostedPaymentPageRequests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"MerchantName\": \"<string>\",\n  \"Sale\": {\n    \"DeviceGuid\": \"<string>\",\n    \"Amount\": \"<long>\",\n    \"SequenceNumber\": \"<string>\",\n    \"OrderNumber\": \"<string>\",\n    \"SendReceipt\": \"<boolean>\",\n    \"RiskProcessingOnly\": \"<boolean>\",\n    \"StatementDescription\": \"<string>\",\n    \"CustomerID\": \"<string>\",\n    \"ActivationDate\": \"<string>\",\n    \"GroupId\": \"<string>\",\n    \"RiskData\": {\n      \"SessionId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Gender\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"BillingPhoneNumber\": \"<string>\",\n      \"BillingAddress1\": \"<string>\",\n      \"BillingAddress2\": \"<string>\",\n      \"BillingCity\": \"<string>\",\n      \"BillingState\": \"<string>\",\n      \"BillingPostalCode\": \"<string>\",\n      \"BillingCountryCode\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"ProductType\": \"<string>\",\n      \"ProductDescription\": \"<string>\",\n      \"ProductItem\": \"<string>\",\n      \"ProductQuantity\": \"<integer>\",\n      \"ProductPrice\": \"<integer>\",\n      \"OrderNumber\": \"<string>\",\n      \"SellerId\": \"<string>\",\n      \"FlightData\": {\n        \"Airline\": \"AA\",\n        \"DepartureAirport\": \"NY\",\n        \"DepartureDate\": \"06/20/1993\",\n        \"DestinationAirport\": \"CA\",\n        \"HoursToDeparture\": \"5\",\n        \"JourneyType\": \"Day\",\n        \"Route\": \"Direct\",\n        \"RouteByCountry\": \"NY, CA\"\n      },\n      \"FlightPassengers\": [\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        },\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        }\n      ],\n      \"CustomParameters\": {}\n    },\n    \"IncludeRiskAnalysis\": \"<boolean>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ConnexPayTransaction\": {\n      \"ExpectedPayments\": \"<integer>\"\n    }\n  },\n  \"Description\": \"<string>\",\n  \"ResultRedirectUrl\": \"<string>\",\n  \"LogoUrl\": \"<string>\",\n  \"TenderTypeOptions\": [\n    \"Credit\"\n  ],\n  \"Expiration\": \"Current DateTime UTC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5295d04b-fa98-4cea-b9f6-006d77bcfea4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "HostedPaymentPageRequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantName\": \"<string>\",\n  \"Sale\": {\n    \"DeviceGuid\": \"<string>\",\n    \"Amount\": \"<long>\",\n    \"SequenceNumber\": \"<string>\",\n    \"OrderNumber\": \"<string>\",\n    \"SendReceipt\": \"<boolean>\",\n    \"RiskProcessingOnly\": \"<boolean>\",\n    \"StatementDescription\": \"<string>\",\n    \"CustomerID\": \"<string>\",\n    \"ActivationDate\": \"<string>\",\n    \"GroupId\": \"<string>\",\n    \"RiskData\": {\n      \"SessionId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Gender\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"BillingPhoneNumber\": \"<string>\",\n      \"BillingAddress1\": \"<string>\",\n      \"BillingAddress2\": \"<string>\",\n      \"BillingCity\": \"<string>\",\n      \"BillingState\": \"<string>\",\n      \"BillingPostalCode\": \"<string>\",\n      \"BillingCountryCode\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"ProductType\": \"<string>\",\n      \"ProductDescription\": \"<string>\",\n      \"ProductItem\": \"<string>\",\n      \"ProductQuantity\": \"<integer>\",\n      \"ProductPrice\": \"<integer>\",\n      \"OrderNumber\": \"<string>\",\n      \"SellerId\": \"<string>\",\n      \"FlightData\": {\n        \"Airline\": \"AA\",\n        \"DepartureAirport\": \"NY\",\n        \"DepartureDate\": \"06/20/1993\",\n        \"DestinationAirport\": \"CA\",\n        \"HoursToDeparture\": \"5\",\n        \"JourneyType\": \"Day\",\n        \"Route\": \"Direct\",\n        \"RouteByCountry\": \"NY, CA\"\n      },\n      \"FlightPassengers\": [\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        },\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        }\n      ],\n      \"CustomParameters\": {}\n    },\n    \"IncludeRiskAnalysis\": \"<boolean>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ConnexPayTransaction\": {\n      \"ExpectedPayments\": \"<integer>\"\n    }\n  },\n  \"Description\": \"<string>\",\n  \"ResultRedirectUrl\": \"<string>\",\n  \"LogoUrl\": \"<string>\",\n  \"TenderTypeOptions\": [\n    \"Credit\"\n  ],\n  \"Expiration\": \"Current DateTime UTC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"merchantName\\\": \\\"ACME\\\",\\n    \\\"description\\\": \\\"Hundred Dollar Trip\\\",\\n    \\\"amount\\\": 100.00,\\n    \\\"resultRedirectUrl\\\": \\\"https://sandboxsales.connexpay.com/#!/HostedPaymentResult\\\",\\n    \\\"tempToken\\\": \\\"8263d54a-b61b-4601-a4a8-f7231565b87e\\\",\\n    \\\"expiration\\\": \\\"2020-11-20T14:35:59.14\\\",\\n    \\\"logoUrl\\\": \\\"https://connexpay.com/wp-content/uploads/2018/10/newlogo.png\\\"\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffb95b13-aa1a-4aa7-99ec-d14fe5a1d78f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "HostedPaymentPageRequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantName\": \"<string>\",\n  \"Sale\": {\n    \"DeviceGuid\": \"<string>\",\n    \"Amount\": \"<long>\",\n    \"SequenceNumber\": \"<string>\",\n    \"OrderNumber\": \"<string>\",\n    \"SendReceipt\": \"<boolean>\",\n    \"RiskProcessingOnly\": \"<boolean>\",\n    \"StatementDescription\": \"<string>\",\n    \"CustomerID\": \"<string>\",\n    \"ActivationDate\": \"<string>\",\n    \"GroupId\": \"<string>\",\n    \"RiskData\": {\n      \"SessionId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Gender\": \"<string>\",\n      \"DateOfBirth\": \"<string>\",\n      \"BillingPhoneNumber\": \"<string>\",\n      \"BillingAddress1\": \"<string>\",\n      \"BillingAddress2\": \"<string>\",\n      \"BillingCity\": \"<string>\",\n      \"BillingState\": \"<string>\",\n      \"BillingPostalCode\": \"<string>\",\n      \"BillingCountryCode\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"ProductType\": \"<string>\",\n      \"ProductDescription\": \"<string>\",\n      \"ProductItem\": \"<string>\",\n      \"ProductQuantity\": \"<integer>\",\n      \"ProductPrice\": \"<integer>\",\n      \"OrderNumber\": \"<string>\",\n      \"SellerId\": \"<string>\",\n      \"FlightData\": {\n        \"Airline\": \"AA\",\n        \"DepartureAirport\": \"NY\",\n        \"DepartureDate\": \"06/20/1993\",\n        \"DestinationAirport\": \"CA\",\n        \"HoursToDeparture\": \"5\",\n        \"JourneyType\": \"Day\",\n        \"Route\": \"Direct\",\n        \"RouteByCountry\": \"NY, CA\"\n      },\n      \"FlightPassengers\": [\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        },\n        {\n          \"Country\": \"USA\",\n          \"DateOfBirth\": \"2020-06-20\",\n          \"Id\": \"JXY123\",\n          \"Name\": \"John Doe\"\n        }\n      ],\n      \"CustomParameters\": {}\n    },\n    \"IncludeRiskAnalysis\": \"<boolean>\",\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ConnexPayTransaction\": {\n      \"ExpectedPayments\": \"<integer>\"\n    }\n  },\n  \"Description\": \"<string>\",\n  \"ResultRedirectUrl\": \"<string>\",\n  \"LogoUrl\": \"<string>\",\n  \"TenderTypeOptions\": [\n    \"Credit\"\n  ],\n  \"Expiration\": \"Current DateTime UTC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "ade05dc9-dff2-41da-9c52-c102edef42ae",
+    "name": "sales-api Hosted Payment Page Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

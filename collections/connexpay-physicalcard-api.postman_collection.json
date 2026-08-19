@@ -1,0 +1,252 @@
+{
+  "item": [
+    {
+      "id": "44284d3b-c775-4242-9e64-8872aa68104d",
+      "name": "PhysicalCard",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2bbf0bd-3b11-4f70-a1e9-7f78c7cba3e0",
+          "name": "Copy of Issue Physical Card",
+          "request": {
+            "name": "Copy of Issue Physical Card",
+            "description": {
+              "content": "Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "PhysicalCard",
+                ":cardGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardGuid",
+                  "description": "(Required) Global Unique Identifier of the Physical Card to be updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"FirstName\": \"<string>\",\n  \"LastName\": \"<string>\",\n  \"Phone\": \"<integer>\",\n  \"Address1\": \"<string>\",\n  \"Address2\": \"<string>\",\n  \"City\": \"<string>\",\n  \"State\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"ZipCode\": \"<string>\",\n  \"AmountLimit\": \"<float>\",\n  \"UsageLimit\": \"<long>\",\n  \"LimitWindow\": \"<string>\",\n  \"PurchaseType\": \"<string>\",\n  \"AvsCheck\": \"<boolean>\",\n  \"TerminateDate\": \"<dateTime>\",\n  \"Activated\": \"<boolean>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerID\": \"<string>\",\n  \"MidWhitelist\": \"<string>\",\n  \"MidBlacklist\": \"<string>\",\n  \"reissueCard\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8d21682-c6d5-4526-8365-150a07b33037",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PhysicalCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardGuid",
+                      "description": "(Required) Global Unique Identifier of the Physical Card to be updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cardHolder\": {\n    \"cardHolderGuid\": \"fad4b188-75f5-4e9c-9398-4c4ab5798e38\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"phone\": \"3121231234\",\n    \"address1\": \"1st Street\",\n    \"address2\": \"Unit 29\",\n    \"city\": \"Alpharetta\",\n    \"state\": \"GA\",\n    \"zipcode\": \"30022\",\n    \"country\": \"US\"\n  },\n  \"card\": {\n    \"cardGuid\": \"792e5678-1d2d-4841-b0c4-6a052fc0c012\",\n    \"accountNumber\": \"44111101122112222\",\n    \"amountLimit\": 5.03,\n    \"usageLimit\": 2,\n    \"limitWindow\": \"DAY\",\n    \"expirationDate\": \"2028-11-30T23:59:59Z\",\n    \"expiration\": \"1128\",\n    \"terminateDate\": \"2027-10-26T23:59:59\",\n    \"currencyCode\": \"USD\",\n    \"firstSix\": \"441111\",\n    \"lastFour\": \"2222\",\n    \"nameLine1\": \"Test\",\n    \"nameLine2\": \"User\",\n    \"status\": \"Card - Unactivated\",\n    \"customerServicePhoneNumber\": \"1-612-601-0914\",\n    \"midWhitelist\": [\n      \"675957401524052\"\n    ],\n    \"midBlacklist\": [\n      \"670414901524053\"\n    ],\n    \"labelIds\": [\n      124996\n    ],\n    \"gatewayMerchantGuid\": \"340fc848-4495-4682-aaee-920c4339526b\",\n    \"availableBalance\": 5.03,\n    \"isPhysical\": true,\n    \"isLodged\": false,\n    \"fingerprint\": \"0C77AA9C0E1E67E0B1B1A09E2C478F10\",\n    \"customerId\": null,\n    \"supplierId\": null,\n    \"issuerId\": 3,\n    \"country\": \"\",\n    \"cardBin\": \"550000\",\n    \"cardClass\": \"CommercialCredit\",\n    \"toleranceAmount\": null,\n    \"isGlobal\": false,\n    \"physicalCardFulfillment\": {\n      \"nameLine1\": \"Shawn\",\n      \"nameLine2\": \"Test\",\n      \"physicalCardShipping\": {\n        \"address1\": \"1st Street\",\n        \"address2\": \"Apt S\",\n        \"city\": \"Abville\",\n        \"state\": \"GA\",\n        \"country\": \"US\",\n        \"zipcode\": \"12345\",\n        \"firstName\": \"Pat\",\n        \"lastName\": \"Card\"\n      },\n      \"shippingMethod\": \"USPSPri\"\n    },\n    \"cardHolder\": null,\n    \"outgoingTransactionCode\": null,\n    \"createdBy\": null,\n    \"isMaestro\": false,\n    \"whitelistCountries\": null,\n    \"blacklistCountries\": null,\n    \"enableExactMatch\": false,\n    \"avsCheck\": false,\n    \"cardImageKey\": null\n  },\n  \"cardBrand\": \"Visa\",\n  \"cardClass\": \"CommercialCredit\",\n  \"orderNumber\": \"Test-Physical-Card\",\n  \"saleGuid\": \"00000000-0000-0000-0000-000000000000\",\n  \"incomingTransactionCode\": \"532FE4B638983186015474907\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93cfba5e-81b0-4fc2-90a6-2e284baf3531",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "PhysicalCard",
+                    ":cardGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardGuid",
+                      "description": "(Required) Global Unique Identifier of the Physical Card to be updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"MerchantGuid\": \"{{Merchant}}\",\n  \"FirstName\": \"Test\",\n  \"LastName\": \"User\",\n  \"DateOfBirth\": \"01-01-1990\",\n  \"PurchaseType\": \"\",\n  \"TerminateDate\": \"2027-10-26\",\n  \"AmountLimit\": 5.03,\n  \"LimitWindow\": \"DAY\",\n  \"UsageLimit\": 2,\n  \"OrderNumber\": \"Test-Physical-Card\",\n  \"LabelIds\": [\n    124996\n  ],\n  \"Address1\": \"1st Street\",\n  \"Address2\": \"Unit 29\",\n  \"Country\": \"US\",\n  \"State\": \"GA\",\n  \"City\": \"Alpharetta\",\n  \"Zipcode\": \"30022\",\n  \"Phone\": \"3121231234\",\n  \"MIDWhitelist\": [\n    \"675957401524052\"\n  ],\n  \"MIDBlacklist\": [\n    \"670414901524053\"\n  ],\n  \"PhysicalCardFulfillment\": {\n    \"NameLine1\": \"Shawn\",\n    \"NameLine2\": \"Test\",\n    \"ShippingMethod\": \"USPSPri\",\n    \"PhysicalCardShipping\": {\n      \"FirstName\": \"Pat\",\n      \"LastName\": \"Card\",\n      \"Address1\": \"1st Street\",\n      \"Address2\": \"Apt S\",\n      \"Country\": \"US\",\n      \"State\": \"GA\",\n      \"City\": \"Abville\",\n      \"Zipcode\": \"12345\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b107c573-a7e1-4fc8-88f1-15f0bfafa100",
+    "name": "purchases-api Physical Card API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

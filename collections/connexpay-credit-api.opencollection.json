@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConnexPay Reporting Credit API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Available Credit Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://reportingapi.connexpay.com/api/v1/Credit/AvailableCreditReport/:pageNumber/:pageSize",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get Available Credit Report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

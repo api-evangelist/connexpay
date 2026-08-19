@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "5c9beccc-4bc3-40d9-bcaa-7845c17526c6",
+      "name": "CardBooking",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43930c1e-ef89-4f8d-924a-fa4ce37b4644",
+          "name": "Card Booking",
+          "request": {
+            "name": "Card Booking",
+            "description": {
+              "content": "Use the Card Booking endpoint to send booking details for existing virtual cards that were issued without them. This supports workflows where a travel management company issues the card before the booking details are finalized. Booking details cannot be updated once successfully submitted. The Sertifi platform is used to automate the hotel booking authorization through this request. Contact your ConnexPay representative before use as fees will be applied and configuration is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "CardBooking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"CardGuid\": \"<string>\",\n  \"Booking Detail\": {\n    \"ArrivalDate\": \"<date>\",\n    \"PaymentInstruction\": \"<string>\",\n    \"ReferenceNumber\": \"<string>\",\n    \"Traveler\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\"\n    },\n    \"Company\": {\n      \"Name\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    },\n    \"Contact\": {\n      \"EmailAddress\": \"<string>\",\n      \"PhoneNumber\": \"<string>\",\n      \"InvoiceEmailAddress\": \"<string>\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Zipcode\": \"<string>\",\n      \"Country\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ff9937b-1ec5-4286-a239-850dac982e83",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "CardBooking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardGuid\": \"12345678-1234-1234-1234-123456789012\",\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\\"Success\\\": true,\\n\\\"Message\\\": \\\"Booking created successfully and is pending on card validation.\\\",\\n\\\"BookingGuid\\\": \\\"new-booking-guid\\\",\\n\\\"CardGuid\\\": \\\"original-card-guid\\\",\\n\\\"BookingStatus\\\": \\\"PendingCardValidation\\\",\\n\\\"CreatedAt\\\": \\\"2026-02-19T10:30:00Z\\\",\\n\\\"ProcessorRefNumber\\\": \\\"SERT-REF-12345\\\",\\n\\\"HotelInfo\\\": {\\n\\\"GDSCode\\\": \\\"HTL001\\\",\\n\\\"PropertyAddress\\\": \\\"456 Hotel Avenue, New York, NY 10002, USA\\\",\\n\\\"IsVerified\\\": true,\\n\\\"VerifiedTimestamp\\\": \\\"2026-02-19T10:35:00Z\\\",\\n\\\"PropertyName\\\": \\\"Grand Plaza Hotel\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efbf4da4-e555-47cc-8689-a52a48cf1d1c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "CardBooking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardGuid\": \"12345678-1234-1234-1234-123456789012\",\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34bd15d3-673c-44c7-aa10-46b5e9b685a9",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "CardBooking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardGuid\": \"12345678-1234-1234-1234-123456789012\",\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "851ec077-8a98-4746-8036-cb9754bc3a66",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "CardBooking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E..."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"CardGuid\": \"12345678-1234-1234-1234-123456789012\",\n  \"BookingDetail\": {\n    \"ArrivalDate\": \"2025-12-01\",\n    \"PaymentInstruction\": \"Payment for hotel accommodation - This is a virtual credit card\",\n    \"ReferenceNumber\": \"REF123456789\",\n    \"Traveler\": {\n      \"FirstName\": \"M\",\n      \"LastName\": \"Smith\"\n    },\n    \"Company\": {\n      \"Name\": \"Example Corporation\",\n      \"Address1\": \"123 Main Street\",\n      \"Address2\": \"Suite 100\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Zipcode\": \"10001\",\n      \"Country\": \"US\"\n    },\n    \"Contact\": {\n      \"PhoneNumber\": \"+1-555-123-4567\",\n      \"EmailAddress\": \"m.smith@example.com\",\n      \"InvoiceEmailAddress\": \"billing@example.com\"\n    },\n    \"Property\": {\n      \"GDSCode\": \"HTL001\",\n      \"Address1\": \"456 Hotel Boulevard\",\n      \"Address2\": \"Floor 1\",\n      \"City\": \"Las Vegas\",\n      \"State\": \"NV\",\n      \"Zipcode\": \"89101\",\n      \"Country\": \"US\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxpurchasesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d87d9821-166b-45da-998a-500b6f950a45",
+    "name": "purchases-api Card Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "item": [
+    {
+      "id": "589789f3-470c-4792-aaac-03350ae53cbc",
+      "name": "3ds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9720a7a0-19d6-4d81-ae2d-2558c678c2fb",
+          "name": "3DS Authentication",
+          "request": {
+            "name": "3DS Authentication",
+            "description": {
+              "content": "This endpoint can be used for obtaining 3D Secure Authentication separate from the Create Sale or Auth-Only calls.  This is recommended for our US and CA clients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "3ds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"DeviceGuid\": \"{{deviceGuid}}\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"Amount\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63717e9a-a9dc-4f77-b891-6b7296a3298a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3ds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"DeviceGuid\": \"{{deviceGuid}}\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"Amount\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"74fb35e7-3b41-427a-969b-1fc42a35fb11\\\",\\n    \\\"status\\\": \\\"3DS - Approved\\\",\\n    \\\"timeStamp\\\": \\\"2023-08-16T16:40:29.6401705Z\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 0.0,\\n    \\\"threeDSStatus\\\": \\\"Y\\\",\\n    \\\"SecureData\\\": \\\"06:3030303030303030303030313130363639393458:none\\\",\\n    \\\"Cavv\\\": \\\"MDAwMDAwMDAwMDAxMTA2Njk5NFg=\\\",\\n    \\\"Version\\\": \\\"2.1.0\\\",\\n    \\\"DirectoryServerTransactionID\\\": \\\"5066e271-4752-4445-a025-235c7789c151\\\",\\n    \\\"AcsTransactionId\\\": \\\"09a291d3-92b5-4354-b31a-5446409444f3\\\",\\n    \\\"ECI\\\": \\\"06\\\",\\n    \\\"card\\\": {      \\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0036\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"c3398555-e4c0-43da-b3ca-6abc475b79b9\\\"\\n    },\\n    \\\"exemptThreeDSRequest\\\": false,\\n    \\\"exemptThreeDSPayment\\\": false\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e46743c1-4548-44e2-994e-c0d99c7e5169",
+              "name": "202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3ds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"DeviceGuid\": \"{{deviceGuid}}\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"Amount\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"3a0d533f-588b-4ce4-920f-7bc4641ea8f7\\\",\\n    \\\"status\\\": \\\"3DS - Pending Fingerprint\\\",\\n    \\\"timeStamp\\\": \\\"2023-08-16T16:44:40.9866697Z\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 1.34,\\n    \\\"version\\\": \\\"2.1.0\\\",\\n    \\\"redirectUrl\\\": \\\"https://x3d-sim.credorax.net/acs/3ds-method\\\",\\n    \\\"redirectUrlRequestPayload\\\": \\\"threeDSMethodData=eyJ0aHJlZURTTWV0aG9kTm90aWZpY2F0aW9uVVJMIjoiaHR0cHM6Ly9zYWxlc2FwaS5jb25uZXhwYXlkZXYuY29tL2FwaS92MS8zZHMvY2FsbGJhY2siLCJ0aHJlZURTU2VydmVyVHJhbnNJRCI6ImU2YmNjM2RiLTAwZjQtNDdiZi05OTgwLTljZjE2MTUxOGM5NyJ9\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0010\\\",\\n        \\\"cardHolderName\\\": \\\"Jason Harmon\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2023-12\\\",\\n        \\\"guid\\\": \\\"c6b816a3-f107-40d5-9dc3-bcefc576c8bc\\\"\\n    },\\n    \\\"exemptThreeDSRequest\\\": false,\\n    \\\"exemptThreeDSPayment\\\": false\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "000ddb7f-626d-4e3f-a228-9ee0b7a28eb6",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3ds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"DeviceGuid\": \"{{deviceGuid}}\",\n  \"BrowserData\": {\n    \"AcceptanceHeader\": \"<string>\",\n    \"ColorDepth\": \"<integer>\",\n    \"JavaEnabled\": \"<boolean>\",\n    \"ScreenHeight\": \"<integer>\",\n    \"ScreenWidth\": \"<integer>\",\n    \"TimeZoneOffset\": \"<integer>\",\n    \"Language\": \"<string>\",\n    \"RedirectURL\": \"<string>\",\n    \"UserAgentHeader\": \"<string>\"\n  },\n  \"Amount\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c146a51-cbdf-4090-a2c8-692160ef724a",
+          "name": "Get 3DS Status Group",
+          "request": {
+            "name": "Get 3DS Status Group",
+            "description": {
+              "content": "This endpoint returns the 3D Secure status of an authentication when a device fingerprint and/or cardholder challenge are required for 3D Secure Authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "3ds",
+                ":GUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "guid",
+                  "description": "(Required) Replace the original guid value with the guid that was returned with the status response indicating a device fingerprint or cardholder challenge is required to complete 3DS authentication.."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f3280be-5ea5-418b-88af-91c8c5b1b04d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "3ds",
+                    ":GUID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "guid",
+                      "description": "(Required) Replace the original guid value with the guid that was returned with the status response indicating a device fingerprint or cardholder challenge is required to complete 3DS authentication.."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "\"application/json\"",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"34f3ae17-89c4-4bc8-b085-f46eef5af3d6\\\",\\n    \\\"status\\\": \\\"3DS - Approved\\\",\\n    \\\"timeStamp\\\": \\\"2022-12-07T14:50:18.33\\\",\\n    \\\"deviceGuid\\\": \\\"e639a1dc-5cc4-43de-ab74-d5bea6c6b107\\\",\\n    \\\"amount\\\": 11.35,\\n    \\\"secureData\\\": \\\"05:0099010281111100000000788400707000000000:none\\\",\\n    \\\"eci\\\": \\\"05\\\",\\n    \\\"cavv\\\": \\\"AJkBAoEREQAAAAB4hABwcAAAAAA=\\\",\\n    \\\"directoryServerTransactionID\\\": \\\"a52b6caa-d58e-4d72-8007-bf026acebecc\\\",\\n    \\\"acsTransactionId\\\": \\\"7c6670d1-d888-4af5-b5f4-db286ba6c20a\\\",  \\n    \\\"version\\\": \\\"2.1.0\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"401881\\\",\\n        \\\"first4\\\": \\\"4018\\\",\\n        \\\"last4\\\": \\\"0010\\\",\\n        \\\"cardType\\\": \\\"Visa\\\",\\n        \\\"expirationDate\\\": \\\"2025-12\\\",\\n        \\\"guid\\\": \\\"da25f77e-758a-4729-ade6-37fbbcb4675c\\\"\\n    },\\n    \\\"processorResponseCode\\\": \\\"0\\\",\\n    \\\"processorMessage\\\": \\\"Transaction has been executed successfully.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "3104fb0b-1f02-4eef-9687-39610ba60afc",
+    "name": "sales-api 3ds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

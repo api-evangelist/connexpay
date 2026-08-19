@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "sales-api Sales Api API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sales Api",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxsalesapi.connexpay.com/"
+          },
+          "docs": "This is the API that populates the Search Transactions Page of the Purchases Portal"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

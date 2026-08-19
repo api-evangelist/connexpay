@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Purchases Push To Card API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PushToCard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payees",
+            "params": [
+              {
+                "name": "payeeGuid",
+                "value": "",
+                "type": "query",
+                "description": "Globally Unique Identifier for the Payee being retrieved"
+              },
+              {
+                "name": "payeeEmailAddress",
+                "value": "",
+                "type": "query",
+                "description": "Email address of the Payee being retrieved"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve a Payee for a specific Payee guid. One or both 'payeeGuid' or 'payeeEmailAddress' must be provided."
+        },
+        {
+          "info": {
+            "name": "Create Payee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new Payee."
+        },
+        {
+          "info": {
+            "name": "Manage Payee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payees/:payeeGuid/:status",
+            "params": [
+              {
+                "name": "payeeGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally Unique Identifier for the Payee that will be changed"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "Must be 'enable' or 'disable'"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to enable or disable a Payee."
+        },
+        {
+          "info": {
+            "name": "Update Payee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payees/:payeeGuid",
+            "params": [
+              {
+                "name": "payeeGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally Unique Identifier for a the Payee that will be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to update data for a Payee."
+        },
+        {
+          "info": {
+            "name": "Create Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payouts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new Payout."
+        },
+        {
+          "info": {
+            "name": "Cancel Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payouts/:payoutGuid/Cancel",
+            "params": [
+              {
+                "name": "payoutGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally Unique Identifier for a the Payout that will be changed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to cancel payments within a Payout."
+        },
+        {
+          "info": {
+            "name": "Get Payout Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payouts/:payoutGuid",
+            "params": [
+              {
+                "name": "payoutGuid",
+                "value": "",
+                "type": "path",
+                "description": "Globally Unique Identifier for a the Payout that will be retrieved"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve the details for a Payout for a specific Payout guid."
+        },
+        {
+          "info": {
+            "name": "Get Authentication Token for DropInUI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/AuthenticatePaymentWidget",
+            "params": [
+              {
+                "name": "payeeGuid",
+                "value": "",
+                "type": "query",
+                "description": "Globally Unique Identifier for the Payee being authenticated."
+              },
+              {
+                "name": "payeeEmailAddress",
+                "value": "",
+                "type": "query",
+                "description": "Email address of the Payee being retrieved"
+              }
+            ]
+          },
+          "docs": "Get Authentication Token for DropInUI"
+        },
+        {
+          "info": {
+            "name": "Push Funds to a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sandboxpurchasesapi.connexpay.com/api/v1/PushToCard/Payments/:ridGuid/:cardId",
+            "params": [
+              {
+                "name": "ridGuid",
+                "value": "",
+                "type": "path",
+                "description": "For Payment Widget clients. A ridGuid will will be returned upon creation of a Payout. That must be saved and passed here to complete the process."
+              },
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path",
+                "description": "For Payment Widget clients. The cardId is retrieved by calling the Get Payee endpoint."
+              }
+            ]
+          },
+          "docs": "Push Funds to a Card"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

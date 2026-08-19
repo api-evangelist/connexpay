@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "id": "9b1cbc5d-9b2f-4c4d-bd9f-ecc00f7254cc",
+      "name": "Returns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd6ca8b0-6ba6-43dc-9f8a-23c15c05c12f",
+          "name": "Return",
+          "request": {
+            "name": "Return",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "returns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DeviceGuid\": \"<string>\",\n  \"Amount\": \"<float>\",\n  \"SaleGuid\": \"<string>\",\n  \"SaleReferenceNumber\": \"<integer>\",\n  \"SequenceNumber\": \"<string>\",\n  \"ReturnRetryCard\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<integer>\",\n    \"ExpirationDate\": \"<date>\"\n  },\n  \"OrderNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "283b498f-ad42-4d84-96bd-2d6eebe7e421",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guid\": \"4f31b350-edd1-49fd-a1ad-4b065f78d7b9\",\n  \"batchStatus\": \"Batch - Open\",\n  \"timeStamp\": \"2017-07-11T11:10:38.11\",\n  \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n  \"saleGuid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n  \"status\": \"Transaction - Approved\",\n  \"amount\": 19.74,\n  \"batchGuid\": \"450463e0-5050-4c33-8c2f-4e39a2dd8614\",\n  \"processorStatusCode\": \"A0014\",\n  \"wasProcessed\": true,\n  \"authCode\": \"VTLMC1\",\n  \"refNumber\": \"13283670\",\n  \"invoiceNumber\": \"11518\",\n  \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\n8320 S HARDY DRIVE\\nTEMPE AZ 85284\\n07/11/2017 07:10:42\\n\\nCREDIT - VOID\\n\\nCARD # : **** **** **** 0213\\nCARD TYPE :MASTERCARD\\nEntry Mode : MANUAL\\n\\nREF # : 13283670\\nInvoice number : 11518\\n\\nVoid Amount:                    $19.74\\n--------------------------------------\\n\\n\\n\\nJohn Doe\\n\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\nGOODS AND/OR SERVICES IN THE AMOUNT\\nOF THE TOTAL SHOWN HEREON AND AGREES\\nTO PERFORM THE OBLIGATIONS SET FORTH\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\nISSUER\\nAPPROVED\\n\\n\\n\\n\\nCustomer Copy\\n\",\n  \"sequenceNumber\": \"Sample-seq-1\",\n  \"sale\": {\n    \"guid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n    \"status\": \"Transaction - Approved\",\n    \"batchStatus\": \"Batch - Closed\",\n    \"timeStamp\": \"2017-07-11T11:09:53.5\",\n    \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n    \"amount\": 19.74,\n    \"effectiveAmount\": 0,\n    \"orderNumber\": \"11518\",\n    \"orderDate\": \"2017-02-03T00:00:00\",\n    \"batchGuid\": \"1564cb1b-eddb-4747-9565-61a7d7d225f9\",\n    \"processorStatusCode\": \"A0000\",\n    \"processorResponseMessage\": \"Success\",\n    \"wasProcessed\": true,\n    \"authCode\": \"VTLMC1\",\n    \"refNumber\": \"13283670\",\n    \"invoiceNumber\": \"11518\",\n    \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\n8320 S HARDY DRIVE\\nTEMPE AZ 85284\\n07/11/2017 07:09:56\\n\\nCREDIT - SALE\\n\\nCARD # : **** **** **** 0213\\nCARD TYPE :MASTERCARD\\nEntry Mode : MANUAL\\n\\nREF # : 13283670\\nInvoice number : 11518\\nAUTH CODE : VTLMC1\\nSubtotal:                       $19.74\\n--------------------------------------\\nTotal:                          $19.74\\n--------------------------------------\\n\\n\\n\\nJohn Doe\\n\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\nGOODS AND/OR SERVICES IN THE AMOUNT\\nOF THE TOTAL SHOWN HEREON AND AGREES\\nTO PERFORM THE OBLIGATIONS SET FORTH\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\nISSUER\\nAPPROVED\\n\\n\\n\\n\\nCustomer Copy\\n\",\n    \"customData\": \"order details\",\n    \"card\": {\n      \"first4\": \"5306\",\n      \"last4\": \"0213\",\n      \"cardNumber\": \"1zcGT7J4pkGh0213\",\n      \"cardHolderName\": \"John Doe\",\n      \"expirationDate\": \"2019-07\",\n      \"customer\": {\n        \"guid\": \"d1cf828d-3050-4e4c-b7cf-f4038d114d39\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"phone\": \"9177563007\",\n        \"city\": \"New York\",\n        \"country\": \"US\",\n        \"email\": \"johnd@gmail.com\",\n        \"zip\": \"10007\",\n        \"address1\": \"107 7th Av.\",\n        \"address2\": \"\",\n        \"state\": \"NY\",\n        \"dateOfBirth\": \"1987-07-07T00:00:00\",\n        \"driverLicenseNumber\": \"12345678\",\n        \"driverLicenseState\": \"TX\",\n        \"ssN4\": \"1210\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"4f31b350-edd1-49fd-a1ad-4b065f78d7b9\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2017-07-11T11:10:38.11\\\",\\n    \\\"deviceGuid\\\": \\\"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\\\",\\n    \\\"saleGuid\\\": \\\"ded98ad3-0553-4607-b84c-1bbd85f474d5\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"amount\\\": 19.74,\\n    \\\"batchGuid\\\": \\\"450463e0-5050-4c33-8c2f-4e39a2dd8614\\\",\\n    \\\"processorStatusCode\\\": \\\"A0014\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"authCode\\\": \\\"VTLMC1\\\",\\n    \\\"refNumber\\\": \\\"13283670\\\",\\n    \\\"invoiceNumber\\\": \\\"11518\\\",\\n    \\\"customerReceipt\\\": \\\"SUR TECHNOLOGY HOLDINGS\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/11/2017 07:10:42\\\\\\\\n\\\\\\\\nCREDIT - VOID\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 0213\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nREF # : 13283670\\\\\\\\nInvoice number : 11518\\\\\\\\n\\\\\\\\nVoid Amount:                    $19.74\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER’S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n    \\\"sequenceNumber\\\": \\\"Sample-seq-1\\\",\\n    \\\"sale\\\": {\\n        \\\"guid\\\": \\\"ded98ad3-0553-4607-b84c-1bbd85f474d5\\\",\\n        \\\"status\\\": \\\"Transaction - Approved\\\",\\n        \\\"batchStatus\\\": \\\"Batch - Closed\\\",\\n        \\\"timeStamp\\\": \\\"2017-07-11T11:09:53.5\\\",\\n        \\\"deviceGuid\\\": \\\"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\\\",\\n        \\\"amount\\\": 19.74,\\n        \\\"effectiveAmount\\\": 0,\\n        \\\"orderNumber\\\": \\\"11518\\\",\\n        \\\"orderDate\\\": \\\"2017-02-03T00:00:00\\\",\\n        \\\"batchGuid\\\": \\\"1564cb1b-eddb-4747-9565-61a7d7d225f9\\\",\\n        \\\"processorStatusCode\\\": \\\"A0000\\\",\\n        \\\"processorResponseMessage\\\": \\\"Success\\\",\\n        \\\"wasProcessed\\\": true,\\n        \\\"authCode\\\": \\\"VTLMC1\\\",\\n        \\\"refNumber\\\": \\\"13283670\\\",\\n        \\\"invoiceNumber\\\": \\\"11518\\\",\\n        \\\"customerReceipt\\\": \\\"SUR TECHNOLOGY HOLDINGS\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/11/2017 07:09:56\\\\\\\\n\\\\\\\\nCREDIT - SALE\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 0213\\\\\\\\nCARD TYPE :MASTERCARD\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nREF # : 13283670\\\\\\\\nInvoice number : 11518\\\\\\\\nAUTH CODE : VTLMC1\\\\\\\\nSubtotal:                       $19.74\\\\\\\\n--------------------------------------\\\\\\\\nTotal:                          $19.74\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nJohn Doe\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER’S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n        \\\"customData\\\": \\\"order details\\\",\\n        \\\"card\\\": {\\n            \\\"first4\\\": \\\"5306\\\",\\n            \\\"last4\\\": \\\"0213\\\",\\n            \\\"cardNumber\\\": \\\"1zcGT7J4pkGh0213\\\",\\n            \\\"cardHolderName\\\": \\\"John Doe\\\",\\n            \\\"expirationDate\\\": \\\"2019-07\\\",\\n            \\\"customer\\\": {\\n                \\\"guid\\\": \\\"d1cf828d-3050-4e4c-b7cf-f4038d114d39\\\",\\n                \\\"firstName\\\": \\\"John\\\",\\n                \\\"lastName\\\": \\\"Doe\\\",\\n                \\\"phone\\\": \\\"9177563007\\\",\\n                \\\"city\\\": \\\"New York\\\",\\n                \\\"country\\\": \\\"US\\\",\\n                \\\"email\\\": \\\"johnd@gmail.com\\\",\\n                \\\"zip\\\": \\\"10007\\\",\\n                \\\"address1\\\": \\\"107 7th Av.\\\",\\n                \\\"address2\\\": \\\"\\\",\\n                \\\"state\\\": \\\"NY\\\",\\n                \\\"dateOfBirth\\\": \\\"1987-07-07T00:00:00\\\",\\n                \\\"driverLicenseNumber\\\": \\\"12345678\\\",\\n                \\\"driverLicenseState\\\": \\\"TX\\\",\\n                \\\"ssN4\\\": \\\"1210\\\"\\n            }\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b05dd38-1b27-4815-a10c-3ab778394054",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "returns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guid\": \"4f31b350-edd1-49fd-a1ad-4b065f78d7b9\",\n  \"batchStatus\": \"Batch - Open\",\n  \"timeStamp\": \"2017-07-11T11:10:38.11\",\n  \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n  \"saleGuid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n  \"status\": \"Transaction - Approved\",\n  \"amount\": 19.74,\n  \"batchGuid\": \"450463e0-5050-4c33-8c2f-4e39a2dd8614\",\n  \"processorStatusCode\": \"A0014\",\n  \"wasProcessed\": true,\n  \"authCode\": \"VTLMC1\",\n  \"refNumber\": \"13283670\",\n  \"invoiceNumber\": \"11518\",\n  \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\n8320 S HARDY DRIVE\\nTEMPE AZ 85284\\n07/11/2017 07:10:42\\n\\nCREDIT - VOID\\n\\nCARD # : **** **** **** 0213\\nCARD TYPE :MASTERCARD\\nEntry Mode : MANUAL\\n\\nREF # : 13283670\\nInvoice number : 11518\\n\\nVoid Amount:                    $19.74\\n--------------------------------------\\n\\n\\n\\nJohn Doe\\n\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\nGOODS AND/OR SERVICES IN THE AMOUNT\\nOF THE TOTAL SHOWN HEREON AND AGREES\\nTO PERFORM THE OBLIGATIONS SET FORTH\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\nISSUER\\nAPPROVED\\n\\n\\n\\n\\nCustomer Copy\\n\",\n  \"sequenceNumber\": \"Sample-seq-1\",\n  \"sale\": {\n    \"guid\": \"ded98ad3-0553-4607-b84c-1bbd85f474d5\",\n    \"status\": \"Transaction - Approved\",\n    \"batchStatus\": \"Batch - Closed\",\n    \"timeStamp\": \"2017-07-11T11:09:53.5\",\n    \"deviceGuid\": \"8f65764d-72c1-4dee-ac9f-4cd4c98e8c35\",\n    \"amount\": 19.74,\n    \"effectiveAmount\": 0,\n    \"orderNumber\": \"11518\",\n    \"orderDate\": \"2017-02-03T00:00:00\",\n    \"batchGuid\": \"1564cb1b-eddb-4747-9565-61a7d7d225f9\",\n    \"processorStatusCode\": \"A0000\",\n    \"processorResponseMessage\": \"Success\",\n    \"wasProcessed\": true,\n    \"authCode\": \"VTLMC1\",\n    \"refNumber\": \"13283670\",\n    \"invoiceNumber\": \"11518\",\n    \"customerReceipt\": \"SUR TECHNOLOGY HOLDINGS\\n8320 S HARDY DRIVE\\nTEMPE AZ 85284\\n07/11/2017 07:09:56\\n\\nCREDIT - SALE\\n\\nCARD # : **** **** **** 0213\\nCARD TYPE :MASTERCARD\\nEntry Mode : MANUAL\\n\\nREF # : 13283670\\nInvoice number : 11518\\nAUTH CODE : VTLMC1\\nSubtotal:                       $19.74\\n--------------------------------------\\nTotal:                          $19.74\\n--------------------------------------\\n\\n\\n\\nJohn Doe\\n\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\nGOODS AND/OR SERVICES IN THE AMOUNT\\nOF THE TOTAL SHOWN HEREON AND AGREES\\nTO PERFORM THE OBLIGATIONS SET FORTH\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\nISSUER\\nAPPROVED\\n\\n\\n\\n\\nCustomer Copy\\n\",\n    \"customData\": \"order details\",\n    \"card\": {\n      \"first4\": \"5306\",\n      \"last4\": \"0213\",\n      \"cardNumber\": \"1zcGT7J4pkGh0213\",\n      \"cardHolderName\": \"John Doe\",\n      \"expirationDate\": \"2019-07\",\n      \"customer\": {\n        \"guid\": \"d1cf828d-3050-4e4c-b7cf-f4038d114d39\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"phone\": \"9177563007\",\n        \"city\": \"New York\",\n        \"country\": \"US\",\n        \"email\": \"johnd@gmail.com\",\n        \"zip\": \"10007\",\n        \"address1\": \"107 7th Av.\",\n        \"address2\": \"\",\n        \"state\": \"NY\",\n        \"dateOfBirth\": \"1987-07-07T00:00:00\",\n        \"driverLicenseNumber\": \"12345678\",\n        \"driverLicenseState\": \"TX\",\n        \"ssN4\": \"1210\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93b521e5-cd34-4258-bd0e-442a499507bc",
+          "name": "Create Credit",
+          "request": {
+            "name": "Create Credit",
+            "description": {
+              "content": "This Endpoint allows you to create a credit to your consumer without having an associated sale.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "returns",
+                "CreateCredit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Amount\": \"<long>\",\n  \"Card\": {\n    \"CardNumber\": \"<string>\",\n    \"CardHolderName\": \"<string>\",\n    \"Cvv2\": \"<string>\",\n    \"ExpirationDate\": \"<date>\",\n    \"Guid\": \"<string>\",\n    \"IsRecurring\": false,\n    \"Customer\": {\n      \"FirstName\": \"<string>\",\n      \"LastName\": \"<string>\",\n      \"Phone\": \"<string>\",\n      \"City\": \"<string>\",\n      \"State\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Email\": \"<string>\",\n      \"Address1\": \"<string>\",\n      \"Address2\": \"<string>\",\n      \"Zip\": \"<string>\",\n      \"DateOfBirth\": \"<date>\",\n      \"DriversLicenseNumber\": \"<integer>\",\n      \"DriversLicenseState\": \"<string>\",\n      \"SSN4\": \"<integer>\"\n    },\n    \"ThreeDS\": {\n      \"SecureCode\": \"<string>\",\n      \"Cavv\": \"<string>\",\n      \"Version\": \"<string>\",\n      \"DirectoryServerTransactionID\": \"<string>\",\n      \"AcsTransactionId\": \"<string>\",\n      \"ECI\": \"<string>\"\n    }\n  },\n  \"DeviceGuid\": \"<string>\",\n  \"OrderNumber\": \"<string>\",\n  \"CustomerId\": \"<string>\",\n  \"TenderType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0065873-9030-4e65-91a4-98966ce97c13",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "returns",
+                    "CreateCredit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": \"2.03\",\n  \"OrderNumber\": \"ord-03\",\n  \"CustomerID\": \"cust-03\",\n  \"TenderType\": \"Credit\",\n  \"Card\": {\n    \"CardHolderName\": \"John Doe\",\n    \"CardNumber\": \"{card number}\",\n    \"ExpirationDate\": \"2212\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"5551231234\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"_Email\": \"johndoe@test.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"guid\\\": \\\"edd157f3-0c17-475d-9951-3a87f91bd30c\\\",\\n    \\\"batchStatus\\\": \\\"Batch - Open\\\",\\n    \\\"timeStamp\\\": \\\"2021-07-28T09:51:13.76-05:00\\\",\\n    \\\"deviceGuid\\\": \\\"{Device}\\\",\\n    \\\"status\\\": \\\"Transaction - Approved\\\",\\n    \\\"amount\\\": 2.06,\\n    \\\"batchGuid\\\": \\\"f15b017f-0daa-4a53-b7f4-fb336f44acfd\\\",\\n    \\\"processorStatusCode\\\": \\\"A0000\\\",\\n    \\\"wasProcessed\\\": true,\\n    \\\"authCode\\\": \\\"DSC745\\\",\\n    \\\"refNumber\\\": \\\"11027747\\\",\\n    \\\"invoiceNumber\\\": \\\"11027747\\\",\\n    \\\"customerReceipt\\\": \\\"CONNEXPAY\\\\\\\\n8320 S HARDY DRIVE\\\\\\\\nTEMPE AZ 85284\\\\\\\\n07/28/2021 12:51:15\\\\\\\\n\\\\\\\\nCREDIT - RETURN\\\\\\\\n\\\\\\\\nCARD # : **** **** **** 6909\\\\\\\\nCARD TYPE :DISCOVER\\\\\\\\nEntry Mode : MANUAL\\\\\\\\n\\\\\\\\nTRANSACTION ID : 11027747\\\\\\\\nInvoice number : 11027747\\\\\\\\nAUTH CODE : DSC745\\\\\\\\nReturn Amount:                  $02.06\\\\\\\\n--------------------------------------\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCUSTOMER ACKNOWLEDGES RECEIPT OF\\\\\\\\nGOODS AND/OR SERVICES IN THE AMOUNT\\\\\\\\nOF THE TOTAL SHOWN HEREON AND AGREES\\\\\\\\nTO PERFORM THE OBLIGATIONS SET FORTH\\\\\\\\nBY THE CUSTOMER`S AGREEMENT WITH THE\\\\\\\\nISSUER\\\\\\\\nAPPROVED\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\n\\\\\\\\nCustomer Copy\\\\\\\\n\\\",\\n    \\\"isInternalCashReturnForIssueLite\\\": false,\\n    \\\"orderNumber\\\": \\\"ord-06\\\",\\n    \\\"customerID\\\": \\\"cust-03\\\",\\n    \\\"tenderType\\\": \\\"Credit\\\",\\n    \\\"card\\\": {\\n        \\\"first6\\\": \\\"555500\\\",\\n        \\\"first4\\\": \\\"5555\\\",\\n        \\\"last4\\\": \\\"6909\\\",\\n        \\\"cardType\\\": \\\"Discover\\\",\\n        \\\"expirationDate\\\": \\\"2022-12\\\",\\n        \\\"guid\\\": \\\"95d95b9e-de29-4382-9953-b592f7b03cc0\\\",\\n        \\\"customer\\\": {\\n            \\\"guid\\\": \\\"885909d6-dad7-4434-96d5-82a43953c11c\\\",\\n            \\\"firstName\\\": \\\"John\\\",\\n            \\\"lastName\\\": \\\"Doe\\\",\\n            \\\"dateOfBirth\\\": \\\"1990-12-07T00:00:00\\\",\\n            \\\"address1\\\": \\\"107 7th Av.\\\",\\n            \\\"address2\\\": \\\"\\\",\\n            \\\"zip\\\": \\\"10007\\\",\\n            \\\"city\\\": \\\"New York\\\",\\n            \\\"state\\\": \\\"NY\\\",\\n            \\\"country\\\": \\\"US\\\",\\n            \\\"phone\\\": \\\"9177563007\\\",\\n            \\\"email\\\": \\\"johndoe@test.com\\\",\\n            \\\"ssN4\\\": \\\"1210\\\",\\n            \\\"driverLicenseNumber\\\": \\\"12345678\\\",\\n            \\\"driverLicenseState\\\": \\\"TX\\\"\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c35de4f-288e-4c91-a6f4-29b7358c9c49",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "returns",
+                    "CreateCredit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Content-Type Header",
+                    "key": "Content-Type",
+                    "value": "\"application/json\""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "Bearer Token"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DeviceGuid\": \"{{Device}}\",\n  \"Amount\": \"2.03\",\n  \"OrderNumber\": \"ord-03\",\n  \"CustomerID\": \"cust-03\",\n  \"TenderType\": \"Credit\",\n  \"Card\": {\n    \"CardHolderName\": \"John Doe\",\n    \"CardNumber\": \"{card number}\",\n    \"ExpirationDate\": \"2212\",\n    \"Customer\": {\n      \"FirstName\": \"John\",\n      \"LastName\": \"Doe\",\n      \"Phone\": \"5551231234\",\n      \"City\": \"New York\",\n      \"State\": \"NY\",\n      \"Country\": \"US\",\n      \"_Email\": \"johndoe@test.com\",\n      \"Address1\": \"107 7th Av.\",\n      \"Address2\": \"\",\n      \"Zip\": \"10007\",\n      \"DateOfBirth\": \"1990-12-07\",\n      \"DriverLicenseNumber\": \"12345678\",\n      \"DriverLicenseState\": \"TX\",\n      \"SSN4\": \"1210\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "5018f016-5973-4f23-9adc-0813b049666b",
+    "name": "sales-api Returns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

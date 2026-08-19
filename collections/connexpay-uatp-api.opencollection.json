@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConnexPay Reporting UATP API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UATP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get UATP Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://reportingapi.connexpay.com/api/v1/UATP/Transactions",
+            "params": [
+              {
+                "name": "merchantGuid",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier assigned to the client by ConnexPay."
+              },
+              {
+                "name": "postDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Starting ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+              },
+              {
+                "name": "postDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Ending ticket issued date for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+              },
+              {
+                "name": "settledDateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Starting settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required."
+              },
+              {
+                "name": "settledDateTo",
+                "value": "",
+                "type": "query",
+                "description": "Ending settlement timestamp for the transactions to retrieve. Either postDateFrom and postDateTo or settledDateFrom and settledDateTo are required. "
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number for the transactions to retrieve in this call."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of transactions to retrieve in this call."
+              }
+            ]
+          },
+          "docs": "Either postDateFrom and postDateTo OR settledDateFrom and settledDateTo must be provided. (Note: Records will only be returned by the postDateFrom/To range if the transaction has settled.) For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

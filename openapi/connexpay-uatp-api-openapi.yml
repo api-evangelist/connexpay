@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: ConnexPay Reporting UATP API
   description: REST API for retrieving reporting data. Currently Daily Accounting data only.
@@ -102,22 +102,97 @@ components:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: {}
+    UATPTransactions:
+      type: object
+      properties:
+        merchantGuid:
+          type: string
+          description: "Merchant Guid\n            \nUnique identifier assigned to the client by ConnexPay."
+          format: uuid
+        merchantName:
+          type:
+          - string
+          - 'null'
+          description: "Merchant Name\n            \nName of the airline processing the transaction."
+        cardAcceptorName:
+          type:
+          - string
+          - 'null'
+          description: "Card Acceptor Name\n            \nAnother version of the name of the airline that is processing the transaction."
+        iataAirlineCode:
+          type:
+          - string
+          - 'null'
+          description: "IATA Airline Code\n            \nTwo-letter IATA airline designator. (https://www.iata.org/en/publications/directories/code-search/)"
+        accountNumber:
+          type:
+          - string
+          - 'null'
+          description: "Account Number\n            \nMasked account number for the payment."
+        ticketIssuedDate:
+          type: string
+          description: "Ticket Issued Date\n            \nDate the ticket was issued."
+          format: date-time
+        settledDate:
+          type: string
+          description: "Settled Date\n            \nDate when the transaction was settled."
+          format: date-time
+        ticketNumber:
+          type:
+          - string
+          - 'null'
+          description: "Ticket Number\n            \nAirline-provided identifier for the ticket."
+        merchantCurrency:
+          type:
+          - string
+          - 'null'
+          description: "Merchant Currency\n            \n3-letter alphabetic code for the currency accepted by the merchant / card acceptor. See ISO-4217 currency list for values (https://www.iso.org/obp/ui/)."
+        merchantCurrencyAmount:
+          type: number
+          description: "Merchant / Card Acceptor Currency Amount\n            \nThe amount of the transaction in the airline's / card acceptor's accepted currency."
+          format: double
+        merchantCountry:
+          type:
+          - string
+          - 'null'
+          description: "Merchant Country\n            \n3-letter country code of the airline / card acceptor. See ISO-3166 country list of Alpha-3 country codes (https://www.iso.org/obp/ui/)."
+        settledAmount:
+          type: number
+          description: "Settled Amount\n            \nConnexPay settlement amount, denominated in the customer's accounting currency. Value will be positive for a purchase or negative for returns."
+          format: double
+        transactionType:
+          type:
+          - string
+          - 'null'
+          description: "Transaction Type\n            \nValue will indicate either purchase or return."
+        idSettlement:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for UATP Purchase and Return settlements.
+      additionalProperties: false
     UATPTransactionsResponse:
       type: object
       properties:
@@ -138,71 +213,11 @@ components:
           type: integer
           format: int32
         searchResults:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/UATPTransactions'
-          nullable: true
-      additionalProperties: false
-    UATPTransactions:
-      type: object
-      properties:
-        merchantGuid:
-          type: string
-          description: "Merchant Guid\n            \nUnique identifier assigned to the client by ConnexPay."
-          format: uuid
-        merchantName:
-          type: string
-          description: "Merchant Name\n            \nName of the airline processing the transaction."
-          nullable: true
-        cardAcceptorName:
-          type: string
-          description: "Card Acceptor Name\n            \nAnother version of the name of the airline that is processing the transaction."
-          nullable: true
-        iataAirlineCode:
-          type: string
-          description: "IATA Airline Code\n            \nTwo-letter IATA airline designator. (https://www.iata.org/en/publications/directories/code-search/)"
-          nullable: true
-        accountNumber:
-          type: string
-          description: "Account Number\n            \nMasked account number for the payment."
-          nullable: true
-        ticketIssuedDate:
-          type: string
-          description: "Ticket Issued Date\n            \nDate the ticket was issued."
-          format: date-time
-        settledDate:
-          type: string
-          description: "Settled Date\n            \nDate when the transaction was settled."
-          format: date-time
-        ticketNumber:
-          type: string
-          description: "Ticket Number\n            \nAirline-provided identifier for the ticket."
-          nullable: true
-        merchantCurrency:
-          type: string
-          description: "Merchant Currency\n            \n3-letter alphabetic code for the currency accepted by the merchant / card acceptor. See ISO-4217 currency list for values (https://www.iso.org/obp/ui/)."
-          nullable: true
-        merchantCurrencyAmount:
-          type: number
-          description: "Merchant / Card Acceptor Currency Amount\n            \nThe amount of the transaction in the airline's / card acceptor's accepted currency."
-          format: double
-        merchantCountry:
-          type: string
-          description: "Merchant Country\n            \n3-letter country code of the airline / card acceptor. See ISO-3166 country list of Alpha-3 country codes (https://www.iso.org/obp/ui/)."
-          nullable: true
-        settledAmount:
-          type: number
-          description: "Settled Amount\n            \nConnexPay settlement amount, denominated in the customer's accounting currency. Value will be positive for a purchase or negative for returns."
-          format: double
-        transactionType:
-          type: string
-          description: "Transaction Type\n            \nValue will indicate either purchase or return."
-          nullable: true
-        idSettlement:
-          type: integer
-          format: int32
-          nullable: true
-          description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for UATP Purchase and Return settlements.
       additionalProperties: false
   securitySchemes:
     bearerAuth:

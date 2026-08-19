@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "3ce47e15-9ad9-45ce-b28b-694e1718b449",
+      "name": "MerchantSelfServiceFunding",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fecbb13-5c16-4501-9e7d-d876e2b84c7a",
+          "name": "Client Self-Service Funding",
+          "request": {
+            "name": "Client Self-Service Funding",
+            "description": {
+              "content": "Use this endpoint to fund or withdraw your merchant cash balance with your merchant bank account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "MerchantSelfServiceFunding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantGUID\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"isFundCashBalance\": \"<boolean>\",\n  \"customerID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d50a7ae-ef1d-4345-83f4-514c30d16256",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "MerchantSelfServiceFunding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGUID\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"isFundCashBalance\": \"<boolean>\",\n  \"customerID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"99a175e6-f2e3-422e-915c-4f71bfb6b1be\",\n  \"merchantGuid\": \"f758a448-7780-4b50-93a1-28329e37f94f\",\n  \"requestIp\": \"127.0.0.1\",\n  \"amount\": 12.2,\n  \"isFundCashBalance\": false,\n  \"bankAccount\": {\n    \"guid\": \"965a67b0-cd0e-4020-973b-5e0d1b4bd6e2\",\n    \"accountType\": \"Saving\",\n    \"accountNumberLastFour\": \"2222\",\n    \"nameOnAccount\": \"Merchant DBA Name\",\n    \"customer\": {\n      \"guid\": \"b364a8c9-20e5-462b-bb0b-f504302e3175\",\n      \"businessName\": \"Merchant DBA Name\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "531a4b80-4557-4ae7-a3bd-920d17868f1b",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "MerchantSelfServiceFunding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGUID\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"isFundCashBalance\": \"<boolean>\",\n  \"customerID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{    \\n    \\\"message\\\": \\\"Something went wrong on creating merchant self service funding request.\\\",\\n    \\\"errorCode\\\": 207000,\\n    \\\"errorId\\\": \\\"637832099954665799\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7f4baa0-b44a-445e-a60c-ef83b71b6227",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "MerchantSelfServiceFunding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "\"application/json\"",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Token. Eg: \"Bearer eHSN5rTBzqDozgAAlN1UlTMVuIT1zSiAZWCo6E...\"",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantGUID\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"isFundCashBalance\": \"<boolean>\",\n  \"customerID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{    \\n    \\\"message\\\": \\\"An error has occurred.\\\",\\n    \\\"exceptionMessage\\\": \\\"Object reference not set to an instance of an object.\\\",\\n    \\\"exceptionType\\\": \\\"System.NullReferenceException\\\",\\n    \\\"stackTrace\\\": \\\"   at SPG.WebApi.Controllers.MerchantSelfServiceFundingController.<>c__DisplayClass3_0.<<Create>b__0>d.MoveNext() in C:\\\\\\\\src\\\\\\\\sales\\\\\\\\sales\\\\\\\\Code\\\\\\\\SPG.WebApi\\\\\\\\Controllers\\\\\\\\Merchant\\\\\\\\MerchantSelfServiceFundingController.cs:line 48\\\\r\\\\n--- End of stack trace from previous location where exception was thrown ---\\\\r\\\\n   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()\\\\r\\\\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\\\\r\\\\n   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\\\\r\\\\n   at SPG.WebApi.Controllers.ConnexPayApiController.<SimpleMethodWrapper>d__0.MoveNext() in C:\\\\\\\\src\\\\\\\\sales\\\\\\\\sales\\\\\\\\Code\\\\\\\\SPG.WebApi\\\\\\\\Controllers\\\\\\\\ConnexPayApiController.cs:line 23\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandboxsalesapi.connexpay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": []
+  },
+  "info": {
+    "_postman_id": "8ac62396-e2a1-4dc5-b838-550d04907030",
+    "name": "sales-api Merchant Self Service Funding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
