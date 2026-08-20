@@ -27,6 +27,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - 3DS
+  tags_raw:
   - 3ds
   properties:
   - type: OpenAPI
@@ -57,6 +59,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - 3D Secure
+  tags_raw:
   - 3DSecure
   properties:
   - type: OpenAPI
@@ -237,6 +241,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - Capture
+  tags_raw:
   - Captures
   properties:
   - type: OpenAPI
@@ -817,6 +823,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - Push to Card
+  tags_raw:
   - PushToCard
   properties:
   - type: OpenAPI
