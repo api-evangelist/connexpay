@@ -1227,6 +1227,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/connexpay-capability-edges.yml
+  name: ConnexPay Business Capability Map
 - type: MCPServer
   url: mcp/connexpay-mcp.yml
 - type: Overlay
