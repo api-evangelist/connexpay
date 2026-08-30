@@ -39,7 +39,7 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
-  - 3DS
+  - 3ds
   tags_raw:
   - 3ds
   properties:
@@ -71,7 +71,7 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
-  - 3D Secure
+  - 3DSecure
   tags_raw:
   - 3DSecure
   properties:
@@ -835,7 +835,7 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
-  - Push to Card
+  - PushToCard
   tags_raw:
   - PushToCard
   properties:
