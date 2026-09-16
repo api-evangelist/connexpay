@@ -1,6 +1,15 @@
 aid: connexpay
 name: ConnexPay
-description: ConnexPay is a Milwaukee-founded B2B payments platform that combines merchant acquiring and card issuing in one integration, so a company's incoming customer payments directly fund its outgoing supplier payments with no float in between. An inbound Sale (PayIn) returns an Incoming Transaction Code that funds the virtual cards, ACH credits, push-to-card payouts, checks and international bank-to-bank transfers issued against it (PayOuts). The platform is used heavily in leisure and business travel, advertising and media buying, insurance claims, and embedded-payments software, and is delivered through ten REST APIs — Sales, Purchases, Push to Card, Payment Valet payment instructions, Checkout Session, Merchant Payor, Stop Payment, Chargebacks (CMS), and two Reporting surfaces — plus a browser payments SDK, a Hosted Payment Page, the Bridge operator console, and a 51-event webhook surface called CXP Eventing. ConnexPay is a registered ISO/MSP of The Central Trust Bank and MVB Bank.
+description: ConnexPay is a Milwaukee-founded B2B payments platform that combines merchant acquiring and
+  card issuing in one integration, so a company's incoming customer payments directly fund its outgoing
+  supplier payments with no float in between. An inbound Sale (PayIn) returns an Incoming Transaction
+  Code that funds the virtual cards, ACH credits, push-to-card payouts, checks and international bank-to-bank
+  transfers issued against it (PayOuts). The platform is used heavily in leisure and business travel,
+  advertising and media buying, insurance claims, and embedded-payments software, and is delivered through
+  ten REST APIs — Sales, Purchases, Push to Card, Payment Valet payment instructions, Checkout Session,
+  Merchant Payor, Stop Payment, Chargebacks (CMS), and two Reporting surfaces — plus a browser payments
+  SDK, a Hosted Payment Page, the Bridge operator console, and a 51-event webhook surface called CXP Eventing.
+  ConnexPay is a registered ISO/MSP of The Central Trust Bank and MVB Bank.
 url: https://raw.githubusercontent.com/api-evangelist/connexpay/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -32,7 +41,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-08-09'
-modified: '2026-08-09'
+modified: '2026-09-16'
 tags:
 - Payments
 - Virtual Cards
@@ -385,15 +394,14 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-checkout-sessions-api
   name: ConnexPay Checkout Sessions API
-  description: >-
-    Operations for creating and managing checkout sessions.
+  description: 'Operations for creating and managing checkout sessions.
 
 
     Checkout sessions are secure server-side objects that contain all payment details
 
     for a transaction. They serve as a bridge between your backend and the ConnexPay SDK,
 
-    ensuring that sensitive transaction data cannot be tampered with on the client side.
+    ensuring that sensitive transaction data cannot be tampered with on the client side.'
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -483,8 +491,7 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-hostedpaymentpagerequests-api
   name: ConnexPay Hosted Payment Page Requests API
-  description: >-
-    The HostedPaymentPageRequests API from ConnexPay — 1 operation(s) for hostedpaymentpagerequests.
+  description: The HostedPaymentPageRequests API from ConnexPay — 1 operation(s) for hostedpaymentpagerequests.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -694,8 +701,7 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-merchantselfservicefunding-api
   name: ConnexPay Merchant Self Service Funding API
-  description: >-
-    The MerchantSelfServiceFunding API from ConnexPay — 1 operation(s) for merchantselfservicefunding.
+  description: The MerchantSelfServiceFunding API from ConnexPay — 1 operation(s) for merchantselfservicefunding.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -936,7 +942,7 @@ apis:
   - type: APIReference
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-sales-api-api
-  name: ConnexPay Sales Api API
+  name: ConnexPay Sales Api
   description: The Sales Api API from ConnexPay — 1 operation(s) for sales api.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
@@ -1246,7 +1252,10 @@ common:
   name: ConnexPay Business Capability Map
 - type: X-MCPServerCandidate
   url: mcp/connexpay-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: Overlay
   url: overlays/connexpay-chargebacks-overlay.yaml
 - type: Website
