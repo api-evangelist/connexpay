@@ -56,70 +56,6 @@ tags:
 - Fintech
 - Disbursements
 apis:
-- aid: connexpay:connexpay-3ds-api
-  name: ConnexPay 3ds API
-  description: The 3ds API from ConnexPay — 2 operation(s) for 3ds.
-  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
-  baseURL: https://salesapi.connexpay.com
-  tags:
-  - 3DS
-  tags_raw:
-  - 3ds
-  properties:
-  - type: OpenAPI
-    url: openapi/connexpay-3ds-api-openapi.yml
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/getting-started-with-your-api
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/issuecard
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/pushtocard_createpayout
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createpaymentinstruction
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createcheckoutsession
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/stoppaymentservice
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/uatptransactions
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/reporting-token
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/sales-chargebacks-1
-- aid: connexpay:connexpay-3dsecure-api
-  name: ConnexPay 3 D Secure API
-  description: The 3DSecure API from ConnexPay — 1 operation(s) for 3dsecure.
-  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
-  baseURL: https://salesapi.connexpay.com
-  tags:
-  - 3D Secure
-  tags_raw:
-  - 3DSecure
-  properties:
-  - type: OpenAPI
-    url: openapi/connexpay-3dsecure-api-openapi.yml
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/getting-started-with-your-api
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/issuecard
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/pushtocard_createpayout
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createpaymentinstruction
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createcheckoutsession
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/stoppaymentservice
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/uatptransactions
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/reporting-token
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-accounting-api
   name: ConnexPay Accounting API
   description: The Accounting API from ConnexPay — 2 operation(s) for accounting.
@@ -394,14 +330,15 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-checkout-sessions-api
   name: ConnexPay Checkout Sessions API
-  description: 'Operations for creating and managing checkout sessions.
+  description: >-
+    Operations for creating and managing checkout sessions.
 
 
     Checkout sessions are secure server-side objects that contain all payment details
 
     for a transaction. They serve as a bridge between your backend and the ConnexPay SDK,
 
-    ensuring that sensitive transaction data cannot be tampered with on the client side.'
+    ensuring that sensitive transaction data cannot be tampered with on the client side.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -491,7 +428,8 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-hostedpaymentpagerequests-api
   name: ConnexPay Hosted Payment Page Requests API
-  description: The HostedPaymentPageRequests API from ConnexPay — 1 operation(s) for hostedpaymentpagerequests.
+  description: >-
+    The HostedPaymentPageRequests API from ConnexPay — 1 operation(s) for hostedpaymentpagerequests.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -701,7 +639,8 @@ apis:
     url: https://docs.connexpay.com/reference/sales-chargebacks-1
 - aid: connexpay:connexpay-merchantselfservicefunding-api
   name: ConnexPay Merchant Self Service Funding API
-  description: The MerchantSelfServiceFunding API from ConnexPay — 1 operation(s) for merchantselfservicefunding.
+  description: >-
+    The MerchantSelfServiceFunding API from ConnexPay — 1 operation(s) for merchantselfservicefunding.
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
@@ -829,38 +768,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/connexpay-purchaseeventhistory-api-openapi.yml
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/getting-started-with-your-api
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/issuecard
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/pushtocard_createpayout
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createpaymentinstruction
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/createcheckoutsession
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/stoppaymentservice
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/uatptransactions
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/reporting-token
-  - type: APIReference
-    url: https://docs.connexpay.com/reference/sales-chargebacks-1
-- aid: connexpay:connexpay-pushtocard-api
-  name: ConnexPay Push To Card API
-  description: The PushToCard API from ConnexPay — 8 operation(s) for pushtocard.
-  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
-  baseURL: https://salesapi.connexpay.com
-  tags:
-  - Push to Card
-  tags_raw:
-  - PushToCard
-  properties:
-  - type: OpenAPI
-    url: openapi/connexpay-pushtocard-api-openapi.yml
   - type: APIReference
     url: https://docs.connexpay.com/reference/getting-started-with-your-api
   - type: APIReference
@@ -1221,6 +1128,96 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/connexpay-void-api-openapi.yml
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/getting-started-with-your-api
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/issuecard
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/pushtocard_createpayout
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createpaymentinstruction
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createcheckoutsession
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/stoppaymentservice
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/uatptransactions
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/reporting-token
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/sales-chargebacks-1
+- aid: connexpay:connexpay-3-ds-api
+  name: ConnexPay 3 DS API
+  description: The 3 DS API from ConnexPay — 2 operation(s) for 3 ds.
+  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
+  baseURL: https://salesapi.connexpay.com
+  tags:
+  - 3 DS
+  properties:
+  - type: OpenAPI
+    url: openapi/connexpay-3-ds-api-openapi.yml
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/getting-started-with-your-api
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/issuecard
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/pushtocard_createpayout
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createpaymentinstruction
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createcheckoutsession
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/stoppaymentservice
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/uatptransactions
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/reporting-token
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/sales-chargebacks-1
+- aid: connexpay:connexpay-3d-secure-api
+  name: ConnexPay 3D Secure API
+  description: The 3D Secure API from ConnexPay — 1 operation(s) for 3d secure.
+  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
+  baseURL: https://salesapi.connexpay.com
+  tags:
+  - 3D Secure
+  properties:
+  - type: OpenAPI
+    url: openapi/connexpay-3d-secure-api-openapi.yml
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/getting-started-with-your-api
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/issuecard
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/pushtocard_createpayout
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createpaymentinstruction
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/createcheckoutsession
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/merchantpayor_createpayor
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/stoppaymentservice
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/uatptransactions
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/reporting-token
+  - type: APIReference
+    url: https://docs.connexpay.com/reference/sales-chargebacks-1
+- aid: connexpay:connexpay-push-to-card-api
+  name: ConnexPay push to card API
+  description: The push to card API from ConnexPay — 8 operation(s) for push to card.
+  humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
+  baseURL: https://salesapi.connexpay.com
+  tags:
+  - push to card
+  properties:
+  - type: OpenAPI
+    url: openapi/connexpay-push-to-card-api-openapi.yml
   - type: APIReference
     url: https://docs.connexpay.com/reference/getting-started-with-your-api
   - type: APIReference
