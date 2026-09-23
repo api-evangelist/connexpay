@@ -12,8 +12,6 @@ tags:
 - name: Chargeback
 paths:
   /api/chargeback/GetByUser:
-    servers:
-    - url: https://cmsapi.connexpay.com
     get:
       summary: Sales Chargebacks
       description: ''
@@ -58,12 +56,21 @@ paths:
       deprecated: false
       tags:
       - Chargeback
-  /api/v1/chargeback:
     servers:
-    - url: https://sandboxpurchasesapi.connexpay.com
+    - url: https://cmsapi.connexpay.com
+  /api/v1/chargeback:
     post:
       summary: Create Chargeback
-      description: "Use this endpoint to create a virtual card chargeback. \n\nWhat is behind this API?\n- When a user calls this API, we will create a new case/dispute to Marqeta\n- When case/dispute creation success, the API will transmit the case for Marqeta review\n- When the review passes, the API will transmit the case to the Card Network for Chargeback"
+      description: 'Use this endpoint to create a virtual card chargeback.
+
+
+        What is behind this API?
+
+        - When a user calls this API, we will create a new case/dispute to Marqeta
+
+        - When case/dispute creation success, the API will transmit the case for Marqeta review
+
+        - When the review passes, the API will transmit the case to the Card Network for Chargeback'
       operationId: create-chargeback
       requestBody:
         content:
@@ -153,6 +160,8 @@ paths:
       deprecated: false
       tags:
       - Chargeback
+    servers:
+    - url: https://sandboxpurchasesapi.connexpay.com
 components:
   securitySchemes:
     sec0:

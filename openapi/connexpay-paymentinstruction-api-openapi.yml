@@ -247,321 +247,12 @@ paths:
         description: Unique identifier for the payment instruction, assigned by the client. Used for reporting and event notifications to aid in reconciliation. Length between 1 and 50.
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    PaymentStatus:
-      enum:
-      - Submitted
-      - Processing
-      - Issued
-      - Completed
-      - Cancelled
-      - DecisioningRequested
-      - DecisioningCompleted
-      - FundingRequested
-      - FundingProcessing
-      - FundingCompleted
-      - PaymentCreated
-      - CardAuthorized
-      - PaymentSettled
-      - VoidRequested
-      - VoidCompleted
-      - VoidFailed
-      - FundingFailed
-      description: Description of the Payment Status. Refer to your Payment Valet team for additional details.
-      type: string
-    PayeeCreate:
-      required:
-      - payeeAddress
-      - payeeName
-      - payeeType
-      type: object
-      properties:
-        payeeName:
-          maxLength: 47
-          minLength: 0
-          type: string
-          description: Name of the individual or business being paid. Required.
-          example: ExampleCo
-        payeeType:
-          $ref: '#/components/schemas/PayeeType'
-        payeeTaxId:
-          maxLength: 10
-          pattern: ^[a-zA-Z0-9]*$
-          type:
-          - string
-          - 'null'
-          description: Tax identification number for the payee. Optional.
-          example: '111222333'
-        clientPayeeIdentifier:
-          maxLength: 50
-          pattern: ^[a-zA-Z0-9]*$
-          type:
-          - string
-          - 'null'
-          description: Unique client-specific identifier for the payee. Optional.
-          example: '1431243123'
-        payeeAddress:
-          $ref: '#/components/schemas/PayeeAddressCreate'
-        payeeContactInfo:
-          $ref: '#/components/schemas/PayeeContactCreate'
-      additionalProperties: false
     StatusType:
       enum:
       - Funding
       - Payment
       - Document
       type: string
-    ContactType:
-      enum:
-      - Email
-      - Fax
-      - Phone
-      type: string
-      description: Specifies the preferred contact method available for a payee. Valid options are 'Email', 'Fax', or 'Phone'.
-    PaymentRestrictions:
-      type: object
-      description: Used to enforce or exclude specific payment modalities for the payment instruction.
-      properties:
-        forcedModality:
-          $ref: '#/components/schemas/ModalityType'
-        excludedModalities:
-          type:
-          - array
-          - 'null'
-          description: List of payment modalities that are excluded from this payment instruction. At this time, there are no valid options.
-          items:
-            $ref: '#/components/schemas/ModalityType'
-      additionalProperties: false
-    PaymentItemType:
-      description: Describes the type of the item in the payment breakdown. Required if ItemID or Amount are provided and valid options are 'Claim' and 'Invoice'.
-      enum:
-      - Claim
-      - Invoice
-      type: string
-    PaymentItem:
-      description: Details of the individual items in the payment instruction.
-      required:
-      - amount
-      - itemId
-      type: object
-      properties:
-        itemType:
-          $ref: '#/components/schemas/PaymentItemType'
-        itemId:
-          maxLength: 50
-          minLength: 1
-          description: Unique identifier of the item in the payment breakdown.
-          pattern: ^[a-zA-Z0-9]*$
-          type: string
-          example: '12341234'
-        amount:
-          type: number
-          description: Amount of the item in the payment breakdown.
-          format: double
-          example: 123.45
-      additionalProperties: false
-    Result:
-      type: object
-      properties:
-        isSuccess:
-          type: boolean
-        statusCodeResult:
-          $ref: '#/components/schemas/StatusCodeResult'
-        message:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    PayeeAddressCreate:
-      required:
-      - addressLine1
-      - city
-      - countryCode
-      - postalCode
-      type: object
-      properties:
-        careOf:
-          maxLength: 100
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type:
-          - string
-          - 'null'
-          description: Optional field for specifying a person or entity to receive mail on behalf of the payee.
-          example: Accounts Payable
-        addressLine1:
-          maxLength: 47
-          minLength: 1
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type: string
-          description: Primary address line for the payee's location. Required.
-          example: 789 Main Street
-        addressLine2:
-          maxLength: 47
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type:
-          - string
-          - 'null'
-          description: Secondary address line for the payee's location. Optional.
-          example: Suite 12
-        city:
-          maxLength: 50
-          minLength: 1
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type: string
-          description: City of the payee's address. Required.
-          example: Austin
-        stateOrProvince:
-          maxLength: 50
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type:
-          - string
-          - 'null'
-          description: Two-letter state or province code (Alpha-2, ISO 3166-2) for the payee's address. Required when Country Code is USA, otherwise Optional.
-          example: TX
-        postalCode:
-          maxLength: 10
-          minLength: 1
-          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
-          type: string
-          description: Postal or ZIP code for the payee's address. Required.
-          example: '78746'
-        countryCode:
-          minLength: 1
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: Three-letter country code (Alpha-3, ISO 3166-1) for the payee's address. Required
-          example: USA
-      additionalProperties: false
-    DistributionType:
-      enum:
-      - Email
-      - Fax
-      - Print
-      - Mail
-      type: string
-      description: Specifies the preferred method by which the payment is delivered. Valid options at this time are 'Email' and 'Mail'.
-    PayeeType:
-      enum:
-      - Business
-      - Consumer
-      description: Defines if the payee is a business or consumer. Valid options are 'Business' or 'Consumer'.
-      type: string
-    PaymentInstructionResponseResult:
-      type: object
-      properties:
-        isSuccess:
-          type: boolean
-        statusCodeResult:
-          $ref: '#/components/schemas/StatusCodeResult'
-        message:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        value:
-          $ref: '#/components/schemas/PaymentInstructionResponse'
-      additionalProperties: false
-    PayeeContactCreate:
-      required:
-      - emailAddress
-      - name
-      - phoneNumber
-      - title
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-          example: M. Smith
-          description: Name of the payee contact person. Required.
-        title:
-          minLength: 1
-          type: string
-          example: Manager
-          description: Title or position of the payee contact person. Required.
-        phoneNumber:
-          minLength: 1
-          pattern: ^\+?[0-9\s\-]{7,15}$
-          type: string
-          example: '+10000000000'
-          description: Phone number for the payee contact person. Required.
-        faxNumber:
-          pattern: ^\+?[0-9\s\-]{7,15}$
-          type:
-          - string
-          - 'null'
-          example: +0018008675309
-          description: Fax number for the payee contact person. Optional.
-        emailAddress:
-          maxLength: 100
-          minLength: 1
-          pattern: ^[^@\s]+@[^@\s]+\.[^@\s]+$
-          type: string
-          example: Manager@email.com
-          description: Email address for the payee contact person, in valid email format. Required.
-        preferredContactMethod:
-          $ref: '#/components/schemas/ContactType'
-        preferredDistributionMethod:
-          $ref: '#/components/schemas/DistributionType'
-      additionalProperties: false
-    PaymentInstructionResponse:
-      type: object
-      properties:
-        clientPaymentId:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for the payment instruction, assigned by the client.
-        generatedPaymentId:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for the payment instruction, generated by Payment Valet.
-        status:
-          type: boolean
-      additionalProperties: false
-    StatusCodeResult:
-      type: object
-      description: Status code of the response.
-      properties:
-        statusCode:
-          type: integer
-          format: int32
-      additionalProperties: false
-    ModalityType:
-      enum:
-      - ACH
-      - Card
-      - Check
-      type: string
-      description: Specifies the payment modality or method. The only valid option at this time is 'Card'.
     ValidationProblemDetails:
       type: object
       description: Validation error details.
@@ -596,6 +287,39 @@ components:
             items:
               type: string
       additionalProperties: {}
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    StatusCodeResult:
+      type: object
+      description: Status code of the response.
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+      additionalProperties: false
     PaymentInstructionRequest:
       required:
       - clientId
@@ -690,6 +414,160 @@ components:
           description: Additional information or notes related to the payment. Optional.
           example: Release Payment for PO# 123
       additionalProperties: false
+    PaymentItem:
+      description: Details of the individual items in the payment instruction.
+      required:
+      - amount
+      - itemId
+      type: object
+      properties:
+        itemType:
+          $ref: '#/components/schemas/PaymentItemType'
+        itemId:
+          maxLength: 50
+          minLength: 1
+          description: Unique identifier of the item in the payment breakdown.
+          pattern: ^[a-zA-Z0-9]*$
+          type: string
+          example: '12341234'
+        amount:
+          type: number
+          description: Amount of the item in the payment breakdown.
+          format: double
+          example: 123.45
+      additionalProperties: false
+    PayeeContactCreate:
+      required:
+      - emailAddress
+      - name
+      - phoneNumber
+      - title
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+          example: M. Smith
+          description: Name of the payee contact person. Required.
+        title:
+          minLength: 1
+          type: string
+          example: Manager
+          description: Title or position of the payee contact person. Required.
+        phoneNumber:
+          minLength: 1
+          pattern: ^\+?[0-9\s\-]{7,15}$
+          type: string
+          example: '+10000000000'
+          description: Phone number for the payee contact person. Required.
+        faxNumber:
+          pattern: ^\+?[0-9\s\-]{7,15}$
+          type:
+          - string
+          - 'null'
+          example: +0018008675309
+          description: Fax number for the payee contact person. Optional.
+        emailAddress:
+          maxLength: 100
+          minLength: 1
+          pattern: ^[^@\s]+@[^@\s]+\.[^@\s]+$
+          type: string
+          example: Manager@email.com
+          description: Email address for the payee contact person, in valid email format. Required.
+        preferredContactMethod:
+          $ref: '#/components/schemas/ContactType'
+        preferredDistributionMethod:
+          $ref: '#/components/schemas/DistributionType'
+      additionalProperties: false
+    ModalityType:
+      enum:
+      - ACH
+      - Card
+      - Check
+      type: string
+      description: Specifies the payment modality or method. The only valid option at this time is 'Card'.
+    PayeeAddressCreate:
+      required:
+      - addressLine1
+      - city
+      - countryCode
+      - postalCode
+      type: object
+      properties:
+        careOf:
+          maxLength: 100
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type:
+          - string
+          - 'null'
+          description: Optional field for specifying a person or entity to receive mail on behalf of the payee.
+          example: Accounts Payable
+        addressLine1:
+          maxLength: 47
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Primary address line for the payee's location. Required.
+          example: 789 Main Street
+        addressLine2:
+          maxLength: 47
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type:
+          - string
+          - 'null'
+          description: Secondary address line for the payee's location. Optional.
+          example: Suite 12
+        city:
+          maxLength: 50
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: City of the payee's address. Required.
+          example: Austin
+        stateOrProvince:
+          maxLength: 50
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type:
+          - string
+          - 'null'
+          description: Two-letter state or province code (Alpha-2, ISO 3166-2) for the payee's address. Required when Country Code is USA, otherwise Optional.
+          example: TX
+        postalCode:
+          maxLength: 10
+          minLength: 1
+          pattern: ^[A-Za-z0-9\*\.\(\)\",:;'@& -]+$
+          type: string
+          description: Postal or ZIP code for the payee's address. Required.
+          example: '78746'
+        countryCode:
+          minLength: 1
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: Three-letter country code (Alpha-3, ISO 3166-1) for the payee's address. Required
+          example: USA
+      additionalProperties: false
+    PaymentItemType:
+      description: Describes the type of the item in the payment breakdown. Required if ItemID or Amount are provided and valid options are 'Claim' and 'Invoice'.
+      enum:
+      - Claim
+      - Invoice
+      type: string
+    PaymentInstructionResponse:
+      type: object
+      properties:
+        clientPaymentId:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for the payment instruction, assigned by the client.
+        generatedPaymentId:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for the payment instruction, generated by Payment Valet.
+        status:
+          type: boolean
+      additionalProperties: false
     RequestStatusUpdate:
       type: object
       properties:
@@ -700,6 +578,94 @@ components:
         createdDate:
           type: string
           format: date-time
+      additionalProperties: false
+    DistributionType:
+      enum:
+      - Email
+      - Fax
+      - Print
+      - Mail
+      type: string
+      description: Specifies the preferred method by which the payment is delivered. Valid options at this time are 'Email' and 'Mail'.
+    ContactType:
+      enum:
+      - Email
+      - Fax
+      - Phone
+      type: string
+      description: Specifies the preferred contact method available for a payee. Valid options are 'Email', 'Fax', or 'Phone'.
+    PaymentStatus:
+      enum:
+      - Submitted
+      - Processing
+      - Issued
+      - Completed
+      - Cancelled
+      - DecisioningRequested
+      - DecisioningCompleted
+      - FundingRequested
+      - FundingProcessing
+      - FundingCompleted
+      - PaymentCreated
+      - CardAuthorized
+      - PaymentSettled
+      - VoidRequested
+      - VoidCompleted
+      - VoidFailed
+      - FundingFailed
+      description: Description of the Payment Status. Refer to your Payment Valet team for additional details.
+      type: string
+    PayeeCreate:
+      required:
+      - payeeAddress
+      - payeeName
+      - payeeType
+      type: object
+      properties:
+        payeeName:
+          maxLength: 47
+          minLength: 0
+          type: string
+          description: Name of the individual or business being paid. Required.
+          example: ExampleCo
+        payeeType:
+          $ref: '#/components/schemas/PayeeType'
+        payeeTaxId:
+          maxLength: 10
+          pattern: ^[a-zA-Z0-9]*$
+          type:
+          - string
+          - 'null'
+          description: Tax identification number for the payee. Optional.
+          example: '111222333'
+        clientPayeeIdentifier:
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9]*$
+          type:
+          - string
+          - 'null'
+          description: Unique client-specific identifier for the payee. Optional.
+          example: '1431243123'
+        payeeAddress:
+          $ref: '#/components/schemas/PayeeAddressCreate'
+        payeeContactInfo:
+          $ref: '#/components/schemas/PayeeContactCreate'
+      additionalProperties: false
+    PaymentInstructionResponseResult:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+        statusCodeResult:
+          $ref: '#/components/schemas/StatusCodeResult'
+        message:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        value:
+          $ref: '#/components/schemas/PaymentInstructionResponse'
       additionalProperties: false
     ClientDocuments:
       required:
@@ -729,6 +695,40 @@ components:
             Payment Valet will use this for ordering.'
           format: int32
           example: 1
+      additionalProperties: false
+    PaymentRestrictions:
+      type: object
+      description: Used to enforce or exclude specific payment modalities for the payment instruction.
+      properties:
+        forcedModality:
+          $ref: '#/components/schemas/ModalityType'
+        excludedModalities:
+          type:
+          - array
+          - 'null'
+          description: List of payment modalities that are excluded from this payment instruction. At this time, there are no valid options.
+          items:
+            $ref: '#/components/schemas/ModalityType'
+      additionalProperties: false
+    PayeeType:
+      enum:
+      - Business
+      - Consumer
+      description: Defines if the payee is a business or consumer. Valid options are 'Business' or 'Consumer'.
+      type: string
+    Result:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+        statusCodeResult:
+          $ref: '#/components/schemas/StatusCodeResult'
+        message:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
       additionalProperties: false
   securitySchemes:
     ApiKey:

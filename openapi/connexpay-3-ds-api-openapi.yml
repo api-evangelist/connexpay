@@ -7,12 +7,12 @@ servers:
 security:
 - sec0: []
 tags:
-- name: 3ds
+- name: 3 DS
 paths:
   /api/v1/3ds:
     post:
       summary: 3DS Authentication
-      description: This endpoint can be used for obtaining 3D Secure Authentication separate from the Create Sale or Auth-Only calls.  This is recommended for our US and CA clients.
+      description: This endpoint can be used for obtaining 3D Secure Authentication separate from the Create Sale or Auth-Only calls. This is recommended for our US and CA clients.
       operationId: 3ds-authentication
       parameters:
       - name: Content-Type
@@ -411,7 +411,7 @@ paths:
                   value: ''
       deprecated: false
       tags:
-      - 3ds
+      - 3 DS
   /api/v1/3ds/{GUID}:
     get:
       summary: Get 3DS Status Group
@@ -508,7 +508,7 @@ paths:
                     example: Transaction has been executed successfully.
       deprecated: false
       tags:
-      - 3ds
+      - 3 DS
 components:
   securitySchemes:
     sec0:

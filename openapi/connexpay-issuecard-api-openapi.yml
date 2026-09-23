@@ -554,7 +554,7 @@ paths:
   /api/v1/IssueCard/IssueLite:
     post:
       summary: Issue Lite
-      description: For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative.
+      description: For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first. If you aren't sure which Issuance API to use, please contact your client support representative.
       operationId: issuelite-1
       parameters:
       - name: Content-Type
@@ -3525,7 +3525,7 @@ paths:
   /api/v1/IssueCard/IssueLite-1:
     post:
       summary: Issue Lite
-      description: For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first.  If you aren't sure which Issuance API to use, please contact your client support representative.
+      description: For our lite clients, we provide the ability to issue a VCC (Virtual Credit Card) via API without the requirement to process a sale first. If you aren't sure which Issuance API to use, please contact your client support representative.
       operationId: issuelite-1-1
       parameters:
       - name: Content-Type

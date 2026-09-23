@@ -19,7 +19,7 @@ paths:
       tags:
       - Accounting
       summary: Get Daily Accounting Detail
-      description: 'This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production. '
+      description: This endpoint returns the paginated daily accounting detail items of a client for a given release date. For Authentication with this API, you must first obtain a token through https://docs.connexpay.com/reference/reporting-token. This endpoint is only accessible in Production.
       operationId: GetDetail
       parameters:
       - name: merchantGuid
@@ -136,33 +136,6 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    DailyAccountingDetailPaginatedItems:
-      type: object
-      properties:
-        totalItemCount:
-          type: integer
-          description: Count of all items available in the day's accounting detail.
-          format: int32
-        pageCount:
-          type: integer
-          description: Count of pages available in the day's accounting detail.
-          format: int32
-        pageItemCount:
-          type: integer
-          description: Count of items in the current page.
-          format: int32
-        pageNumber:
-          type: integer
-          description: Sequence number of the current page.
-          format: int32
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DailyAccountingDetail'
-          description: Collection of accounting detail items for the current page.
-      additionalProperties: false
     DailyAccountingSummary:
       type: object
       properties:
@@ -412,6 +385,33 @@ components:
           - string
           - 'null'
       additionalProperties: {}
+    DailyAccountingDetailPaginatedItems:
+      type: object
+      properties:
+        totalItemCount:
+          type: integer
+          description: Count of all items available in the day's accounting detail.
+          format: int32
+        pageCount:
+          type: integer
+          description: Count of pages available in the day's accounting detail.
+          format: int32
+        pageItemCount:
+          type: integer
+          description: Count of items in the current page.
+          format: int32
+        pageNumber:
+          type: integer
+          description: Sequence number of the current page.
+          format: int32
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DailyAccountingDetail'
+          description: Collection of accounting detail items for the current page.
+      additionalProperties: false
     DailyAccountingDetail:
       type: object
       properties:

@@ -7,12 +7,35 @@ servers:
 security:
 - sec0: []
 tags:
-- name: 3DSecure
+- name: 3D Secure
 paths:
   /api/v1/3DSecure:
     post:
       summary: 3D Secure Sales Authentication
-      description: "The 3D Secure 2.0 authentication process is initiated using the BrowserData parameter if you have interfaced with ConnexPay's solution. The transaction will be directed to Smart Adviser, which allows utilizes 3D secure rules for optimal performance.  Smart Advisor may allow the merchant to skip completing 3D authentication, which means the customer is less likely to abandon a transaction.  Exemptions to 3D secure authentication exist for transactions under a certain threshold, MOTO transactions and lodged card transactions.  For more information about exemptions, click here: https://www.visa.co.uk/dam/VCOM/regional/ve/unitedkingdom/PDF/sca/Visa-psd2-sca-scp-exemption-guide.pdf.\n\nIf Smart Adviser determines 3D secure authentication is required for the Sale or Auth, it will automatically route the transaction for 3D secure authentication.\nComing soon - additional info about 3DS Smart Adviser.  \n\nIf the Merchant has integrated to ConnexPay's solution, the Create Sale or Auth Only endpoints must be combined with the BrowserData field to initiate 3D secure authentication.  \n\nIn the event that the transaction requires a 3D secure device fingerprint, 3D secure cardholder challenge, or both, the Create Sale or Auth Only request must be resubmitted once the 3DS status is complete by using the specified parameters on the GET 3DS Status API endpoint for authentication.\n\nIf a device fingerprint is required, secure authentication occurs behind the scenes so that the cardholder is not impacted. To successfully complete the device fingerprint, the webpage being used for payment must be configured to use an embedded iFrame.  The iFrame is needed to complete the required redirection to the issuer's site.  Use the redirectUrl and redirectUrlRequetPayload provided in the response to complete authentication.  The response must occur within 10 seconds. \n\nIf a cardholder challenge is required, the secure authentication must be completed by the cardholder.  To successfully complete the challenge, the webpage being used for payment must be configured to use an embedded iFrame.   This will be used to complete the required redirection to the issuer's site.  Use the redirectUrl provided in the response to initiate the cardholder challenge. \n\nOnce a response is received, our callback API will be updated to show 3DS as complete.  Once the status is complete, the merchant will need to call a new API route to receive the secureData.  The secureData must be used to call the Sale or Auth route to complete the transaction.\n\nThe new route to GET 3ds status once the auth has occurred, as well as next steps, is located here: https://docs.connexpay.com/reference/get-3ds-status-group"
+      description: 'The 3D Secure 2.0 authentication process is initiated using the BrowserData parameter if you have interfaced with ConnexPay''s solution. The transaction will be directed to Smart Adviser, which allows utilizes 3D secure rules for optimal performance. Smart Advisor may allow the merchant to skip completing 3D authentication, which means the customer is less likely to abandon a transaction. Exemptions to 3D secure authentication exist for transactions under a certain threshold, MOTO transactions and lodged card transactions. For more information about exemptions, click here: https://www.visa.co.uk/dam/VCOM/regional/ve/unitedkingdom/PDF/sca/Visa-psd2-sca-scp-exemption-guide.pdf.
+
+
+        If Smart Adviser determines 3D secure authentication is required for the Sale or Auth, it will automatically route the transaction for 3D secure authentication.
+
+        Coming soon - additional info about 3DS Smart Adviser.
+
+
+        If the Merchant has integrated to ConnexPay''s solution, the Create Sale or Auth Only endpoints must be combined with the BrowserData field to initiate 3D secure authentication.
+
+
+        In the event that the transaction requires a 3D secure device fingerprint, 3D secure cardholder challenge, or both, the Create Sale or Auth Only request must be resubmitted once the 3DS status is complete by using the specified parameters on the GET 3DS Status API endpoint for authentication.
+
+
+        If a device fingerprint is required, secure authentication occurs behind the scenes so that the cardholder is not impacted. To successfully complete the device fingerprint, the webpage being used for payment must be configured to use an embedded iFrame. The iFrame is needed to complete the required redirection to the issuer''s site. Use the redirectUrl and redirectUrlRequetPayload provided in the response to complete authentication. The response must occur within 10 seconds.
+
+
+        If a cardholder challenge is required, the secure authentication must be completed by the cardholder. To successfully complete the challenge, the webpage being used for payment must be configured to use an embedded iFrame. This will be used to complete the required redirection to the issuer''s site. Use the redirectUrl provided in the response to initiate the cardholder challenge.
+
+
+        Once a response is received, our callback API will be updated to show 3DS as complete. Once the status is complete, the merchant will need to call a new API route to receive the secureData. The secureData must be used to call the Sale or Auth route to complete the transaction.
+
+
+        The new route to GET 3ds status once the auth has occurred, as well as next steps, is located here: https://docs.connexpay.com/reference/get-3ds-status-group'
       operationId: 3ds2-sales
       parameters:
       - name: Content-Type
@@ -465,7 +488,7 @@ paths:
                         example: 704f6c0b-1da4-4687-9a43-fdd4c46bb69b
       deprecated: false
       tags:
-      - 3DSecure
+      - 3D Secure
 components:
   securitySchemes:
     sec0:

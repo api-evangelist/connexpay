@@ -12,8 +12,6 @@ tags:
 - name: Token
 paths:
   /api/v1/token:
-    servers:
-    - url: https://sandboxpurchasesapi.connexpay.com
     post:
       summary: Issuing Token
       description: API requests require a combination of assigned user name, password, and successfully generated authentication token. The received token is valid for 24 hours from issuance and may be used for all requests during its lifespan.
@@ -84,6 +82,8 @@ paths:
         - curl
       tags:
       - Token
+    servers:
+    - url: https://sandboxpurchasesapi.connexpay.com
 components:
   securitySchemes:
     sec0:

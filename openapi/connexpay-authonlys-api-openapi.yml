@@ -12,7 +12,7 @@ paths:
   /api/v1/authonlys:
     post:
       summary: Auth Only
-      description: The Auth Only Endpoint is applicable to acquiring clients.  Call Auth Only when you want to process an Authorization only, which will not settle until it's Captured.  We do not allow you to Capture an Authorization after 5 business days have passed.Calling this endpoint will authorize the card, however, it will not be settled until the [Capture endpoint](https://docs.connexpay.com/reference/capture) is called. Authorizations expire after 5 days.
+      description: The Auth Only Endpoint is applicable to acquiring clients. Call Auth Only when you want to process an Authorization only, which will not settle until it's Captured. We do not allow you to Capture an Authorization after 5 business days have passed.Calling this endpoint will authorize the card, however, it will not be settled until the Capture endpoint is called. Authorizations expire after 5 days.
       operationId: auth-only
       parameters:
       - name: Content-Type
