@@ -2903,7 +2903,7 @@ paths:
     post:
       summary: Copy of Issue Physical Card
       description: Use this endpoint to create a Physical Card. Issuing Physical Cards requires approval and set up. Please contact your Client Success representative if you're interested in learning more.
-      operationId: post_apiv1IssueCardPhysicalCard-1
+      operationId: postApiV1IssueCardPhysicalCard1
       parameters:
       - name: Content-Type
         in: header
@@ -3522,6 +3522,8 @@ paths:
       deprecated: false
       tags:
       - IssueCard
+      x-operation-id-source: normalized
+      x-operation-id-original: post_apiv1IssueCardPhysicalCard-1
   /api/v1/IssueCard/IssueLite-1:
     post:
       summary: Issue Lite

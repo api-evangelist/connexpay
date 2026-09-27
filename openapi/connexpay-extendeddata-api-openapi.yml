@@ -81,6 +81,81 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    ExtendedDataRequest:
+      required:
+      - merchantGuid
+      type: object
+      properties:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        startDate:
+          description: The start date for the requested transactions.
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          description: The end date for the requested transactions.
+          type:
+          - string
+          - 'null'
+          format: date-time
+        presetTimeFrame:
+          description: A predefined time frame for the requested transactions. Valid values are '1week', '1month', and '3months'.
+          type:
+          - string
+          - 'null'
+        accountNumbers:
+          description: A list of account numbers to filter the requested transactions.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        customerName:
+          description: The customer name value associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+        cardholderName:
+          description: The cardholder name value associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+        orderNumber:
+          description: The order number value associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+        cardGuid:
+          description: The unique identifier of the card associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+          format: uuid
+        firstSix:
+          description: The first six digits of the card number associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+        lastFour:
+          description: The last four digits of the card number associated with the requested transactions.
+          type:
+          - string
+          - 'null'
+        sortBy:
+          description: The field by which to sort the results. Valid values are 'postdate', 'departuredate', 'customername', 'cardholder', and 'ordernumber'. If not specified, results will be sorted by postdate.
+          type:
+          - string
+          - 'null'
+        sortOrder:
+          description: The order in which to sort the results. Valid values are 'asc' for Ascending and 'desc' for Descending.
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ProblemDetails:
       type: object
       properties:
@@ -623,81 +698,6 @@ components:
           - 'null'
           readOnly: true
           description: The masked last four digits of the card number associated with the transaction detail.
-      additionalProperties: false
-    ExtendedDataRequest:
-      required:
-      - merchantGuid
-      type: object
-      properties:
-        merchantGuid:
-          description: Unique identifier assigned to the merchant by ConnexPay.
-          type: string
-          format: uuid
-        startDate:
-          description: The start date for the requested transactions.
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          description: The end date for the requested transactions.
-          type:
-          - string
-          - 'null'
-          format: date-time
-        presetTimeFrame:
-          description: A predefined time frame for the requested transactions. Valid values are '1week', '1month', and '3months'.
-          type:
-          - string
-          - 'null'
-        accountNumbers:
-          description: A list of account numbers to filter the requested transactions.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        customerName:
-          description: The customer name value associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-        cardholderName:
-          description: The cardholder name value associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-        orderNumber:
-          description: The order number value associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-        cardGuid:
-          description: The unique identifier of the card associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-          format: uuid
-        firstSix:
-          description: The first six digits of the card number associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-        lastFour:
-          description: The last four digits of the card number associated with the requested transactions.
-          type:
-          - string
-          - 'null'
-        sortBy:
-          description: The field by which to sort the results. Valid values are 'postdate', 'departuredate', 'customername', 'cardholder', and 'ordernumber'. If not specified, results will be sorted by postdate.
-          type:
-          - string
-          - 'null'
-        sortOrder:
-          description: The order in which to sort the results. Valid values are 'asc' for Ascending and 'desc' for Descending.
-          type:
-          - string
-          - 'null'
       additionalProperties: false
   securitySchemes:
     bearerAuth:

@@ -42,6 +42,9 @@ accessModel:
 specificationVersion: '0.23'
 created: '2026-08-09'
 modified: '2026-09-16'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-24
 tags:
 - Payments
 - Virtual Cards
@@ -1158,8 +1161,6 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
-  - 3D
-  tags_raw:
   - 3 DS
   properties:
   - type: OpenAPI
@@ -1220,8 +1221,6 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
-  - Push to Card
-  tags_raw:
   - push to card
   properties:
   - type: OpenAPI
