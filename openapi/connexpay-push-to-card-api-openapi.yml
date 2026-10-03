@@ -413,11 +413,20 @@ paths:
           description: Valid values for ridGuid and cardId must be provided
 components:
   schemas:
-    PayoutAuthResponse:
+    AuthenticationResult:
       type: object
       properties:
-        AuthenticationResult:
-          $ref: '#/components/schemas/AuthenticationResult'
+        AccessToken:
+          type: string
+        ExpiresIn:
+          format: int32
+          type: integer
+        TokenType:
+          type: string
+        RefreshToken:
+          type: string
+        IdToken:
+          type: string
     PayeeDto:
       required:
       - merchantGuid
@@ -555,44 +564,6 @@ components:
           type: string
         createdBy:
           type: string
-    DtoPayout:
-      type: object
-      properties:
-        payoutGuid:
-          format: uuid
-          description: Unique identifier assigned to the Payout.
-          type: string
-          example: 00000000-0000-0000-0000-000000000000
-        payoutReferenceToken:
-          description: The Payout identifier that will be needed by our support teams to research issues.
-          type: string
-        memo:
-          description: A brief description highlighting the reason for this Payout.
-          type: string
-        orderNumber:
-          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
-          type: string
-        associationId:
-          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
-          type: string
-        customerId:
-          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        createdBy:
-          type: string
-        labelIds:
-          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
-          type: array
-          items:
-            format: int32
-            type: integer
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/DtoPayments'
     CancelPaymentsDto:
       required:
       - merchantGuid
@@ -660,20 +631,6 @@ components:
         status:
           description: Status for the Payee to be updated.
           type: string
-    AuthenticationResult:
-      type: object
-      properties:
-        AccessToken:
-          type: string
-        ExpiresIn:
-          format: int32
-          type: integer
-        TokenType:
-          type: string
-        RefreshToken:
-          type: string
-        IdToken:
-          type: string
     PayoutDto:
       required:
       - merchantGuid
@@ -723,6 +680,49 @@ components:
           items:
             format: int32
             type: integer
+    DtoPayout:
+      type: object
+      properties:
+        payoutGuid:
+          format: uuid
+          description: Unique identifier assigned to the Payout.
+          type: string
+          example: 00000000-0000-0000-0000-000000000000
+        payoutReferenceToken:
+          description: The Payout identifier that will be needed by our support teams to research issues.
+          type: string
+        memo:
+          description: A brief description highlighting the reason for this Payout.
+          type: string
+        orderNumber:
+          description: The most common number used throughout the ConnexPay Portal. Transaction ID within client environment associated with the order. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple instances of the integration for multiple purposes. The maximum length is 50 alpha-numeric characters and allows dashes ( - ).
+          type: string
+        associationId:
+          description: Association ID is used to tie a Payout to a sale or sales. For example, if you have several sales and one Payout to a Payee, association ID can be added to the sales and the Payout for downstream reporting.
+          type: string
+        customerId:
+          description: Transaction ID within the client environment associated with the customer. This value acts as a secondary identifier in conjunction with OrderNumber. The value is searchable and reportable in the ConnexPay portal. This value may be sent in multiple times within the integration for multiple purposes. The maximum length is 100 characters and is alpha-numeric.
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        labelIds:
+          description: Label IDs are used to associate a Payout to specific labels within ConnexPay Bridge UI for an organization. If a Payout is tied to an incorrect Label, it will not filter or display correctly in Bridge's Search Grid. Please contact your Customer Care Consultant for a list of valid Label IDs before use.
+          type: array
+          items:
+            format: int32
+            type: integer
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/DtoPayments'
+    PayoutAuthResponse:
+      type: object
+      properties:
+        AuthenticationResult:
+          $ref: '#/components/schemas/AuthenticationResult'
     PaymentsDto:
       required:
       - payeeGuid

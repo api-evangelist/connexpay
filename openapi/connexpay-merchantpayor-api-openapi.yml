@@ -151,6 +151,25 @@ paths:
         '403':
           description: User does not have access to merchant.
 components:
+  requestBodies:
+    MerchantPayorDto:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        text/xml:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/MerchantPayorDto'
+      required: true
   schemas:
     MerchantPayorResponse:
       required:
@@ -225,22 +244,3 @@ components:
           pattern: ^[0-9]{9}$
           type: string
           description: 9 digit numeric bank routing number.
-  requestBodies:
-    MerchantPayorDto:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MerchantPayorDto'
-        text/json:
-          schema:
-            $ref: '#/components/schemas/MerchantPayorDto'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/MerchantPayorDto'
-        text/xml:
-          schema:
-            $ref: '#/components/schemas/MerchantPayorDto'
-        application/x-www-form-urlencoded:
-          schema:
-            $ref: '#/components/schemas/MerchantPayorDto'
-      required: true

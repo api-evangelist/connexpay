@@ -98,6 +98,32 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    UATPTransactionsResponse:
+      type: object
+      properties:
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        totalPageCount:
+          description: Count of pages available.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        currentPage:
+          description: Current page.
+          type: integer
+          format: int32
+        searchResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UATPTransactions'
+      additionalProperties: false
     UATPTransactions:
       type: object
       properties:
@@ -167,32 +193,6 @@ components:
           - 'null'
           format: int32
           description: A generated unique identifier that can be linked to the EntityId in your Daily Accounting File for UATP Purchase and Return settlements.
-      additionalProperties: false
-    UATPTransactionsResponse:
-      type: object
-      properties:
-        totalCount:
-          description: Count of all items available.
-          type: integer
-          format: int32
-        totalPageCount:
-          description: Count of pages available.
-          type: integer
-          format: int32
-        pageSize:
-          description: Page size.
-          type: integer
-          format: int32
-        currentPage:
-          description: Current page.
-          type: integer
-          format: int32
-        searchResults:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/UATPTransactions'
       additionalProperties: false
     ProblemDetails:
       type: object
