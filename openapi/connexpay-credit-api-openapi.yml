@@ -80,61 +80,31 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    AvailableCreditReportResponse:
+    AvailableCreditReportRequest:
       type: object
       properties:
-        pageCurrent:
-          description: Current Page number.
-          type: integer
-          format: int32
-        pageCurrentResults:
-          description: Current Page results.
-          type: integer
-          format: int32
-        pageSize:
-          description: Page size.
-          type: integer
-          format: int32
-        pageTotal:
-          description: Total number of pages available.
-          type: integer
-          format: int32
-        totalCount:
-          description: Count of all items available.
-          type: integer
-          format: int32
-        searchResults:
+        merchantGuid:
+          description: Unique identifier assigned to the merchant by ConnexPay.
+          type: string
+          format: uuid
+        client:
+          description: Unique name assigned to the client by ConnexPay.
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/AvailableCreditReport'
+        timeStampFrom:
+          description: Start date for the Report Request.
+          type:
+          - string
+          - 'null'
+          format: date-time
+        timeStampTo:
+          description: End date for the Report Request.
+          type:
+          - string
+          - 'null'
+          format: date-time
       additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
     AvailableCreditReport:
       type: object
       properties:
@@ -175,30 +145,60 @@ components:
           type: string
           format: uuid
       additionalProperties: false
-    AvailableCreditReportRequest:
+    ProblemDetails:
       type: object
       properties:
-        merchantGuid:
-          description: Unique identifier assigned to the merchant by ConnexPay.
-          type: string
-          format: uuid
-        client:
-          description: Unique name assigned to the client by ConnexPay.
+        type:
           type:
           - string
           - 'null'
-        timeStampFrom:
-          description: Start date for the Report Request.
+        title:
           type:
           - string
           - 'null'
-          format: date-time
-        timeStampTo:
-          description: End date for the Report Request.
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
           type:
           - string
           - 'null'
-          format: date-time
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    AvailableCreditReportResponse:
+      type: object
+      properties:
+        pageCurrent:
+          description: Current Page number.
+          type: integer
+          format: int32
+        pageCurrentResults:
+          description: Current Page results.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        pageTotal:
+          description: Total number of pages available.
+          type: integer
+          format: int32
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        searchResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AvailableCreditReport'
       additionalProperties: false
   securitySchemes:
     bearerAuth:

@@ -496,100 +496,6 @@ components:
           minimum: 0
           description: Discount amount for line item
           example: 0
-    DtoCheckoutSession:
-      type: object
-      required:
-      - ClientId
-      - TenderTypeOptions
-      - Sale
-      properties:
-        ClientId:
-          type: string
-          description: Your ConnexPay client identifier
-          example: your_client_id
-        TenderTypeOptions:
-          type: string
-          description: Comma-separated list of available payment methods
-          enum:
-          - Credit
-          - ACH
-          - GooglePay
-          - ApplePay
-          - Credit,GooglePay
-          - Credit,ApplePay
-          - Credit,GooglePay,ApplePay
-          - ACH,Credit
-          example: Credit,GooglePay,ApplePay
-        Sale:
-          $ref: '#/components/schemas/SaleData'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-          example: Validation Error
-        message:
-          type: string
-          description: Error message
-          example: Invalid request data
-        details:
-          type: array
-          description: Detailed error information
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field name that caused the error
-                example: Sale.Amount
-              message:
-                type: string
-                description: Field-specific error message
-                example: Amount must be greater than 0
-    CheckoutSessionResponse:
-      type: object
-      properties:
-        CheckoutSessionIdValue:
-          type: string
-          format: uuid
-          description: Unique checkout session identifier
-          example: cs_1a2b3c4d5e6f7g8h9i0j
-        Amount:
-          type: number
-          format: decimal
-          description: Transaction amount
-          example: 125.5
-        Expiration:
-          type: string
-          format: date-time
-          description: Session expiration time (60 minutes from creation)
-          example: '2024-11-04T15:30:00Z'
-        TimeStamp:
-          type: string
-          format: date-time
-          description: Session creation timestamp
-          example: '2024-11-04T14:30:00Z'
-        TenderTypeOptions:
-          type: string
-          description: Available payment methods
-          example: Credit,GooglePay,ApplePay
-        ClientId:
-          type: string
-          description: Client identifier
-          example: your_client_id
-        Expired:
-          type: boolean
-          description: Whether the session has expired
-          example: false
-        DisplayCreditCard:
-          type: boolean
-          description: Whether credit card options should be displayed
-          example: true
-        Completed:
-          type: boolean
-          description: Whether the session has been completed
-          example: false
     EnhancedData:
       type: object
       properties:
@@ -638,6 +544,100 @@ components:
           description: Transaction line items
           items:
             $ref: '#/components/schemas/LineItem'
+    CheckoutSessionResponse:
+      type: object
+      properties:
+        CheckoutSessionIdValue:
+          type: string
+          format: uuid
+          description: Unique checkout session identifier
+          example: cs_1a2b3c4d5e6f7g8h9i0j
+        Amount:
+          type: number
+          format: decimal
+          description: Transaction amount
+          example: 125.5
+        Expiration:
+          type: string
+          format: date-time
+          description: Session expiration time (60 minutes from creation)
+          example: '2024-11-04T15:30:00Z'
+        TimeStamp:
+          type: string
+          format: date-time
+          description: Session creation timestamp
+          example: '2024-11-04T14:30:00Z'
+        TenderTypeOptions:
+          type: string
+          description: Available payment methods
+          example: Credit,GooglePay,ApplePay
+        ClientId:
+          type: string
+          description: Client identifier
+          example: your_client_id
+        Expired:
+          type: boolean
+          description: Whether the session has expired
+          example: false
+        DisplayCreditCard:
+          type: boolean
+          description: Whether credit card options should be displayed
+          example: true
+        Completed:
+          type: boolean
+          description: Whether the session has been completed
+          example: false
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: Validation Error
+        message:
+          type: string
+          description: Error message
+          example: Invalid request data
+        details:
+          type: array
+          description: Detailed error information
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name that caused the error
+                example: Sale.Amount
+              message:
+                type: string
+                description: Field-specific error message
+                example: Amount must be greater than 0
+    DtoCheckoutSession:
+      type: object
+      required:
+      - ClientId
+      - TenderTypeOptions
+      - Sale
+      properties:
+        ClientId:
+          type: string
+          description: Your ConnexPay client identifier
+          example: your_client_id
+        TenderTypeOptions:
+          type: string
+          description: Comma-separated list of available payment methods
+          enum:
+          - Credit
+          - ACH
+          - GooglePay
+          - ApplePay
+          - Credit,GooglePay
+          - Credit,ApplePay
+          - Credit,GooglePay,ApplePay
+          - ACH,Credit
+          example: Credit,GooglePay,ApplePay
+        Sale:
+          $ref: '#/components/schemas/SaleData'
   securitySchemes:
     BearerAuth:
       type: http
