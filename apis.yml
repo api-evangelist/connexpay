@@ -1161,6 +1161,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - 3D
+  tags_raw:
   - 3 DS
   properties:
   - type: OpenAPI
@@ -1221,6 +1223,8 @@ apis:
   humanURL: https://docs.connexpay.com/reference/getting-started-with-your-api
   baseURL: https://salesapi.connexpay.com
   tags:
+  - Push to Card
+  tags_raw:
   - push to card
   properties:
   - type: OpenAPI
