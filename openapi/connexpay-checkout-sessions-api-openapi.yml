@@ -187,6 +187,202 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    LineItem:
+      type: object
+      required:
+      - Description
+      - UnitCost
+      - Quantity
+      - TotalAmount
+      properties:
+        Description:
+          type: string
+          description: Item description
+          example: Premium Widget
+        ProductCode:
+          type: string
+          description: Product code
+          example: WIDGET_001
+        CommodityCode:
+          type: string
+          description: Commodity code
+          example: '1234567890'
+        UnitOfMeasure:
+          type: string
+          description: Unit of measure
+          example: EA
+        UnitCost:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Cost per unit
+          example: 115.46
+        Quantity:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Quantity
+          example: 1
+        TotalAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total amount for line item
+          example: 115.46
+        TaxAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Tax amount for line item
+          example: 10.04
+        DiscountAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Discount amount for line item
+          example: 0
+    EnhancedData:
+      type: object
+      properties:
+        CustomerCode:
+          type: string
+          description: Customer code
+          example: CUST_001
+        SalesTax:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Sales tax amount
+          example: 10.04
+        FreightAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Freight/shipping amount
+          example: 5.99
+        DutyAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Duty amount
+          example: 2.5
+        DestinationPostalCode:
+          type: string
+          description: Destination postal code
+          example: '90210'
+        DestinationCountryCode:
+          type: string
+          description: Destination country code
+          example: US
+        ShipFromPostalCode:
+          type: string
+          description: Ship from postal code
+          example: '12345'
+        DiscountAmount:
+          type: number
+          format: decimal
+          minimum: 0
+          description: Total discount amount
+          example: 5
+        LineItems:
+          type: array
+          description: Transaction line items
+          items:
+            $ref: '#/components/schemas/LineItem'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: Validation Error
+        message:
+          type: string
+          description: Error message
+          example: Invalid request data
+        details:
+          type: array
+          description: Detailed error information
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name that caused the error
+                example: Sale.Amount
+              message:
+                type: string
+                description: Field-specific error message
+                example: Amount must be greater than 0
+    DtoCheckoutSession:
+      type: object
+      required:
+      - ClientId
+      - TenderTypeOptions
+      - Sale
+      properties:
+        ClientId:
+          type: string
+          description: Your ConnexPay client identifier
+          example: your_client_id
+        TenderTypeOptions:
+          type: string
+          description: Comma-separated list of available payment methods
+          enum:
+          - Credit
+          - ACH
+          - GooglePay
+          - ApplePay
+          - Credit,GooglePay
+          - Credit,ApplePay
+          - Credit,GooglePay,ApplePay
+          - ACH,Credit
+          example: Credit,GooglePay,ApplePay
+        Sale:
+          $ref: '#/components/schemas/SaleData'
+    CheckoutSessionResponse:
+      type: object
+      properties:
+        CheckoutSessionIdValue:
+          type: string
+          format: uuid
+          description: Unique checkout session identifier
+          example: cs_1a2b3c4d5e6f7g8h9i0j
+        Amount:
+          type: number
+          format: decimal
+          description: Transaction amount
+          example: 125.5
+        Expiration:
+          type: string
+          format: date-time
+          description: Session expiration time (60 minutes from creation)
+          example: '2024-11-04T15:30:00Z'
+        TimeStamp:
+          type: string
+          format: date-time
+          description: Session creation timestamp
+          example: '2024-11-04T14:30:00Z'
+        TenderTypeOptions:
+          type: string
+          description: Available payment methods
+          example: Credit,GooglePay,ApplePay
+        ClientId:
+          type: string
+          description: Client identifier
+          example: your_client_id
+        Expired:
+          type: boolean
+          description: Whether the session has expired
+          example: false
+        DisplayCreditCard:
+          type: boolean
+          description: Whether credit card options should be displayed
+          example: true
+        Completed:
+          type: boolean
+          description: Whether the session has been completed
+          example: false
     SaleData:
       type: object
       required:
@@ -442,202 +638,6 @@ components:
           type: string
           description: Custom customer identifier
           example: CUST_12345
-    LineItem:
-      type: object
-      required:
-      - Description
-      - UnitCost
-      - Quantity
-      - TotalAmount
-      properties:
-        Description:
-          type: string
-          description: Item description
-          example: Premium Widget
-        ProductCode:
-          type: string
-          description: Product code
-          example: WIDGET_001
-        CommodityCode:
-          type: string
-          description: Commodity code
-          example: '1234567890'
-        UnitOfMeasure:
-          type: string
-          description: Unit of measure
-          example: EA
-        UnitCost:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Cost per unit
-          example: 115.46
-        Quantity:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Quantity
-          example: 1
-        TotalAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Total amount for line item
-          example: 115.46
-        TaxAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Tax amount for line item
-          example: 10.04
-        DiscountAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Discount amount for line item
-          example: 0
-    EnhancedData:
-      type: object
-      properties:
-        CustomerCode:
-          type: string
-          description: Customer code
-          example: CUST_001
-        SalesTax:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Sales tax amount
-          example: 10.04
-        FreightAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Freight/shipping amount
-          example: 5.99
-        DutyAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Duty amount
-          example: 2.5
-        DestinationPostalCode:
-          type: string
-          description: Destination postal code
-          example: '90210'
-        DestinationCountryCode:
-          type: string
-          description: Destination country code
-          example: US
-        ShipFromPostalCode:
-          type: string
-          description: Ship from postal code
-          example: '12345'
-        DiscountAmount:
-          type: number
-          format: decimal
-          minimum: 0
-          description: Total discount amount
-          example: 5
-        LineItems:
-          type: array
-          description: Transaction line items
-          items:
-            $ref: '#/components/schemas/LineItem'
-    CheckoutSessionResponse:
-      type: object
-      properties:
-        CheckoutSessionIdValue:
-          type: string
-          format: uuid
-          description: Unique checkout session identifier
-          example: cs_1a2b3c4d5e6f7g8h9i0j
-        Amount:
-          type: number
-          format: decimal
-          description: Transaction amount
-          example: 125.5
-        Expiration:
-          type: string
-          format: date-time
-          description: Session expiration time (60 minutes from creation)
-          example: '2024-11-04T15:30:00Z'
-        TimeStamp:
-          type: string
-          format: date-time
-          description: Session creation timestamp
-          example: '2024-11-04T14:30:00Z'
-        TenderTypeOptions:
-          type: string
-          description: Available payment methods
-          example: Credit,GooglePay,ApplePay
-        ClientId:
-          type: string
-          description: Client identifier
-          example: your_client_id
-        Expired:
-          type: boolean
-          description: Whether the session has expired
-          example: false
-        DisplayCreditCard:
-          type: boolean
-          description: Whether credit card options should be displayed
-          example: true
-        Completed:
-          type: boolean
-          description: Whether the session has been completed
-          example: false
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type
-          example: Validation Error
-        message:
-          type: string
-          description: Error message
-          example: Invalid request data
-        details:
-          type: array
-          description: Detailed error information
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-                description: Field name that caused the error
-                example: Sale.Amount
-              message:
-                type: string
-                description: Field-specific error message
-                example: Amount must be greater than 0
-    DtoCheckoutSession:
-      type: object
-      required:
-      - ClientId
-      - TenderTypeOptions
-      - Sale
-      properties:
-        ClientId:
-          type: string
-          description: Your ConnexPay client identifier
-          example: your_client_id
-        TenderTypeOptions:
-          type: string
-          description: Comma-separated list of available payment methods
-          enum:
-          - Credit
-          - ACH
-          - GooglePay
-          - ApplePay
-          - Credit,GooglePay
-          - Credit,ApplePay
-          - Credit,GooglePay,ApplePay
-          - ACH,Credit
-          example: Credit,GooglePay,ApplePay
-        Sale:
-          $ref: '#/components/schemas/SaleData'
   securitySchemes:
     BearerAuth:
       type: http

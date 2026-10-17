@@ -80,6 +80,36 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    AvailableCreditReportResponse:
+      type: object
+      properties:
+        pageCurrent:
+          description: Current Page number.
+          type: integer
+          format: int32
+        pageCurrentResults:
+          description: Current Page results.
+          type: integer
+          format: int32
+        pageSize:
+          description: Page size.
+          type: integer
+          format: int32
+        pageTotal:
+          description: Total number of pages available.
+          type: integer
+          format: int32
+        totalCount:
+          description: Count of all items available.
+          type: integer
+          format: int32
+        searchResults:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AvailableCreditReport'
+      additionalProperties: false
     AvailableCreditReportRequest:
       type: object
       properties:
@@ -105,6 +135,31 @@ components:
           - 'null'
           format: date-time
       additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
     AvailableCreditReport:
       type: object
       properties:
@@ -144,61 +199,6 @@ components:
           description: Unique merchant Guid assigned to the client by ConnexPay.
           type: string
           format: uuid
-      additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    AvailableCreditReportResponse:
-      type: object
-      properties:
-        pageCurrent:
-          description: Current Page number.
-          type: integer
-          format: int32
-        pageCurrentResults:
-          description: Current Page results.
-          type: integer
-          format: int32
-        pageSize:
-          description: Page size.
-          type: integer
-          format: int32
-        pageTotal:
-          description: Total number of pages available.
-          type: integer
-          format: int32
-        totalCount:
-          description: Count of all items available.
-          type: integer
-          format: int32
-        searchResults:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AvailableCreditReport'
       additionalProperties: false
   securitySchemes:
     bearerAuth:
